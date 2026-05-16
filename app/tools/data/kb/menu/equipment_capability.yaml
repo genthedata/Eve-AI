@@ -1,0 +1,331 @@
+---
+# Kitchen Equipment Capability Knowledge Base
+# Maps what the business can actually cook, and where.
+# Used by menu_agent to validate executability at the event venue BEFORE committing to a menu.
+# Prevents recommending dishes that cannot be delivered on the day.
+
+# ── Owned equipment inventory ─────────────────────────────────────────────
+owned_equipment:
+  - equipment_id: EQ-001
+    name: Commercial Gas Wok Burner
+    quantity: 4
+    capacity_notes: Each burner handles 1 wok cycle simultaneously
+    techniques: [stir_fry, saute, deep_fry_in_wok, blanch, boil]
+    max_portions_per_cycle: 40
+    cycle_time_min: 10
+    throughput_per_hour: 240
+    power: gas
+    requires_outdoor_ventilation: true
+    transport: portable
+    notes: >
+      4 wok burners = 960 portions/hour stir-fry capacity (peak).
+      Each burner needs ventilation. Not suitable for indoor venues without exhaust.
+
+  - equipment_id: EQ-002
+    name: Commercial Rice Cooker (30L)
+    quantity: 6
+    capacity_notes: Each unit cooks 10kg dry rice = ~22kg cooked (~145 portions)
+    techniques: [steam_rice, congee]
+    max_portions_per_batch: 145
+    batch_time_min: 45
+    throughput_per_event_6units: 870
+    power: electric_240v
+    requires_outdoor_ventilation: false
+    transport: portable
+    notes: 6 units = 870 portions rice capacity per cook cycle.
+
+  - equipment_id: EQ-003
+    name: Commercial Stockpot (60L)
+    quantity: 8
+    capacity_notes: One pot = up to 80 portions of curry/stew
+    techniques: [braise, boil, slow_cook, poach, blanch]
+    max_portions_per_batch: 80
+    batch_time_min: 120
+    power: gas
+    transport: portable
+    notes: >
+      8 stockpots = 640 portions braise capacity. Rendang requires 90-150 min.
+      Allow 2 batch cycles for events >400 pax.
+
+  - equipment_id: EQ-004
+    name: Commercial Deep Fryer (20L oil)
+    quantity: 2
+    capacity_notes: One basket = 2kg raw food; 2 baskets per fryer
+    techniques: [deep_fry]
+    max_portions_per_cycle: 20
+    cycle_time_min: 8
+    throughput_per_hour_2units: 300
+    power: gas
+    requires_outdoor_ventilation: true
+    transport: portable
+    notes: >
+      2 fryers = max 300 fried portions per hour. CRITICAL CONSTRAINT.
+      Deep-fried menu items at 500+ pax must use both fryers continuously.
+      Not suitable for indoor venues without fire suppression and exhaust.
+
+  - equipment_id: EQ-005
+    name: Satay / Charcoal Grill
+    quantity: 3
+    capacity_notes: One grill holds 50 skewers simultaneously; 10 min per batch
+    techniques: [grill_skewer, charcoal_grill]
+    max_portions_per_cycle: 50
+    cycle_time_min: 10
+    throughput_per_hour_3units: 900
+    power: charcoal
+    requires_outdoor_ventilation: true
+    transport: portable
+    notes: >
+      3 grills = 900 satay skewers/hour. Outdoor or semi-outdoor only.
+      Charcoal smoke requires open air. Never indoors.
+
+  - equipment_id: EQ-006
+    name: Convection Oven (60cm)
+    quantity: 2
+    capacity_notes: One oven = 4 full GN trays; 1 GN = ~20 portions
+    techniques: [bake, roast, oven_braise]
+    max_portions_per_batch: 80
+    batch_time_min: 45
+    power: electric_240v
+    requires_outdoor_ventilation: false
+    transport: medium_vehicle
+    notes: >
+      2 ovens = 160 portions per 45-min cycle. Used for desserts and oven-finished dishes.
+      Chocolate lava cake: 30 portions per batch (limited ramekin quantity).
+
+  - equipment_id: EQ-007
+    name: Commercial Steamer (10-tray)
+    quantity: 2
+    capacity_notes: 10 trays = 10 x ~20 portions = 200 portions per cycle
+    techniques: [steam, steam_rice, steamed_fish]
+    max_portions_per_batch: 200
+    batch_time_min: 25
+    power: electric_240v
+    requires_outdoor_ventilation: false
+    transport: portable
+    notes: >
+      Ideal for leche flan, pandan cake (bain marie setup), dim sum.
+      Also used for steaming fish at Chinese banquets.
+
+  - equipment_id: EQ-008
+    name: Teppanyaki Flat Griddle (90cm)
+    quantity: 1
+    capacity_notes: One griddle handles 30 portions simultaneously
+    techniques: [griddle, teppanyaki, sear]
+    max_portions_per_cycle: 30
+    cycle_time_min: 12
+    throughput_per_hour: 150
+    power: gas
+    requires_outdoor_ventilation: true
+    requires_exhaust_system: true
+    transport: heavy_vehicle
+    notes: >
+      CRITICAL: Teppanyaki requires exhaust system and ventilation.
+      Only usable at venues with proper exhaust. Never propose at venues without exhaust confirmation.
+      One chef per griddle required.
+
+  - equipment_id: EQ-009
+    name: Portable Induction Cooker (3.5kW)
+    quantity: 10
+    capacity_notes: Light cooking only; not suitable for high-heat stir fry
+    techniques: [boil, simmer, maintain_temp, light_saute]
+    max_portions_per_cycle: 40
+    power: electric_240v
+    requires_outdoor_ventilation: false
+    transport: portable
+    notes: >
+      Used for indoor venues where gas is not permitted.
+      Cannot replicate wok hei. Not suitable for Nasi Goreng or stir-fried dishes
+      requiring high flame. Use for soups, maintaining curry temps, dal, raita.
+
+  - equipment_id: EQ-010
+    name: Chafing Dish / Bain Marie (full GN)
+    quantity: 30
+    capacity_notes: Maintains hot food temperature; not for cooking
+    techniques: [hot_holding]
+    power: sterno_or_electric
+    transport: portable
+    notes: >
+      30 chafing dishes = simultaneous buffet line serving up to 15 dishes
+      (2 chafing dishes per dish for rotation). Holding max 3h for safety.
+
+  - equipment_id: EQ-011
+    name: Refrigerated Transport Van
+    quantity: 1
+    capacity_notes: 1500L capacity; maintains 4C
+    notes: Cold chain transport for chilled and prepared ingredients.
+
+# ── Must-rent equipment (not owned) ──────────────────────────────────────
+must_rent:
+  - equipment_id: RENT-001
+    name: Tandoor Oven
+    rental_lead_days: 7
+    rental_cost_approx_myr: 350
+    techniques: [tandoor_bake, naan, tandoor_chicken]
+    requires_outdoor_ventilation: true
+    notes: Required for authentic naan and tandoori dishes. Rent from Indian supplier.
+
+  - equipment_id: RENT-002
+    name: Dum Cooking Rig (sealed pots + charcoal top heat)
+    rental_lead_days: 3
+    rental_cost_approx_myr: 150
+    techniques: [dum_biryani]
+    notes: Authentic biryani dum cooking. Can be improvised with oven if unavailable.
+
+  - equipment_id: RENT-003
+    name: Rotisserie Spit (gas, 20-bird)
+    rental_lead_days: 5
+    rental_cost_approx_myr: 450
+    techniques: [rotisserie_roast, whole_chicken, whole_lamb]
+    requires_outdoor_ventilation: true
+    notes: For live roast stations. Outdoor only.
+
+  - equipment_id: RENT-004
+    name: Chocolate Fountain
+    rental_lead_days: 3
+    rental_cost_approx_myr: 180
+    techniques: [dessert_station]
+    notes: Birthday and gala dessert station. Requires level surface.
+
+# ── Technique-to-equipment mapping ───────────────────────────────────────
+technique_equipment_map:
+  stir_fry:          [EQ-001]
+  deep_fry:          [EQ-004]
+  charcoal_grill:    [EQ-005]
+  steam_rice:        [EQ-002]
+  slow_braise:       [EQ-003]
+  oven_bake:         [EQ-006]
+  steam:             [EQ-007]
+  teppanyaki:        [EQ-008]
+  indoor_cooking:    [EQ-009]
+  hot_hold:          [EQ-010]
+  tandoor:           [RENT-001]
+  dum_biryani:       [RENT-002]
+  rotisserie:        [RENT-003]
+
+# ── Dish-to-equipment requirements ────────────────────────────────────────
+# Used for venue executability check.
+dish_equipment_requirements:
+  "Chicken Rendang":          [EQ-003]
+  "Beef Rendang":             [EQ-003]
+  "Chicken Adobo":            [EQ-003]
+  "Beef Caldereta":           [EQ-003]
+  "Kare-Kare":                [EQ-003]
+  "Chicken Satay":            [EQ-005]
+  "Beef Satay":               [EQ-005]
+  "Hainanese Chicken Rice":   [EQ-003, EQ-002]
+  "Laksa (Chicken)":          [EQ-003, EQ-001]
+  "Pad Thai (Chicken)":       [EQ-001]
+  "Pad Thai (Tofu)":          [EQ-001]
+  "Tom Yum Soup":             [EQ-003]
+  "Nasi Goreng":              [EQ-001]
+  "Dal Tadka":                [EQ-003]
+  "Butter Chicken":           [EQ-003, EQ-006]
+  "Vegetable Biryani":        [EQ-003, EQ-006]
+  "Spring Rolls (Fried)":     [EQ-004]
+  "Garlic Butter Vegetables": [EQ-001]
+  "Tofu Sisig":               [EQ-008]
+  "Leche Flan":               [EQ-007, EQ-006]
+  "Mango Sticky Rice":        [EQ-007]
+  "Pandan Cake":              [EQ-006]
+  "Chocolate Lava Cake":      [EQ-006]
+  "Coconut Panna Cotta":      [EQ-002]
+  "Mushroom Salpicao":        [EQ-001]
+  "Pesto Pasta":              [EQ-003]
+  "Gado-Gado":                [EQ-003]
+  "Steamed Jasmine Rice":     [EQ-002]
+  "Fresh Fruit Platter":      []
+  "Miso Soup with Tofu":      [EQ-003]
+
+# ── Venue constraint profiles ─────────────────────────────────────────────
+venue_constraints:
+  - venue_type: indoor_ballroom_no_gas
+    gas_permitted: false
+    power_capacity_kw: 50
+    exhaust_system: false
+    outdoor_space: false
+    prohibited_techniques: [stir_fry, deep_fry, charcoal_grill, teppanyaki, rotisserie]
+    allowed_techniques: [steam_rice, slow_braise, indoor_cooking, hot_hold, oven_bake, steam]
+    recommended_menu_style: "Pre-cooked and transported. Avoid live stations."
+    dishes_to_avoid: [Nasi Goreng, Pad Thai, Spring Rolls (Fried), Chicken Satay, Beef Satay]
+    notes: >
+      Most hotel ballrooms. Pre-cook at central kitchen and transport.
+      Use induction cookers for soups and maintaining temps.
+
+  - venue_type: outdoor_garden_full
+    gas_permitted: true
+    power_capacity_kw: 30
+    exhaust_system: not_required
+    outdoor_space: true
+    prohibited_techniques: []
+    allowed_techniques: [all]
+    recommended_menu_style: "Full live station potential. Charcoal grill recommended."
+    notes: >
+      Ideal for satay station, BBQ, teppanyaki. Check weather contingency.
+      Monsoon months (Nov-Feb) require shelter setup.
+
+  - venue_type: community_hall_basic
+    gas_permitted: true
+    power_capacity_kw: 20
+    exhaust_system: partial
+    outdoor_space: partial
+    prohibited_techniques: [teppanyaki]
+    allowed_techniques: [stir_fry, slow_braise, steam_rice, hot_hold]
+    notes: >
+      Gas available but exhaust limited. No teppanyaki indoors.
+      Satay grill must be set up outside.
+
+  - venue_type: corporate_office_lobby
+    gas_permitted: false
+    power_capacity_kw: 15
+    exhaust_system: false
+    outdoor_space: false
+    prohibited_techniques: [stir_fry, deep_fry, charcoal_grill, teppanyaki, rotisserie]
+    allowed_techniques: [steam_rice, indoor_cooking, hot_hold]
+    dishes_to_avoid: [Nasi Goreng, Pad Thai, Spring Rolls (Fried), any_live_station]
+    recommended_menu_style: "Fully pre-prepared buffet. Simple replenishment only."
+
+  - venue_type: outdoor_tent_partial
+    gas_permitted: true
+    power_capacity_kw: 25
+    exhaust_system: not_required
+    outdoor_space: true
+    prohibited_techniques: [teppanyaki_indoors]
+    allowed_techniques: [stir_fry, deep_fry_outdoor, charcoal_grill, slow_braise]
+    notes: >
+      Semi-outdoor venues under event tents. Full kitchen capability except teppanyaki.
+      Confirm power supply for rice cookers before confirming menu.
+
+# ── Capacity planning rules ────────────────────────────────────────────────
+capacity_rules:
+  - rule_id: CAP-001
+    name: Deep-fry constraint
+    description: >
+      With 2 owned fryers: maximum 300 fried portions per hour. If menu includes
+      deep-fried items for >300 pax, either: stagger service, rent additional fryer,
+      or replace fried item with oven-baked alternative.
+    trigger_pax_threshold: 300
+    equipment: [EQ-004]
+
+  - rule_id: CAP-002
+    name: Satay scale limit
+    description: >
+      3 satay grills = 900 skewers/hour. If satay is main protein for >300 pax
+      at a 1-hour service window, flag and consider adding a second protein option.
+    trigger_pax_threshold: 300
+    equipment: [EQ-005]
+
+  - rule_id: CAP-003
+    name: Live wok station limit
+    description: >
+      Nasi Goreng or Pad Thai live at >150 pax requires minimum 3 wok burners
+      running simultaneously. Plan chef staffing accordingly.
+    trigger_pax_threshold: 150
+    equipment: [EQ-001]
+
+  - rule_id: CAP-004
+    name: Oven dessert limit
+    description: >
+      Chocolate Lava Cake: 30 per oven per 20 min. With 2 ovens: max 180 portions/hour.
+      Not suitable as primary dessert for events >150 pax in plated format.
+    trigger_pax_threshold: 150
+    equipment: [EQ-006]

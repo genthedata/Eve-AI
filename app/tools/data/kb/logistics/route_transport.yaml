@@ -1,0 +1,237 @@
+---
+# Route & Transport Database
+# Operational geography of moving food, equipment, and staff.
+# Central kitchen location: Shah Alam, Selangor (Malaysia primary base).
+# Philippines operations base: Mandaluyong, Metro Manila.
+#
+# All travel times in minutes. Peak = weekday 7-9am and 5-7pm.
+
+central_kitchen:
+  malaysia:
+    address: "Seksyen 15, Shah Alam, Selangor 40200"
+    gps: {lat: 3.0853, lng: 101.5328}
+    loading_hours: "06:00–23:00"
+    cold_room_capacity_pallets: 8
+    prep_capacity_pax: 1500
+  philippines:
+    address: "Barangay Wack-Wack, Mandaluyong, Metro Manila"
+    gps: {lat: 14.5862, lng: 121.0305}
+    loading_hours: "05:00–22:00"
+
+# ── Malaysia routes ───────────────────────────────────────────────────────
+routes_malaysia:
+  - route_id: RT-MY-001
+    from: central_kitchen_shah_alam
+    to: Putrajaya
+    venue_ids: [VEN-MY-001]
+    distance_km: 35
+    travel_time_normal_min: 35
+    travel_time_peak_am_min: 55
+    travel_time_peak_pm_min: 70
+    peak_pinch_points:
+      - "Kesas Highway (KM 12–18) congests 7–9am and 5–8pm"
+      - "Putrajaya Bridge bottleneck after 5pm"
+    toll_costs_myr: 4.50
+    toll_booths: [Kesas_Toll_Sunway, Elite_Toll_Precinct9]
+    recommended_departure_for_7pm_event: "13:00 (allows 5h setup)"
+    recommended_departure_for_1pm_event: "07:30 (avoids morning peak)"
+    vehicle_restrictions:
+      - road: "ELITE Highway: no vehicle >7.5T GVW without permit"
+    notes: "Route via KESAS or ELITE. KESAS faster off-peak; ELITE better for heavy lorries."
+
+  - route_id: RT-MY-002
+    from: central_kitchen_shah_alam
+    to: Petaling_Jaya
+    venue_ids: [VEN-MY-002]
+    distance_km: 12
+    travel_time_normal_min: 20
+    travel_time_peak_am_min: 45
+    travel_time_peak_pm_min: 55
+    peak_pinch_points:
+      - "Federal Highway (Shah Alam→PJ) congests badly 7:30–9:30am"
+      - "Jalan Yong Shook Lin one-way restriction during morning hours"
+    toll_costs_myr: 0
+    recommended_departure_for_7pm_event: "13:00"
+    notes: "Short distance but congestion notorious. Always budget 50+ min during peak."
+
+  - route_id: RT-MY-003
+    from: central_kitchen_shah_alam
+    to: KL_City_Centre
+    venue_ids: [VEN-MY-004]
+    distance_km: 28
+    travel_time_normal_min: 35
+    travel_time_peak_am_min: 75
+    travel_time_peak_pm_min: 90
+    peak_pinch_points:
+      - "LDP (Kota Damansara → Penchala) congests 7–9am"
+      - "Jalan Duta → Jalan Parlimen KL: avoid 5–7pm (worst bottleneck)"
+      - "Bukit Nanas approach: always add 15min Fri pm"
+    toll_costs_myr: 6.00
+    toll_booths: [LDP_Penchala_Toll]
+    recommended_departure_for_7pm_event: "12:00 (3h safety margin for KL traffic)"
+    vehicle_restrictions:
+      - road: "Jalan P Ramlee: no lorries. Use van only for KL City venues."
+    notes: "Menara KL: van-only delivery. No lorry access to Jalan P Ramlee area."
+
+  - route_id: RT-MY-004
+    from: central_kitchen_shah_alam
+    to: Tropicana_Golf_Club_PJ
+    venue_ids: [VEN-MY-003]
+    distance_km: 15
+    travel_time_normal_min: 22
+    travel_time_peak_am_min: 50
+    travel_time_peak_pm_min: 60
+    peak_pinch_points:
+      - "LDP (Mutiara Damansara exit) congests 8–9am"
+    toll_costs_myr: 3.20
+    recommended_departure_for_7pm_event: "14:00"
+    vehicle_restrictions:
+      - road: "Golf club service road: max 5T vehicle (lawn protection)"
+    notes: "Lawn access for heavy vehicles restricted. Refrigerated van only — lorry parks at perimeter."
+
+# ── Philippines routes ─────────────────────────────────────────────────────
+routes_philippines:
+  - route_id: RT-PH-001
+    from: central_kitchen_mandaluyong
+    to: Mall_of_Asia_Pasay
+    venue_ids: [VEN-PH-001]
+    distance_km: 12
+    travel_time_normal_min: 25
+    travel_time_peak_am_min: 60
+    travel_time_peak_pm_min: 90
+    peak_pinch_points:
+      - "EDSA (Guadalupe→Buendia) is gridlock 5–8pm — worst in Metro Manila"
+      - "Seaside Blvd / MOA approach backs up 4–7pm on weekends"
+    toll_costs_php: 60
+    recommended_departure_for_7pm_event: "13:00"
+    notes: "EDSA corridor: use service roads when possible. Avoid 4–7pm delivery."
+
+  - route_id: RT-PH-002
+    from: central_kitchen_mandaluyong
+    to: Rockwell_Makati
+    venue_ids: [VEN-PH-002]
+    distance_km: 6
+    travel_time_normal_min: 18
+    travel_time_peak_am_min: 50
+    travel_time_peak_pm_min: 65
+    peak_pinch_points:
+      - "Buendia / Rockwell area: multiple mall intersections slow Friday pm"
+      - "Estrella St service road: single-lane, queue possible"
+    toll_costs_php: 0
+    recommended_departure_for_7pm_event: "13:30"
+    notes: "Short distance, but Makati CBD traffic unpredictable. Always allow 60min buffer pm."
+
+# ── Vehicle fleet specifications ──────────────────────────────────────────
+vehicle_fleet:
+  - vehicle_id: VH-001
+    type: refrigerated_van
+    description: "3-tonne refrigerated delivery van (cold chain)"
+    count_owned: 1
+    dimensions_internal_m: {l: 3.5, w: 1.8, h: 1.9}
+    payload_capacity_kg: 1500
+    volume_capacity_m3: 11.9
+    temperature_capability: "2°C to 8°C (chilled), -10°C to -18°C (frozen)"
+    max_vehicle_height_m: 3.0
+    max_vehicle_length_m: 7.0
+    fuel_type: diesel
+    notes: >
+      Use for all events requiring cold chain (chilled proteins, dairy, desserts).
+      Always pre-cool to 4°C before loading chilled food.
+
+  - vehicle_id: VH-002
+    type: cargo_van
+    description: "1.5-tonne non-refrigerated cargo van (dry goods + equipment)"
+    count_owned: 2
+    dimensions_internal_m: {l: 2.8, w: 1.6, h: 1.7}
+    payload_capacity_kg: 800
+    volume_capacity_m3: 7.6
+    max_vehicle_height_m: 2.5
+    notes: >
+      Dry goods, chafing dishes, tables, chairs, non-perishable equipment.
+      Can carry hot boxes (pre-loaded hot food) for short trips <30min.
+
+  - vehicle_id: VH-003
+    type: lorry_3tonne
+    description: "3-tonne open lorry (large equipment)"
+    count_owned: 1
+    dimensions_internal_m: {l: 4.5, w: 2.0, h: null}
+    payload_capacity_kg: 3000
+    max_vehicle_height_m: 3.5
+    max_vehicle_weight_gvw_tonnes: 7.5
+    notes: >
+      For banquet tables, chairs, heavy equipment loads.
+      Cannot enter indoor parking structures or venues with height restrictions.
+      Requires Class D driving licence.
+
+# ── Vehicle loading rules & capacity ──────────────────────────────────────
+loading_rules:
+  general:
+    - "Load heavy items first (lower, towards cab). Light items on top."
+    - "All chilled food loads last, into refrigerated van only."
+    - "Hot boxes load last — within 30min of kitchen close."
+    - "Fragile items (glass, chafing dish stands): wrap with moving blankets."
+    - "Never stack rice cookers on top of each other without padding."
+
+  capacity_by_item:
+    - item: chafing_dish_stacked
+      units_per_cargo_van: 24
+      units_per_lorry: 60
+      stacking_rules: "Max 6 high. Secure with rope."
+
+    - item: rice_cooker_60cup
+      units_per_cargo_van: 6
+      units_per_lorry: 16
+      stacking_rules: "Do not stack. Store upright only."
+
+    - item: hot_box_gn_4_pan
+      units_per_cargo_van: 4
+      units_per_lorry: 12
+      stacking_rules: "Max 2 high when loaded with food."
+
+    - item: banquet_table_round_1.8m
+      units_per_lorry: 20
+      stacking_rules: "Stack flat, max 8 high."
+
+    - item: banquet_chair_folding
+      units_per_lorry: 150
+      units_per_cargo_van: 40
+      stacking_rules: "Stack folded, max 20 per row."
+
+    - item: gas_cylinder_13kg
+      units_per_cargo_van: 4
+      units_per_lorry: 10
+      special_handling: "Upright only. Valve cap on. Separate from food."
+
+  vehicle_assignment_rules:
+    - rule: "Refrigerated van ALWAYS required when menu includes: chilled protein, dairy cream, set desserts"
+    - rule: "Lorry required when: round tables + chairs exceed 30 tables OR >300 chairs needed"
+    - rule: "Second cargo van required when guest count >200 OR live station equipment present"
+    - rule: "Never mix raw protein and ready-to-eat food in same vehicle compartment"
+
+# ── Delivery scheduling rules ─────────────────────────────────────────────
+delivery_scheduling:
+  - rule_id: DS-001
+    name: First vehicle departure (equipment)
+    timing: "5h before service start (outdoor / no kitchen venues) / 4h before (kitchen venues)"
+    vehicle: lorry_or_cargo_van
+    carries: [tables, chairs, chafing_dish_stands, equipment]
+
+  - rule_id: DS-002
+    name: Second vehicle departure (dry food + hot boxes)
+    timing: "2.5h before service start"
+    vehicle: cargo_van
+    carries: [dry_ingredients, spice_packs, dry_goods, hot_boxes_with_pre_cooked_items]
+    condition: "Hot boxes must arrive within 2.5h of loading"
+
+  - rule_id: DS-003
+    name: Third vehicle departure (cold chain)
+    timing: "2h before service start"
+    vehicle: refrigerated_van
+    carries: [chilled_proteins, dairy, cold_desserts, ice]
+    notes: "Pre-cool van to 4°C. Load chilled food last at kitchen. Maintain cold chain."
+
+  - rule_id: DS-004
+    name: Staff transport
+    timing: "3.5h before service start (kitchen venues) / 4.5h (no-kitchen venues)"
+    vehicle: staff_own_vehicles_or_company_van
+    notes: "Staff must arrive before first equipment vehicle. Kitchen prep cannot start without chef."

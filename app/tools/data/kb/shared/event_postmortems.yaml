@@ -1,0 +1,130 @@
+---
+# Past Event Post-Mortems Knowledge Base
+# Structured summaries of what went well and what didn't — queryable by any agent.
+
+postmortems:
+  - postmortem_id: PM-2024-001
+    event_type: wedding
+    region: Philippines
+    guest_count: 300
+    date: 2024-11-15
+    overall_rating: 4
+    client_satisfaction: high
+    summary: Large Filipino wedding at Rockwell Tent; full buffet; halal section included.
+    went_well:
+      - Lechon carving station created excellent atmosphere and crowd engagement
+      - Halal section was clearly signed and drew positive feedback from Muslim guests
+      - Hot box logistics ensured food arrived at correct temperature
+    went_wrong:
+      - Gado-gado station exhausted by 30 min; re-order arrived 45 min late
+      - One rice cooker failed mid-service; backup was not on-site
+      - Guest count grew to 320 day-of; ran short on dessert cups
+    lessons:
+      - Always have 1 backup rice cooker on-site for buffets >150 pax
+      - For SEA events, salad/cold stations should be restocked at 45-min mark regardless
+      - Enforce RSVP count lock-in 48h before; add 10% contingency for walk-ins
+    agent_tags: [wedding, buffet, lechon, halal, large_event, equipment_failure]
+
+  - postmortem_id: PM-2024-002
+    event_type: corporate_gala
+    region: Malaysia
+    guest_count: 250
+    date: 2024-09-20
+    overall_rating: 5
+    client_satisfaction: very_high
+    summary: Annual gala for Rafiq Corp at Shangri-La KL; plated service; full JAKIM halal.
+    went_well:
+      - JAKIM compliance audit cleared without issues; client specifically commended
+      - Plated timing was precisely 3 minutes per table; service flow was smooth
+      - Customised branded menu cards received very positive response
+      - Nasi Kerabu station (cocktail hour) was the most photographed element
+    went_wrong:
+      - Audio-visual team ran 20 min late; cold appetisers held too long before service
+      - One vegetarian guest not flagged in RSVP; emergency vegetarian plate sourced
+    lessons:
+      - Coordinate AV check-in time with catering service start; buffer 30 min
+      - Collect dietary requests via individual RSVP forms (not just "count of vegetarians")
+    agent_tags: [corporate_gala, halal, plated, malaysia, high_rated]
+
+  - postmortem_id: PM-2024-003
+    event_type: product_launch
+    region: Singapore
+    guest_count: 80
+    date: 2024-07-10
+    overall_rating: 4
+    client_satisfaction: high
+    summary: Tech brand launch at Capella Singapore garden terrace; cocktail canapés.
+    went_well:
+      - Branded mocktail in company colours was a hit on social media
+      - Canapés cleared quickly; guests engaged with food as a brand experience
+      - Staffing was efficient; 3-person canapé service team managed well
+    went_wrong:
+      - Sea breeze extinguished candle centrepieces within 15 min
+      - Outdoor humidity caused canapé pastry shells to go soggy after 40 min
+    lessons:
+      - Outdoor coastal venues: use LED flameless candles only
+      - Pre-assemble pastry canapés in kitchen 30-min batches; do not pre-stage all food
+      - For outdoor tropical canapé events, avoid cream-filled pastry items
+    agent_tags: [product_launch, cocktail, outdoor, singapore, canapé, tropical_humidity]
+
+  - postmortem_id: PM-2023-004
+    event_type: festival
+    region: Philippines
+    guest_count: 700
+    date: 2023-05-01
+    overall_rating: 3
+    client_satisfaction: moderate
+    summary: Labour Day festival for company at Bonifacio Global City outdoor park.
+    went_well:
+      - Street food stalls were well-received; satay station was most popular
+      - Halo-halo bar was a crowd favourite; long queues but managed
+    went_wrong:
+      - Attendance reached 950; ran short of mains 90 min before closing
+      - Emergency re-order cost PHP 28,000 not in budget; compressed margin severely
+      - Portable generator failed at 3h; induction tops offline for 25 min
+    lessons:
+      - Festivals must include contract overage clause (charge per head above RSVP + 15%)
+      - Generator fuel check every 2h; carry spare LPG cylinder for backup
+      - For open public events, order 1.30× RSVP food quantities
+    agent_tags: [festival, outdoor, philippines, attendance_overshoot, generator_failure]
+
+  - postmortem_id: PM-2024-005
+    event_type: birthday
+    region: Philippines
+    guest_count: 60
+    date: 2024-03-22
+    overall_rating: 5
+    client_satisfaction: very_high
+    summary: Children's 8th birthday party at private residence; buffet; nut-free event.
+    went_well:
+      - Allergen signage for nut-free dishes was clear and thorough
+      - Interactive dessert table (build-your-own cupcake) was the highlight
+      - Child-portion sizing reduced waste to near zero
+    went_wrong:
+      - Setup ran 20 min late due to tight driveway access for the truck
+    lessons:
+      - Residential venues: always ask about driveway width and gate height in advance
+      - Children's parties: interactive dessert stations have ~5% waste vs 30% for plated cake
+    agent_tags: [birthday, children, nut_free, residential_venue, interactive_dessert]
+
+cross_event_insights:
+  - insight: Equipment redundancy
+    description: >
+      Rice cooker failure at PM-2024-001 is a recurring risk. Keep one spare rice cooker
+      for all buffet events >100 pax. Cost: PHP 300/event insurance vs PHP 5000 failure cost.
+
+  - insight: Attendance overshoot
+    description: >
+      3 out of 7 last events had actual attendance exceed RSVP by 8–35%.
+      Standard operating buffer: RSVP × 1.15 for closed events; RSVP × 1.30 for open.
+
+  - insight: Outdoor tropical factors
+    description: >
+      Humidity, wind, and insects affect outdoor events significantly in SEA.
+      For outdoor events: (1) pre-stage food in 30-min batches, (2) use covered
+      chafing dishes, (3) LED lighting only, (4) insect control pre-event.
+
+  - insight: Dietary data quality
+    description: >
+      "X vegetarians" is insufficient. Collect per-person dietary forms.
+      Vegans, vegetarians, and dairy-free guests have different requirements.

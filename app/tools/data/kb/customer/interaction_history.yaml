@@ -1,0 +1,266 @@
+---
+# Customer Interaction History (CRM Knowledge Base)
+# Past client records: contact details, event history, preferences,
+# complaints, payment behaviour, VIP flags.
+# Used by customer_agent to personalize intake, pre-fill recurring preferences,
+# flag high-value clients, and escalate difficult cases to human coordinators.
+
+clients:
+  - client_id: CLT-001
+    name: Azlan Bin Hamid
+    company: Azlan & Family (Private)
+    email: azlanhamid@gmail.com
+    phone: "+60-12-3456789"
+    region: Malaysia
+    language_preference: Malay
+    vip_tier: gold
+    vip_reason: Repeat client; referred 3 new bookings in 2024
+    lifetime_spend_myr: 38500
+    payment_reliability: excellent
+    preferred_payment: bank_transfer
+
+    events_history:
+      - event_id: EVT-2023-034
+        event_type: malay_wedding
+        date: 2023-08-20
+        guest_count: 350
+        service_style: buffet
+        total_billed_myr: 12500
+        paid_on_time: true
+        feedback_score: 4.8
+        nps: 9
+        repeat_booking: true
+
+      - event_id: EVT-2024-089
+        event_type: malay_wedding
+        date: 2024-05-11
+        guest_count: 280
+        service_style: buffet
+        total_billed_myr: 9800
+        paid_on_time: true
+        feedback_score: 4.9
+        nps: 10
+        repeat_booking: true
+
+    recurring_preferences:
+      - "Always requests extra rendang as overflow — order 15% more"
+      - "Prefers air sirap bandung over air limau; confirm drink order"
+      - "Vegetarian table is always exactly 10 pax"
+      - "Requests personal coordinator to liaise on day-of"
+    dietary_constraints_common: [halal]
+    complaint_log: []
+    agent_notes: >
+      Highly loyal client. Always pays on time. Worth prioritizing during peak season.
+      Proactively inform him of Eid/festive surcharges well in advance.
+
+  - client_id: CLT-002
+    name: Jennifer Tan Mei Ling
+    company: "Tan & Associates Law Firm"
+    email: jennifer.tan@tanassociates.com.my
+    phone: "+60-11-9876543"
+    region: Malaysia
+    language_preference: English
+    vip_tier: platinum
+    vip_reason: Annual corporate events; highest single-event spend on record
+    lifetime_spend_myr: 125000
+    payment_reliability: good
+    preferred_payment: corporate_invoice_NET_30
+
+    events_history:
+      - event_id: EVT-2023-012
+        event_type: corporate_gala_dinner
+        date: 2023-11-18
+        guest_count: 250
+        service_style: plated_5_course
+        total_billed_myr: 68000
+        paid_on_time: true
+        feedback_score: 4.6
+        nps: 8
+
+      - event_id: EVT-2024-145
+        event_type: corporate_gala_dinner
+        date: 2024-11-22
+        guest_count: 300
+        service_style: plated_5_course
+        total_billed_myr: 87000
+        paid_on_time: false
+        days_overdue: 18
+        feedback_score: 4.4
+        nps: 7
+        complaint_summary: "Salmon main course was dry; one table had incorrect dietary label"
+
+    recurring_preferences:
+      - "Always books November annual gala (same date range each year)"
+      - "Requests a dedicated client coordinator for day-of"
+      - "Top table always gets premium menu (beef tenderloin upgrade)"
+      - "She approves final menu personally; do not finalize without her sign-off"
+    dietary_constraints_common: [halal_tables, vegetarian_1_table]
+    complaint_log:
+      - date: 2024-11-22
+        issue: "Salmon main was overcooked for top table; sent back"
+        resolution: "Comp dessert upgrade; apology from head chef"
+        resolved: true
+        escalation_required: false
+    agent_notes: >
+      High-value annual client. November is her anchor booking — reach out by August.
+      Payment was late in 2024 (18 days); enforce invoice reminder at NET-20.
+      Fish quality is a known sensitivity — confirm kitchen lead for all her events.
+      She appreciates white-glove service; assign senior coordinator.
+
+  - client_id: CLT-003
+    name: Priya Krishnamurthy
+    company: "KL Hindu Cultural Society"
+    email: priya.ks@klhinducs.org
+    phone: "+60-12-5551234"
+    region: Malaysia
+    language_preference: English_and_Tamil
+    vip_tier: silver
+    vip_reason: Community org with recurring annual events
+    lifetime_spend_myr: 22000
+    payment_reliability: good
+    preferred_payment: bank_transfer
+
+    events_history:
+      - event_id: EVT-2023-067
+        event_type: indian_wedding
+        date: 2023-04-14
+        guest_count: 200
+        service_style: banana_leaf
+        total_billed_myr: 6200
+        paid_on_time: true
+        feedback_score: 4.7
+        nps: 9
+
+      - event_id: EVT-2024-038
+        event_type: corporate_lunch
+        date: 2024-09-07
+        guest_count: 80
+        service_style: buffet
+        total_billed_myr: 3500
+        paid_on_time: true
+        feedback_score: 4.5
+        nps: 8
+
+    recurring_preferences:
+      - "Always requires full vegetarian menu; strongly prefers no onion/garlic (Brahmin)"
+      - "Banana leaf events need 20% extra leaves for tear-offs"
+      - "Prefers our in-house payasam recipe over packet version"
+      - "Requests Tamil-speaking coordinator if available"
+    dietary_constraints_common: [vegetarian, brahmin_no_onion_garlic]
+    complaint_log:
+      - date: 2023-04-14
+        issue: "Sambar was slightly too salty for the elders"
+        resolution: "Noted; adjusted recipe for 2024 event"
+        resolved: true
+    agent_notes: >
+      Culturally traditional client — always book banana leaf for her events.
+      Brahmin dietary constraint is non-negotiable: no onion, no garlic.
+      Assign Tamil-speaking coordinator where possible; she appreciates it.
+
+  - client_id: CLT-004
+    name: Marcus Lim Jian Wei
+    company: "FastGrowth Technology Sdn Bhd"
+    email: marcus.lim@fastgrowth.my
+    phone: "+60-11-2223333"
+    region: Malaysia
+    language_preference: English
+    vip_tier: standard
+    vip_reason: null
+    lifetime_spend_myr: 4800
+    payment_reliability: fair
+    preferred_payment: credit_card
+
+    events_history:
+      - event_id: EVT-2024-055
+        event_type: product_launch
+        date: 2024-03-15
+        guest_count: 120
+        service_style: cocktail
+        total_billed_myr: 4800
+        paid_on_time: false
+        days_overdue: 45
+        feedback_score: 3.8
+        nps: 5
+
+    recurring_preferences:
+      - "Expects branded food displays — always requests themed presentation"
+    dietary_constraints_common: [halal_preferred]
+    complaint_log:
+      - date: 2024-03-15
+        issue: "Canapé refill was slow during second hour; guests complained of empty trays"
+        resolution: "Offered partial credit; acknowledged staffing shortfall"
+        resolved: true
+        escalation_required: true
+    agent_notes: >
+      CAUTION: Payment was 45 days overdue; escalate to require 50% prepayment for next booking.
+      Operational complaint on record; ensure adequate canapé staff ratio.
+      Needs careful management — do not over-promise on branded displays without confirmed budget.
+
+  - client_id: CLT-005
+    name: Wong Siew Fong
+    company: "Wong Family (Private)"
+    email: siw.wong@gmail.com
+    phone: "+60-12-7778888"
+    region: Malaysia
+    language_preference: Mandarin_and_English
+    vip_tier: gold
+    vip_reason: Multi-year wedding and anniversary bookings; reliable payer
+    lifetime_spend_myr: 51000
+    payment_reliability: excellent
+    preferred_payment: bank_transfer
+
+    events_history:
+      - event_id: EVT-2022-019
+        event_type: chinese_banquet
+        date: 2022-12-17
+        guest_count: 300
+        service_style: plated_10_course
+        total_billed_myr: 26000
+        paid_on_time: true
+        feedback_score: 4.9
+        nps: 10
+
+      - event_id: EVT-2024-110
+        event_type: chinese_banquet
+        date: 2024-09-28
+        guest_count: 250
+        service_style: plated_10_course
+        total_billed_myr: 25000
+        paid_on_time: true
+        feedback_score: 4.8
+        nps: 9
+
+    recurring_preferences:
+      - "Red and gold table linen only — never white"
+      - "Whole steamed grouper (not sea bass) for prosperity dish"
+      - "Mock shark's fin soup (ethical preference confirmed)"
+      - "Yee Sang requested for all Chinese New Year adjacent events"
+      - "Peking duck must be carved tableside, not pre-plated"
+    dietary_constraints_common: []
+    complaint_log: []
+    agent_notes: >
+      Exceptionally loyal client. Zero complaints in history.
+      Her preferences are specific and consistent — load them at every intake.
+      Always offer early booking slot for December events (high-demand period).
+
+# ── CRM flags summary (used by customer_agent for quick lookup) ────────────
+vip_flags:
+  - client_id: CLT-001
+    tier: gold
+    action: Assign dedicated coordinator; waive admin fees
+  - client_id: CLT-002
+    tier: platinum
+    action: Director-level touchpoint before event; dedicated coordinator mandatory
+  - client_id: CLT-004
+    tier: standard
+    flag: payment_risk
+    action: Require 50% prepayment before confirming booking
+  - client_id: CLT-005
+    tier: gold
+    action: Assign dedicated coordinator; confirm steamer for whole fish
+
+escalation_triggers:
+  - payment_overdue: Require prepayment for next event if >30 days overdue
+  - complaint_unresolved: Escalate to Operations Manager within 24h
+  - vip_platinum_new_inquiry: Alert Director of Operations within 1 hour of inquiry
+  - repeat_complaint_same_client: Flag for Director review before confirming booking

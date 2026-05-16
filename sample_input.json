@@ -1,0 +1,9 @@
+{
+  "event_type": "Wedding Reception",
+  "guest_count": 200,
+  "dietary_constraints": ["vegetarian", "no_nuts"],
+  "budget": 80000,
+  "location": "Quezon City",
+  "event_date": "2026-06-18",
+  "service_style": "buffet"
+}

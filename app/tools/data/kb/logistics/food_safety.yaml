@@ -1,0 +1,185 @@
+---
+# Food Safety & Handling Rules Knowledge Base
+# The critical compliance KB that governs every food-in-transit and at-venue decision.
+# Violations here are not just operational failures — they are health and liability risks.
+# The logistics agent uses this to design the transport and holding plan.
+
+temperature_requirements:
+  - category: hot_food
+    description: "Cooked items meant to be served hot (curries, rice, soups, grills)"
+    minimum_holding_temp_c: 60
+    maximum_holding_temp_c: 80
+    danger_zone_below_c: 60
+    action_if_below_danger: "Discard if held below 60°C for more than 2 hours (cumulative)"
+    transport_method: hot_box_insulated_container
+    transport_notes: >
+      Pre-heat hot boxes 30min before loading. Load food at internal temperature >80°C.
+      Hot boxes maintain temperature approximately 3h in ambient Malaysian weather (28-32°C).
+      Plan service to begin within 2.5h of kitchen close for hot items.
+
+  - category: chilled_food
+    description: "Raw proteins, dairy, cold desserts, pre-prepped salads"
+    maximum_holding_temp_c: 4
+    minimum_holding_temp_c: 0
+    danger_zone_above_c: 4
+    action_if_above_danger: "Discard raw protein held above 8°C for >2h. Discard dairy above 5°C for >4h."
+    transport_method: refrigerated_van
+    transport_notes: >
+      Pre-cool refrigerated van to 4°C minimum 30min before loading.
+      Monitor temperature via van's built-in thermometer. Load chilled food LAST.
+      Do NOT transport chilled food in non-refrigerated van unless distance <20min AND
+      food is packed in ice-filled cooler boxes with ice-to-food ratio 2:1.
+
+  - category: frozen_food
+    description: "Ice cream, frozen dessert components, backup frozen protein"
+    maximum_holding_temp_c: -18
+    transport_method: refrigerated_van_frozen_mode
+    thaw_safety_notes: >
+      Do not refreeze thawed items. Partially thawed items must be cooked immediately
+      or discarded. Frozen desserts: transport in dry ice or frozen van; serve within
+      30min of removal from cold chain.
+
+  - category: cold_desserts_set
+    description: "Panna cotta, jelly, mousse, chilled cakes"
+    maximum_holding_temp_c: 5
+    minimum_holding_temp_c: 2
+    transport_method: refrigerated_van
+    service_notes: "Remove from cold chain max 45min before service. Cover against insects outdoors."
+
+  - category: room_temperature_dry
+    description: "Bread, rice (dry), spices, dry garnishes, crockery"
+    holding_notes: "Store above ground level. Keep away from moisture and direct sunlight."
+    no_temperature_control_required: true
+
+maximum_holding_times:
+  # Time limits from end of cooking/preparation to service
+  - food_type: cooked_curries_and_stews
+    max_hold_hot_hours: 3
+    max_hold_room_temp_hours: 0.5
+    notes: "Thick gravies retain heat well. Monitor surface temperature, not just pot base."
+
+  - food_type: fried_items
+    max_hold_hot_hours: 1.5
+    max_hold_room_temp_hours: 0.5
+    notes: "Fried items deteriorate rapidly in quality. Serve within 90min of frying."
+
+  - food_type: cooked_rice
+    max_hold_hot_hours: 4
+    max_hold_room_temp_hours: 1
+    notes: "Rice is high-risk for Bacillus cereus. Never leave at room temp >1h."
+
+  - food_type: raw_protein_chilled
+    max_hold_chilled_hours: 48
+    max_hold_room_temp_min: 30
+    notes: "Once removed from refrigeration, must be cooked within 30min or discarded."
+
+  - food_type: buffet_display_hot
+    max_display_hours: 2
+    action_after_limit: "Discard. Replace with fresh batch from kitchen."
+    notes: >
+      Food at buffet chafing stations must be monitored for temperature.
+      Station staff must check water temperature in chafing dish every 30min.
+      Full replenishment every 90min for events >3h.
+
+  - food_type: salads_and_cold_starters
+    max_display_min: 90
+    notes: "Replace cold starters at 90min mark. Keep backup refrigerated."
+
+  - food_type: cut_fresh_fruit
+    max_display_hours: 2
+    notes: "Cover with cling wrap until service. Discard browning fruit immediately."
+
+danger_zone_rules:
+  definition: "The temperature range 4°C–60°C where bacteria multiply rapidly."
+  two_hour_rule: >
+    Food must not spend more than 2 cumulative hours in the danger zone (4°C–60°C)
+    from preparation to service. This includes transport time in non-refrigerated vehicles.
+  four_hour_rule: >
+    If food has spent 4+ hours in the danger zone (total), it MUST be discarded
+    regardless of appearance or smell.
+  application:
+    - "During transit in non-chilled vehicle: clock starts immediately."
+    - "During setup (room temperature): add to cumulative danger zone time."
+    - "Include vendor pickup-to-kitchen time if external suppliers used."
+
+reheating_rules:
+  - rule: "Food may be reheated ONCE only. Never reheat food that has already been reheated."
+  - rule: "Reheat to internal temperature of at least 75°C before service."
+  - rule: "Rice: reheat to steaming hot (>75°C internal). Never reheat rice more than once."
+  - rule: "Curries and gravies: bring to rolling boil, then simmer to serving temperature."
+  - rule: "Fried items: reheat in oven (180°C) not microwave. Microwave makes crust soggy and heats unevenly."
+  - rule: "Document each reheating instance. If in doubt, discard."
+
+cross_contamination_prevention:
+  transport:
+    - "Raw proteins (chicken, beef, seafood) must be stored in sealed containers BELOW ready-to-eat food."
+    - "Separate cooler boxes for raw protein vs cooked food. Label clearly."
+    - "Never place ready-to-eat food on surfaces that touched raw protein without sanitising."
+    - "Cutting boards: colour-coded. Red = raw meat, green = vegetables, yellow = cooked meat, white = bread/dairy."
+    - "Halal food: must not contact non-halal food, surfaces, or equipment. Use dedicated utensils."
+
+  at_venue:
+    - "Separate serving utensils for each buffet dish. Do not cross-use."
+    - "Separate serving area for halal and non-halal dishes if mixed event."
+    - "Staff serving raw items (carving station) must change gloves before handling cooked items."
+    - "No double-dipping: used serving spoon must not return to food tray without washing."
+
+cold_chain_planning:
+  cold_box_quantity_rules:
+    - condition: "Guest count 1–100"
+      ice_boxes_required: 2
+      ice_kg_required: 30
+    - condition: "Guest count 101–300"
+      ice_boxes_required: 4
+      ice_kg_required: 60
+    - condition: "Guest count 301–600"
+      ice_boxes_required: 6
+      ice_kg_required: 100
+    - condition: "Guest count 601+"
+      ice_boxes_required: 8
+      ice_kg_required: 150
+
+  ice_sourcing:
+    - "Order food-grade block ice from regular supplier, not petrol station ice."
+    - "Ice delivery must arrive at kitchen at least 1h before refrigerated van departure."
+    - "Ice-to-food ratio in cooler boxes: 2 parts ice to 1 part food by volume."
+
+  loading_sequence:
+    step_1: "Pre-cool refrigerated van to 4°C (start 30min before loading)"
+    step_2: "Load frozen items first (deepest in van)"
+    step_3: "Load chilled raw proteins in sealed containers"
+    step_4: "Load chilled ready-to-eat items in separate containers, above raw proteins"
+    step_5: "Ice boxes go in last, accessible from van door"
+    step_6: "Record van temperature on Food Safety Log before departure"
+
+food_safety_roles:
+  - role: food_safety_officer
+    responsible_for:
+      - "Completing Food Safety Log at kitchen close"
+      - "Recording van temperature before departure and on arrival"
+      - "Checking food temperatures at buffet stations every 30min"
+      - "Making discard decisions — no food should be argued back from discard"
+    minimum_qualification: food_safety_level_2
+
+  - role: head_chef
+    responsible_for:
+      - "Ensuring all food is cooked to correct internal temperature before transport"
+      - "Approving cold chain plan with logistics coordinator"
+      - "Final call on any borderline food safety judgment calls"
+
+personal_hygiene_rules:
+  - "All food handlers must have valid food handler's certificate."
+  - "No bare-hand contact with ready-to-eat food. Gloves mandatory."
+  - "Wash hands for 20 seconds after: handling raw food, touching face, phone use, after toilet."
+  - "Staff with any illness (fever, diarrhoea, vomiting) must NOT handle food. Send home immediately."
+  - "Hair tied back or hairnet for all kitchen staff. Beard nets where applicable."
+  - "No jewellery (rings, bracelets) in food prep zones."
+  - "Uniforms must be clean at start of shift. Spare uniforms available."
+
+outdoor_event_special_rules:
+  - "All food must be covered at all times (insects, contamination risk)."
+  - "Never place food directly on ground. Use elevated tables or trolleys."
+  - "Chafing dishes with lids mandatory for all outdoor hot food."
+  - "Service tents or canopies for all food stations in outdoor settings."
+  - "Increase ice stock by 30% for outdoor events in Malaysian midday heat."
+  - "Check weather forecast: rain shelter plan required for outdoor events."

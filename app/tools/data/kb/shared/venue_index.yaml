@@ -1,0 +1,223 @@
+---
+# Venue Compatibility Index (Shared Knowledge Base)
+# Basic notes on venues the business has worked in before.
+# Used by customer_agent to confirm workability early — before logistics agent
+# does a full deep dive. Flags access constraints, kitchen availability,
+# outside catering policy, and parking notes.
+
+venues:
+  - venue_id: VEN-001
+    name: Grand Ballroom @ Hotel Equatorial Kuala Lumpur
+    city: Kuala Lumpur
+    country: Malaysia
+    region: Klang Valley
+    type: hotel_ballroom
+    capacity_pax: [100, 1500]
+    outside_catering_allowed: false
+    notes: Hotel uses in-house F&B exclusively. We do not operate here as primary caterer.
+    last_worked: null
+    status: not_compatible
+
+  - venue_id: VEN-002
+    name: Dewan Serbaguna Putrajaya
+    city: Putrajaya
+    country: Malaysia
+    region: Klang Valley
+    type: community_hall
+    capacity_pax: [100, 1000]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: Large catering kitchen; 6 burner commercial range, walk-in chiller available
+    parking: Large free parking; loading bay accessible from rear
+    access_constraints: Booking required 3 months in advance for large events
+    halal_only_venue: true
+    last_worked: 2024-09-07
+    catering_coordinator_contact: "Tn. Hafiz +60-12-345-6789"
+    status: compatible_preferred
+    notes: >
+      Excellent venue for large Malay weddings and corporate events.
+      Halal-only venue — no pork or alcohol permitted on premises.
+      Walk-in chiller on-site is a major advantage for seafood events.
+
+  - venue_id: VEN-003
+    name: The Majestic Hotel KL — Crystal Ballroom
+    city: Kuala Lumpur
+    country: Malaysia
+    region: Klang Valley
+    type: heritage_hotel_ballroom
+    capacity_pax: [80, 400]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: Shared kitchen with hotel; must coordinate with hotel F&B team
+    parking: Valet and basement parking; loading dock at rear (restricted hours 8am-6pm)
+    access_constraints:
+      - Outside caterers require hotel approval 4 weeks in advance
+      - Shared kitchen usage requires hotel supervisor present
+      - No open flame — induction cooking only in ballroom
+    halal_only_venue: false
+    last_worked: 2024-11-22
+    catering_coordinator_contact: "Puan Laila +60-3-2785-8000"
+    status: compatible
+    notes: >
+      Premium venue with colonial character — popular for corporate galas and weddings.
+      Induction-only rule in ballroom means no live flame stations.
+      Coordinate kitchen slot timing carefully with hotel team.
+
+  - venue_id: VEN-004
+    name: Marriott Putrajaya Convention Center
+    city: Putrajaya
+    country: Malaysia
+    region: Klang Valley
+    type: convention_center
+    capacity_pax: [200, 3000]
+    outside_catering_allowed: false
+    notes: Marriott brand venue; outside catering not permitted. Not applicable.
+    status: not_compatible
+
+  - venue_id: VEN-005
+    name: Shah Alam Stadium Banquet Hall
+    city: Shah Alam
+    country: Malaysia
+    region: Klang Valley
+    type: sports_venue_hall
+    capacity_pax: [200, 2000]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: Large industrial kitchen; halal-only premises
+    parking: Massive; no constraints
+    access_constraints: Requires permit from local authority for events >500 pax
+    halal_only_venue: true
+    last_worked: 2023-08-20
+    status: compatible
+    notes: >
+      Ideal for large Malay wedding receptions. Halal-only.
+      Good loading access; easy for large trucks. Kitchen team reports positive experience.
+
+  - venue_id: VEN-006
+    name: Nexus Bangsar South Convention Centre
+    city: Kuala Lumpur (Bangsar South)
+    country: Malaysia
+    region: Klang Valley
+    type: convention_center
+    capacity_pax: [100, 1500]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: "Full catering kitchen: commercial oven, range, walk-in fridge, loading lift"
+    parking: Multi-storey paid parking; free loading bay for 2h
+    access_constraints:
+      - Event setup after 8pm on previous day only (venue policy)
+      - Must engage venue AV team; cannot bring own sound system without approval
+    halal_only_venue: false
+    last_worked: 2024-03-15
+    status: compatible_preferred
+    notes: >
+      Best all-round modern convention venue in KL. Good for corporate galas and product launches.
+      Kitchen is excellent. Non-halal events possible; communicate clearly to team.
+      Nexus has its own ops coordinator — reach out early for kitchen slot booking.
+
+  - venue_id: VEN-007
+    name: Sands Expo & Convention Centre (MBS) Singapore
+    city: Singapore
+    country: Singapore
+    region: Marina Bay
+    type: convention_center
+    capacity_pax: [100, 5000]
+    outside_catering_allowed: false
+    notes: Marina Bay Sands uses in-house catering only. Not applicable for us.
+    status: not_compatible
+
+  - venue_id: VEN-008
+    name: Republic Cultural Centre Singapore
+    city: Singapore
+    country: Singapore
+    region: Jurong
+    type: community_centre
+    capacity_pax: [50, 500]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: Basic kitchen; 4-burner gas range, limited cold storage
+    parking: HDB multi-storey; adequate
+    access_constraints: MUIS halal-certified caterers required for Muslim events
+    halal_only_venue: false
+    last_worked: null
+    status: compatible
+    notes: >
+      Mid-tier SG community event venue. Good for corporate lunches and cultural events.
+      For Muslim events, confirm our MUIS certification is acceptable to venue.
+
+  - venue_id: VEN-009
+    name: Manila Hotel Fiesta Pavilion
+    city: Manila
+    country: Philippines
+    region: Metro Manila
+    type: heritage_hotel_ballroom
+    capacity_pax: [100, 600]
+    outside_catering_allowed: false
+    notes: Manila Hotel uses in-house catering. Historical venue; we are not permitted.
+    status: not_compatible
+
+  - venue_id: VEN-010
+    name: PICC (Philippine International Convention Center) Ballroom
+    city: Pasay
+    country: Philippines
+    region: Metro Manila
+    type: convention_center
+    capacity_pax: [200, 2000]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: Full commercial kitchen with cold rooms; excellent for large events
+    parking: Large secure parking lot
+    access_constraints:
+      - Outside caterers require 6-week advance registration
+      - Government-owned venue — IDCP halal certification required for Muslim events
+    halal_only_venue: false
+    last_worked: 2024-07-18
+    status: compatible
+    notes: >
+      Premier PH convention venue. Our go-to for large Manila corporate events.
+      Kitchen capacity is excellent. IDCP certification on file — acceptable here.
+      Traffic around CCP Complex can be severe; plan delivery for early morning.
+
+  - venue_id: VEN-011
+    name: Sofitel Philippine Plaza — Grand Ballroom
+    city: Pasay
+    country: Philippines
+    region: Metro Manila
+    type: hotel_ballroom
+    capacity_pax: [100, 1200]
+    outside_catering_allowed: true
+    kitchen_available: true
+    kitchen_notes: Must use hotel's pre-approved caterers list; we are on the approved list
+    parking: Hotel parking; valet available
+    access_constraints:
+      - Must be on Sofitel approved caterers list (we are listed — confirm annually)
+      - Service team must be in uniform approved by hotel
+    halal_only_venue: false
+    last_worked: 2023-05-01
+    status: compatible
+    notes: >
+      Premium waterfront venue. We are approved caterers — confirm listing is still active.
+      Great view; corporate galas and weddings excellent here.
+      Strict service standards expected; brief team on hotel protocol.
+
+# ── Venue search rules for customer_agent ────────────────────────────────
+venue_lookup_rules:
+  - If client mentions a venue: look up venue_id; if not_compatible, flag immediately
+  - If venue is compatible: pass kitchen_available, halal_only_venue, access_constraints to logistics_agent
+  - If venue is unknown: flag to logistics_agent for site visit assessment
+  - Always confirm outside_catering_allowed before quoting
+
+outdoor_event_notes:
+  outdoor_requirements:
+    - Portable cooking equipment (gas or induction depending on event size)
+    - Generator if no power access on-site
+    - Canopy or shelter for food prep area
+    - Additional staff for transport logistics
+  weather_contingency:
+    Malaysia: >
+      Monsoon season (Oct-Jan East Coast; Apr-May West Coast) — always have contingency plan
+      for outdoor events. Tent rental recommended for October onwards.
+    Philippines: >
+      Typhoon season Jun-Nov. Outdoor events need contingency; have indoor backup plan.
+    Singapore: >
+      Afternoon thunderstorms year-round. Outdoor events after 3pm need shelter.

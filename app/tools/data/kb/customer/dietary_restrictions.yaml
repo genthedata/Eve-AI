@@ -1,0 +1,356 @@
+---
+# Dietary & Allergen Knowledge Base
+# Operationally authoritative source for every dietary profile the business supports.
+# Used by customer_agent to auto-flag conflicts and pass constraints to menu,
+# inventory, and logistics agents the moment a guest composition is described.
+#
+# Structure per profile:
+#   permitted / forbidden / cross_contamination_risks /
+#   certification_requirements / kitchen_prep_constraints /
+#   flags_to_pass (what to propagate downstream)
+
+profiles:
+  - id: halal
+    label: Halal
+    description: >
+      Compliant with Islamic dietary law. All meat must be slaughtered by a Muslim
+      using the prescribed method with bismillah recitation. No pork, pork derivatives,
+      or alcohol in any form, including as a cooking ingredient or flavouring.
+    permitted:
+      - All certified halal meat (beef, lamb, chicken, goat, duck)
+      - Fish and seafood (most varieties, subject to certification)
+      - All vegetables, fruits, grains, legumes
+      - Dairy and eggs from halal-certified sources
+      - Halal-certified condiments and sauces
+    forbidden:
+      - Pork and all pork derivatives (lard, gelatin unless halal, pork stock)
+      - Alcohol in any form (wine, beer, mirin, cooking wine, vanilla extract with alcohol)
+      - Meat from animals not slaughtered correctly (e.g. stunning-only, CO2-killed)
+      - Blood and blood products
+      - Carnivorous animals (dog, cat, etc.) and their by-products
+      - Amphibians (frogs, crocodile) — ruling varies by school; avoid for safety
+    cross_contamination_risks:
+      - Shared grills, woks, or fryers previously used for pork
+      - Shared cutting boards or knives between halal and non-halal proteins
+      - Sauces or marinades containing wine, mirin, oyster sauce (often contains alcohol)
+      - Gelatin in desserts (pork-derived unless stated otherwise)
+      - Vanilla extract — most commercial versions use alcohol as solvent
+    certification_requirements:
+      - Preferred: JAKIM (Malaysia), MUIS (Singapore), IDCP or MUI (Philippines/Indonesia)
+      - All meat suppliers must provide valid halal certificate copy on delivery
+      - Kitchen team lead must confirm no cross-contamination at service
+      - Certificate validity checked before each event
+    kitchen_prep_constraints:
+      - Separate prep surfaces, cutting boards, knives, and utensils
+      - Dedicated frying oil — no shared oil with non-halal items
+      - Halal kitchen lead must supervise all protein prep
+      - No alcohol-based cleaning agents in halal prep areas
+    flags_to_pass:
+      - menu_agent: filter_halal=true, exclude_pork=true, exclude_alcohol=true
+      - inventory_agent: require_halal_suppliers=true, check_halal_cert=true
+      - logistics_agent: require_separate_prep_station=true
+    common_with: [halal_gluten_free, halal_nut_free, halal_vegetarian]
+
+  - id: vegetarian
+    label: Vegetarian
+    description: Excludes all meat, poultry, and seafood. Dairy and eggs are permitted.
+    permitted:
+      - All vegetables, fruits, grains, legumes, nuts, seeds
+      - Dairy products (milk, cheese, yogurt, cream, butter)
+      - Eggs
+      - Plant-based proteins (tofu, tempeh, seitan)
+    forbidden:
+      - Meat, poultry, seafood
+      - Animal stock or broths (chicken, beef, fish)
+      - Gelatin (animal-derived)
+      - Rennet (unless microbial/vegetable)
+    cross_contamination_risks:
+      - Shared cooking surfaces or utensils used for meat
+      - Stock-based sauces disguised as vegetarian
+      - Hidden fish sauce in Thai and Vietnamese dishes
+    certification_requirements:
+      - No formal certification required; business self-declares
+      - Ingredient list review mandatory for all sauces and condiments
+    kitchen_prep_constraints:
+      - Separate prep station from meat dishes preferred
+      - Clearly label all vegetarian items at buffet
+    flags_to_pass:
+      - menu_agent: filter_vegetarian=true, exclude_meat=true, exclude_seafood=true
+      - logistics_agent: label_vegetarian=true
+
+  - id: vegan
+    label: Vegan
+    description: No animal products of any kind, including dairy, eggs, and honey.
+    permitted:
+      - All vegetables, fruits, grains, legumes, nuts, seeds
+      - Plant-based milks (coconut, soy, oat, almond)
+      - Tofu, tempeh, seitan, jackfruit
+    forbidden:
+      - All meat, poultry, seafood
+      - Dairy (milk, cheese, butter, cream, ghee)
+      - Eggs
+      - Honey and bee products
+      - Gelatin, rennet, casein, whey
+    cross_contamination_risks:
+      - Butter or ghee in "vegetarian" curries
+      - Egg wash on pastry
+      - Fish sauce in Thai/Vietnamese dishes
+      - Dairy in naan or roti
+    certification_requirements:
+      - No formal cert; label verification essential
+    kitchen_prep_constraints:
+      - Dedicated wok/pan free of butter or lard
+      - Coconut cream/milk as dairy substitute confirmed
+    flags_to_pass:
+      - menu_agent: filter_vegan=true, exclude_all_animal=true
+      - logistics_agent: label_vegan=true
+
+  - id: gluten_free
+    label: Gluten-Free
+    description: >
+      Excludes wheat, barley, rye, and their derivatives. Rice, corn, potato,
+      and most naturally gluten-free grains are permitted. Critical for guests
+      with coeliac disease; trace amounts cause harm.
+    permitted:
+      - Rice (all varieties), rice noodles, rice paper
+      - Corn, cornstarch, corn tortilla
+      - Potatoes, sweet potatoes, cassava, yam
+      - Naturally GF grains: quinoa, millet, sorghum, teff
+      - Most vegetables, fruits, meats (unbreaded), legumes, nuts
+    forbidden:
+      - Wheat flour (all forms: plain, self-raising, wholemeal, durum)
+      - Barley, rye, spelt, kamut, farro
+      - Most commercial soy sauce (contains wheat — use tamari instead)
+      - Sauces thickened with wheat flour
+      - Bread, pasta, regular noodles, cakes, cookies (unless GF-certified)
+      - Seitan (pure wheat gluten)
+    cross_contamination_risks:
+      - Shared fryer oil used for breaded items
+      - Pasta water contamination if shared pot
+      - Soy sauce used as flavour base in most Asian dishes
+      - Shared bread baskets at buffet
+      - Flour dusting on prep surfaces
+    certification_requirements:
+      - For coeliac guests: ingredients must be verified GF-certified
+      - Recommend dedicated GF prep station for medical cases
+    kitchen_prep_constraints:
+      - Separate prep surface and utensils
+      - Tamari instead of soy sauce
+      - GF label prominently on all safe dishes
+    flags_to_pass:
+      - menu_agent: filter_gluten_free=true, use_tamari=true, exclude_wheat=true
+      - logistics_agent: label_gluten_free=true, separate_prep=true
+
+  - id: nut_free
+    label: Nut-Free (Tree Nuts & Peanuts)
+    description: >
+      Excludes all tree nuts and peanuts. Potentially life-threatening for guests
+      with anaphylaxis. All dishes must be prepared in a nut-free environment.
+    permitted:
+      - All items not containing nuts or nut products
+      - Seeds (sesame, sunflower, pumpkin) are technically safe but verify per guest
+    forbidden:
+      - Peanuts and peanut products (peanut sauce, peanut oil, groundnuts)
+      - Tree nuts: cashews, almonds, walnuts, pistachios, hazelnuts, pine nuts, pecans
+      - Satay sauce, gado-gado (always peanut-based)
+      - Pesto (pine nuts)
+      - Praline, marzipan, nougat
+      - Many Thai and Indonesian dishes (check each)
+    cross_contamination_risks:
+      - Peanut oil as cooking oil (common in Asian kitchens)
+      - Shared fryer with nut-coated items
+      - Peanut sauce residue on shared utensils
+      - Satay garnish inadvertently added to other dishes
+    certification_requirements:
+      - No formal cert; kitchen team must be briefed specifically
+      - Inform ALL kitchen staff — nut allergy is life-threatening
+    kitchen_prep_constraints:
+      - Peanut oil MUST be replaced with sunflower, canola, or rice bran oil
+      - Dedicated utensils; no shared serving spoons
+      - Nut-free dishes served first, before satay/gado-gado stations set up
+      - Written allergen declaration signed by kitchen lead
+    flags_to_pass:
+      - menu_agent: exclude_nuts=true, exclude_peanuts=true
+      - inventory_agent: no_peanut_oil=true
+      - logistics_agent: allergen_briefing_required=true, label_nut_free=true
+
+  - id: lactose_free
+    label: Lactose-Free / Dairy-Free
+    description: Excludes cow's milk and dairy derivatives due to intolerance.
+    permitted:
+      - Plant milks (coconut, soy, oat, almond)
+      - All meat, seafood, vegetables, grains, legumes, fruits
+      - Lactose-free dairy products (if intolerance vs allergy)
+    forbidden:
+      - Milk, cheese, butter, cream, ghee, yogurt (unless lactose-free)
+      - Cream sauces, butter-based roux
+      - Ice cream, panna cotta, leche flan (dairy-based)
+    cross_contamination_risks:
+      - Butter used in "vegetable" stir-fries
+      - Cream in sauces not disclosed
+      - Ghee in Indian breads
+    kitchen_prep_constraints:
+      - Replace butter/cream with coconut cream or dairy-free alternatives
+      - Confirm all sauces are dairy-free
+    flags_to_pass:
+      - menu_agent: exclude_dairy=true, use_coconut_cream=true
+
+  - id: kosher
+    label: Kosher
+    description: >
+      Compliant with Jewish dietary law (kashrut). Separate milk and meat at all times.
+      Only specific animals permitted; fish must have fins and scales; shellfish forbidden.
+      Requires kosher certification from a recognized rabbinical authority.
+    permitted:
+      - Kosher-certified beef, lamb, chicken (slaughtered per shechita)
+      - Fish with fins and scales (salmon, tuna, cod — NOT shellfish)
+      - Vegetables and fruits (checked for insects)
+      - Dairy from kosher-certified sources (NOT mixed with meat)
+    forbidden:
+      - Pork, rabbit, shellfish, squid, octopus, eel
+      - Mixing meat and dairy in the same meal or on same utensils
+      - Non-kosher slaughter methods
+      - Certain fats (chelev), blood
+    cross_contamination_risks:
+      - Any mixing of meat and dairy categories
+      - Non-kosher certification on meat products
+    certification_requirements:
+      - Requires Rabbi or mashgiach (kosher supervisor) oversight for full compliance
+      - All meat from kosher-certified supplier with valid hechsher
+      - Business typically does not operate under full kosher supervision
+      - Recommend honest disclosure to client; offer partially kosher-friendly menus
+    kitchen_prep_constraints:
+      - Full kosher compliance requires dedicated kitchen — not currently supported
+      - Offer kosher-style (no pork, no shellfish, no meat+dairy mixing) as alternative
+    flags_to_pass:
+      - menu_agent: exclude_pork=true, exclude_shellfish=true, no_meat_dairy_mix=true
+      - logistics_agent: note_kosher_style_only=true
+
+  - id: keto
+    label: Ketogenic / Low-Carb
+    description: Very low carbohydrate, high fat, moderate protein diet. Under 20-50g net carbs/day.
+    permitted:
+      - Meat, fish, eggs, dairy (full-fat)
+      - Low-carb vegetables: leafy greens, broccoli, cauliflower, zucchini, bell peppers
+      - Nuts and seeds (moderate)
+      - Healthy fats: olive oil, coconut oil, avocado, butter
+    forbidden:
+      - Rice, bread, pasta, noodles
+      - Potatoes, corn, starchy vegetables
+      - Sugar, honey, desserts
+      - Most fruits (except small portions of berries)
+      - Legumes (beans, lentils, chickpeas)
+    cross_contamination_risks:
+      - Sugar-containing marinades or sauces
+      - Rice or noodles mixed into dishes
+    kitchen_prep_constraints:
+      - Label all keto-safe dishes clearly
+      - Offer cauliflower rice or zucchini noodle alternatives
+    flags_to_pass:
+      - menu_agent: filter_keto=true, low_carb=true
+
+# ── Combined profile matrix ────────────────────────────────────────────────
+# Most real events involve overlapping dietary requirements.
+# This matrix gives ready-made constraint bundles for the most common combinations.
+
+combined_profiles:
+  - combo_id: halal_nut_free
+    label: "Halal + Nut-Free"
+    components: [halal, nut_free]
+    additional_constraints:
+      - All satay/peanut sauce removed from menu entirely; no exception
+      - Cooking oil must be non-peanut and halal-certified
+      - Frequency at Malaysian weddings: very high
+    example_query: "300 Malay wedding guests, one guest has severe peanut allergy"
+    auto_flag: "CRITICAL: peanut removal + halal compliance. No satay on menu."
+
+  - combo_id: halal_gluten_free
+    label: "Halal + Gluten-Free"
+    components: [halal, gluten_free]
+    additional_constraints:
+      - Tamari (GF soy sauce) must also be halal-certified
+      - Most Malaysian dishes are naturally GF; flag pasta and bread items
+    example_query: "Muslim wedding guests with a table of coeliac guests"
+    auto_flag: "Check GF status of all halal sauces and condiments"
+
+  - combo_id: vegan_halal
+    label: "Vegan + Halal"
+    components: [vegan, halal]
+    additional_constraints:
+      - Plant-based milk must be from halal-certified source
+      - No alcohol in vanilla extract or fermented ingredients
+    example_query: "Mixed Muslim and vegan guests"
+    auto_flag: "Dairy-free + halal = coconut/soy milk base mandatory"
+
+  - combo_id: vegetarian_nut_free
+    label: "Vegetarian + Nut-Free"
+    components: [vegetarian, nut_free]
+    additional_constraints:
+      - Gado-gado and pesto removed entirely
+      - Dessert audit for praline or marzipan required
+    example_query: "Indian corporate lunch, no nuts allowed due to guest allergy"
+
+  - combo_id: mixed_event_standard
+    label: "Mixed Muslim + Chinese + Vegetarian (Standard SEA Event)"
+    components: [halal, nut_free, vegetarian]
+    additional_constraints:
+      - Halal certification required for all proteins
+      - Vegetarian station clearly separated and labelled
+      - Peanut sauce removed or served only on dedicated, isolated station
+      - No pork, no alcohol, no cross-contamination
+    example_query: "150 guests, 50% Malay Muslim, 30% Chinese, 20% Indian vegetarian"
+    auto_flag: >
+      Standard SEA multi-community event: halal + vegetarian stations mandatory.
+      Label all dishes. No satay peanut sauce on main buffet. Desserts must be
+      halal-certified. Brief all kitchen staff on segregation.
+
+# ── Allergen severity matrix ───────────────────────────────────────────────
+# Used by customer_agent to triage how urgently to flag each allergen.
+
+allergen_severity:
+  - allergen: peanuts
+    severity: critical
+    response: Remove from entire menu; change cooking oil; brief all staff; written declaration
+  - allergen: tree_nuts
+    severity: critical
+    response: Audit all dishes and sauces; written declaration
+  - allergen: shellfish
+    severity: high
+    response: Label clearly; separate serving utensils; alert kitchen lead
+  - allergen: fish
+    severity: high
+    response: Ensure fish sauce removed from all dishes for affected table
+  - allergen: gluten_wheat
+    severity: high
+    response: GF alternatives required; separate prep surface
+  - allergen: dairy
+    severity: medium
+    response: Offer dairy-free alternatives; label clearly
+  - allergen: eggs
+    severity: medium
+    response: Audit baked goods and desserts; offer alternatives
+  - allergen: soy
+    severity: medium
+    response: Audit sauces (soy sauce is in most Asian dishes); use coconut aminos
+
+# ── Certification authority reference ─────────────────────────────────────
+certification_bodies:
+  - id: JAKIM
+    country: Malaysia
+    applies_to: [halal]
+    validity_check: certificate number on JAKIM portal
+    notes: Premier halal authority for MY events. Widely trusted by Muslim community.
+  - id: MUIS
+    country: Singapore
+    applies_to: [halal]
+    validity_check: MUIS online directory
+    notes: Singapore halal standard. Accepted at most SG-based events.
+  - id: IDCP
+    country: Philippines
+    applies_to: [halal]
+    validity_check: IDCP certificate document
+    notes: "Primary PH halal certifier. Also accepted: MUI (Indonesian) for imports."
+  - id: MUI
+    country: Indonesia
+    applies_to: [halal]
+    validity_check: MUI certificate document

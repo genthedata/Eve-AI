@@ -1,0 +1,329 @@
+---
+# Equipment Inventory Knowledge Base (Logistics view)
+# Shared with Inventory Agent — but the logistics agent uses this differently:
+# Where inventory asks "do we have enough?", logistics asks "how do we move and set it up?"
+# This file captures: dimensions, weight, vehicle assignment, setup sequence, handling notes,
+# and current commitment tracking (the double-booking prevention system).
+
+owned_equipment:
+  - equipment_id: EQ-OWN-001
+    name: Chafing Dish Set (Round)
+    quantity: 40
+    category: buffet_serviceware
+    capacity: "Full hotel pan (GN 1/1)"
+    condition: good
+    # Logistics-specific fields
+    dimensions_cm: {l: 55, w: 55, h: 20}
+    weight_kg: 2.5
+    stacking_rules: "Max 6 high when empty. Do not stack when loaded."
+    handling_notes: "Handle lids separately. Protect against dents — affects seal."
+    vehicle_preference: cargo_van
+    units_per_cargo_van: 24
+    units_per_lorry: 60
+    setup_time_min_per_unit: 5
+    setup_sequence_priority: 3
+    requires_sterno: true
+    sterno_cans_per_unit_per_4h: 3
+    storage_location: warehouse_shelf_A1
+
+  - equipment_id: EQ-OWN-002
+    name: Chafing Dish Set (Rectangular)
+    quantity: 20
+    category: buffet_serviceware
+    capacity: "Full hotel pan (GN 1/1)"
+    condition: good
+    dimensions_cm: {l: 65, w: 35, h: 18}
+    weight_kg: 2.2
+    stacking_rules: "Max 8 high when empty. Nest lids."
+    handling_notes: "Corner protectors recommended in transit."
+    vehicle_preference: cargo_van
+    units_per_cargo_van: 30
+    units_per_lorry: 80
+    setup_time_min_per_unit: 5
+    setup_sequence_priority: 3
+    requires_sterno: true
+    sterno_cans_per_unit_per_4h: 3
+    storage_location: warehouse_shelf_A2
+
+  - equipment_id: EQ-OWN-003
+    name: Portable Gas Wok Burner (Double Ring)
+    quantity: 6
+    category: cooking_equipment
+    fuel: LPG
+    dimensions_cm: {l: 70, w: 45, h: 25}
+    weight_kg: 8
+    stacking_rules: "Do not stack. Transport flat on lorry bed."
+    handling_notes: "LPG hose stored separately in locked box. Safety check before each use."
+    vehicle_preference: lorry
+    units_per_lorry: 6
+    setup_time_min_per_unit: 10
+    setup_sequence_priority: 2
+    safety_note: "Requires LPG cylinder (stored/transported separately). Open-air use only."
+    storage_location: warehouse_shelf_B1
+    # Commitment tracking
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-004
+    name: Commercial Rice Cooker (60-cup)
+    quantity: 8
+    category: cooking_equipment
+    capacity_cups: 60
+    dimensions_cm: {l: 50, w: 50, h: 45}
+    weight_kg: 12
+    stacking_rules: "Do not stack. Store upright."
+    handling_notes: "Fragile heating element — do not tip. Carry by base handles."
+    vehicle_preference: cargo_van
+    units_per_cargo_van: 4
+    units_per_lorry: 8
+    power_draw_watts: 2200
+    circuit_note: "Max 4 per kitchen circuit (15A). Spread across circuits at venues with limited amperage."
+    setup_time_min_per_unit: 15
+    setup_sequence_priority: 2
+    maintenance_schedule: "Clean after every use. Descale quarterly."
+    storage_location: warehouse_shelf_B2
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-005
+    name: Hot Box / Insulated Food Transport Container
+    quantity: 12
+    category: transport
+    capacity: "4x GN 1/1 pans"
+    dimensions_cm: {l: 75, w: 60, h: 70}
+    weight_kg: 9
+    stacking_rules: "Max 2 high when loaded. Single stack only."
+    handling_notes: "Pre-heat 30min before loading. Do NOT load cold food."
+    vehicle_preference: cargo_van_or_refrigerated_van
+    units_per_cargo_van: 4
+    units_per_lorry: 12
+    effective_hold_time_hours: 3
+    setup_time_min_per_unit: 2
+    setup_sequence_priority: 4
+    storage_location: loading_dock_rack
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-006
+    name: Round Banquet Table (1.8m diameter)
+    quantity: 60
+    category: furniture
+    seats: 10
+    dimensions_cm: {diameter: 180, h: 75}
+    weight_kg: 20
+    stacking_rules: "Stack flat. Max 8 high. Protect surface with cloth."
+    handling_notes: "Two-person lift. Folding legs must be fully collapsed before stacking."
+    vehicle_preference: lorry
+    units_per_lorry: 20
+    setup_time_min_per_unit: 3
+    linen_setup_additional_min: 10
+    setup_sequence_priority: 1
+    storage_location: warehouse_upper_rack
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-007
+    name: Folding Banquet Chair
+    quantity: 700
+    category: furniture
+    dimensions_cm: {l: 45, w: 50, h: 88}
+    weight_kg: 4
+    stacking_rules: "Stack folded. Max 20 per row. Secure with strap."
+    handling_notes: "Check hinge pins regularly — worn pins cause collapse."
+    vehicle_preference: lorry
+    units_per_lorry: 150
+    units_per_cargo_van: 40
+    setup_time_min_per_20_chairs: 5
+    setup_sequence_priority: 1
+    condition: good
+    storage_location: warehouse_chair_stack
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-008
+    name: Buffet Table (1.8m x 0.75m, folding)
+    quantity: 30
+    category: furniture
+    dimensions_cm: {l: 180, w: 75, h: 75}
+    weight_kg: 15
+    stacking_rules: "Stack folded flat. Max 8 high."
+    handling_notes: "Two-person lift. Lock folding legs before moving."
+    vehicle_preference: lorry
+    units_per_lorry: 30
+    setup_time_min_per_unit: 2
+    setup_sequence_priority: 1
+    storage_location: warehouse_shelf_C1
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-009
+    name: Commercial Induction Cooktop (3.5kW)
+    quantity: 12
+    category: cooking_equipment
+    power_requirement: "3.5kW / 220V / 16A dedicated circuit"
+    dimensions_cm: {l: 60, w: 40, h: 10}
+    weight_kg: 7
+    stacking_rules: "Max 4 flat stack. Protect glass surface with foam between units."
+    handling_notes: "Glass surface cracks on hard drops. Handle with care."
+    vehicle_preference: cargo_van
+    units_per_cargo_van: 8
+    circuit_note: "Dedicated 16A circuit per unit. Do not share circuit."
+    setup_time_min_per_unit: 5
+    setup_sequence_priority: 2
+    storage_location: warehouse_shelf_B3
+    maintenance_schedule: "Inspect glass surface after each event."
+    current_commitments: []
+
+  - equipment_id: EQ-OWN-010
+    name: Portable Bar Counter (modular, 2m sections)
+    quantity: 6
+    category: beverage_equipment
+    dimensions_cm: {l: 200, w: 60, h: 105}
+    weight_kg: 25
+    stacking_rules: "Do not stack. Transport flat in lorry."
+    handling_notes: "Four-person assembly required. Connector pins can strip — handle gently."
+    vehicle_preference: lorry
+    units_per_lorry: 4
+    setup_time_min_per_unit: 20
+    setup_sequence_priority: 2
+    storage_location: warehouse_shelf_D1
+    current_commitments: []
+
+rental_equipment:
+  - equipment_id: EQ-RENT-001
+    name: Satay Charcoal Grill (2m)
+    category: live_station_cooking
+    typical_daily_rate_php: 2500
+    typical_daily_rate_myr: 250
+    rental_vendors:
+      Philippines: "GrillRent PH — +63-917-555-1001"
+      Malaysia: "KualiRent MY — +60-11-5555-1001"
+    lead_time_days: 3
+    dimensions_cm: {l: 200, w: 50, h: 90}
+    weight_kg: 35
+    stacking_rules: "Single unit only. Do not stack."
+    handling_notes: "Charcoal residue — clean before transport. Heavy: 4-person lift."
+    vehicle_preference: lorry
+    setup_time_min: 30
+    outdoor_only: true
+    notes: "Requires charcoal (not included), fire safety equipment, open-air setting only."
+
+  - equipment_id: EQ-RENT-002
+    name: Teppanyaki Table (electric, 4-person)
+    category: live_station_cooking
+    typical_daily_rate_php: 4500
+    typical_daily_rate_sgd: 250
+    rental_vendors:
+      Philippines: "EventEquip PH — +63-918-555-2002"
+      Singapore: "LiveCookEquip SG — +65-8555-2002"
+    lead_time_days: 5
+    dimensions_cm: {l: 240, w: 90, h: 85}
+    weight_kg: 80
+    handling_notes: "Very heavy. Requires 4-person team and pallet jack. Cannot go up stairs."
+    vehicle_preference: lorry_with_pallet_jack
+    setup_time_min: 20
+    indoor_outdoor: indoor_or_covered_outdoor
+    power_requirement: "5kW / 220V / 23A"
+
+  - equipment_id: EQ-RENT-003
+    name: Liquid Nitrogen Dessert Station
+    category: live_station_dessert
+    typical_daily_rate_php: 8000
+    typical_daily_rate_sgd: 500
+    rental_vendors:
+      Philippines: "CoolEvent PH — +63-919-555-3003"
+      Singapore: "NitroStation SG — +65-8555-3003"
+    lead_time_days: 7
+    dimensions_cm: {l: 120, w: 80, h: 100}
+    handling_notes: "Cryogenic equipment — operator-certified handling only. Never tip nitrogen tanks."
+    setup_time_min: 45
+    safety_requirements: [operator_certified_cryogenic_safety, ventilated_space_minimum_3m_ceiling]
+    notes: "Liquid nitrogen refill every 3h. Plan logistics in advance. Vendor typically provides operator."
+
+  - equipment_id: EQ-RENT-004
+    name: Portable Generator (20kVA)
+    category: power
+    typical_daily_rate_php: 5000
+    typical_daily_rate_myr: 500
+    typical_daily_rate_sgd: 400
+    rental_vendors:
+      Philippines: "PowerRent PH — +63-917-555-5005"
+      Malaysia: "GenSet MY — +60-12-5555-5005"
+      Singapore: "PowerHire SG — +65-8555-5005"
+    lead_time_days: 2
+    dimensions_cm: {l: 130, w: 75, h: 105}
+    weight_kg: 350
+    handling_notes: "Extremely heavy. Vendor delivery with crane/trolley. Position before other setup."
+    vehicle_preference: vendor_delivers
+    setup_time_min: 30
+    output_kva: 20
+    noise_db: 62
+    notes: "Position at far end of cooking area, away from guests (noise). Fuel: diesel. Check fuel level at T-1h."
+
+# ── Vehicle loading plans ─────────────────────────────────────────────────
+vehicle_loading_plans:
+  - plan_id: LOAD-BUFFET-SMALL
+    for: "Buffet events 50–100 pax"
+    vehicles_required:
+      - vehicle_id: VH-001
+        role: cold_chain
+        load: [chilled_proteins, dairy, cold_desserts]
+      - vehicle_id: VH-002
+        role: equipment_and_dry_goods
+        load: [chafing_dishes_20, rice_cookers_4, hot_boxes_4, dry_ingredients]
+    notes: "Lorry not required for small events. 2 vehicles sufficient."
+
+  - plan_id: LOAD-BUFFET-MEDIUM
+    for: "Buffet events 101–300 pax"
+    vehicles_required:
+      - vehicle_id: VH-001
+        role: cold_chain
+        load: [chilled_proteins, dairy, cold_desserts, ice_boxes]
+      - vehicle_id: VH-002_unit1
+        role: large_equipment
+        load: [round_tables_10, chairs_100, buffet_tables_6, bar_counter]
+      - vehicle_id: VH-002_unit2
+        role: cooking_and_serviceware
+        load: [chafing_dishes_30, rice_cookers_6, hot_boxes_8, induction_tops_4, dry_goods]
+    lorry_required: false
+    notes: "2 cargo vans + refrigerated van. Confirm all items fit before event day."
+
+  - plan_id: LOAD-BUFFET-LARGE
+    for: "Buffet events 301–600 pax"
+    vehicles_required:
+      - vehicle_id: VH-001
+        role: cold_chain
+        load: [chilled_proteins, dairy, cold_desserts, ice_boxes_6]
+      - vehicle_id: VH-003
+        role: furniture_and_large_equipment
+        load: [round_tables_20, chairs_200, buffet_tables_12, gas_burners, generator_if_needed]
+      - vehicle_id: VH-002_unit1
+        role: cooking_equipment
+        load: [chafing_dishes_40, rice_cookers_8, hot_boxes_10, induction_tops_8]
+      - vehicle_id: VH-002_unit2
+        role: dry_goods_and_supplies
+        load: [dry_ingredients, sterno_fuel, ice, packaging, service_supplies]
+    lorry_required: true
+
+# ── Double-booking detection rules ────────────────────────────────────────
+double_booking_rules:
+  - rule: "Before confirming any event, check `current_commitments` on all required equipment."
+  - rule: "Same-day events sharing owned equipment: only allowed if total quantity needed <= quantity owned."
+  - rule: "Rental equipment: check lead_time_days — rental must be confirmed before lead time."
+  - rule: "Refrigerated van: only 1 exists. Two same-day events requiring cold chain = scheduling conflict."
+  - rule: "Driver assignment: each driver can only operate 1 event per day. Cross-check before assigning."
+  - rule: "Flag equipment conflict at quote stage, not on event day."
+
+maintenance_schedules:
+  - equipment: all_cooking_equipment
+    frequency: after_each_event
+    task: "Clean thoroughly. Inspect for damage. Report defects immediately."
+  - equipment: rice_cookers
+    frequency: quarterly
+    task: "Descale. Replace gaskets if worn."
+  - equipment: gas_burners
+    frequency: monthly
+    task: "Inspect LPG connections, valves, hose integrity. Replace hose if >12 months old."
+  - equipment: chafing_dishes
+    frequency: annually
+    task: "Replace water pans if rusted. Inspect frames and handles."
+  - equipment: hot_boxes
+    frequency: biannually
+    task: "Inspect insulation. Clean interior. Replace door seals if leaking heat."
+  - equipment: refrigerated_van
+    frequency: monthly
+    task: "Check refrigeration unit. Test temperature calibration. Inspect door seals."

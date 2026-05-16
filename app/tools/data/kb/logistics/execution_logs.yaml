@@ -1,0 +1,298 @@
+---
+# Past Execution Logs Knowledge Base
+# Post-event records of what actually happened on the ground.
+# This is the logistics agent's institutional memory.
+# Every event entry makes the next plan better.
+
+execution_logs:
+  - log_id: EXEC-2024-001
+    event_type: malay_wedding
+    event_date: "2024-03-16"
+    venue_id: VEN-MY-001
+    venue_name: Dewan Serbaguna Putrajaya
+    guest_count_planned: 400
+    guest_count_actual: 430
+    service_style: buffet
+    planned_service_start: "13:00"
+    actual_service_start: "13:25"
+    outcome: good
+    overall_score: 4.2
+
+    timeline_vs_plan:
+      - milestone: "Equipment vehicle departed"
+        planned: "08:00"
+        actual: "08:00"
+        variance_min: 0
+        notes: "On time."
+      - milestone: "Kitchen team arrived"
+        planned: "09:00"
+        actual: "09:30"
+        variance_min: 30
+        root_cause: "Head Chef (STF-001) stuck in morning traffic on KESAS. Friday peak."
+        critical_path: true
+      - milestone: "Cold chain delivery"
+        planned: "11:00"
+        actual: "11:10"
+        variance_min: 10
+        root_cause: "Minor traffic. Within tolerance."
+      - milestone: "Service start"
+        planned: "13:00"
+        actual: "13:25"
+        variance_min: 25
+        root_cause: "Cascaded from late kitchen team arrival. Cooking ran 20min behind."
+
+    incidents:
+      - incident_id: INC-2024-001-01
+        type: traffic_delay
+        severity: medium
+        description: "Head Chef 30min late due to KESAS traffic on Friday morning."
+        impact: "Service started 25min late. Client notified. No food safety issues."
+        resolution: "Event Supervisor managed client expectations. Service extended by 20min."
+        corrective_action: "For Friday events to Putrajaya: Head Chef departs 45min earlier. Add to route KB."
+
+      - incident_id: INC-2024-001-02
+        type: equipment_shortfall
+        severity: low
+        description: "Actual guest count 430 vs planned 400. Chafing dish capacity tight."
+        impact: "Two dishes ran out during peak rush (T+45). Temporary gap of ~8min."
+        resolution: "Kitchen team expedited extra batch. Station attendant managed queue apologetically."
+        corrective_action: "For Malay weddings: always prepare 10% buffer on hot food quantities."
+
+    food_safety_log:
+      - check_time: "12:30"
+        food_temperatures_ok: true
+        hot_food_min_temp_c: 72
+        cold_chain_maintained: true
+      - check_time: "14:00"
+        food_temperatures_ok: true
+        hot_food_min_temp_c: 65
+        notes: "One chafing dish dropped to 62°C — Sterno replaced. Back to 70°C within 10min."
+
+    venue_specific_learnings:
+      - "Confirm venue letter with gate security the day before — guard shift-changes cause delays."
+      - "Service lift was reliable on Saturday. Flag: check if lift is reliable on Fridays (per prior note)."
+      - "Aircon control was 30min late coming on. Request aircon 2h before guest arrival, not 1h."
+
+    what_went_well:
+      - "Setup team was efficient — tables ready 30min ahead of schedule."
+      - "Food quality praised by client. Rendang was standout dish."
+      - "Beverage station was well-managed with zero complaints."
+
+    what_to_do_differently:
+      - "Friday events to Putrajaya: Kitchen team departs 45min earlier than planned."
+      - "Build 10% food quantity buffer into procurement for Malay weddings."
+      - "Request aircon activation 2h before service, not 1h."
+
+  - log_id: EXEC-2024-002
+    event_type: corporate_gala_dinner
+    event_date: "2024-06-22"
+    venue_id: VEN-MY-003
+    venue_name: Kelab Golf Tropicana (Outdoor Marquee)
+    guest_count_planned: 200
+    guest_count_actual: 195
+    service_style: plated
+    planned_service_start: "19:00"
+    actual_service_start: "19:05"
+    outcome: excellent
+    overall_score: 4.8
+
+    timeline_vs_plan:
+      - milestone: "Generator arrived and set up"
+        planned: "13:00"
+        actual: "12:45"
+        variance_min: -15
+        notes: "GenSet MY delivered early. Positive."
+      - milestone: "Kitchen prep tent assembled"
+        planned: "13:30"
+        actual: "14:10"
+        variance_min: 40
+        root_cause: "One setup crew member called in sick. Team of 4 instead of 5."
+        critical_path: false
+      - milestone: "Service start"
+        planned: "19:00"
+        actual: "19:05"
+        variance_min: 5
+        root_cause: "Minor — client MC ran slightly long. Within tolerance."
+
+    incidents:
+      - incident_id: INC-2024-002-01
+        type: staff_shortfall
+        severity: low
+        description: "Setup crew member called in sick (morning of event)."
+        impact: "Setup tent took 40min longer than planned. No impact on service."
+        resolution: "Logistics Coordinator joined setup crew for the heavy lift phase."
+        corrective_action: "For outdoor events: always confirm crew attendance day-before. Have 1 standby crew on call."
+
+    food_safety_log:
+      - check_time: "18:00"
+        food_temperatures_ok: true
+        hot_food_min_temp_c: 75
+        cold_chain_maintained: true
+
+    venue_specific_learnings:
+      - "Golf lawn holds well for cargo van. Lorry was NOT driven onto lawn — parked at perimeter. Correct decision."
+      - "Wind at night was stronger than expected. Candle stands blew over 3 times. LED décor was correct call."
+      - "Generator noise at 60dB — position generator at far end of cooking area, away from marquee."
+
+    what_went_well:
+      - "Plated service was smooth. All courses served within 5min of target time."
+      - "Client extremely satisfied. Rated 5/5 for food quality and service."
+      - "Outdoor cooking setup worked perfectly in prep tent."
+
+    what_to_do_differently:
+      - "Outdoor crew: confirm attendance day-before. Keep 1 standby on call."
+      - "Specify LED décor for all outdoor nighttime events in proposal."
+      - "Generator: position at far end of cooking area to minimise noise impact."
+
+  - log_id: EXEC-2024-003
+    event_type: malay_wedding
+    event_date: "2024-09-07"
+    venue_id: VEN-MY-002
+    venue_name: Dewan Banquet MBPJ
+    guest_count_planned: 300
+    guest_count_actual: 280
+    service_style: buffet
+    planned_service_start: "12:00"
+    actual_service_start: "12:00"
+    outcome: good
+    overall_score: 4.0
+
+    timeline_vs_plan:
+      - milestone: "Equipment load via stairs"
+        planned: "07:00 (1.5h for stair carry)"
+        actual: "07:00–08:30 (1.5h)"
+        variance_min: 0
+        notes: "Stair carry took exactly as planned when staffed correctly (5 crew)."
+      - milestone: "Service start"
+        planned: "12:00"
+        actual: "12:00"
+        variance_min: 0
+
+    incidents:
+      - incident_id: INC-2024-003-01
+        type: equipment_failure
+        severity: medium
+        description: "Two rice cookers (EQ-OWN-004) tripped the electrical circuit simultaneously."
+        impact: "Rice production paused for 12min while circuit was reset. Partial shortage at service open."
+        resolution: "Spread rice cookers across 2 separate circuits. Rice deficit covered by staggering service."
+        corrective_action: "MBPJ venue: max 4 rice cookers on kitchen circuit. Use extension to hall outlet for others."
+
+    food_safety_log:
+      - check_time: "11:30"
+        food_temperatures_ok: true
+        hot_food_min_temp_c: 68
+        notes: "No cold storage at venue — ice boxes maintained chilled items at 3.5°C. Satisfactory."
+
+    venue_specific_learnings:
+      - "No cold storage at venue confirmed. Ice boxes essential — ordered 60kg ice (correct for 280 pax)."
+      - "CRITICAL: Stair carry for heavy equipment — must assign minimum 5 crew. Never send 3 crew for 300 pax event here."
+      - "CRITICAL: Max 4 rice cookers on kitchen circuit at MBPJ. Exceeded limit = circuit trip."
+      - "Venue staff leaves at 21:00. Schedule teardown to complete by 20:45."
+
+    what_went_well:
+      - "Service start exactly on time — strong team performance."
+      - "Stair carry strategy worked well with correct crew size."
+
+    what_to_do_differently:
+      - "Pre-brief setup crew on stair carry plan before arrival. Time per item calculated."
+      - "Test circuit load before starting all rice cookers simultaneously."
+
+  - log_id: EXEC-2024-004
+    event_type: corporate_lunch
+    event_date: "2024-11-15"
+    venue_id: VEN-PH-002
+    venue_name: Rockwell Tent, Makati
+    guest_count_planned: 500
+    guest_count_actual: 480
+    service_style: buffet
+    planned_service_start: "12:30"
+    actual_service_start: "13:00"
+    outcome: moderate
+    overall_score: 3.5
+
+    timeline_vs_plan:
+      - milestone: "Vehicle delivery"
+        planned: "08:00"
+        actual: "09:15"
+        variance_min: 75
+        root_cause: "EDSA gridlock (8–9am). Refrigerated van and cargo van both delayed."
+        critical_path: true
+      - milestone: "Service start"
+        planned: "12:30"
+        actual: "13:00"
+        variance_min: 30
+        root_cause: "Cascaded from vehicle delay. Kitchen prep compressed."
+
+    incidents:
+      - incident_id: INC-2024-004-01
+        type: traffic_delay
+        severity: high
+        description: "Both delivery vehicles caught in EDSA traffic. 75min delay."
+        impact: "Service started 30min late. Corporate client unhappy. Afternoon schedule disrupted."
+        resolution: "Apology communicated immediately. Complimentary dessert extension offered."
+        corrective_action: "Philippines events: delivery vehicles MUST depart by 06:30 for 12:30 lunch. EDSA by 7am or after 10am only."
+
+      - incident_id: INC-2024-004-02
+        type: access_delay
+        severity: low
+        description: "Rockwell security required vehicle list that was not pre-submitted."
+        impact: "15min delay at security gate."
+        resolution: "Logistics Coordinator called security chief directly. Cleared after ID check."
+        corrective_action: "Rockwell: submit vehicle plate numbers to security 48h before event. Non-negotiable."
+
+    venue_specific_learnings:
+      - "EDSA during EDSA peak hours (7:30–9:30am, 5–8pm) is catastrophic for event logistics. Depart before or after."
+      - "Rockwell security: vehicle list 48h before is mandatory. Add to event prep checklist."
+      - "Concrete floor: all structures needed ballast weights. Rope staking not possible."
+
+    what_went_well:
+      - "Cooking team adapted rapidly to compressed timeline. Food quality not compromised."
+      - "Event supervisor handled client communication professionally."
+
+    what_to_do_differently:
+      - "Rockwell / Metro Manila events with 12pm+ service: vehicles depart central kitchen at 06:30."
+      - "Pre-submit vehicle list to Rockwell security 48h before."
+
+# ── Aggregated learnings index ─────────────────────────────────────────────
+aggregate_learnings:
+  by_venue:
+    VEN-MY-001:
+      - "Friday delivery to Putrajaya: add 45min to all chef travel times due to KESAS peak."
+      - "Gate security requires physical event letter."
+      - "Service lift OK on Saturdays. Potentially unreliable Fridays."
+      - "Request aircon activation 2h before service start."
+    VEN-MY-002:
+      - "Stairs only — minimum 5 setup crew required for events >200 pax."
+      - "Max 4 rice cookers on kitchen circuit to avoid tripping breaker."
+      - "No cold storage — always bring 60kg+ ice for events >250 pax."
+      - "Venue staff leaves 21:00. Teardown must complete by 20:45."
+    VEN-MY-003:
+      - "Lorry: park at perimeter. Cargo van only on golf lawn."
+      - "Generator mandatory. Position at far end of cooking area (noise)."
+      - "LED décor only for outdoor night events — wind makes candles impractical."
+      - "Confirm setup crew attendance day-before. 1 standby on call for outdoor events."
+    VEN-PH-002:
+      - "Delivery vehicles must depart by 06:30 for midday events (EDSA avoidance)."
+      - "Vehicle list to Rockwell security 48h before — mandatory."
+      - "Concrete floor: ballast weights needed, no staking."
+
+  common_risk_patterns:
+    - pattern: "Traffic delay cascading to late service start"
+      frequency: high
+      mitigation: "Increase departure time buffer by 45min for peak-hour routes. Use route-specific departure times."
+
+    - pattern: "Staff illness or no-show on event day"
+      frequency: medium
+      mitigation: "Confirm all staff day-before event. Keep 1 standby per critical role on call."
+
+    - pattern: "Guest count exceeding plan"
+      frequency: medium
+      mitigation: "Prepare 10% food buffer for buffet events. Malay weddings: 15% buffer."
+
+    - pattern: "Equipment electrical overload"
+      frequency: low
+      mitigation: "Check venue electrical circuit limits before event. Spread high-draw equipment across circuits."
+
+    - pattern: "Venue access delay (security / loading dock)"
+      frequency: medium
+      mitigation: "Pre-submit vehicle lists and event letters 48h before. Physical copies on event day."

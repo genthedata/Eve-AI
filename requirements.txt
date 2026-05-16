@@ -1,0 +1,16 @@
+python-dotenv>=1.1.0
+requests>=2.32.0,<3.0.0
+fastapi>=0.115.0,<1.0.0
+uvicorn>=0.30.0,<1.0.0
+openai>=1.40.0,<2.0.0
+pyyaml>=6.0.0,<7.0.0
+# Microsoft AutoGen (optional) — ORCHESTRATION_BACKEND=autogen / USE_AUTOGEN=true
+# pip install autogen-agentchat autogen-ext[openai]
+
+# Microsoft Agent Framework (optional, placeholder) — USE_MS_AGENT_FRAMEWORK=true
+# pip install agent-framework
+
+# Azure AI Foundry + Azure AI Search (optional placeholders)
+# USE_AZURE_AI_FOUNDRY=true  → AZURE_AI_FOUNDRY_PROJECT_ENDPOINT, deployments
+# USE_AZURE_AI_SEARCH=true   → AZURE_SEARCH_ENDPOINT, AZURE_SEARCH_INDEX_KB
+# pip install azure-search-documents azure-ai-projects

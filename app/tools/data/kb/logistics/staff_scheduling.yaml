@@ -1,0 +1,401 @@
+---
+# Staff Roles & Scheduling Knowledge Base
+# Structured roles, certification requirements, staff-to-guest ratios,
+# named staff roster with availability, and event-level staffing models.
+
+# ── Role Definitions ──────────────────────────────────────────────────────
+
+roles:
+  - role_id: ROLE-001
+    title: Head Chef
+    category: kitchen
+    responsibilities:
+      - Final menu approval and kitchen supervision
+      - Quality control throughout entire service period
+      - Manages and directs all kitchen staff
+      - Liaises with client on day-of special requests
+      - Signs off on food safety compliance at kitchen close
+    required_certifications: [food_safety_level_3, halal_kitchen_cert_if_applicable]
+    staff_to_guest_ratio: "1 per event (regardless of size)"
+    min_hours_before_service: 4
+    min_hours_after_service: 1
+    typical_shift_hours: 10
+    standby_required: false
+    notes: >
+      For large events (>400 pax), a second senior chef (Sous Chef) is mandatory.
+      Head Chef must not leave venue during active service period.
+
+  - role_id: ROLE-002
+    title: Sous Chef
+    category: kitchen
+    responsibilities:
+      - Assists Head Chef, supervises one or more stations
+      - Runs a section independently (e.g., hot station, cold station)
+      - Can act as Head Chef in emergencies
+    required_certifications: [food_safety_level_2]
+    staff_to_guest_ratio:
+      buffet: "1 per 200 guests"
+      plated: "1 per 100 guests"
+    min_hours_before_service: 4
+    min_hours_after_service: 0.5
+    typical_shift_hours: 9
+    notes: "Required for events >200 pax (buffet) or >100 pax (plated)."
+
+  - role_id: ROLE-003
+    title: Line Cook / Station Cook
+    category: kitchen
+    responsibilities:
+      - Operates a single buffet or live cooking station
+      - Prepares, cooks, and replenishes dishes throughout service
+      - Follows mise en place assigned by Head Chef
+    required_certifications: [food_safety_level_1]
+    staff_to_guest_ratio:
+      buffet: "1 per 60 guests"
+      plated: "1 per 30 guests"
+      live_station: "1 dedicated cook per live station"
+    min_hours_before_service: 3.5
+    min_hours_after_service: 0.5
+    typical_shift_hours: 8
+    notes: >
+      Live cooking station cooks (satay, carving, wok) require performance capability.
+      Standard line cooks should NOT be assigned to live stations without experience check.
+
+  - role_id: ROLE-004
+    title: Commis Chef / Kitchen Assistant
+    category: kitchen
+    responsibilities:
+      - Prep work under line cook supervision
+      - Vegetable cuts, washing, portioning
+      - Restocks kitchen during service
+    required_certifications: [food_safety_level_1]
+    staff_to_guest_ratio: "1 per 100 guests (buffet)"
+    min_hours_before_service: 4
+    typical_shift_hours: 8
+
+  - role_id: ROLE-005
+    title: Event Supervisor
+    category: management
+    responsibilities:
+      - Manages front-of-house service team
+      - Coordinates between kitchen and service floor
+      - Handles client liaison during event
+      - Manages timing of courses and service flow
+    required_certifications: [food_handling_cert]
+    staff_to_guest_ratio: "1 per event"
+    min_hours_before_service: 3
+    min_hours_after_service: 1
+    typical_shift_hours: 10
+    notes: "Required for all events >100 pax. For smaller events, Head Chef doubles as supervisor."
+
+  - role_id: ROLE-006
+    title: Food Server / Banquet Waiter
+    category: service
+    responsibilities:
+      - Table service, food and beverage placement
+      - Guest interaction and requests
+      - Clears and resets tables
+      - Replenishes beverages
+    required_certifications: [food_handling_cert]
+    staff_to_guest_ratio:
+      buffet: "1 per 30 guests"
+      plated: "1 per 10 guests"
+      cocktail: "1 per 20 guests"
+    min_hours_before_service: 2
+    min_hours_after_service: 1
+    typical_shift_hours: 7
+    notes: "Plated service requires significantly more service staff. Never understaff plated events."
+
+  - role_id: ROLE-007
+    title: Buffet Station Attendant
+    category: service
+    responsibilities:
+      - Monitors buffet food levels
+      - Replenishes food from kitchen to buffet station
+      - Maintains cleanliness and presentation of station
+      - Removes empty trays and spent Sterno fuel
+    required_certifications: [food_handling_cert]
+    staff_to_guest_ratio: "1 per 2 buffet stations (min 2 per event)"
+    min_hours_before_service: 2
+    min_hours_after_service: 0.5
+    typical_shift_hours: 7
+    notes: "Critical during evening rush (first 45min of service). Never leave station unattended."
+
+  - role_id: ROLE-008
+    title: Beverage Server / Mocktail Attendant
+    category: beverage
+    responsibilities:
+      - Prepares and serves beverages
+      - Manages bar/mocktail inventory
+      - Monitors guest beverage preferences
+    required_certifications: [food_handling_cert]
+    staff_to_guest_ratio:
+      mocktail_station: "1 per 60 guests"
+      full_bar_alcohol: "1 per 40 guests"
+    min_hours_before_service: 2
+    typical_shift_hours: 7
+    notes: "Alcohol service requires applicable licence. Confirm licensing 30 days before event."
+
+  - role_id: ROLE-009
+    title: Setup & Teardown Crew
+    category: logistics
+    responsibilities:
+      - Unloads vehicles and transports to venue floor
+      - Assembles tables, chairs, chafing dish stands
+      - Dismantles and loads all equipment after event close
+    required_certifications: []
+    staff_to_guest_ratio: "3 crew for <200 guests; 5 crew for >200 guests"
+    min_hours_before_service: 5
+    min_hours_after_teardown: 2
+    typical_shift_hours: 10
+    notes: "Setup crew may double as runner/porter during event service if not needed for setup."
+
+  - role_id: ROLE-010
+    title: Driver / Logistics Coordinator
+    category: logistics
+    responsibilities:
+      - Drives delivery vehicles (refrigerated van, cargo van, lorry)
+      - Coordinates food and equipment delivery schedule
+      - Manages loading bay communication with venue
+      - Returns all equipment after event
+    required_certifications: [valid_driving_licence_class_B, food_handling_cert]
+    required_licence_for_lorry: driving_licence_class_D
+    staff_to_guest_ratio: "1 per delivery vehicle"
+    min_hours_before_service: 5
+    typical_shift_hours: 12
+    notes: >
+      Driver must have route-specific knowledge for major venues.
+      Brief driver on venue access restrictions, loading dock hours, and vehicle height limits
+      before each event.
+
+  - role_id: ROLE-011
+    title: Dishwasher / Kitchen Utility
+    category: kitchen
+    responsibilities:
+      - Cleans and returns equipment throughout service
+      - Maintains kitchen hygiene stations
+      - Manages waste and recycling during event
+    required_certifications: [food_handling_cert]
+    staff_to_guest_ratio: "1 per 100 guests (buffet)"
+    min_hours_before_service: 1
+    typical_shift_hours: 8
+
+# ── Named Staff Roster ────────────────────────────────────────────────────
+
+staff_roster:
+  - staff_id: STF-001
+    name: Chef Ahmad bin Zulkifli
+    role_id: ROLE-001
+    seniority: head_chef_senior
+    certifications:
+      - {cert: food_safety_level_3, expiry: "2026-12-01", status: valid}
+      - {cert: halal_kitchen_cert_JAKIM, expiry: "2026-06-30", status: valid}
+    specialties: [malay_cuisine, rendang, nasi_minyak, live_carving]
+    region: Malaysia
+    contact: "+60-12-888-1001"
+    availability_blocked_dates: ["2026-01-01", "2026-04-10", "2026-04-11", "2026-06-06"]
+    notes: "Primary head chef for all major Malay wedding events. Highly reliable."
+
+  - staff_id: STF-002
+    name: Chef Maria Dela Cruz
+    role_id: ROLE-001
+    seniority: head_chef
+    certifications:
+      - {cert: food_safety_level_3, expiry: "2025-11-01", status: "EXPIRING SOON — renew before 2025-11-01"}
+      - {cert: food_handling_cert, expiry: "2026-03-15", status: valid}
+    specialties: [filipino_cuisine, lechon, karekare, seafood]
+    region: Philippines
+    contact: "+63-917-888-2002"
+    availability_blocked_dates: ["2026-02-14"]
+    notes: "Primary head chef for Philippines operations. Strong live station skill."
+
+  - staff_id: STF-003
+    name: Chef Priya Rajan
+    role_id: ROLE-002
+    seniority: sous_chef
+    certifications:
+      - {cert: food_safety_level_2, expiry: "2026-08-20", status: valid}
+      - {cert: food_handling_cert, expiry: "2026-08-20", status: valid}
+    specialties: [indian_cuisine, vegetarian, south_indian_banana_leaf]
+    region: Malaysia
+    contact: "+60-11-888-3003"
+    availability_blocked_dates: ["2026-10-20", "2026-10-21", "2026-10-22"]
+    notes: "Go-to sous chef for Indian cuisine events. Excellent knowledge of allergen-free cooking."
+
+  - staff_id: STF-004
+    name: Hafiz bin Ramli
+    role_id: ROLE-005
+    seniority: event_supervisor_senior
+    certifications:
+      - {cert: food_handling_cert, expiry: "2026-09-01", status: valid}
+    region: Malaysia
+    contact: "+60-16-888-4004"
+    availability_blocked_dates: []
+    notes: "Best event supervisor on the team. Extremely organised. Priority assign for VIP events."
+
+  - staff_id: STF-005
+    name: Aisha Bt Karim
+    role_id: ROLE-006
+    certifications:
+      - {cert: food_handling_cert, expiry: "2026-07-15", status: valid}
+    region: Malaysia
+    contact: "+60-11-888-5005"
+    notes: "Reliable banquet waiter. Available most weekends."
+
+  - staff_id: STF-006
+    name: Bryan Santos
+    role_id: ROLE-010
+    certifications:
+      - {cert: driving_licence_class_B, expiry: "2028-04-01", status: valid}
+      - {cert: driving_licence_class_D, expiry: "2028-04-01", status: valid}
+      - {cert: food_handling_cert, expiry: "2026-05-01", status: "EXPIRING — renew immediately"}
+    region: Philippines
+    contact: "+63-918-888-6006"
+    notes: "Primary lorry driver for Philippines. Good knowledge of Metro Manila traffic patterns."
+
+  - staff_id: STF-007
+    name: Rashid bin Osman
+    role_id: ROLE-010
+    certifications:
+      - {cert: driving_licence_class_B, expiry: "2027-11-01", status: valid}
+      - {cert: driving_licence_class_D, expiry: "2027-11-01", status: valid}
+      - {cert: food_handling_cert, expiry: "2027-03-20", status: valid}
+    region: Malaysia
+    contact: "+60-12-888-7007"
+    notes: "Primary driver for Klang Valley routes. Knows all venue loading access points."
+
+# ── Event Staffing Models ─────────────────────────────────────────────────
+
+staffing_models:
+  - model_id: STF-MDL-001
+    name: Buffet — Small (up to 100 pax)
+    service_style: buffet
+    pax_range: [1, 100]
+    required_staff:
+      - {role_id: ROLE-001, count: 1, hours: 9}
+      - {role_id: ROLE-003, count: 2, hours: 8}
+      - {role_id: ROLE-005, count: 1, hours: 8}
+      - {role_id: ROLE-006, count: 3, hours: 7}
+      - {role_id: ROLE-007, count: 2, hours: 7}
+      - {role_id: ROLE-009, count: 2, hours: 9}
+      - {role_id: ROLE-010, count: 1, hours: 10}
+      - {role_id: ROLE-011, count: 1, hours: 7}
+    total_staff: 13
+
+  - model_id: STF-MDL-002
+    name: Buffet — Medium (101–250 pax)
+    service_style: buffet
+    pax_range: [101, 250]
+    required_staff:
+      - {role_id: ROLE-001, count: 1, hours: 10}
+      - {role_id: ROLE-002, count: 1, hours: 9}
+      - {role_id: ROLE-003, count: 4, hours: 8}
+      - {role_id: ROLE-004, count: 2, hours: 8}
+      - {role_id: ROLE-005, count: 1, hours: 10}
+      - {role_id: ROLE-006, count: 8, hours: 7}
+      - {role_id: ROLE-007, count: 4, hours: 7}
+      - {role_id: ROLE-009, count: 3, hours: 10}
+      - {role_id: ROLE-010, count: 2, hours: 11}
+      - {role_id: ROLE-011, count: 2, hours: 7}
+    total_staff: 28
+
+  - model_id: STF-MDL-003
+    name: Buffet — Large (251–500 pax)
+    service_style: buffet
+    pax_range: [251, 500]
+    required_staff:
+      - {role_id: ROLE-001, count: 1, hours: 11}
+      - {role_id: ROLE-002, count: 2, hours: 10}
+      - {role_id: ROLE-003, count: 7, hours: 9}
+      - {role_id: ROLE-004, count: 3, hours: 8}
+      - {role_id: ROLE-005, count: 2, hours: 10}
+      - {role_id: ROLE-006, count: 16, hours: 7}
+      - {role_id: ROLE-007, count: 6, hours: 7}
+      - {role_id: ROLE-009, count: 5, hours: 11}
+      - {role_id: ROLE-010, count: 3, hours: 12}
+      - {role_id: ROLE-011, count: 3, hours: 7}
+    total_staff: 48
+
+  - model_id: STF-MDL-004
+    name: Buffet — XL (501–1000 pax)
+    service_style: buffet
+    pax_range: [501, 1000]
+    required_staff:
+      - {role_id: ROLE-001, count: 1, hours: 12}
+      - {role_id: ROLE-002, count: 3, hours: 11}
+      - {role_id: ROLE-003, count: 12, hours: 9}
+      - {role_id: ROLE-004, count: 5, hours: 8}
+      - {role_id: ROLE-005, count: 2, hours: 10}
+      - {role_id: ROLE-006, count: 30, hours: 7}
+      - {role_id: ROLE-007, count: 10, hours: 7}
+      - {role_id: ROLE-009, count: 7, hours: 12}
+      - {role_id: ROLE-010, count: 4, hours: 12}
+      - {role_id: ROLE-011, count: 5, hours: 7}
+    total_staff: 79
+
+  - model_id: STF-MDL-005
+    name: Plated Service — Medium (51–150 pax)
+    service_style: plated
+    pax_range: [51, 150]
+    required_staff:
+      - {role_id: ROLE-001, count: 1, hours: 11}
+      - {role_id: ROLE-002, count: 1, hours: 10}
+      - {role_id: ROLE-003, count: 6, hours: 9}
+      - {role_id: ROLE-004, count: 3, hours: 8}
+      - {role_id: ROLE-005, count: 1, hours: 11}
+      - {role_id: ROLE-006, count: 15, hours: 8}
+      - {role_id: ROLE-009, count: 3, hours: 11}
+      - {role_id: ROLE-010, count: 2, hours: 12}
+      - {role_id: ROLE-011, count: 2, hours: 8}
+    total_staff: 34
+
+  - model_id: STF-MDL-006
+    name: Cocktail / Standing Reception (up to 200 pax)
+    service_style: cocktail
+    pax_range: [1, 200]
+    required_staff:
+      - {role_id: ROLE-001, count: 1, hours: 8}
+      - {role_id: ROLE-003, count: 3, hours: 7}
+      - {role_id: ROLE-005, count: 1, hours: 8}
+      - {role_id: ROLE-006, count: 8, hours: 6}
+      - {role_id: ROLE-008, count: 2, hours: 6}
+      - {role_id: ROLE-009, count: 2, hours: 8}
+      - {role_id: ROLE-010, count: 1, hours: 9}
+    total_staff: 18
+
+overtime_rules:
+  - region: Philippines
+    standard_hours: 8
+    overtime_rate_multiplier: 1.25
+    night_differential_pct: 10
+    night_differential_start: "22:00"
+    rest_day_rate_multiplier: 1.30
+    applicable_law: "Philippine Labor Code"
+
+  - region: Malaysia
+    standard_hours: 8
+    overtime_rate_multiplier: 1.50
+    rest_day_rate_multiplier: 2.00
+    applicable_law: "Employment Act 1955"
+
+  - region: Singapore
+    standard_hours: 8
+    overtime_rate_multiplier: 1.50
+    applicable_law: "Employment Act (Singapore)"
+
+availability_rules:
+  - rule: "Head Chef and Sous Chef: minimum 14 days booking lead time."
+  - rule: "Banquet waiters and station staff: 7 days minimum lead time."
+  - rule: "Peak seasons (Dec, Chinese New Year, Eid, Deepavali): book 30+ days ahead."
+  - rule: "Cancellation within 48h of event: 50% of staffing cost is charged."
+  - rule: "No staff with expired certifications may handle food. Check before confirming assignment."
+
+certification_tracker:
+  # Flags staff whose certifications expire within 60 days — must be renewed before event booking
+  expiry_warning_threshold_days: 60
+  critical_certs:
+    - food_safety_level_1
+    - food_safety_level_2
+    - food_safety_level_3
+    - food_handling_cert
+    - driving_licence_class_B
+    - driving_licence_class_D

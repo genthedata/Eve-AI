@@ -1,0 +1,314 @@
+---
+# Historical Quotes & Margin Data Knowledge Base
+# Every quote sent, with outcome data: accepted/rejected, actual cost, gross margin.
+# The pricing agent's learning data — turns it from a cost calculator into a strategist.
+
+quotes:
+  - quote_id: QUO-2024-001
+    event_type: malay_wedding
+    region: Malaysia
+    sub_region: Selangor
+    client_id: CLT-001
+    guest_count: 350
+    service_style: buffet
+    cuisine: malay_traditional
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 75
+    quoted_total: 26250
+    accepted: true
+    acceptance_lag_days: 3
+    actual_food_cost: 13800
+    actual_overhead_cost: 7200
+    actual_total_cost: 21000
+    actual_gross_margin_pct: 20.0
+    actual_margin_amount_myr: 5250
+    variance_drivers:
+      - {item: rendang_overestimated, impact_myr: -800, note: "Ordered 12% too much; actual consumption 10% lower"}
+      - {item: beef_price_spike_eid, impact_myr: +1200, note: "Beef spot price up 8% vs quote date"}
+    key_dish_performance: [Chicken Rendang, Nasi Minyak, Chicken Satay]
+    notes: >
+      Reliable margin at MYR 75/head for 350-pax Malay wedding.
+      Rendang consumption consistently 8–10% below estimate — build in.
+      Beef price Eid risk: always lock price 45 days ahead for Q1/Q2 events.
+    lessons: [lock_beef_price_eid, reduce_rendang_estimate_by_10pct]
+
+  - quote_id: QUO-2024-002
+    event_type: corporate_gala_dinner
+    region: Malaysia
+    sub_region: KL City Centre
+    client_id: null
+    guest_count: 300
+    service_style: plated_5_course
+    cuisine: international_halal
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 220
+    quoted_total: 66000
+    accepted: true
+    acceptance_lag_days: 7
+    actual_food_cost: 28500
+    actual_overhead_cost: 14200
+    actual_total_cost: 42700
+    actual_gross_margin_pct: 35.3
+    actual_margin_amount_myr: 23300
+    variance_drivers:
+      - {item: fish_substitution_seabass_for_snapper, impact_myr: -1500, note: "Snapper unavailable — seabass cheaper"}
+      - {item: extra_server_overtime, impact_myr: +1800}
+    key_dish_performance: [Butter Chicken, Tom Yum Soup, Coconut Panna Cotta]
+    notes: >
+      Best margin result in 2024. Plated gala with 300+ pax produces strong economics.
+      Food cost only 43% of total cost; labour at plated is high but market pricing absorbs it.
+    lessons: [plated_gala_best_margin_event_type, plan_fish_sub_in_advance]
+
+  - quote_id: QUO-2024-003
+    event_type: corporate_lunch
+    region: Malaysia
+    sub_region: Petaling Jaya
+    client_id: null
+    guest_count: 120
+    service_style: semi_buffet
+    cuisine: pan_asian_halal
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 45
+    quoted_total: 5400
+    accepted: true
+    acceptance_lag_days: 1
+    actual_food_cost: 2600
+    actual_overhead_cost: 2100
+    actual_total_cost: 4700
+    actual_gross_margin_pct: 13.0
+    actual_margin_amount_myr: 700
+    variance_drivers:
+      - {item: small_total_high_fixed_overhead_ratio, impact_myr: +300}
+    notes: >
+      Thin margin on small corporate lunch — fixed overhead ratio is high.
+      Minimum viable size for corporate lunch: ~150 pax at MYR 45. Below this, margin compresses.
+    lessons: [min_profitable_pax_corporate_lunch_150, fixed_overhead_kills_small_events]
+
+  - quote_id: QUO-2024-004
+    event_type: malay_wedding
+    region: Malaysia
+    sub_region: Putrajaya
+    client_id: CLT-002
+    guest_count: 500
+    service_style: buffet
+    cuisine: malay_traditional
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 68
+    quoted_total: 34000
+    accepted: true
+    acceptance_lag_days: 5
+    actual_food_cost: 16800
+    actual_overhead_cost: 10200
+    actual_total_cost: 27000
+    actual_gross_margin_pct: 20.6
+    actual_margin_amount_myr: 7000
+    variance_drivers:
+      - {item: scale_efficiency_food, impact_myr: -1200, note: "Bulk purchase savings"}
+      - {item: extra_setup_crew_needed, impact_myr: +800}
+    notes: >
+      Large Malay wedding: MYR 68/head is competitive and margin-positive.
+      Scale efficiency kicks in above 400 pax — food cost drops proportionally.
+      VIP client (CLT-002) — platinum tier. Director touchpoint completed.
+    lessons: [scale_efficiency_above_400pax, vip_needs_director_touchpoint]
+
+  - quote_id: QUO-2024-005
+    event_type: birthday_party
+    region: Philippines
+    client_id: null
+    guest_count: 80
+    service_style: buffet
+    cuisine: filipino_mixed
+    halal_required: false
+    currency: PHP
+    quoted_per_head: 1400
+    quoted_total: 112000
+    accepted: true
+    acceptance_lag_days: 2
+    actual_food_cost: 55000
+    actual_overhead_cost: 38000
+    actual_total_cost: 93000
+    actual_gross_margin_pct: 17.0
+    actual_margin_amount_php: 19000
+    variance_drivers:
+      - {item: lechon_cost_higher_christmas_season, impact_php: +8000}
+      - {item: equipment_reuse_from_prior_week_event, impact_php: -4000}
+    notes: >
+      December birthday: lechon +20% premium. Build seasonal surcharge into Dec quotes.
+      Equipment reuse helps — schedule events in same area to enable.
+    lessons: [december_pork_premium_20pct, equipment_reuse_saves_php_4000_avg]
+
+  - quote_id: QUO-2024-006
+    event_type: product_launch
+    region: Malaysia
+    client_id: null
+    guest_count: 150
+    service_style: cocktail
+    cuisine: pan_asian_fusion
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 90
+    quoted_total: 13500
+    accepted: true
+    acceptance_lag_days: 4
+    actual_food_cost: 4800
+    actual_overhead_cost: 4200
+    actual_total_cost: 9000
+    actual_gross_margin_pct: 33.3
+    actual_margin_amount_myr: 4500
+    variance_drivers:
+      - {item: butterfly_pea_flower_drinks_popular_reorder, impact_myr: +250}
+      - {item: mini_satay_prepped_efficiently, impact_myr: -300}
+    notes: >
+      Product launch cocktail consistently our second-best margin event type.
+      Butterfly pea flower drink: high demand — always quote extra.
+    lessons: [cocktail_product_launch_33pct_margin, butterfly_pea_add_to_standard_quote]
+
+  - quote_id: QUO-2024-007
+    event_type: corporate_gala_dinner
+    region: Malaysia
+    client_id: null
+    guest_count: 200
+    service_style: plated_5_course
+    cuisine: international_halal
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 250
+    quoted_total: 50000
+    accepted: false
+    acceptance_lag_days: null
+    actual_cost: null
+    actual_gross_margin_pct: null
+    loss_reason: "Client chose hotel ballroom in-house package at MYR 220/head (includes room)"
+    notes: >
+      Beaten by hotel package. Hotel bundled room + food at below our standalone food price.
+      Cannot compete with hotel-bundled deals when venue is the hotel itself.
+      Only compete for external venue events.
+    lessons: [do_not_bid_hotel_own_venue_events, flag_hotel_bundled_deals]
+
+  - quote_id: QUO-2024-008
+    event_type: indian_wedding
+    region: Malaysia
+    client_id: null
+    guest_count: 400
+    service_style: banana_leaf
+    cuisine: south_indian
+    halal_required: false
+    currency: MYR
+    quoted_per_head: 55
+    quoted_total: 22000
+    accepted: true
+    acceptance_lag_days: 10
+    actual_food_cost: 10500
+    actual_overhead_cost: 7800
+    actual_total_cost: 18300
+    actual_gross_margin_pct: 16.8
+    actual_margin_amount_myr: 3700
+    variance_drivers:
+      - {item: banana_leaf_sourcing_more_expensive, impact_myr: +400}
+      - {item: butler_staff_needed_for_leaf_service, impact_myr: +600}
+    notes: >
+      Indian wedding banana leaf: underestimated leaf service labour.
+      Add ROLE-SV 2 extra hours for leaf service and top-up rounds.
+      MYR 55/head is competitive; standard tier is MYR 65–80. We under-quoted.
+    lessons: [banana_leaf_add_extra_server_hours, indian_wedding_quote_min_65_myr]
+
+  - quote_id: QUO-2025-001
+    event_type: malay_wedding
+    region: Malaysia
+    client_id: CLT-001
+    guest_count: 250
+    service_style: buffet
+    cuisine: malay_traditional
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 78
+    quoted_total: 19500
+    accepted: true
+    acceptance_lag_days: 1
+    actual_food_cost: 9800
+    actual_overhead_cost: 6200
+    actual_total_cost: 16000
+    actual_gross_margin_pct: 17.9
+    actual_margin_amount_myr: 3500
+    is_repeat_client: true
+    loyalty_discount_applied_pct: 5
+    notes: >
+      Repeat client (CLT-001 — Azlan). Loyalty discount applied: 5%.
+      Accepted same-day — strong client relationship. Highest client NPS score this year.
+    lessons: [loyalty_discount_drives_fast_acceptance, repeat_clients_more_efficient]
+
+  - quote_id: QUO-2025-002
+    event_type: corporate_lunch
+    region: Malaysia
+    client_id: null
+    guest_count: 180
+    service_style: semi_buffet
+    cuisine: pan_asian_halal
+    halal_required: true
+    currency: MYR
+    quoted_per_head: 48
+    quoted_total: 8640
+    accepted: false
+    acceptance_lag_days: null
+    loss_reason: "Client sourced competitor at MYR 38/head (unverified halal status)"
+    notes: >
+      Lost to unverified halal caterer at MYR 10/head below. Client prioritised price.
+      Recommend adding 'Halal Compliance Guarantee' language to quote to justify premium.
+    lessons: [halal_premium_hard_to_justify_without_cert_language, price_sensitive_corporate_lunch_segment]
+
+# ── Aggregated margin performance ─────────────────────────────────────────
+margin_summary:
+  average_gross_margin_pct_by_event:
+    malay_wedding: 19.6
+    chinese_banquet: 22.0
+    corporate_gala_dinner: 34.3
+    corporate_lunch: 13.0
+    indian_wedding: 16.8
+    birthday_party: 17.0
+    product_launch_cocktail: 33.3
+    festival: 4.5
+  best_margin_event_type: corporate_gala_dinner
+  worst_margin_event_type: festival
+  recommended_minimum_gross_margin_pct: 15.0
+  floor_gross_margin_never_go_below_pct: 10.0
+
+win_rate_by_quoted_price:
+  malay_wedding_myr_per_head:
+    - {price: 60, win_rate_pct: 90, note: "Below market — almost always win, often under-margin"}
+    - {price: 70, win_rate_pct: 82}
+    - {price: 75, win_rate_pct: 75}
+    - {price: 80, win_rate_pct: 65}
+    - {price: 90, win_rate_pct: 45}
+    - {price: 100, win_rate_pct: 28}
+  corporate_lunch_myr_per_head:
+    - {price: 38, win_rate_pct: 85}
+    - {price: 45, win_rate_pct: 72}
+    - {price: 55, win_rate_pct: 55}
+    - {price: 65, win_rate_pct: 35}
+  corporate_gala_myr_per_head:
+    - {price: 150, win_rate_pct: 80}
+    - {price: 180, win_rate_pct: 70}
+    - {price: 200, win_rate_pct: 60}
+    - {price: 220, win_rate_pct: 50}
+    - {price: 250, win_rate_pct: 38}
+    - {price: 280, win_rate_pct: 25}
+  product_launch_cocktail_myr_per_head:
+    - {price: 75, win_rate_pct: 88}
+    - {price: 90, win_rate_pct: 78}
+    - {price: 110, win_rate_pct: 60}
+    - {price: 130, win_rate_pct: 42}
+    - {price: 150, win_rate_pct: 28}
+
+recurring_lessons:
+  - lesson: Beef price must be locked in 30+ days before Eid events (March–April, June–July)
+  - lesson: Festival events need overage clause — attendance routinely exceeds RSVP by 15–25%
+  - lesson: Hotel-bundled catering deals are uncompetitive — do not bid on hotel-own-venue events
+  - lesson: Small corporate lunches (<100 pax) at MYR 45 barely profitable — push for 150+ pax
+  - lesson: Banana leaf service requires extra server hours — budget 2 extra ROLE-SV
+  - lesson: Repeat clients accept quotes faster and require fewer revisions
+  - lesson: Seasonal seafood surcharge needed for Dec–Jan Malaysia quotes
+  - lesson: Loyalty discount (5%) demonstrably increases acceptance speed and client retention

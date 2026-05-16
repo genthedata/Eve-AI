@@ -1,0 +1,993 @@
+---
+# Recipe & Ingredient Library — Menu Agent Knowledge Base
+# Rich metadata per dish enabling the menu agent to filter, rank, and compose menus.
+# The inventory agent queries this for ingredient quantities (via ingredient_recipe_map.yaml);
+# the menu agent queries this to answer: "which dishes fit this brief?"
+#
+# Fields per recipe:
+#   cuisine, category, dietary_profiles, skill_level (1=easy 5=expert),
+#   cooking_time_min, scale_performance, equipment_required,
+#   occasion_suitability, service_style_compatibility,
+#   quality_signal, complementary_dishes, variants,
+#   avoid_with (cultural/dietary conflicts), seasonal_ingredient
+
+recipes:
+  # ── Filipino Classics ─────────────────────────────────────────────────────
+
+  - dish_name: Chicken Adobo
+    cuisine: filipino
+    category: main
+    subcategory: braised
+    dietary_profiles: [halal]
+    allergens: [soy]
+    skill_level: 2
+    cooking_time_min: 60
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [stockpot_or_large_wok, gas_burner]
+    occasion_suitability: [wedding, corporate_lunch, birthday, community_event, any]
+    service_style_compatibility: [buffet, semi_buffet, plated]
+    quality_signal: comfort
+    complementary_dishes: [Steamed Jasmine Rice, Garlic Butter Vegetables, Spring Rolls (Fried)]
+    avoid_with: [soy_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: >
+      Signature Filipino dish. Improves overnight — ideal make-ahead.
+      Crowd-pleaser across all demographics.
+    variants:
+      halal: true
+      vegan: Replace chicken with tofu and use coconut aminos instead of soy sauce
+      gluten_free: Use tamari or coconut aminos instead of soy sauce
+
+  - dish_name: Beef Caldereta
+    cuisine: filipino
+    category: main
+    subcategory: braised
+    dietary_profiles: [halal]
+    allergens: []
+    skill_level: 3
+    cooking_time_min: 180
+    scale_performance: good
+    max_portions_per_batch: 100
+    min_portions_recommended: 30
+    equipment_required: [large_stockpot, gas_burner]
+    occasion_suitability: [wedding, birthday, community_event]
+    service_style_compatibility: [buffet, semi_buffet]
+    quality_signal: premium_comfort
+    complementary_dishes: [Steamed Jasmine Rice, Garlic Butter Vegetables]
+    avoid_with: []
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: Rich tomato-and-liver based stew. Premium comfort feel; suitable for weddings.
+    variants:
+      halal: true
+      gluten_free: true
+
+  - dish_name: Lechon Kawali
+    cuisine: filipino
+    category: main
+    subcategory: fried
+    dietary_profiles: []
+    allergens: []
+    skill_level: 3
+    cooking_time_min: 120
+    scale_performance: good
+    max_portions_per_batch: 80
+    min_portions_recommended: 20
+    equipment_required: [deep_fryer_or_large_wok, gas_burner]
+    occasion_suitability: [wedding, birthday, community_event, festival]
+    service_style_compatibility: [buffet, food_stall]
+    quality_signal: crowd_pleaser
+    complementary_dishes: [Steamed Jasmine Rice, Sinigang na Baboy]
+    avoid_with: [halal_events, muslim_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: >
+      Non-halal (pork). Never serve at halal events. Deep-fried; requires dedicated fryer.
+      Always sells out — order extra. Do not pre-cook more than 30 min before service.
+    variants:
+      halal: "NOT AVAILABLE — pork dish"
+
+  - dish_name: Kare-Kare
+    cuisine: filipino
+    category: main
+    subcategory: stew
+    dietary_profiles: [halal]
+    allergens: [peanuts, shellfish_in_bagoong]
+    skill_level: 4
+    cooking_time_min: 240
+    scale_performance: fair
+    max_portions_per_batch: 60
+    min_portions_recommended: 20
+    equipment_required: [pressure_cooker_or_large_stockpot, gas_burner]
+    occasion_suitability: [wedding, special_occasion]
+    service_style_compatibility: [buffet]
+    quality_signal: premium_traditional
+    complementary_dishes: [Steamed Jasmine Rice]
+    avoid_with: [peanut_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: true
+    allergen_note: Bagoong (shrimp paste served on side) contains shellfish. Remove for shellfish-free events.
+    variants:
+      halal: true
+      nut_free: "Remove peanut sauce — dish changes significantly; not recommended"
+
+  - dish_name: Sinigang na Baboy
+    cuisine: filipino
+    category: main
+    subcategory: soup_stew
+    dietary_profiles: []
+    allergens: []
+    skill_level: 2
+    cooking_time_min: 90
+    scale_performance: excellent
+    max_portions_per_batch: 150
+    min_portions_recommended: 30
+    equipment_required: [large_stockpot, gas_burner]
+    occasion_suitability: [wedding, birthday, community_event, family_event]
+    service_style_compatibility: [buffet]
+    quality_signal: comfort_traditional
+    complementary_dishes: [Steamed Jasmine Rice, Lechon Kawali]
+    avoid_with: [halal_events, muslim_guests]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: Non-halal (pork). Comfort staple at Filipino family events.
+    variants:
+      halal: "Replace pork with beef or chicken (Sinigang na Baka / Manok)"
+
+  - dish_name: Tofu Sisig
+    cuisine: filipino
+    category: main
+    subcategory: sizzling
+    dietary_profiles: [halal, vegetarian, vegan]
+    allergens: [soy]
+    skill_level: 2
+    cooking_time_min: 30
+    scale_performance: good
+    max_portions_per_batch: 80
+    min_portions_recommended: 20
+    equipment_required: [cast_iron_skillet_or_flat_griddle, gas_burner]
+    occasion_suitability: [corporate_lunch, birthday, product_launch, any]
+    service_style_compatibility: [buffet, semi_buffet, food_stall]
+    quality_signal: modern_crowd_pleaser
+    complementary_dishes: [Steamed Jasmine Rice, Spring Rolls (Fried)]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Vegan-friendly sisig. Sizzle-on-service maximizes impact.
+    variants:
+      halal: true
+      vegan: "Use coconut aminos; omit egg topping"
+
+  - dish_name: Mushroom Salpicao
+    cuisine: filipino
+    category: main
+    subcategory: saute
+    dietary_profiles: [halal, vegetarian, vegan]
+    allergens: [soy]
+    skill_level: 1
+    cooking_time_min: 20
+    scale_performance: excellent
+    max_portions_per_batch: 120
+    min_portions_recommended: 20
+    equipment_required: [large_wok_or_saute_pan, gas_burner]
+    occasion_suitability: [corporate_lunch, birthday, high_tea, any]
+    service_style_compatibility: [buffet, semi_buffet, plated]
+    quality_signal: elegant_simple
+    complementary_dishes: [Steamed Jasmine Rice, Pesto Pasta]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Quick and impressive. Great as vegetarian anchor at mixed events.
+
+  # ── Malaysian / Malay Cuisine ─────────────────────────────────────────────
+
+  - dish_name: Chicken Rendang
+    cuisine: malay
+    category: main
+    subcategory: slow_braised
+    dietary_profiles: [halal, gluten_free]
+    allergens: [coconut]
+    skill_level: 4
+    cooking_time_min: 90
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 30
+    equipment_required: [large_wok_or_rondeau, gas_burner]
+    occasion_suitability: [malay_wedding, corporate_lunch, gala_dinner, any]
+    service_style_compatibility: [buffet, semi_buffet, plated]
+    quality_signal: premium_anchor
+    complementary_dishes: [Nasi Minyak, Nasi Briyani, Acar, Gulai]
+    avoid_with: []
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: >
+      The anchor protein of any Malay event. Always expected at Malay weddings.
+      Improves with overnight rest. Can be batch-frozen weeks ahead.
+      90% positive feedback in all past event records.
+    variants:
+      halal: true
+      gluten_free: true
+      beef_variant: "Replace chicken with beef (Beef Rendang) — see separate entry"
+
+  - dish_name: Beef Rendang
+    cuisine: indonesian
+    category: main
+    subcategory: slow_braised
+    dietary_profiles: [halal, gluten_free]
+    allergens: [coconut]
+    skill_level: 4
+    cooking_time_min: 150
+    scale_performance: excellent
+    max_portions_per_batch: 150
+    min_portions_recommended: 30
+    equipment_required: [large_wok_or_rondeau, gas_burner]
+    occasion_suitability: [malay_wedding, corporate_gala, gala_dinner, special_occasion]
+    service_style_compatibility: [buffet, plated]
+    quality_signal: premium_prestige
+    complementary_dishes: [Nasi Minyak, Nasi Briyani, Acar]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: Premium protein anchor. More impactful than chicken rendang at galas.
+    variants:
+      halal: true
+      gluten_free: true
+
+  - dish_name: Chicken Satay
+    cuisine: malay
+    category: appetizer
+    subcategory: grilled_skewer
+    dietary_profiles: [halal, gluten_free]
+    allergens: [peanuts]
+    skill_level: 3
+    cooking_time_min: 45
+    scale_performance: good
+    max_portions_per_batch: 200
+    min_portions_recommended: 50
+    equipment_required: [charcoal_grill_or_satay_grill, skewers]
+    occasion_suitability: [malay_wedding, corporate_gala, birthday, festival, any]
+    service_style_compatibility: [buffet, food_stall, cocktail]
+    quality_signal: crowd_pleaser_premium
+    complementary_dishes: [Ketupat, Peanut Sauce, Acar]
+    avoid_with: [peanut_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+    allergen_note: Peanut sauce mandatory. Serve separately for nut-free events or remove entirely.
+    notes: Always popular. Live grill station elevates event quality significantly.
+    variants:
+      halal: true
+      gluten_free: true
+      nut_free: "Serve without peanut sauce; replace with sweet soy dip"
+
+  - dish_name: Beef Satay
+    cuisine: malay
+    category: appetizer
+    subcategory: grilled_skewer
+    dietary_profiles: [halal, gluten_free]
+    allergens: [peanuts]
+    skill_level: 3
+    cooking_time_min: 45
+    scale_performance: good
+    max_portions_per_batch: 200
+    min_portions_recommended: 50
+    equipment_required: [charcoal_grill_or_satay_grill, skewers]
+    occasion_suitability: [malay_wedding, corporate_gala, birthday, festival]
+    service_style_compatibility: [buffet, food_stall, cocktail]
+    quality_signal: premium
+    complementary_dishes: [Peanut Sauce, Acar, Ketupat]
+    avoid_with: [peanut_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+
+  # ── Singaporean Dishes ────────────────────────────────────────────────────
+
+  - dish_name: Hainanese Chicken Rice
+    cuisine: singaporean
+    category: main
+    subcategory: poached
+    dietary_profiles: [halal, gluten_free]
+    allergens: [soy, sesame]
+    skill_level: 3
+    cooking_time_min: 90
+    scale_performance: good
+    max_portions_per_batch: 100
+    min_portions_recommended: 30
+    equipment_required: [large_stockpot, gas_burner, rice_cooker]
+    occasion_suitability: [corporate_lunch, corporate_gala, birthday, any]
+    service_style_compatibility: [buffet, semi_buffet, plated]
+    quality_signal: elegant_classic
+    complementary_dishes: [Tom Yum Soup, Miso Soup with Tofu, Spring Rolls (Fried)]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: >
+      Iconic dish. Near-zero waste across all event types. Use whole birds.
+      Poaching stock is reused for rice — flavour is everything here.
+      Popular at cross-cultural SEA corporate events.
+    variants:
+      halal: true
+      gluten_free: "Use tamari dipping sauce"
+
+  - dish_name: Laksa (Chicken)
+    cuisine: singaporean
+    category: main
+    subcategory: noodle_soup
+    dietary_profiles: [halal]
+    allergens: [shellfish_in_paste, coconut, eggs]
+    skill_level: 3
+    cooking_time_min: 60
+    scale_performance: fair
+    max_portions_per_batch: 60
+    min_portions_recommended: 30
+    equipment_required: [large_stockpot, gas_burner, ladle_station]
+    occasion_suitability: [corporate_lunch, birthday, food_festival, any]
+    service_style_compatibility: [buffet, food_stall]
+    quality_signal: crowd_pleaser
+    complementary_dishes: [Spring Rolls (Fried)]
+    avoid_with: [shellfish_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Serve at live station for best impact. Bulk pre-cooking loses quality.
+    variants:
+      vegetarian: "Use vegetarian laksa paste; replace chicken with tofu (Vegetable Laksa)"
+
+  # ── Thai Dishes ───────────────────────────────────────────────────────────
+
+  - dish_name: Pad Thai (Chicken)
+    cuisine: thai
+    category: main
+    subcategory: stir_fried_noodle
+    dietary_profiles: [halal]
+    allergens: [peanuts, eggs, fish]
+    skill_level: 3
+    cooking_time_min: 30
+    scale_performance: fair
+    max_portions_per_batch: 40
+    min_portions_recommended: 20
+    equipment_required: [wok, high_output_gas_burner]
+    occasion_suitability: [corporate_lunch, birthday, food_festival, product_launch]
+    service_style_compatibility: [buffet, food_stall, live_station]
+    quality_signal: vibrant_popular
+    complementary_dishes: [Tom Yum Soup, Fresh Fruit Platter]
+    avoid_with: [peanut_allergy_guests, fish_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: >
+      Best as a live cooking station — crowd magnet. Difficult to batch cook well
+      (noodles clump). Max 40 portions per wok cycle; plan accordingly.
+    variants:
+      tofu: "Replace chicken with tofu (Pad Thai Tofu) — see separate entry"
+      nut_free: "Omit peanuts; taste changes but still enjoyable"
+
+  - dish_name: Pad Thai (Tofu)
+    cuisine: thai
+    category: main
+    subcategory: stir_fried_noodle
+    dietary_profiles: [halal, vegetarian, vegan]
+    allergens: [soy]
+    skill_level: 3
+    cooking_time_min: 30
+    scale_performance: fair
+    max_portions_per_batch: 40
+    min_portions_recommended: 20
+    equipment_required: [wok, high_output_gas_burner]
+    occasion_suitability: [corporate_lunch, birthday, food_festival]
+    service_style_compatibility: [buffet, food_stall, live_station]
+    quality_signal: vibrant_inclusive
+    complementary_dishes: [Tom Yum Soup]
+    seasonal_ingredient: null
+    make_ahead: false
+    variants:
+      nut_free: "Omit peanut garnish"
+
+  - dish_name: Tom Yum Soup
+    cuisine: thai
+    category: side
+    subcategory: soup
+    dietary_profiles: [halal, gluten_free]
+    allergens: [shellfish_optional, fish]
+    skill_level: 2
+    cooking_time_min: 30
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [large_stockpot, gas_burner]
+    occasion_suitability: [corporate_lunch, birthday, any]
+    service_style_compatibility: [buffet, plated, semi_buffet]
+    quality_signal: sophisticated_comfort
+    complementary_dishes: [Hainanese Chicken Rice, Pad Thai (Chicken)]
+    seasonal_ingredient: null
+    make_ahead: false
+    variants:
+      vegetarian: "Use vegetable stock; omit prawn; replace fish sauce with soy sauce"
+
+  # ── Indian Dishes ─────────────────────────────────────────────────────────
+
+  - dish_name: Dal Tadka
+    cuisine: indian
+    category: main
+    subcategory: lentil_curry
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 2
+    cooking_time_min: 45
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [large_stockpot_or_pressure_cooker, gas_burner]
+    occasion_suitability: [indian_wedding, corporate_lunch, any]
+    service_style_compatibility: [buffet, plated, banana_leaf]
+    quality_signal: hearty_versatile
+    complementary_dishes: [Vegetable Biryani, Steamed Jasmine Rice, Cucumber Raita]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: Excellent vegan anchor. Improves with rest. Key component of banana leaf.
+    variants:
+      halal: true
+      vegan: true
+      gluten_free: true
+
+  - dish_name: Butter Chicken
+    cuisine: indian
+    category: main
+    subcategory: creamy_curry
+    dietary_profiles: [halal, gluten_free]
+    allergens: [dairy]
+    skill_level: 3
+    cooking_time_min: 60
+    scale_performance: good
+    max_portions_per_batch: 120
+    min_portions_recommended: 30
+    equipment_required: [large_wok_or_rondeau, gas_burner, tandoor_or_oven]
+    occasion_suitability: [corporate_lunch, corporate_gala, birthday, any]
+    service_style_compatibility: [buffet, plated, semi_buffet]
+    quality_signal: premium_comfort_crowd_pleaser
+    complementary_dishes: [Vegetable Biryani, Naan, Cucumber Raita]
+    avoid_with: [dairy_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: >
+      Universal crowd-pleaser across all demographics. Highest positive feedback
+      score of any Indian dish in past event records.
+    variants:
+      halal: true
+      dairy_free: "Replace cream with coconut cream — flavour changes but still excellent"
+      gluten_free: true
+
+  - dish_name: Vegetable Biryani
+    cuisine: indian
+    category: main
+    subcategory: rice_pilaf
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 4
+    cooking_time_min: 90
+    scale_performance: good
+    max_portions_per_batch: 100
+    min_portions_recommended: 30
+    equipment_required: [large_pot_with_lid, oven_or_dum_setup, gas_burner]
+    occasion_suitability: [indian_wedding, corporate_lunch, any]
+    service_style_compatibility: [buffet, plated]
+    quality_signal: premium_showpiece
+    complementary_dishes: [Dal Tadka, Butter Chicken, Cucumber Raita]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Dum-style (sealed lid steaming) gives best result but requires oven space.
+    variants:
+      halal: true
+      vegan: true
+
+  # ── Staples ───────────────────────────────────────────────────────────────
+
+  - dish_name: Steamed Jasmine Rice
+    cuisine: pan_asian
+    category: staple
+    subcategory: rice
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 1
+    cooking_time_min: 30
+    scale_performance: excellent
+    max_portions_per_batch: 500
+    min_portions_recommended: 20
+    equipment_required: [rice_cooker_commercial_or_pot, gas_burner]
+    occasion_suitability: [any]
+    service_style_compatibility: [buffet, semi_buffet, plated, banana_leaf]
+    quality_signal: essential
+    complementary_dishes: [any_main_dish]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Always order 20% extra. Universal pairing.
+
+  - dish_name: Nasi Goreng
+    cuisine: indonesian
+    category: main
+    subcategory: fried_rice
+    dietary_profiles: [halal]
+    allergens: [soy, eggs, shellfish_in_sambal]
+    skill_level: 2
+    cooking_time_min: 20
+    scale_performance: fair
+    max_portions_per_batch: 40
+    min_portions_recommended: 20
+    equipment_required: [wok, high_output_gas_burner]
+    occasion_suitability: [birthday, food_festival, any]
+    service_style_compatibility: [buffet, food_stall, live_station]
+    quality_signal: popular_comfort
+    complementary_dishes: [Tom Yum Soup, Spring Rolls (Fried)]
+    avoid_with: [egg_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Best cooked live in max 20-portion batches. Day-old rice mandatory.
+
+  # ── Appetizers & Sides ────────────────────────────────────────────────────
+
+  - dish_name: Spring Rolls (Fried)
+    cuisine: pan_asian
+    category: appetizer
+    subcategory: fried
+    dietary_profiles: [halal, vegetarian]
+    allergens: [gluten]
+    skill_level: 2
+    cooking_time_min: 30
+    scale_performance: good
+    max_portions_per_batch: 150
+    min_portions_recommended: 30
+    equipment_required: [deep_fryer_or_large_wok, gas_burner]
+    occasion_suitability: [any]
+    service_style_compatibility: [buffet, cocktail, food_stall, semi_buffet, plated]
+    quality_signal: crowd_pleaser
+    complementary_dishes: [Sweet Chilli Sauce, Spring Rolls dipping sauce]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Pre-roll day before; fry to order. Always popular — order extra. At plated events, served as plated starter.
+
+  - dish_name: Cucumber Raita
+    cuisine: indian
+    category: side
+    subcategory: cooling_side
+    dietary_profiles: [halal, vegetarian, gluten_free]
+    allergens: [dairy]
+    skill_level: 1
+    cooking_time_min: 10
+    scale_performance: excellent
+    max_portions_per_batch: 300
+    min_portions_recommended: 20
+    equipment_required: []
+    occasion_suitability: [indian_wedding, corporate_lunch, corporate_gala, any]
+    service_style_compatibility: [buffet, plated, semi_buffet, banana_leaf]
+    quality_signal: reliable_complement
+    complementary_dishes: [Butter Chicken, Dal Tadka, Vegetable Biryani]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Essential cooling element with Indian mains. Zero-waste dish.
+
+  - dish_name: Chicken Satay (mini)
+    cuisine: malay
+    category: appetizer
+    subcategory: grilled_skewer
+    dietary_profiles: [halal, gluten_free]
+    allergens: [peanuts]
+    skill_level: 2
+    cooking_time_min: 30
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 30
+    equipment_required: [charcoal_grill_or_satay_grill, skewers]
+    occasion_suitability: [corporate_gala, product_launch, birthday, any]
+    service_style_compatibility: [cocktail, buffet, plated, semi_buffet]
+    quality_signal: premium_crowd_pleaser
+    complementary_dishes: [Peanut Sauce, Acar]
+    avoid_with: [peanut_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+    allergen_note: "Serve peanut sauce separately; remove for nut-free events."
+    notes: Mini format (3 skewers per portion) for plated amuse-bouche or cocktail canapé.
+    variants:
+      nut_free: "Serve without peanut sauce; replace with sweet soy dip"
+
+  - dish_name: Garlic Butter Vegetables
+    cuisine: continental
+    category: side
+    subcategory: saute
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 1
+    cooking_time_min: 15
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [large_wok_or_saute_pan, gas_burner]
+    occasion_suitability: [any]
+    service_style_compatibility: [buffet, plated, semi_buffet]
+    quality_signal: reliable_complement
+    complementary_dishes: [Chicken Adobo, Butter Chicken, Hainanese Chicken Rice]
+    seasonal_ingredient: seasonal_vegetables
+    make_ahead: false
+    notes: Use seasonal veg for cost savings and freshness. Do not pre-cook.
+
+  - dish_name: Gado-Gado
+    cuisine: indonesian
+    category: side
+    subcategory: salad_with_sauce
+    dietary_profiles: [halal, vegetarian]
+    allergens: [peanuts, eggs]
+    skill_level: 2
+    cooking_time_min: 30
+    scale_performance: good
+    max_portions_per_batch: 100
+    min_portions_recommended: 20
+    equipment_required: [boiling_pot, gas_burner]
+    occasion_suitability: [birthday, corporate_lunch, food_festival]
+    service_style_compatibility: [buffet, food_stall]
+    quality_signal: interesting_diverse
+    complementary_dishes: [Nasi Goreng, Spring Rolls (Fried)]
+    avoid_with: [peanut_allergy_guests, egg_allergy_guests]
+    seasonal_ingredient: null
+
+  - dish_name: Pesto Pasta
+    cuisine: italian
+    category: main
+    subcategory: pasta
+    dietary_profiles: [vegetarian]
+    allergens: [gluten, nuts_in_pesto, dairy]
+    skill_level: 1
+    cooking_time_min: 20
+    scale_performance: poor
+    max_portions_per_batch: 30
+    min_portions_recommended: 20
+    equipment_required: [large_pot, gas_burner]
+    occasion_suitability: [corporate_lunch, birthday, product_launch]
+    service_style_compatibility: [buffet, plated]
+    quality_signal: familiar_safe
+    complementary_dishes: [Garlic Butter Vegetables, Fresh Fruit Platter]
+    seasonal_ingredient: fresh_basil
+    make_ahead: false
+    notes: >
+      Dries out fast on buffet — batch cook every 30 min maximum.
+      Poor scale performance. Avoid at events >150 pax unless live station.
+    variants:
+      vegan: "Use nutritional yeast instead of parmesan; omit dairy"
+      nut_free: "Use sun-dried tomato pesto instead of basil-pine nut pesto"
+
+  # ── Desserts ──────────────────────────────────────────────────────────────
+
+  - dish_name: Leche Flan
+    cuisine: filipino
+    category: dessert
+    subcategory: custard
+    dietary_profiles: [halal, vegetarian, gluten_free]
+    allergens: [eggs, dairy]
+    skill_level: 3
+    cooking_time_min: 90
+    scale_performance: good
+    max_portions_per_batch: 100
+    min_portions_recommended: 20
+    equipment_required: [steamer_or_oven_bain_marie, refrigerator]
+    occasion_suitability: [filipino_wedding, birthday, any]
+    service_style_compatibility: [buffet, plated, dessert_table]
+    quality_signal: traditional_elegant
+    complementary_dishes: [Fresh Fruit Platter, Mango Sticky Rice]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: Make day before. Must be refrigerated until service.
+
+  - dish_name: Mango Sticky Rice
+    cuisine: thai
+    category: dessert
+    subcategory: sweet_rice
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: [coconut]
+    skill_level: 2
+    cooking_time_min: 60
+    scale_performance: good
+    max_portions_per_batch: 100
+    min_portions_recommended: 20
+    equipment_required: [steamer, refrigerator]
+    occasion_suitability: [any]
+    service_style_compatibility: [buffet, plated, dessert_table]
+    quality_signal: crowd_pleaser_vibrant
+    complementary_dishes: [Fresh Fruit Platter, Leche Flan]
+    seasonal_ingredient: mango
+    seasonal_note: Carabao/Alphonso mango peak March–May. Avoid Nov–Feb; substitute jackfruit.
+    make_ahead: false
+    notes: Must use ripe mango. Sub with jackfruit in off-season. Beautiful plating.
+
+  - dish_name: Fresh Fruit Platter
+    cuisine: universal
+    category: dessert
+    subcategory: fresh_fruit
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 1
+    cooking_time_min: 15
+    scale_performance: excellent
+    max_portions_per_batch: 500
+    min_portions_recommended: 20
+    equipment_required: [cutting_board, knife, refrigerator]
+    occasion_suitability: [any]
+    service_style_compatibility: [buffet, plated, dessert_table, cocktail]
+    quality_signal: clean_refreshing
+    complementary_dishes: [any_dessert]
+    seasonal_ingredient: seasonal_tropical_fruit
+    make_ahead: false
+    notes: 20% prep waste. Use seasonal tropical fruit for quality and cost.
+
+  - dish_name: Pandan Cake
+    cuisine: southeast_asian
+    category: dessert
+    subcategory: sponge_cake
+    dietary_profiles: [halal, vegetarian]
+    allergens: [gluten, eggs, coconut]
+    skill_level: 3
+    cooking_time_min: 90
+    scale_performance: good
+    max_portions_per_batch: 80
+    min_portions_recommended: 20
+    equipment_required: [oven, stand_mixer, cake_tins]
+    occasion_suitability: [malay_wedding, birthday, high_tea, any]
+    service_style_compatibility: [buffet, dessert_table, high_tea]
+    quality_signal: culturally_distinctive
+    complementary_dishes: [Fresh Fruit Platter, Coconut Panna Cotta]
+    seasonal_ingredient: pandan
+    make_ahead: true
+    notes: Make day before; refrigerate. Beautiful green colour — great dessert table anchor.
+
+  - dish_name: Chocolate Lava Cake
+    cuisine: continental
+    category: dessert
+    subcategory: plated_dessert
+    dietary_profiles: [halal, vegetarian]
+    allergens: [gluten, eggs, dairy]
+    skill_level: 4
+    cooking_time_min: 20
+    scale_performance: poor
+    max_portions_per_batch: 30
+    min_portions_recommended: 20
+    equipment_required: [oven, ramekins, refrigerator]
+    occasion_suitability: [corporate_gala, special_occasion, wedding]
+    service_style_compatibility: [plated]
+    quality_signal: prestige_showpiece
+    complementary_dishes: [Vanilla Ice Cream, Fresh Fruit Platter]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: >
+      Plated only — cannot buffet. Bake 12 min per batch; maximum 30 per round.
+      Poor scale performance limits to plated events <150 pax unless multiple ovens.
+      High wow-factor when executed correctly.
+
+  - dish_name: Coconut Panna Cotta
+    cuisine: continental
+    category: dessert
+    subcategory: set_dessert
+    dietary_profiles: [halal, vegetarian, gluten_free]
+    allergens: [coconut]
+    skill_level: 2
+    cooking_time_min: 20
+    scale_performance: excellent
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [saucepan, moulds_or_cups, refrigerator]
+    occasion_suitability: [corporate_gala, corporate_lunch, any]
+    service_style_compatibility: [buffet, plated, dessert_table]
+    quality_signal: elegant_premium
+    complementary_dishes: [Fresh Fruit Platter, Mango Sticky Rice]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: Make day before. Excellent scale performance. Tropical flavour profile.
+
+  # ── Indonesian Mains ──────────────────────────────────────────────────────
+
+  - dish_name: Nasi Goreng
+    cuisine: indonesian
+    category: main
+    subcategory: fried_rice
+    dietary_profiles: [halal]
+    allergens: [soy, eggs, shellfish_in_sambal]
+    skill_level: 2
+    cooking_time_min: 20
+    scale_performance: fair
+    max_portions_per_batch: 40
+    min_portions_recommended: 20
+    equipment_required: [wok, high_output_gas_burner]
+    occasion_suitability: [birthday, food_festival, corporate_lunch, any]
+    service_style_compatibility: [buffet, food_stall, live_station]
+    quality_signal: popular_comfort
+    complementary_dishes: [Tom Yum Soup, Spring Rolls (Fried)]
+    avoid_with: [egg_allergy_guests]
+    seasonal_ingredient: null
+    make_ahead: false
+
+  - dish_name: Miso Soup with Tofu
+    cuisine: japanese
+    category: side
+    subcategory: soup
+    dietary_profiles: [vegetarian, vegan, gluten_free]
+    allergens: [soy]
+    skill_level: 1
+    cooking_time_min: 15
+    scale_performance: excellent
+    max_portions_per_batch: 300
+    min_portions_recommended: 20
+    equipment_required: [large_pot, gas_burner]
+    occasion_suitability: [corporate_lunch, corporate_gala, any]
+    service_style_compatibility: [buffet, plated, semi_buffet]
+    quality_signal: sophisticated_minimal
+    complementary_dishes: [Hainanese Chicken Rice, any_asian_main]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: Vegan with vegetable dashi. Traditional dashi uses bonito (not vegan/halal).
+
+  # ── Cocktail / Canape range (vegan & gluten-free friendly) ─────────────────
+
+  - dish_name: Rice Paper Rolls (Vegan)
+    cuisine: vietnamese
+    category: appetizer
+    subcategory: canape
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 2
+    cooking_time_min: 30
+    scale_performance: good
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [cutting_board, knife, shallow_tray]
+    occasion_suitability: [birthday, corporate_lunch, product_launch, any]
+    service_style_compatibility: [cocktail, buffet, semi_buffet, plated]
+    quality_signal: clean_refreshing
+    complementary_dishes: [Fresh Fruit Platter, Garlic Butter Vegetables]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: >
+      Filled with avocado, mango, cucumber, vermicelli, fresh herbs.
+      Gluten-free and vegan. Serve with sweet chilli dipping sauce (GF variant).
+
+  - dish_name: Stuffed Mini Peppers (Vegan)
+    cuisine: pan_asian
+    category: appetizer
+    subcategory: canape
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 2
+    cooking_time_min: 25
+    scale_performance: good
+    max_portions_per_batch: 200
+    min_portions_recommended: 20
+    equipment_required: [oven, cutting_board, knife]
+    occasion_suitability: [birthday, cocktail_reception, product_launch, any]
+    service_style_compatibility: [cocktail, buffet, plated]
+    quality_signal: colourful_eye_catching
+    complementary_dishes: [Rice Paper Rolls (Vegan), Fresh Fruit Platter]
+    seasonal_ingredient: null
+    make_ahead: true
+    notes: >
+      Mini sweet peppers stuffed with herbed quinoa or spiced chickpea.
+      Naturally gluten-free and vegan. Bright colours perfect for cocktail presentation.
+
+  - dish_name: Mango & Coconut Cups
+    cuisine: southeast_asian
+    category: dessert
+    subcategory: dessert_canape
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: [coconut]
+    skill_level: 1
+    cooking_time_min: 15
+    scale_performance: excellent
+    max_portions_per_batch: 300
+    min_portions_recommended: 20
+    equipment_required: [shot_glasses_or_cups, refrigerator]
+    occasion_suitability: [birthday, product_launch, any]
+    service_style_compatibility: [cocktail, buffet, dessert_table, plated]
+    quality_signal: tropical_premium
+    complementary_dishes: [Fresh Fruit Platter, Rice Paper Rolls (Vegan)]
+    seasonal_ingredient: mango
+    make_ahead: true
+    notes: >
+      Coconut cream base, diced fresh mango, toasted coconut flakes.
+      Gluten-free and vegan. Ideal canape dessert for standing events.
+
+  - dish_name: Roasted Veggie Bruschetta (GF)
+    cuisine: continental
+    category: appetizer
+    subcategory: canape
+    dietary_profiles: [halal, vegetarian, vegan, gluten_free]
+    allergens: []
+    skill_level: 2
+    cooking_time_min: 20
+    scale_performance: good
+    max_portions_per_batch: 150
+    min_portions_recommended: 20
+    equipment_required: [oven, cutting_board]
+    occasion_suitability: [corporate_gala, product_launch, birthday, any]
+    service_style_compatibility: [cocktail, buffet, plated]
+    quality_signal: elegant_modern
+    complementary_dishes: [Stuffed Mini Peppers (Vegan), Rice Paper Rolls (Vegan)]
+    seasonal_ingredient: null
+    make_ahead: false
+    notes: >
+      Served on gluten-free crackers or polenta rounds topped with roasted capsicum,
+      zucchini, olive tapenade. 100% vegan and gluten-free.
+
+# ── Dish filter index ─────────────────────────────────────────────────────
+# Pre-indexed lookups used by menu_agent for fast filtering without full scan.
+
+dietary_filter_index:
+  halal: [Chicken Adobo, Beef Caldereta, Kare-Kare, Chicken Rendang, Beef Rendang,
+          Chicken Satay, Beef Satay, Hainanese Chicken Rice, Laksa (Chicken),
+          Vegetable Laksa, Pad Thai (Chicken), Pad Thai (Tofu), Tom Yum Soup,
+          Dal Tadka, Butter Chicken, Vegetable Biryani, Cucumber Raita,
+          Steamed Jasmine Rice, Nasi Goreng, Spring Rolls (Fried), Garlic Butter Vegetables,
+          Tofu Sisig, Mushroom Salpicao, Leche Flan, Mango Sticky Rice, Fresh Fruit Platter,
+          Pandan Cake, Chocolate Lava Cake, Coconut Panna Cotta,
+          Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan),
+          Mango & Coconut Cups, Roasted Veggie Bruschetta (GF)]
+
+  vegetarian: [Tofu Sisig, Mushroom Salpicao, Pad Thai (Tofu), Tom Yum Soup, Dal Tadka,
+               Vegetable Biryani, Cucumber Raita, Steamed Jasmine Rice, Garlic Butter Vegetables,
+               Gado-Gado, Pesto Pasta, Miso Soup with Tofu, Vegetable Laksa, Spring Rolls (Fried),
+               Leche Flan, Mango Sticky Rice, Fresh Fruit Platter, Pandan Cake, Chocolate Lava Cake,
+               Coconut Panna Cotta, Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan),
+               Mango & Coconut Cups, Roasted Veggie Bruschetta (GF)]
+
+  vegan: [Mushroom Salpicao, Pad Thai (Tofu), Dal Tadka, Vegetable Biryani,
+          Steamed Jasmine Rice, Garlic Butter Vegetables, Mango Sticky Rice,
+          Fresh Fruit Platter, Miso Soup with Tofu,
+          Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan),
+          Mango & Coconut Cups, Roasted Veggie Bruschetta (GF)]
+
+  gluten_free: [Chicken Adobo, Chicken Rendang, Beef Rendang, Hainanese Chicken Rice,
+                Tom Yum Soup, Dal Tadka, Butter Chicken, Vegetable Biryani, Cucumber Raita,
+                Steamed Jasmine Rice, Garlic Butter Vegetables, Mango Sticky Rice,
+                Fresh Fruit Platter, Leche Flan, Coconut Panna Cotta, Miso Soup with Tofu,
+                Chicken Satay, Beef Satay,
+                Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan),
+                Mango & Coconut Cups, Roasted Veggie Bruschetta (GF)]
+
+  nut_free: [Chicken Adobo, Beef Caldereta, Lechon Kawali, Sinigang na Baboy,
+             Chicken Rendang, Beef Rendang, Hainanese Chicken Rice, Tom Yum Soup,
+             Dal Tadka, Butter Chicken, Vegetable Biryani, Cucumber Raita,
+             Steamed Jasmine Rice, Garlic Butter Vegetables, Spring Rolls (Fried),
+             Tofu Sisig, Mushroom Salpicao, Leche Flan, Mango Sticky Rice,
+             Fresh Fruit Platter, Pandan Cake, Coconut Panna Cotta, Miso Soup with Tofu,
+             Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan),
+             Mango & Coconut Cups, Roasted Veggie Bruschetta (GF)]
+
+cuisine_index:
+  filipino: [Chicken Adobo, Beef Caldereta, Lechon Kawali, Kare-Kare, Sinigang na Baboy,
+             Tofu Sisig, Mushroom Salpicao, Spring Rolls (Fried), Leche Flan]
+  malay: [Chicken Rendang, Chicken Satay, Beef Satay]
+  indonesian: [Beef Rendang, Nasi Goreng, Gado-Gado]
+  singaporean: [Hainanese Chicken Rice, Laksa (Chicken), Vegetable Laksa]
+  thai: [Pad Thai (Chicken), Pad Thai (Tofu), Tom Yum Soup, Mango Sticky Rice]
+  indian: [Dal Tadka, Butter Chicken, Vegetable Biryani, Cucumber Raita]
+  continental: [Garlic Butter Vegetables, Pesto Pasta, Chocolate Lava Cake, Coconut Panna Cotta]
+  pan_asian: [Steamed Jasmine Rice, Spring Rolls (Fried), Fresh Fruit Platter]
+  japanese: [Miso Soup with Tofu]
+
+occasion_index:
+  malay_wedding: [Chicken Rendang, Beef Rendang, Chicken Satay, Beef Satay, Steamed Jasmine Rice,
+                  Garlic Butter Vegetables, Spring Rolls (Fried), Pandan Cake, Mango Sticky Rice]
+  chinese_banquet: [Hainanese Chicken Rice, Tom Yum Soup, Miso Soup with Tofu, Fresh Fruit Platter,
+                    Mango Sticky Rice, Coconut Panna Cotta]
+  indian_event: [Dal Tadka, Butter Chicken, Vegetable Biryani, Cucumber Raita, Steamed Jasmine Rice]
+  corporate_gala: [Chicken Rendang, Beef Rendang, Hainanese Chicken Rice, Tom Yum Soup,
+                   Butter Chicken, Dal Tadka, Vegetable Biryani, Steamed Jasmine Rice,
+                   Garlic Butter Vegetables, Coconut Panna Cotta, Fresh Fruit Platter,
+                   Miso Soup with Tofu, Chocolate Lava Cake, Roasted Veggie Bruschetta (GF)]
+  corporate_lunch: [Chicken Adobo, Hainanese Chicken Rice, Tom Yum Soup, Dal Tadka,
+                    Butter Chicken, Pad Thai (Chicken), Vegetable Biryani, Steamed Jasmine Rice,
+                    Spring Rolls (Fried), Garlic Butter Vegetables, Mango Sticky Rice]
+  filipino_wedding: [Chicken Adobo, Beef Caldereta, Kare-Kare, Sinigang na Baboy, Lechon Kawali,
+                     Steamed Jasmine Rice, Spring Rolls (Fried), Leche Flan, Tofu Sisig,
+                     Mushroom Salpicao, Garlic Butter Vegetables, Fresh Fruit Platter]
+  debut: [Chicken Adobo, Beef Caldereta, Hainanese Chicken Rice, Tom Yum Soup,
+          Butter Chicken, Steamed Jasmine Rice, Spring Rolls (Fried), Garlic Butter Vegetables,
+          Coconut Panna Cotta, Leche Flan, Fresh Fruit Platter, Mango Sticky Rice]
+  birthday_party: [Spring Rolls (Fried), Chicken Satay, Pad Thai (Chicken), Steamed Jasmine Rice,
+                   Garlic Butter Vegetables, Leche Flan, Mango Sticky Rice, Fresh Fruit Platter,
+                   Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan), Mango & Coconut Cups]
+  eid_celebration: [Chicken Rendang, Beef Rendang, Chicken Satay, Beef Satay, Kare-Kare,
+                    Steamed Jasmine Rice, Garlic Butter Vegetables, Spring Rolls (Fried),
+                    Pandan Cake, Mango Sticky Rice, Tom Yum Soup]
+  product_launch: [Chicken Satay (mini), Spring Rolls (Fried), Fresh Fruit Platter,
+                   Rice Paper Rolls (Vegan), Stuffed Mini Peppers (Vegan), Mango & Coconut Cups,
+                   Roasted Veggie Bruschetta (GF), Coconut Panna Cotta]

@@ -1,0 +1,251 @@
+---
+# Portion & Yield Knowledge Base
+# Empirical consumption data from past events.
+# Answers: how much of each dish type actually gets eaten, by whom, at what event?
+# Used by menu_agent to validate quantities and flag imbalances.
+# Goes beyond raw recipe quantities — captures real-world consumption patterns.
+
+# ── Consumption rate by event type and service style ─────────────────────
+# Rate = fraction of prepared portion actually consumed (1.0 = all consumed)
+# Combined with recipe portions to compute actual order quantities.
+
+consumption_rates:
+  - category: protein_main
+    baseline_rate: 0.95
+    by_event_type:
+      malay_wedding_buffet: 1.05
+      chinese_banquet_plated: 0.90
+      corporate_gala_plated: 0.88
+      corporate_lunch_buffet: 0.92
+      birthday_buffet: 0.98
+      high_tea: 0.55
+      festival_food_stall: 1.10
+      funeral_tahlil: 0.85
+    notes: >
+      Plated events slightly under-consume protein (guests eat slower; fill up on bread/soup).
+      Festival stalls over-consume — always order more. Wedding buffets near-full consumption.
+
+  - category: rice_staple
+    baseline_rate: 0.85
+    by_event_type:
+      malay_wedding_buffet: 0.95
+      chinese_banquet_plated: 0.60
+      corporate_gala_plated: 0.70
+      corporate_lunch_buffet: 0.85
+      birthday_buffet: 0.80
+      high_tea: 0.00
+      festival_food_stall: 0.90
+    notes: >
+      Chinese banquet 10-course: rice is last savoury, guests often already full (60% consumption).
+      Always serve rice last at Chinese banquets or consumption drops further.
+
+  - category: vegetable_side
+    baseline_rate: 0.75
+    by_event_type:
+      malay_wedding_buffet: 0.70
+      chinese_banquet_plated: 0.85
+      corporate_gala_plated: 0.90
+      corporate_lunch_buffet: 0.80
+      birthday_buffet: 0.60
+      festival_food_stall: 0.50
+    notes: >
+      Vegetables consistently under-consumed at social events. Better at corporate events
+      (health-conscious guests). Kids' events: 50% vegetable consumption typical.
+
+  - category: soup
+    baseline_rate: 0.80
+    by_event_type:
+      malay_wedding_buffet: 0.70
+      chinese_banquet_plated: 0.90
+      corporate_gala_plated: 0.75
+      corporate_lunch_buffet: 0.85
+      birthday_buffet: 0.65
+    notes: >
+      Soup is under-consumed when alcohol/cocktails precede dinner (guests already satiated).
+      Chinese banquet: soup as course 2 has high consumption (90%+).
+
+  - category: appetizer_fried
+    baseline_rate: 1.00
+    by_event_type:
+      malay_wedding_buffet: 1.10
+      corporate_gala_plated: 0.95
+      corporate_lunch_buffet: 0.95
+      birthday_buffet: 1.10
+      festival_food_stall: 1.15
+      product_launch_cocktail: 1.05
+    notes: >
+      Fried items consistently at or above 100% consumption. Always order 10-15% extra.
+      Critical: do not pre-cook more than 30 min ahead — quality drops sharply.
+
+  - category: dessert
+    baseline_rate: 0.72
+    by_event_type:
+      malay_wedding_buffet: 0.82
+      chinese_banquet_plated: 0.85
+      corporate_gala_plated: 0.80
+      corporate_lunch_buffet: 0.55
+      birthday_buffet: 0.88
+      high_tea: 0.78
+      festival_food_stall: 0.85
+    notes: >
+      Corporate lunches: dessert uptake only 55% — reduce order by 30% vs recipe calculation.
+      Weddings and birthdays: dessert consumption high (emotional eating context).
+      Dessert table format increases consumption vs plated by ~10%.
+
+  - category: noodle_pasta
+    baseline_rate: 0.80
+    by_event_type:
+      malay_wedding_buffet: 0.75
+      corporate_lunch_buffet: 0.85
+      birthday_buffet: 0.90
+      food_festival: 0.95
+    notes: >
+      Pasta dries out on buffet rapidly — quality degrades after 45 min.
+      If pasta on buffet, prepare in 30-min batches only. First batch: 100% consumption.
+
+  - category: fresh_fruit_dessert
+    baseline_rate: 0.65
+    by_event_type:
+      malay_wedding_buffet: 0.60
+      chinese_banquet_plated: 0.70
+      corporate_gala_plated: 0.80
+      corporate_lunch_buffet: 0.70
+      birthday_buffet: 0.55
+    notes: >
+      Fruit platter consistently under-consumed. Reduce from recipe calculation by 30%.
+      Exception: corporate galas with health-conscious guests (70-80% uptake).
+
+# ── Demographic consumption adjustments ──────────────────────────────────
+demographic_adjustments:
+  - demographic: adults_mixed
+    adjustment_factor: 1.0
+    notes: Baseline
+
+  - demographic: malay_wedding_guests
+    adjustment_factor: 1.1
+    notes: >
+      Larger appetites; generosity in eating at celebratory events is cultural.
+      Buffet grazing — multiple rounds common.
+
+  - demographic: chinese_banquet_guests
+    adjustment_factor: 0.85
+    notes: >
+      10-course means pacing; each individual course smaller.
+      Alcohol consumption increases food consumption slightly.
+
+  - demographic: corporate_mixed
+    adjustment_factor: 0.90
+    notes: >
+      Business meal context reduces eating. Networking = less focused eating.
+      Dietary diversity (halal, vegetarian, keto) dilutes consumption per dish.
+
+  - demographic: children_mixed
+    adjustment_factor: 0.60
+    protein_adjustment: 0.50
+    carb_adjustment: 0.75
+    dessert_adjustment: 1.20
+    notes: >
+      Kids eat significantly less protein and more dessert than adults.
+      Plan kids' station with smaller portions of familiar items (nuggets, pasta).
+
+  - demographic: south_indian_vegetarian
+    adjustment_factor: 0.95
+    protein_adjustment: 0.40
+    vegetable_adjustment: 1.30
+    rice_adjustment: 1.10
+    notes: >
+      Vegetarian banana leaf — rice and vegetable consumption higher.
+      Protein portions much lower (dal, not meat).
+
+# ── Meal position factors ─────────────────────────────────────────────────
+# How meal position affects how much of a dish is eaten.
+meal_position_factors:
+  - position: arrival_appetizer
+    consumption_multiplier: 1.10
+    notes: Guests are hungry; arrival food always well-consumed.
+
+  - position: first_course
+    consumption_multiplier: 1.0
+    notes: Baseline
+
+  - position: mid_course_3_or_4
+    consumption_multiplier: 0.85
+    notes: Appetite waning; reduce portion expectation.
+
+  - position: final_savoury
+    consumption_multiplier: 0.70
+    notes: >
+      At Chinese banquets, rice/noodles as final savoury: 60-70% of guests
+      will eat only a little.
+
+  - position: dessert
+    consumption_multiplier: 0.72
+    notes: See dessert category above.
+
+# ── Buffet replenishment rules ────────────────────────────────────────────
+buffet_replenishment:
+  - dish_category: fried_items
+    replenishment_trigger_pct: 40
+    replenishment_batch_size_pct: 50
+    notes: Refill when tray is 40% empty. Never pre-fill; fried items go stale.
+
+  - dish_category: rice_staple
+    replenishment_trigger_pct: 30
+    replenishment_batch_size_pct: 100
+    notes: Keep rice full throughout service; consumption is steady.
+
+  - dish_category: protein_main
+    replenishment_trigger_pct: 30
+    replenishment_batch_size_pct: 75
+    notes: >
+      Watch the protein — running out of the main protein is the worst buffet failure.
+      Keep 20% reserve warm in back-of-house.
+
+  - dish_category: dessert
+    replenishment_trigger_pct: 50
+    replenishment_batch_size_pct: 50
+    notes: Dessert consumption is front-loaded; taper replenishment after first hour.
+
+# ── Standard waste buffers by event type ─────────────────────────────────
+# Applied on top of recipe quantities + consumption rate adjustment.
+event_waste_buffers:
+  malay_wedding:       1.15
+  chinese_banquet:     1.08
+  corporate_gala:      1.08
+  corporate_lunch:     1.05
+  birthday:            1.10
+  high_tea:            1.12
+  festival:            1.25
+  default:             1.10
+
+# ── Specific dish yield notes ─────────────────────────────────────────────
+dish_yield_notes:
+  - dish: Steamed Jasmine Rice
+    raw_to_cooked_factor: 2.2
+    holding_loss_pct_per_hour: 5
+    notes: Raw 150g → cooked ~330g. Holds well for 4h at 60C.
+
+  - dish: Chicken Rendang
+    cooking_yield_pct: 75
+    notes: Moisture lost in slow braising. Order 25% more raw chicken than target cooked weight.
+
+  - dish: Beef Rendang
+    cooking_yield_pct: 70
+    notes: More moisture loss than chicken due to longer cook time.
+
+  - dish: Pasta / Noodles (buffet)
+    quality_holding_time_min: 30
+    notes: Batch-cook in 30-min cycles. Pre-cooking and holding kills quality.
+
+  - dish: Fried Items (spring rolls, fried chicken)
+    quality_holding_time_min: 30
+    notes: Maximum 30 min from fryer to service. Reheat = poor quality.
+
+  - dish: Fresh Fruit Platter
+    prep_waste_pct: 20
+    notes: 20% loss from peeling, coring, and unusable portions.
+
+  - dish: Whole Fish (Chinese banquet)
+    prep_waste_pct: 40
+    edible_yield_pct: 60
+    notes: Bone structure means 40% of whole fish weight is inedible. Order accordingly.

@@ -1,0 +1,104 @@
+{
+  "suppliers": [
+    {
+      "id": "sup-001",
+      "name": "FreshFarm SEA",
+      "items": ["rice_kg", "mixed_vegetables_kg", "fruit_kg"],
+      "lead_time_days": 1,
+      "region": "Philippines",
+      "min_order_kg": 5,
+      "reliability_score": 0.95,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-002",
+      "name": "MeatMaster PH",
+      "items": ["protein_kg"],
+      "lead_time_days": 2,
+      "region": "Philippines",
+      "min_order_kg": 10,
+      "reliability_score": 0.90,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-003",
+      "name": "SpiceWorld Manila",
+      "items": ["seasoning_pack", "spice_blend"],
+      "lead_time_days": 1,
+      "region": "Philippines",
+      "min_order_kg": 1,
+      "reliability_score": 0.98,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-004",
+      "name": "Green Grocer KL",
+      "items": ["mixed_vegetables_kg", "fruit_kg", "herbs_kg"],
+      "lead_time_days": 2,
+      "region": "Malaysia",
+      "min_order_kg": 5,
+      "reliability_score": 0.92,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-005",
+      "name": "SG Fresh Hub",
+      "items": ["rice_kg", "protein_kg", "fruit_kg"],
+      "lead_time_days": 1,
+      "region": "Singapore",
+      "min_order_kg": 3,
+      "reliability_score": 0.97,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-006",
+      "name": "Nusantara Provisions",
+      "items": ["spice_blend", "seasoning_pack", "mixed_vegetables_kg"],
+      "lead_time_days": 3,
+      "region": "Indonesia",
+      "min_order_kg": 5,
+      "reliability_score": 0.88,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-007",
+      "name": "Thai Agromart",
+      "items": ["fruit_kg", "herbs_kg", "mixed_vegetables_kg"],
+      "lead_time_days": 3,
+      "region": "Thailand",
+      "min_order_kg": 5,
+      "reliability_score": 0.85,
+      "halal_certified": false
+    },
+    {
+      "id": "sup-008",
+      "name": "ColdChain PH",
+      "items": ["protein_kg", "dairy_kg"],
+      "lead_time_days": 1,
+      "region": "Philippines",
+      "min_order_kg": 5,
+      "reliability_score": 0.93,
+      "halal_certified": false
+    },
+    {
+      "id": "sup-009",
+      "name": "BulkGrain Asia",
+      "items": ["rice_kg", "flour_kg"],
+      "lead_time_days": 2,
+      "region": "Philippines",
+      "min_order_kg": 25,
+      "reliability_score": 0.96,
+      "halal_certified": true
+    },
+    {
+      "id": "sup-010",
+      "name": "EcoOrganics SEA",
+      "items": ["mixed_vegetables_kg", "fruit_kg", "herbs_kg"],
+      "lead_time_days": 2,
+      "region": "Malaysia",
+      "min_order_kg": 3,
+      "reliability_score": 0.91,
+      "halal_certified": true
+    }
+  ]
+}

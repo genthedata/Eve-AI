@@ -1,0 +1,301 @@
+---
+# Service Packages & Pricing Tiers Knowledge Base
+# The business's product catalog — what packages exist, what's included,
+# what add-ons and upgrades are available, and base pricing.
+# Used by customer_agent to scope a quote in conversation without
+# needing to involve the pricing agent for every initial inquiry.
+#
+# Pricing in MYR (primary), PHP and SGD equivalents approximate.
+# Minimum prices are floor; actual quote from pricing agent may vary.
+
+packages:
+  # ── Bronze ────────────────────────────────────────────────────────────────
+
+  - package_id: PKG-BRONZE
+    name: Bronze Buffet Package
+    tier: entry
+    best_for: [corporate_lunch, birthday_party, small_community_event]
+    service_style: buffet
+    min_guests: 30
+    max_guests: 150
+    included_dishes: 6
+    dish_composition:
+      - 2 protein mains (chicken or fish)
+      - 1 vegetarian main
+      - 1 rice or noodle
+      - 2 vegetable sides
+    included_services:
+      - Setup and teardown by catering team
+      - 1 service staff per 40 guests
+      - Chafing dishes and fuel
+      - Disposable plates, cups, cutlery
+      - 2-hour service window
+    pricing_myr_per_head:
+      standard: 28
+      halal_premium: 3
+      weekend_surcharge_pct: 10
+    pricing_php_approx_per_head: 700
+    pricing_sgd_approx_per_head: 8
+    minimum_spend_myr: 840
+    excluded:
+      - Beverages (add-on)
+      - Dessert (add-on)
+      - Table linen upgrade
+      - Dedicated coordinator
+    upgrade_options:
+      - add_dessert: "+MYR 8/head (seasonal fruit + 1 dessert)"
+      - add_beverage_station: "+MYR 6/head (soft drinks, cordial, water)"
+      - upgrade_to_silver: "Upgrade to Silver for +MYR 15/head"
+    notes: >
+      Best value for cost-sensitive clients. Disposable serviceware is included.
+      Not suitable for premium or gala events.
+
+  # ── Silver ────────────────────────────────────────────────────────────────
+
+  - package_id: PKG-SILVER
+    name: Silver Banquet Package
+    tier: standard
+    best_for: [corporate_gala_dinner, malay_wedding, birthday_party, high_tea]
+    service_style: buffet_or_semi_buffet
+    min_guests: 50
+    max_guests: 500
+    included_dishes: 10
+    dish_composition:
+      - 2 protein mains (chicken, beef, or fish — client's choice)
+      - 1 halal alternative protein
+      - 1 vegetarian main
+      - 2 vegetable sides
+      - 1 soup
+      - 1 rice
+      - 1 noodle or pasta
+      - 1 dessert
+    included_services:
+      - Setup and teardown
+      - 1 service staff per 30 guests
+      - Chafing dishes, fuel, and serving utensils
+      - Crockery, glassware, and stainless cutlery (not disposable)
+      - 3-hour service window
+      - Dedicated event supervisor (on-site throughout)
+      - Halal certification documentation included
+    pricing_myr_per_head:
+      standard: 55
+      halal_premium: 0
+      plated_upgrade: 20
+      weekend_surcharge_pct: 15
+    pricing_php_approx_per_head: 1380
+    pricing_sgd_approx_per_head: 15
+    minimum_spend_myr: 2750
+    excluded:
+      - Live stations (add-on)
+      - Bar service (add-on)
+      - Flower centrepieces (venue-sourced or florist add-on)
+    upgrade_options:
+      - add_live_station: "+MYR 12/head (one live cooking station: mee goreng or satay)"
+      - add_dessert_table: "+MYR 10/head (dessert spread upgrade)"
+      - add_bar_soft_drinks: "+MYR 8/head (unlimited soft drinks & mocktails)"
+      - upgrade_to_gold: "Upgrade to Gold for +MYR 30/head"
+    notes: >
+      Most popular package. Covers the vast majority of weddings and corporate events.
+      Halal is included by default (not a premium). Plated format available at +MYR 20/head.
+
+  # ── Gold ──────────────────────────────────────────────────────────────────
+
+  - package_id: PKG-GOLD
+    name: Gold Premium Package
+    tier: premium
+    best_for: [corporate_gala_dinner, chinese_banquet, high_profile_wedding]
+    service_style: plated_or_buffet
+    min_guests: 80
+    max_guests: 1000
+    included_dishes: 14
+    dish_composition_buffet:
+      - 3 protein mains (premium choices: lamb, salmon, beef, whole fish)
+      - 1 halal protein
+      - 2 vegetarian mains
+      - 2 vegetable sides
+      - 1 signature soup
+      - 1 rice
+      - 1 noodle
+      - 1 hot dessert
+      - 1 cold dessert
+      - 1 canapé or amuse-bouche on arrival
+    dish_composition_plated:
+      - Amuse-bouche (arrival)
+      - Soup course
+      - Appetiser / salad
+      - Intermission (sorbet or light palate cleanser)
+      - Main (choice of 2 proteins at the table)
+      - Dessert
+      - Petit fours with coffee/tea
+    included_services:
+      - Setup and full teardown
+      - 1 service staff per 20 guests
+      - Premium crockery and silverware
+      - Linen (choice of colour from standard palette)
+      - 4-hour service window
+      - Dedicated senior coordinator (single point of contact)
+      - Halal certification documentation
+      - Pre-event site visit by coordinator
+      - Post-event debrief and feedback collection
+    pricing_myr_per_head:
+      standard: 95
+      plated_surcharge: 0
+      weekend_surcharge_pct: 15
+    pricing_php_approx_per_head: 2400
+    pricing_sgd_approx_per_head: 26
+    minimum_spend_myr: 7600
+    excluded:
+      - Floral arrangements
+      - Entertainment (DJ, live band)
+      - Custom branded collateral
+    upgrade_options:
+      - add_live_carving_station: "+MYR 15/head (roast beef or whole lamb carving)"
+      - add_dessert_bar: "+MYR 15/head (full dessert bar with live waffle/crepe)"
+      - add_champagne_welcome: "+MYR 12/head (welcome champagne or sparkling mocktail)"
+      - add_open_bar: "+MYR 25/head (unlimited wine, beer, soft drinks)"
+      - upgrade_to_platinum: "Upgrade to Platinum for +MYR 55/head"
+    notes: >
+      Standard for corporate galas and premium weddings. Plated format at same price.
+      Senior coordinator assignment is guaranteed.
+
+  # ── Platinum ──────────────────────────────────────────────────────────────
+
+  - package_id: PKG-PLATINUM
+    name: Platinum Signature Package
+    tier: ultra_premium
+    best_for: [gala_awards_dinner, chinese_10_course_banquet, high_stakes_corporate]
+    service_style: plated_7_course
+    min_guests: 100
+    max_guests: 2000
+    included_dishes: 18
+    dish_composition:
+      - Canapé reception (3 varieties)
+      - Amuse-bouche
+      - Cold appetiser
+      - Soup (lobster bisque, shark's fin, or premium alternative)
+      - Intermission sorbet
+      - Fish course (whole premium fish or salmon)
+      - Main course (beef tenderloin or lamb rack — guest choice at table)
+      - Pre-dessert mignardise
+      - Dessert (plated, with live element optional)
+      - Petit fours and pralines
+    included_services:
+      - Full white-glove service
+      - 1 service staff per 10 guests
+      - Premium European crockery and silverware
+      - Custom linen colour (from full palette)
+      - 5-hour service window
+      - Executive coordinator and assistant
+      - Pre-event consultation (2 sessions)
+      - Full menu tasting for client before event
+      - Post-event report and feedback analysis
+      - 24h coordinator hotline
+    pricing_myr_per_head:
+      standard: 150
+      weekend_surcharge_pct: 10
+    pricing_php_approx_per_head: 3800
+    pricing_sgd_approx_per_head: 41
+    minimum_spend_myr: 15000
+    excluded:
+      - Venue rental
+      - Floral and decor design
+      - Entertainment
+    upgrade_options:
+      - add_ice_sculpture: "+MYR 800 flat (custom ice sculpture for buffet centrepiece)"
+      - add_truffle_upgrade: "+MYR 20/head (truffle shaving station at main course)"
+      - add_sommelier: "+MYR 18/head (wine pairing by in-house sommelier)"
+    notes: >
+      Ultra-premium tier. Director-level client management. Minimum 4 weeks lead time.
+      Menu tasting session is mandatory before quote is finalized.
+
+  # ── Bespoke ───────────────────────────────────────────────────────────────
+
+  - package_id: PKG-BESPOKE
+    name: Bespoke / Custom Quote
+    tier: custom
+    best_for: [any_event_outside_standard_tiers, cultural_specialists, food_festival]
+    service_style: any
+    min_guests: 20
+    max_guests: unlimited
+    description: >
+      Fully customized scope. Used when client requirements don't fit a standard
+      package — unique cuisine style, very large events (>1000 pax), multi-day
+      events, specialized cultural formats (banana leaf, Chinese banquet),
+      or premium food concepts.
+    pricing: By formal quotation from Pricing Agent. No upfront estimate.
+    requires: >
+      Full event brief before pricing agent can quote.
+      Minimum 3-week lead time for bespoke events.
+    flags_to_pass:
+      - pricing_agent: bespoke_quote_required=true
+      - escalate: operations_manager_review=true
+
+# ── Package matching logic ─────────────────────────────────────────────────
+# Used by customer_agent to recommend a package based on guest count + budget.
+package_matching_rules:
+  - condition: guests <= 150 AND budget_per_head_myr <= 35
+    recommend: PKG-BRONZE
+
+  - condition: guests <= 500 AND budget_per_head_myr <= 75
+    recommend: PKG-SILVER
+
+  - condition: guests <= 1000 AND budget_per_head_myr <= 120
+    recommend: PKG-GOLD
+
+  - condition: budget_per_head_myr > 120 OR service_style == plated_7_course
+    recommend: PKG-PLATINUM
+
+  - condition: event_type in [banana_leaf, chinese_10_course, food_festival, multi_day]
+    recommend: PKG-BESPOKE
+
+  - condition: guests > 1000
+    recommend: PKG-BESPOKE
+
+# ── Standard add-ons menu ─────────────────────────────────────────────────
+addons:
+  - id: addon_live_mee_goreng
+    name: Live Mee Goreng Station
+    price_myr_flat: 600
+    price_myr_per_head: 12
+    min_guests: 50
+    notes: Includes wok station, chef, and ingredients for 3h service.
+
+  - id: addon_satay_station
+    name: Live Satay Station
+    price_myr_flat: 500
+    price_myr_per_head: 10
+    min_guests: 50
+    allergen_note: Contains peanuts in sauce — must be disclosed
+
+  - id: addon_dessert_table
+    name: Dessert Table Spread
+    price_myr_per_head: 12
+    min_guests: 30
+    notes: 5 dessert varieties, tiered display, cake stand included.
+
+  - id: addon_soft_drinks
+    name: Unlimited Soft Drinks & Mocktails
+    price_myr_per_head: 8
+    min_guests: 30
+
+  - id: addon_open_bar
+    name: Open Bar (Wine, Beer, Spirits)
+    price_myr_per_head: 28
+    min_guests: 50
+    notes: Subject to venue licensing. Halal events cannot include this add-on.
+
+  - id: addon_floral_centrepiece
+    name: Table Floral Centrepiece
+    price_myr_per_table: 80
+    notes: Standard arrangement; custom florals quoted separately.
+
+  - id: addon_bekas
+    name: Individual Packed Sets (Bekas)
+    price_myr_per_set: 18
+    min_sets: 20
+    notes: For event helpers, drivers, or guests preferring take-away.
+
+  - id: addon_premium_linen
+    name: Premium Linen Upgrade (Custom Colour)
+    price_myr_per_table: 35
+    notes: Jacquard or satin tablecloth; standard package uses polyester.

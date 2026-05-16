@@ -1,0 +1,70 @@
+---
+# Competitor Pricing Intelligence Knowledge Base
+# Scraped / manually curated data on competitor pricing for strategic quote positioning.
+
+competitors:
+  - competitor_id: COMP-001
+    name: "CaterElite PH"
+    region: Philippines
+    market_segment: [premium, luxury]
+    known_pricing:
+      - {event_type: wedding, service_style: buffet,  currency: PHP, per_head_range: {low: 1800, mid: 2800, high: 4500}}
+      - {event_type: corporate_gala, service_style: plated, currency: PHP, per_head_range: {low: 2500, mid: 4000, high: 6000}}
+    differentiators: [luxury_tableware, celebrity_chef_association, national_tv_presence]
+    weaknesses: [long_lead_time_min_3_weeks, no_halal_cert, limited_outdoor_capability]
+    how_we_compete: "Position at 20–30% below on price; emphasize halal-capability and SEA authenticity"
+    last_updated: 2025-Q3
+
+  - competitor_id: COMP-002
+    name: "HotelCater KL (Shangri-La, Mandarin Oriental in-house)"
+    region: Malaysia
+    market_segment: [premium, luxury]
+    known_pricing:
+      - {event_type: wedding, service_style: plated, currency: MYR, per_head_range: {low: 200, mid: 320, high: 550}}
+      - {event_type: corporate_gala, service_style: plated, currency: MYR, per_head_range: {low: 200, mid: 320, high: 550}}
+    differentiators: [venue_package_bundling, established_brand, in-house_AV_and_décor]
+    weaknesses: [cannot_cater_off_site, limited_cuisine_customisation, inflexible_menus]
+    how_we_compete: "Win off-venue events. Offer bespoke menu and cultural authenticity they can't match."
+    last_updated: 2025-Q3
+
+  - competitor_id: COMP-003
+    name: "FestCater SG"
+    region: Singapore
+    market_segment: [mid, premium]
+    known_pricing:
+      - {event_type: corporate_gala, service_style: plated, currency: SGD, per_head_range: {low: 120, mid: 220, high: 380}}
+      - {event_type: wedding, service_style: buffet, currency: SGD, per_head_range: {low: 80, mid: 150, high: 280}}
+    differentiators: [large_fleet_of_transport_vans, strong_SE_Asian_cuisine_menu, MUIS_cert]
+    weaknesses: [thin_margins_on_small_events, customer_service_complaints_on_reviews]
+    how_we_compete: "Target their weak spot: small and premium events. Win on service quality."
+    last_updated: 2025-Q4
+
+  - competitor_id: COMP-004
+    name: "LoCostCater PH"
+    region: Philippines
+    market_segment: [budget, value]
+    known_pricing:
+      - {event_type: birthday, service_style: buffet, currency: PHP, per_head_range: {low: 380, mid: 550, high: 750}}
+    differentiators: [lowest_price, fast_response]
+    weaknesses: [no_halal_cert, quality_complaints, no_live_stations, limited_menu_variety]
+    how_we_compete: "Don't compete on price; up-sell quality, experience, and halal capability"
+    last_updated: 2025-Q3
+
+positioning_guide:
+  - scenario: "Prospect is comparing to hotel in-house catering"
+    strategy: >
+      Emphasize flexibility, cultural authenticity, and off-site capability.
+      Hotels win on bundling; we win on bespoke menus and personalisation.
+      Price slightly below hotel (10–15%) and throw in 1 free live station.
+
+  - scenario: "Prospect received cheaper quote from LoCostCater PH"
+    strategy: >
+      Do not match price. Highlight halal certification, quality ingredients,
+      and post-mortem track record. Offer value-add (branded menu cards, extra
+      service staff) rather than discount.
+
+  - scenario: "Large corporate client with Preferred Vendor List (PVL)"
+    strategy: >
+      Submit for PVL qualification early. Emphasize certifications (halal, HACCP),
+      insurance documentation, and financial stability. Corporate procurement
+      cares about compliance and risk more than price.

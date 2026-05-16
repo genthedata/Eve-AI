@@ -1,0 +1,387 @@
+---
+# Runsheet Templates Knowledge Base
+# Pre-built event timeline templates — the minute-by-minute schedule
+# from first staff arrival to last vehicle leaving the venue.
+# Times are expressed as T-minutes (relative to service start = T+0).
+# Positive T = before service. Negative T = after service start.
+# Critical path tasks are marked with critical_path: true.
+
+runsheet_templates:
+  # ── Malay Wedding Buffet ──────────────────────────────────────────────
+  - template_id: RST-MALAY-WEDDING-BUFFET
+    event_type: malay_wedding
+    service_style: buffet
+    typical_guest_count_range: [200, 600]
+    typical_service_duration_hours: 3
+    notes: >
+      Malay wedding buffets are high-pressure due to large guest counts and
+      the expectation of abundant, high-quality food at all times.
+      Replenishment discipline is critical — stations must never appear empty.
+      Prayer breaks (Zohor/Asar) may affect timing. Coordinate with event host.
+
+    milestones:
+      - time_offset_min: 300
+        milestone: "Staff arrival — setup crew"
+        tasks:
+          - "Setup crew arrive at venue loading bay. Confirm vehicle access."
+          - "Unload tables, chairs, chafing dish stands from lorry."
+          - "Layout tables per floor plan (confirmed at site visit)."
+        critical_path: true
+        responsible: setup_crew
+
+      - time_offset_min: 270
+        milestone: "Kitchen team arrives"
+        tasks:
+          - "Head Chef and line cooks arrive. Kitchen walkthrough."
+          - "Confirm gas supply, water points, cold storage availability."
+          - "Begin mise en place. Start rice cookers."
+        critical_path: true
+        responsible: kitchen_team
+
+      - time_offset_min: 240
+        milestone: "Cold chain delivery arrives"
+        tasks:
+          - "Refrigerated van arrives. Unload chilled proteins and dairy."
+          - "Store in venue cold room or ice boxes. Record temperatures."
+          - "Cross-check against delivery manifest."
+        critical_path: true
+        responsible: driver_logistics
+
+      - time_offset_min: 210
+        milestone: "Setup complete — chafing dish stations"
+        tasks:
+          - "All buffet tables clothed and in position."
+          - "Chafing dish stands assembled. Water pans filled."
+          - "Signage and serving utensils placed."
+        critical_path: false
+        responsible: setup_crew
+
+      - time_offset_min: 180
+        milestone: "Cooking begins — curries and mains"
+        tasks:
+          - "Start cooking Rendang, curries, and gravies."
+          - "Rice begins (60-cup cookers started at T-270, now check water levels)."
+        critical_path: true
+        responsible: kitchen_team
+
+      - time_offset_min: 90
+        milestone: "Service team arrives"
+        tasks:
+          - "Event Supervisor, banquet waiters, station attendants arrive."
+          - "Briefing: service zones, guest flow, table assignments."
+          - "Set up beverage station."
+        critical_path: false
+        responsible: event_supervisor
+
+      - time_offset_min: 60
+        milestone: "Pre-service food safety check"
+        tasks:
+          - "Head Chef checks all food temperatures. Hot food >65°C."
+          - "Station attendants light Sterno fuel. Pre-heat water pans."
+          - "Load first batch of food into chafing dishes."
+        critical_path: true
+        responsible: head_chef
+
+      - time_offset_min: 30
+        milestone: "Station staff in position"
+        tasks:
+          - "All buffet station staff at assigned stations."
+          - "Event Supervisor final walkthrough — any issues raised now."
+          - "Client (Bride/Groom family) liaison — confirm service time."
+        critical_path: true
+        responsible: event_supervisor
+
+      - time_offset_min: 15
+        milestone: "Soft open / VIP arrival"
+        tasks:
+          - "Beverages served to VIP table first."
+          - "Confirm buffet is fully ready."
+        critical_path: false
+        responsible: event_supervisor
+
+      - time_offset_min: 0
+        milestone: "SERVICE START"
+        tasks:
+          - "Guests invited to buffet. Service begins."
+          - "Kitchen continues cooking second batches."
+        critical_path: true
+        responsible: all
+
+      - time_offset_min: -45
+        milestone: "Peak rush management"
+        tasks:
+          - "Station attendants on high alert — replenish before stations empty."
+          - "Kitchen on standby for rapid replenishment signals."
+          - "Event Supervisor monitors guest flow and queues."
+        critical_path: true
+        responsible: station_attendants_and_supervisor
+
+      - time_offset_min: -90
+        milestone: "Mid-service check"
+        tasks:
+          - "Food temperature re-check. Replace Sterno fuel if needed."
+          - "Assess remaining food vs remaining guests. Adjust portions."
+          - "Replace any depleted dishes from kitchen reserves."
+        critical_path: false
+        responsible: head_chef
+
+      - time_offset_min: -150
+        milestone: "Service wind-down"
+        tasks:
+          - "Stop replenishing slow-moving dishes. Consolidate into fewer trays."
+          - "Signal kitchen to begin cleanup."
+          - "Guest numbers assessed — estimate close time."
+        critical_path: false
+        responsible: event_supervisor
+
+      - time_offset_min: -180
+        milestone: "Service close"
+        tasks:
+          - "Buffet stations closed. Remaining food assessed: safe/unsafe to pack."
+          - "Leftover food documented for record."
+          - "Kitchen full cleanup begins."
+        critical_path: false
+        responsible: head_chef
+
+      - time_offset_min: -210
+        milestone: "Teardown begins"
+        tasks:
+          - "Remove chafing dishes, cool, and pack."
+          - "Tables and chairs stacked for loading."
+          - "Equipment inventory checked against loading manifest."
+        critical_path: false
+        responsible: setup_crew
+
+      - time_offset_min: -270
+        milestone: "All vehicles loaded and departed"
+        tasks:
+          - "Final venue walkthrough — nothing left behind."
+          - "Venue manager sign-off obtained."
+          - "All staff released."
+        critical_path: true
+        responsible: logistics_coordinator
+
+    buffer_times:
+      traffic_buffer_min: 30
+      setup_contingency_min: 20
+      cooking_contingency_min: 15
+    prayer_break_note: "Zohor (midday) and Asar (afternoon) — coordinate with host. Typically 15-20 min."
+
+  # ── Corporate Plated Dinner ───────────────────────────────────────────
+  - template_id: RST-CORPORATE-PLATED-DINNER
+    event_type: corporate_gala_dinner
+    service_style: plated
+    typical_guest_count_range: [80, 300]
+    typical_service_duration_hours: 3.5
+    notes: >
+      Corporate plated dinners demand precision timing. Every table must be
+      served simultaneously at each course. Kitchen must synchronise plating
+      speed with service floor. Speeches and presentations interrupt service —
+      brief from programme schedule. High standards of presentation expected.
+
+    milestones:
+      - time_offset_min: 330
+        milestone: "Kitchen team and setup crew arrive"
+        tasks:
+          - "Kitchen: mise en place, sauce prep, cold starters plated and refrigerated."
+          - "Setup crew: tables (rounds or banquet) dressed with linen, centrepieces."
+          - "Cutlery, glassware, napkins placed per cover count."
+        critical_path: true
+
+      - time_offset_min: 240
+        milestone: "Cold chain delivery"
+        tasks:
+          - "Proteins delivered chilled. Stored in kitchen refrigeration."
+          - "Verify portion count matches guest count."
+        critical_path: true
+
+      - time_offset_min: 150
+        milestone: "Service team briefing"
+        tasks:
+          - "All servers briefed: table assignments, course sequence, dietary restrictions by table."
+          - "Event Supervisor reviews programme schedule — note speech/presentation times."
+        critical_path: true
+
+      - time_offset_min: 90
+        milestone: "Appetisers and salads plated"
+        tasks:
+          - "First course plated in kitchen. Held chilled."
+          - "Service team rehearse service sequence (walk-through of cover assignments)."
+        critical_path: false
+
+      - time_offset_min: 60
+        milestone: "Kitchen pre-service check"
+        tasks:
+          - "All cooking stations active. Mains in oven/on heat."
+          - "Head Chef confirms plating plan and timing for each course."
+        critical_path: true
+
+      - time_offset_min: 30
+        milestone: "Guests arriving / cocktail reception"
+        tasks:
+          - "Servers circulate with canapés if cocktail hour planned."
+          - "Beverage station active."
+          - "Event Supervisor at entrance to greet and guide."
+        critical_path: false
+
+      - time_offset_min: 0
+        milestone: "Guests seated / SERVICE START"
+        tasks:
+          - "All guests seated. Event host opens with welcome."
+          - "Soup or first course service begins."
+        critical_path: true
+
+      - time_offset_min: -30
+        milestone: "First course cleared / second course signal"
+        tasks:
+          - "Event Supervisor signals kitchen 5min before clearing."
+          - "First course plates cleared simultaneously from all tables."
+          - "Second course ready to serve."
+        critical_path: true
+
+      - time_offset_min: -60
+        milestone: "Main course service"
+        tasks:
+          - "Main course plates served simultaneously to all tables."
+          - "Servers monitor guest pace — do not rush or over-crowd tables."
+          - "Speeches typically during main course — kitchen on standby."
+        critical_path: true
+
+      - time_offset_min: -120
+        milestone: "Dessert service"
+        tasks:
+          - "Main cleared. Dessert served."
+          - "Coffee/tea service begins."
+        critical_path: false
+
+      - time_offset_min: -150
+        milestone: "Service close / guest departure"
+        tasks:
+          - "Event winds down. Networking phase."
+          - "Bar/beverage station begins close."
+        critical_path: false
+
+      - time_offset_min: -180
+        milestone: "Teardown"
+        tasks:
+          - "All tables cleared. Kitchen cleanup."
+          - "Equipment packed and loaded."
+        critical_path: false
+
+      - time_offset_min: -240
+        milestone: "Venue handover"
+        tasks:
+          - "All equipment out. Venue manager inspection and sign-off."
+          - "All staff released."
+        critical_path: true
+
+    buffer_times:
+      traffic_buffer_min: 30
+      speech_disruption_buffer_min: 20
+      plating_contingency_per_course_min: 10
+
+  # ── Cocktail / Standing Reception ────────────────────────────────────
+  - template_id: RST-COCKTAIL-RECEPTION
+    event_type: cocktail_reception
+    service_style: cocktail
+    typical_guest_count_range: [50, 200]
+    typical_service_duration_hours: 2.5
+    notes: >
+      Cocktail events are more relaxed in flow but require constant canape
+      circulation and active station management. No seating plan complexity
+      but staffing must cover standing room effectively.
+
+    milestones:
+      - time_offset_min: 240
+        milestone: "Setup"
+        tasks:
+          - "Cocktail tables, standing poseur tables positioned."
+          - "Canape trays, skewers, napkins stocked."
+        critical_path: true
+
+      - time_offset_min: 120
+        milestone: "Kitchen prep complete"
+        tasks:
+          - "All canapes prepared and plated for service rotation."
+          - "Beverage station stocked."
+        critical_path: true
+
+      - time_offset_min: 30
+        milestone: "Servers in position"
+        tasks:
+          - "Service team briefed on canape rotation plan."
+          - "Beverage attendant ready."
+        critical_path: false
+
+      - time_offset_min: 0
+        milestone: "Reception opens"
+        tasks:
+          - "Guests arrive. Canapes circulated actively."
+          - "Live station (if any) opens."
+        critical_path: true
+
+      - time_offset_min: -150
+        milestone: "Service close"
+        tasks:
+          - "Final canape rotation. Station wind-down."
+          - "Kitchen cleanup begins."
+        critical_path: false
+
+      - time_offset_min: -210
+        milestone: "Teardown and load-out"
+        tasks:
+          - "All equipment packed. Venue cleared."
+        critical_path: true
+
+  # ── Community / Birthday Buffet (small) ───────────────────────────────
+  - template_id: RST-BIRTHDAY-BUFFET-SMALL
+    event_type: birthday_party
+    service_style: buffet
+    typical_guest_count_range: [30, 100]
+    typical_service_duration_hours: 2
+
+    milestones:
+      - time_offset_min: 210
+        milestone: "Setup and kitchen prep"
+        tasks:
+          - "Tables and chafing dishes set. Kitchen mise en place."
+        critical_path: true
+
+      - time_offset_min: 90
+        milestone: "Cooking complete. Food safety check."
+        tasks:
+          - "All food cooked. Temperature verified. Sterno lit."
+        critical_path: true
+
+      - time_offset_min: 30
+        milestone: "Stations ready"
+        tasks:
+          - "Food loaded to buffet. Service staff in position."
+        critical_path: true
+
+      - time_offset_min: 0
+        milestone: "SERVICE START"
+        tasks:
+          - "Guests served. Birthday cake moment coordinated with host."
+        critical_path: true
+
+      - time_offset_min: -120
+        milestone: "Wind-down and teardown"
+        tasks:
+          - "Stations closed. Equipment packed."
+        critical_path: false
+
+# ── Runsheet adaptation rules ─────────────────────────────────────────────
+adaptation_rules:
+  - condition: "Outdoor venue (no kitchen)"
+    adjustment: "Add 60min to all pre-service preparation milestones. Setup tent separately."
+  - condition: "No service lift (stairs only)"
+    adjustment: "Add 30min to setup start. Assign 2 additional setup crew."
+  - condition: "Guest count >50% above template upper bound"
+    adjustment: "Scale kitchen team +1 line cook per 50 extra guests. Add 1 extra station attendant."
+  - condition: "Live cooking stations present"
+    adjustment: "Live station setup starts T-240 minimum. Dedicated cook per station throughout service."
+  - condition: "VIP or VVIP attendees confirmed"
+    adjustment: "Assign dedicated server to VIP table. Chef to plate VIP courses personally."
+  - condition: "Halal event with JAKIM inspection possible"
+    adjustment: "Halal cert copies must be at venue. Assign one person as halal documentation point of contact."

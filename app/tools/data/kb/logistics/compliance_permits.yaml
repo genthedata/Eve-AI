@@ -1,0 +1,231 @@
+---
+# Compliance & Permits Knowledge Base
+# Regulatory requirements for legally operating catering events across Malaysia, Philippines, Singapore.
+# The logistics agent checks this KB to flag compliance gaps during event planning —
+# catching a missing permit 3 weeks before is a fix. Catching it on the day is a crisis.
+
+# ── Business Licences ─────────────────────────────────────────────────────
+business_licences:
+  - licence_id: LIC-MY-001
+    type: "Food Service Business Licence"
+    authority: "MBPJ (Majlis Bandaraya Petaling Jaya)"
+    region: Malaysia
+    renewal_frequency: annual
+    current_status: active
+    expiry_date: "2026-12-31"
+    notes: "Required for operating catering business from Shah Alam / PJ base. Always current."
+
+  - licence_id: LIC-MY-002
+    type: "Halal Certification (Kitchen & Operations)"
+    authority: "JAKIM"
+    region: Malaysia
+    renewal_frequency: annual
+    current_status: active
+    expiry_date: "2026-06-30"
+    notes: >
+      Critical for all Malay wedding and Muslim community events.
+      Required by halal-only venues (VEN-MY-001, VEN-MY-002).
+      Renewal application must be submitted 3 months before expiry — DO NOT let this lapse.
+    alert: "EXPIRING IN <6 months — begin renewal process"
+
+  - licence_id: LIC-PH-001
+    type: "Food Business Permit"
+    authority: "City Health Office, Mandaluyong"
+    region: Philippines
+    renewal_frequency: annual
+    current_status: active
+    expiry_date: "2026-12-31"
+
+  - licence_id: LIC-SG-001
+    type: "Food Establishment Licence"
+    authority: "Singapore Food Agency (SFA)"
+    region: Singapore
+    renewal_frequency: annual
+    current_status: active
+    expiry_date: "2026-09-30"
+
+# ── Temporary Event Permits ────────────────────────────────────────────────
+temporary_permits:
+  - permit_id: TPR-MY-001
+    type: "Temporary Food Premises Permit"
+    authority: "Local council (MBPJ / DBKL / MPSJ / MPK etc.)"
+    region: Malaysia
+    when_required:
+      - "Outdoor catering at public venues without permanent food licence"
+      - "Street events, community fairs, pop-up catering"
+      - "Any event at location not covered by business food licence"
+    not_required_when:
+      - "Event at a licensed hotel or banquet hall with in-house food service"
+      - "Private event on private property (within reason)"
+    lead_time_days: 14
+    application_process: "Submit to local council operations department. Provide: event name, location, date, menu, food handler list."
+    fee_approx_myr: 150
+    notes: >
+      CRITICAL: 14-day notice is legally required. Missing this deadline means the outdoor event
+      operates without a permit — liable to shutdown by health inspector.
+      Flag at event planning stage, not 1 week before.
+    flags_triggered_by:
+      - event_type_outdoor: true
+      - venue_type: outdoor_public
+
+  - permit_id: TPR-MY-002
+    type: "Alcohol/Liquor Service Permit"
+    authority: "Royal Malaysian Customs Department"
+    region: Malaysia
+    when_required: "Any event serving alcoholic beverages"
+    not_required_when: "Non-alcoholic / mocktail only service"
+    lead_time_days: 30
+    notes: >
+      Alcohol service at events requires a Temporary Liquor Licence.
+      Application through Royal Malaysian Customs — processing takes up to 30 days.
+      Halal-certified events CANNOT serve alcohol.
+    flags_triggered_by:
+      - beverages: includes_alcohol
+
+  - permit_id: TPR-PH-001
+    type: "Sanitary Permit (Temporary)"
+    authority: "City Health Office (local authority)"
+    region: Philippines
+    when_required: "Outdoor events, temporary food stalls, off-site catering exceeding 200 pax"
+    lead_time_days: 7
+    application_process: "City Health Office. Requires: food handler certificates, menu, proof of food storage."
+    fee_approx_php: 500
+    flags_triggered_by:
+      - country: Philippines
+      - guest_count_gte: 200
+      - indoor_outdoor: outdoor
+
+  - permit_id: TPR-PH-002
+    type: "Mayor's Permit (Special Event)"
+    authority: "Office of the Mayor (Makati / Pasay / Mandaluyong etc.)"
+    region: Philippines
+    when_required: "Large events (>500 pax) in the city. Events using public roads or spaces."
+    lead_time_days: 21
+    notes: "Requirement varies by city and event scale. Check with venue for city-specific rules."
+    flags_triggered_by:
+      - country: Philippines
+      - guest_count_gte: 500
+
+  - permit_id: TPR-SG-001
+    type: "Temporary Food Stall Licence"
+    authority: "Singapore Food Agency (SFA)"
+    region: Singapore
+    when_required: "Catering outside of licensed premises (outdoor events, pop-ups)"
+    lead_time_days: 7
+    fee_approx_sgd: 120
+    notes: "Required for outdoor service. SFA can inspect any time — maintain full food safety documentation."
+    flags_triggered_by:
+      - country: Singapore
+      - indoor_outdoor: outdoor
+
+# ── Food Handler Certifications ───────────────────────────────────────────
+food_handler_certifications:
+  malaysia:
+    required_cert: "Food Handler's Certificate (Sijil Pengendali Makanan)"
+    issuing_body: "Ministry of Health Malaysia / approved training provider"
+    validity_years: 5
+    who_needs_it: "ALL staff who handle food (prepare, cook, serve, pack)"
+    renewal_reminder_days: 90
+    expiry_check_required: true
+
+  philippines:
+    required_cert: "Food Handler Certificate / Health Card"
+    issuing_body: "City Health Office (annual renewal)"
+    validity_years: 1
+    who_needs_it: "All food-handling staff. Inspectors may check on event day."
+    renewal_reminder_days: 30
+    expiry_check_required: true
+
+  singapore:
+    required_cert: "Food Hygiene Officer cert (if managing food operations) + Basic Food Hygiene course"
+    issuing_body: "SkillsFuture / SFA-approved providers"
+    validity_years: 5
+    who_needs_it: "Kitchen supervisors and food preparation staff"
+    renewal_reminder_days: 90
+    expiry_check_required: true
+
+# ── Fire Safety Requirements ───────────────────────────────────────────────
+fire_safety:
+  general_requirements:
+    - "Fire extinguisher (CO2 type, 2kg minimum) must be present at every cooking station."
+    - "Wet chemical extinguisher required if deep fryer is operated."
+    - "Fire blanket must be within reach of all gas cooking equipment."
+    - "LPG cylinders: upright storage only. Valve cap on when not in use. Do not store inside enclosed space."
+    - "Gas hose inspection before every event. Replace if cracked, kinked, or >12 months old."
+    - "Ensure fire exit paths are clear — never block with equipment or cabling."
+    - "Assign one staff member as Fire Safety Point of Contact for each event."
+
+  outdoor_events:
+    - "Satay charcoal grill: minimum 3m clearance from any flammable structure."
+    - "Generator: minimum 5m from cooking area and guest areas."
+    - "All LPG operations must have fire watch staff present."
+    - "Inform venue security of all open-flame cooking locations."
+
+  venue_specific_rules:
+    - venue_id: VEN-MY-001
+      rules: ["No open flame in main hall. Gas cooking in designated kitchen only."]
+    - venue_id: VEN-MY-003
+      rules: ["All open-flame cooking must be outside the marquee tent.", "Generator minimum 10m from tent."]
+    - venue_id: VEN-PH-002
+      rules: ["No deep fryers inside tent.", "All cooking equipment outside main tent."]
+
+# ── Insurance Requirements ────────────────────────────────────────────────
+insurance:
+  - requirement_id: INS-001
+    type: "Public Liability Insurance"
+    coverage_minimum_myr: 1000000
+    when_required: "All catering events"
+    notes: "Standard business public liability. Ensure policy covers third-party event operations."
+    current_status: active
+    policy_expiry: "2026-12-31"
+
+  - requirement_id: INS-002
+    type: "Venue-Specific Certificate of Insurance"
+    when_required:
+      - "Rockwell Tent, Makati (mandatory — venue requirement)"
+      - "Any venue that specifically requests it in contract"
+    lead_time_days: 14
+    process: "Request certificate from insurance broker. Provide venue's required coverage amount."
+    notes: "Rockwell requires this 14 days before event. Flag at booking stage."
+    flags_triggered_by:
+      - venue_id: VEN-PH-002
+
+  - requirement_id: INS-003
+    type: "Food Product Liability Insurance"
+    when_required: "Events with >500 pax or where client contract requires it"
+    notes: "Covers claims arising from foodborne illness. Check if standard policy includes this."
+
+# ── Compliance check trigger rules ────────────────────────────────────────
+compliance_check_triggers:
+  - trigger: "Outdoor event (any country)"
+    check: [TPR-MY-001, TPR-PH-001, TPR-SG-001, fire_safety_outdoor]
+    lead_time_alert_days: 21
+    note: "14-day minimum permit notice. Flag at booking, not 1 week before."
+
+  - trigger: "Guest count >= 200 in Philippines"
+    check: [TPR-PH-001]
+
+  - trigger: "Guest count >= 500 in Philippines"
+    check: [TPR-PH-001, TPR-PH-002]
+
+  - trigger: "Alcohol service"
+    check: [TPR-MY-002]
+    lead_time_alert_days: 35
+
+  - trigger: "Halal event"
+    check: [LIC-MY-002]
+    note: "Verify JAKIM cert validity. Provide copy to halal-only venues."
+
+  - trigger: "Venue VEN-PH-002 (Rockwell)"
+    check: [INS-002]
+    lead_time_alert_days: 14
+
+  - trigger: "Staff certification check (all events)"
+    check: [food_handler_certifications]
+    note: "Check all assigned staff certs are valid. No expired certs on event day."
+
+  - trigger: "Any event with deep fryer"
+    check: [fire_safety_wet_chemical_extinguisher]
+
+  - trigger: "Any event with LPG / gas cooking"
+    check: [fire_safety_lpg_rules, gas_hose_inspection]

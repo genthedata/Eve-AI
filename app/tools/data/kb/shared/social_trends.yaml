@@ -1,0 +1,118 @@
+---
+# Social Media Trend Index Knowledge Base
+# Trending food content from culinary media and social platforms — for "moment-worthy" dish suggestions.
+
+trends:
+  - trend_id: SOC-001
+    name: "Birria Tacos & Smash Burgers crossover"
+    platform_origin: [TikTok, Instagram]
+    virality: high
+    region_relevance: [Philippines, Singapore]
+    description: >
+      Western fast-food aesthetics colliding with slow-braised technique.
+      Birria quesadillas with consome dipping broth photograph exceptionally well.
+    catering_application: >
+      Offer a "Western Fusion Live Station" featuring smash burgers or birria sliders.
+      Works well for corporate casual events, youth birthdays, product launches.
+    visual_appeal_score: 9
+    hashtags: ["#birria", "#smashburger", "#foodporn", "#livestation"]
+    peak_relevance_period: "2024–2025"
+    notes: Trend has staying power; birria is now mainstream in PH food courts.
+
+  - trend_id: SOC-002
+    name: "Halo-Halo Elevated & Rainbow Desserts"
+    platform_origin: [TikTok, Instagram]
+    virality: very_high
+    region_relevance: [Philippines]
+    description: >
+      Traditional halo-halo reimagined with premium ingredients (real ube ice cream,
+      leche flan, edible flowers). Rainbow layers are inherently photogenic.
+    catering_application: >
+      Premium halo-halo bar as a dessert centrepiece. Highly requested for
+      debuts, weddings, and corporate events targeting Filipino guests.
+      Charge premium — perceived value is very high.
+    visual_appeal_score: 10
+    hashtags: ["#halohalo", "#filipinodessert", "#ube"]
+    peak_relevance_period: "2023–2026"
+
+  - trend_id: SOC-003
+    name: "Omakase-style Canapé Reveals"
+    platform_origin: [Instagram, YouTube]
+    virality: medium
+    region_relevance: [Singapore, Malaysia]
+    description: >
+      One or two bites revealed theatrically — server explains provenance
+      and flavour story of each piece. Borrowed from Japanese omakase culture.
+    catering_application: >
+      Elevate cocktail reception with 5–6 chef's canapés introduced tableside
+      or from a parade plate. Works at product launches and high-end corporate galas.
+    visual_appeal_score: 8
+    hashtags: ["#omakase", "#finedining", "#canapé"]
+    peak_relevance_period: "2024–2026"
+    notes: Requires highly trained service staff — additional cost but very high brand value.
+
+  - trend_id: SOC-004
+    name: "Nusantara Fine Dining Renaissance"
+    platform_origin: [Instagram, culinary_publications]
+    virality: high
+    region_relevance: [Malaysia, Singapore, Indonesia]
+    description: >
+      Malay and Indonesian cuisine elevated to fine-dining plating standards.
+      Chefs plating rendang in quenelle form, presenting coconut rice in
+      bamboo vessels, using edible flowers on classic dishes.
+    catering_application: >
+      Offer "Modern Malay" plated dinner option for corporate clients who
+      want cultural pride without traditional buffet presentation.
+    visual_appeal_score: 9
+    hashtags: ["#nusantara", "#modernmalay", "#malayfood", "#finedining"]
+    peak_relevance_period: "2024–2026"
+    notes: Best for client base targeting ASEAN corporate events.
+
+  - trend_id: SOC-005
+    name: "Plant-Based SEA Protein"
+    platform_origin: [Instagram, media_articles]
+    virality: medium
+    region_relevance: [Singapore, Malaysia, Philippines]
+    description: >
+      Jackfruit rendang, tempe satay, mushroom laab — plant-based versions of
+      classic SEA dishes gaining traction as ESG and sustainability messaging rises.
+    catering_application: >
+      Include 1–2 plant-based hero dishes on every corporate gala menu.
+      Label prominently as "plant-forward" (not just "vegetarian") — language matters to ESG-focused clients.
+    visual_appeal_score: 7
+    hashtags: ["#plantbased", "#vegan", "#sustainability", "#tempe", "#jackfruit"]
+    peak_relevance_period: "2024–2027"
+
+  - trend_id: SOC-006
+    name: "Charcuterie and Grazing Tables"
+    platform_origin: [Pinterest, Instagram]
+    virality: high
+    region_relevance: [Philippines, Singapore]
+    description: >
+      Large grazing tables laden with cured meats, cheeses, crackers, fruits,
+      dips, and crudités. Doubled as both food and décor centrepiece.
+    catering_application: >
+      Offer as a premium upgrade for welcome reception or pre-dinner cocktail.
+      Non-halal variant (cured meats) very popular at Western-style events.
+      Halal variant (substitute cured meats with smoked chicken, figs, honey) equally stunning.
+    visual_appeal_score: 10
+    hashtags: ["#grazingtable", "#charcuterie", "#weddingfood"]
+    peak_relevance_period: "2022–2026"
+    notes: Prepare on-site — pre-built grazing tables dry out in transit.
+
+most_instagram_worthy_items:
+  - rank: 1
+    item: Liquid Nitrogen Ice Cream
+    reason: Dramatic smoke effect; highly shareable
+  - rank: 2
+    item: Halo-Halo Bar (build-your-own)
+    reason: Colourful layers; customisation makes it personal
+  - rank: 3
+    item: Lechon Carving Station
+    reason: Theatre and aroma; unmistakably Filipino
+  - rank: 4
+    item: Grazing Table (full spread)
+    reason: Abundance and visual complexity
+  - rank: 5
+    item: Branded Mocktail in Company Colour
+    reason: Easy social media hook for corporate events

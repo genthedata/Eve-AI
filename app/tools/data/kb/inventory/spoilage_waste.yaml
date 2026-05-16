@@ -1,0 +1,359 @@
+---
+# Spoilage, Waste & Yield History Knowledge Base
+# Event-level logs of what was over-ordered, under-used, or spoiled.
+# Fields:
+#   ordered vs used vs wasted, event context, storage conditions,
+#   storage duration before use, and root cause of waste.
+# Used by demand_planner.py to apply per-ingredient buffer adjustments.
+
+waste_logs:
+  - log_id: WL-2024-001
+    event_type: wedding
+    guest_count: 250
+    service_style: buffet
+    region: Philippines
+    event_date: 2024-11-15
+    items:
+      - ingredient: steamed_jasmine_rice
+        procurement_key: rice_kg
+        ordered_kg: 55.0
+        consumed_kg: 45.0
+        wasted_kg: 10.0
+        waste_pct: 18.2
+        storage_temp_c: 60
+        storage_duration_pre_service_h: 2
+        waste_reason: over_estimation
+        notes: Standard buffet over-estimate; guests took less rice than predicted.
+
+      - ingredient: chicken_adobo
+        procurement_key: chicken_kg
+        ordered_kg: 52.0
+        consumed_kg: 48.0
+        wasted_kg: 4.0
+        waste_pct: 7.7
+        storage_temp_c: 62
+        storage_duration_pre_service_h: 1
+        waste_reason: over_estimation
+        notes: Within acceptable waste range.
+
+      - ingredient: lechon_kawali
+        procurement_key: pork_kg
+        ordered_kg: 30.0
+        consumed_kg: 30.0
+        wasted_kg: 0.0
+        waste_pct: 0.0
+        storage_temp_c: 65
+        storage_duration_pre_service_h: 0.5
+        waste_reason: none
+        notes: Always sold out at Filipino events. Increase order by 15%.
+
+      - ingredient: gado_gado_vegetables
+        procurement_key: vegetables_kg
+        ordered_kg: 20.0
+        consumed_kg: 12.0
+        wasted_kg: 8.0
+        waste_pct: 40.0
+        storage_temp_c: 4
+        storage_duration_pre_service_h: 3
+        waste_reason: menu_mismatch
+        notes: Indonesian dish at Filipino wedding — cultural mismatch. Not popular.
+
+      - ingredient: fresh_fruit_platter
+        procurement_key: fruit_kg
+        ordered_kg: 18.0
+        consumed_kg: 11.0
+        wasted_kg: 7.0
+        waste_pct: 38.9
+        storage_temp_c: 8
+        storage_duration_pre_service_h: 4
+        waste_reason: over_estimation
+        notes: Fruit platters consistently under-consumed. Reduce order by 30%.
+
+    insight: >
+      Lechon always runs out at Filipino weddings — order 15% more.
+      Fruit platters and non-Filipino dishes consistently wasted.
+      Reduce non-Filipino dishes at Filipino events by 30%.
+
+  - log_id: WL-2024-002
+    event_type: corporate_gala
+    guest_count: 300
+    service_style: plated
+    region: Malaysia
+    event_date: 2024-09-20
+    items:
+      - ingredient: chicken_rendang
+        procurement_key: chicken_kg
+        ordered_kg: 62.0
+        consumed_kg: 60.0
+        wasted_kg: 2.0
+        waste_pct: 3.2
+        storage_temp_c: 63
+        storage_duration_pre_service_h: 1
+        waste_reason: none
+        notes: Near-zero waste. Excellent portioning.
+
+      - ingredient: vegetable_biryani
+        procurement_key: rice_kg
+        ordered_kg: 40.0
+        consumed_kg: 30.0
+        wasted_kg: 10.0
+        waste_pct: 25.0
+        storage_temp_c: 60
+        storage_duration_pre_service_h: 2
+        waste_reason: over_estimation
+        notes: Rice-heavy biryani portions are generous; reduce raw rice by 20%.
+
+      - ingredient: tom_yum_soup
+        procurement_key: broth_l
+        ordered_l: 60.0
+        consumed_l: 42.0
+        wasted_l: 18.0
+        waste_pct: 30.0
+        storage_temp_c: 70
+        storage_duration_pre_service_h: 1
+        waste_reason: menu_timing
+        notes: Soup consumption drops at gala events where cocktails precede dinner.
+
+      - ingredient: bread_rolls
+        procurement_key: flour_kg
+        ordered_pcs: 350
+        consumed_pcs: 175
+        wasted_pcs: 175
+        waste_pct: 50.0
+        storage_temp_c: 22
+        storage_duration_pre_service_h: 3
+        waste_reason: over_estimation
+        notes: Bread rolls are always over-ordered. Reduce by 50% for plated dinners.
+
+    insight: >
+      Rendang is a safe protein choice — minimal waste.
+      Bread rolls are the single most wasted item across all event types — cut 50%.
+      Soup is underconsumed when cocktails precede dinner.
+
+  - log_id: WL-2024-003
+    event_type: birthday
+    guest_count: 80
+    service_style: buffet
+    region: Philippines
+    event_date: 2024-03-22
+    items:
+      - ingredient: spring_rolls
+        procurement_key: flour_kg
+        ordered_pcs: 300
+        consumed_pcs: 295
+        wasted_pcs: 5
+        waste_pct: 1.7
+        storage_temp_c: 65
+        storage_duration_pre_service_h: 0.5
+        waste_reason: none
+        notes: Always sold out quickly. Fried items disappear fast at birthday parties.
+
+      - ingredient: pesto_pasta
+        procurement_key: pasta_kg
+        ordered_kg: 18.0
+        consumed_kg: 12.0
+        wasted_kg: 6.0
+        waste_pct: 33.3
+        storage_temp_c: 58
+        storage_duration_pre_service_h: 2
+        waste_reason: quality_degradation
+        notes: Pasta dries out on buffet within 45 min. Prep in 30-min batches only.
+
+      - ingredient: birthday_cake
+        procurement_key: flour_kg
+        ordered_kg: 5.0
+        consumed_kg: 3.5
+        wasted_kg: 1.5
+        waste_pct: 30.0
+        storage_temp_c: 18
+        storage_duration_pre_service_h: 6
+        waste_reason: standard_cake_waste
+        notes: Guests take slices but not always finish. 25-30% cake waste is normal.
+
+    insight: >
+      Fried appetisers (spring rolls, chicken) always sold out — order at 110%.
+      Pasta dries fast on buffet — do NOT pre-cook in bulk. Batch-cook every 30 min.
+
+  - log_id: WL-2023-004
+    event_type: festival
+    guest_count: 700
+    service_style: food_stalls
+    region: Philippines
+    event_date: 2023-05-01
+    items:
+      - ingredient: chicken_satay
+        procurement_key: chicken_kg
+        ordered_kg: 60.0
+        consumed_kg: 60.0
+        wasted_kg: 0.0
+        waste_pct: 0.0
+        storage_temp_c: 65
+        storage_duration_pre_service_h: 0.25
+        waste_reason: none
+        notes: Completely sold out. Festival street food runs out fast.
+
+      - ingredient: vegetable_stir_fry
+        procurement_key: vegetables_kg
+        ordered_kg: 80.0
+        consumed_kg: 50.0
+        wasted_kg: 30.0
+        waste_pct: 37.5
+        storage_temp_c: 55
+        storage_duration_pre_service_h: 2
+        waste_reason: menu_mismatch
+        notes: "Vegetable stir-fry underperforms at Filipino festivals. Replace with more familiar dishes."
+
+      - ingredient: halo_halo_dessert
+        procurement_key: fruit_kg
+        ordered_cups: 800
+        consumed_cups: 750
+        wasted_cups: 50
+        waste_pct: 6.3
+        storage_temp_c: 4
+        storage_duration_pre_service_h: 1
+        waste_reason: over_estimation
+        notes: Near-perfect estimation. Self-serve dessert bar works well.
+
+    insight: >
+      Festival street food (satay, fried items) always clears. Vegetable dishes under-consumed.
+      Dessert bars are self-regulating — low waste.
+
+  - log_id: WL-2024-005
+    event_type: corporate_dinner
+    guest_count: 100
+    service_style: plated
+    region: Singapore
+    event_date: 2024-07-18
+    items:
+      - ingredient: hainanese_chicken_rice
+        procurement_key: chicken_kg
+        ordered_kg: 25.0
+        consumed_kg: 24.5
+        wasted_kg: 0.5
+        waste_pct: 2.0
+        storage_temp_c: 62
+        storage_duration_pre_service_h: 1
+        waste_reason: none
+        notes: Classic dish; near-zero waste. International guests loved it.
+
+      - ingredient: steamed_fish_fillet
+        procurement_key: seafood_fish_kg
+        ordered_kg: 22.0
+        consumed_kg: 18.0
+        wasted_kg: 4.0
+        waste_pct: 18.2
+        storage_temp_c: 58
+        storage_duration_pre_service_h: 1.5
+        waste_reason: quality_degradation
+        notes: >
+          Fish cools to unappetising temperature within 30 min on plated service.
+          For plated fish: serve immediately from kitchen; no holding time.
+
+      - ingredient: stir_fried_kailan
+        procurement_key: vegetables_kg
+        ordered_kg: 15.0
+        consumed_kg: 9.0
+        wasted_kg: 6.0
+        waste_pct: 40.0
+        storage_temp_c: 55
+        storage_duration_pre_service_h: 1
+        waste_reason: menu_mismatch
+        notes: Leafy greens consistently under-consumed at corporate dinners. Reduce by 35%.
+
+    insight: >
+      Chicken rice near-zero waste. Fish needs immediate service — no holding.
+      Leafy greens are consistently the most wasted vegetable category.
+
+# ── Aggregate waste insights (used by demand_planner for buffer rules) ────
+aggregate_insights:
+  high_waste_items:
+    - procurement_key: flour_kg
+      category: bread_rolls
+      avg_waste_pct: 45
+      adjustment_factor: 0.55
+      applies_to: [all_events]
+      condition: service_style is plated or buffet
+
+    - procurement_key: vegetables_kg
+      category: leafy_greens
+      avg_waste_pct: 38
+      adjustment_factor: 0.65
+      applies_to: [corporate_gala, corporate_dinner, wedding]
+
+    - procurement_key: fruit_kg
+      category: fresh_fruit_platter
+      avg_waste_pct: 35
+      adjustment_factor: 0.70
+      applies_to: [all_events]
+
+    - procurement_key: pasta_kg
+      category: pasta_dishes
+      avg_waste_pct: 30
+      adjustment_factor: 0.75
+      applies_to: [all_events]
+      notes: Batch-cook only; do not pre-stage on buffet
+
+    - procurement_key: broth_l
+      category: soup
+      avg_waste_pct: 28
+      adjustment_factor: 0.75
+      applies_to: [corporate_gala, wedding]
+      condition: when cocktails precede dinner
+
+  zero_waste_items:
+    - procurement_key: chicken_kg
+      category: fried_chicken
+      avg_waste_pct: 2
+      adjustment_factor: 1.15
+      applies_to: [birthday, festival]
+      notes: Always over-order fried items by 15%
+
+    - procurement_key: pork_kg
+      category: lechon
+      avg_waste_pct: 1
+      adjustment_factor: 1.20
+      applies_to: [wedding, birthday]
+      condition: Filipino events only
+
+    - procurement_key: chicken_kg
+      category: satay
+      avg_waste_pct: 2
+      adjustment_factor: 1.15
+      applies_to: [festival, corporate_gala]
+
+  event_type_buffer_pct:
+    wedding:          12
+    corporate_gala:   8
+    corporate_dinner: 8
+    birthday:         10
+    festival:         25
+    product_launch:   5
+    default:          10
+
+  service_style_buffer_pct:
+    buffet:   10
+    plated:   5
+    cocktail: 8
+    food_stalls: 20
+
+  storage_risk_items:
+    - procurement_key: seafood_fish_kg
+      risk: high
+      max_holding_temp_c: 4
+      max_holding_time_h: 2
+      note: Fish declines fast above 4C or after 2h holding.
+
+    - procurement_key: dairy_cream_l
+      risk: high
+      max_holding_temp_c: 4
+      max_holding_time_h: 4
+
+    - procurement_key: vegetables_kg
+      risk: medium
+      max_holding_temp_c: 8
+      max_holding_time_h: 6
+      note: Leafy greens wilt after 6h even chilled.
+
+    - procurement_key: rice_kg
+      risk: low
+      note: Cooked rice can be held hot (>=60C) for up to 4h safely.

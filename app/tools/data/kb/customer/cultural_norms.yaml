@@ -1,0 +1,241 @@
+---
+# Cultural & Religious Norms Knowledge Base
+# Goes deeper than the dietary restrictions KB — covers WHY and HOW to serve
+# different communities correctly, including operational logistics, scheduling,
+# and the right clarifying questions to ask at intake.
+# Used by customer_agent to pass cultural constraints to menu, logistics,
+# and operations teams.
+
+communities:
+  # ── Muslim / Malay ────────────────────────────────────────────────────────
+
+  - community_id: muslim_malay
+    label: Muslim / Malay Events
+    applies_to_event_types: [malay_wedding, funeral_tahlil, corporate_lunch, any_muslim_majority_event]
+    dietary_kb_ref: halal
+
+    food_norms:
+      - All food and beverages must be halal-certified without exception
+      - Alcohol in any form strictly prohibited, including cooking wine, mirin, vanilla extract
+      - No pork, pork fat, or pork-derived ingredients anywhere on premises
+      - Separate utensils, cookware, and prep surfaces for halal food
+      - Halal certification documents must be on hand at every event
+
+    prayer_scheduling:
+      - description: >
+          Five daily prayers are obligatory. For an all-day or multi-session event,
+          two prayer times typically fall within catering windows.
+      - prayer_windows:
+          - name: Zohor (Dhuhr)
+            approximate_time: "12:45pm to 1:15pm"
+            duration_min: 15
+            action: Build service pause or buffer; surau/prayer room must be available
+          - name: Asar (Asr)
+            approximate_time: "4:00pm to 4:30pm"
+            duration_min: 15
+            action: Coordinate with MC; avoid main service during this window
+          - name: Maghrib (Sunset Prayer)
+            approximate_time: "varies by date/location; typically 7:15pm to 7:45pm"
+            duration_min: 15
+            action: Critical for Ramadan events — this is the iftar (break-fast) moment
+      - wudhu_facilities: >
+          Wudhu (ablution) facilities required near prayer area. Check with venue.
+          If not available, confirm mobile wudhu station rental with logistics team.
+
+    seating_customs:
+      - Traditional Malay weddings: gender-segregated seating is common (ask client)
+      - Modern weddings: mixed seating increasingly accepted; always confirm
+      - VIP or family tables at front (pengantin/pelamin end)
+      - Elders seated first; food served to elder tables before general buffet opens
+
+    event_flow_norms:
+      - Berinai/reception events often start late; build 30-min service buffer
+      - Pelamin (ceremonial dais) setup takes priority in hall layout
+      - MC announces prayer break; catering team must pause service promptly
+      - Music/entertainment pauses during azan (call to prayer) — coordinate with AV team
+      - Bersanding (wedding ceremony) can run 1-2h; food held warm during ceremony
+
+    ramadan_specific:
+      - Iftar (breaking fast) events are a major seasonal opportunity
+      - Service begins exactly at Maghrib time — timing is sacred; do not delay
+      - Bubur lambuk (rice porridge) is traditional iftar opener
+      - Date palms (kurma) always served first; ensure supply
+      - Sahur (pre-dawn meal) events possible; logistics team must confirm setup time
+
+    taboos:
+      - Never serve pork at any Muslim event, even as a separate option
+      - Never joke about or trivialize halal certification
+      - Alcohol must not be present in the premises, even at a "separate table"
+      - Do not place flower arrangements on pelamin food tables (superstition varies)
+
+    clarifying_questions:
+      - "Will there be a prayer break during the event? Should we pause service?"
+      - "Is seating gender-segregated or open?"
+      - "Do you need us to confirm a surau space with the venue?"
+      - "Is this event during Ramadan? (Iftar or buka puasa format?)"
+      - "Will there be any non-Muslim guests requiring separate arrangements?"
+
+    flags_to_pass:
+      - logistics_agent: surau_check=true, prayer_break_in_runsheet=true
+      - menu_agent: halal_certified_only=true, no_alcohol_ingredients=true
+
+  # ── Chinese ───────────────────────────────────────────────────────────────
+
+  - community_id: chinese
+    label: Chinese Events (Wedding, Banquet, Reunion)
+    applies_to_event_types: [chinese_banquet, corporate_gala_dinner, birthday_party]
+
+    food_norms:
+      - Whole fish (never filleted before serving) symbolizes wholeness and prosperity
+      - Sea bass, grouper, or pomfret most auspicious; confirm preference
+      - Noodles should be long and uncut (longevity); do not break or chop
+      - Red colour in food presentation is auspicious (red bean dessert, etc.)
+      - Avoid serving a single pear to one person (pear = lí = separation/parting)
+      - Tofu is associated with mourning — use sparingly at celebratory events
+      - Last savory dish is always fried rice or fried noodles (signals end of meal)
+
+    auspicious_numbers:
+      - lucky: [6, 8, 9]
+      - unlucky: [4]
+      - applications:
+          - Table numbers should skip 4 (go 1-3, then 5+)
+          - Number of dishes in a course menu should be even and ideally include 8
+          - Guest counts per table: 10 is standard; avoid 4-person tables
+          - Event date: prefer dates with 8 (e.g. 8th, 18th, 28th)
+
+    table_customs:
+      - Round tables standard for Chinese banquets (represents unity)
+      - Lazy Susan (turntable) at center — place main dishes on it
+      - Fish presented whole, head facing honored guest (host or VIP)
+      - Host turns fish when bones are exposed (do NOT flip entire fish — bad luck)
+      - Tea service before meal begins; elder poured first
+
+    linen_and_decor:
+      - Wedding: red and gold strongly preferred; avoid white (mourning)
+      - Funeral or memorial: white is appropriate; no red
+      - Birthday: any colour acceptable; gold accent popular
+
+    special_rituals:
+      - Lou Sang (Yee Sang tossing): New Year events; team tosses raw fish salad together
+        setup: dedicated table, ingredients in separate containers, tongs provided
+        timing: before starters, as arrival activity or first course
+      - Tea ceremony (wedding): couple serves tea to elders; takes 30-60 min
+        action: coordinate service pause; tea and cups provided by client typically
+      - Birthday noodles: long noodle dish served to honoree at birthday dinners
+      - Mooncake festival: mooncakes as parting gift or dessert (Mid-Autumn events)
+
+    clarifying_questions:
+      - "Will there be a Yee Sang / Lou Sang ceremony? (New Year events)"
+      - "Tea ceremony planned? What time does it start and how long?"
+      - "Table of 10 format — how many tables? (Ensure not a table of 4)"
+      - "Whole steamed fish — what species? Grouper, sea bass, or pomfret?"
+      - "Real shark's fin or mock shark's fin soup?"
+      - "Is alcohol (Chinese tea, beer, wine, brandy) being served?"
+      - "Any vegetarian, halal, or other dietary guests at specific tables?"
+
+    flags_to_pass:
+      - logistics_agent: round_table_lazy_susan=true, whole_fish_timing=true
+      - menu_agent: include_whole_fish=true, long_noodles_uncut=true, avoid_single_pear=true
+
+    taboos:
+      - Do not give clocks as gifts (song zhong = sending someone off in death)
+      - Avoid white flowers as table centrepieces at weddings
+      - Do not serve a pear to a couple separately (split/separation symbolism)
+      - Tofu in excess at wedding suggests mourning; use sparingly
+
+  # ── Indian (South Indian / Tamil / Hindu) ─────────────────────────────────
+
+  - community_id: indian_hindu
+    label: Indian / Hindu Events (South Indian Focus)
+    applies_to_event_types: [indian_wedding, corporate_lunch, birthday_party]
+
+    food_norms:
+      - Strong vegetarian tradition — always offer robust vegetarian main courses
+      - Brahmin households: no onion, no garlic, no meat, no eggs
+      - Beef avoided by all Hindu guests (cow is sacred); pork generally avoided too
+      - Coconut used extensively in South Indian cooking (coconut milk, grated coconut, coconut oil)
+      - Fish is accepted by most non-Brahmin South Indian communities
+      - Mutton (goat) is the traditional celebratory meat for non-vegetarian events
+      - Alcohol: South Indian events generally moderate alcohol; confirm with client
+
+    service_rituals:
+      banana_leaf_service:
+        description: >
+          Traditional South Indian service on banana leaves instead of plates.
+          The leaf serves as both plate and cultural statement.
+        protocols:
+          - Banana leaf placed with the tip pointing to the left of the guest
+          - Wiping the leaf with water before service is a ritual cleansing action (do it)
+          - Rice placed in center-left of leaf
+          - Vegetables placed clockwise around rice
+          - Payasam (sweet) placed top-right of leaf
+          - Papadum placed at top-center
+          - Pickles and chutneys along the top edge
+          - Guests eat with right hand only; do not offer cutlery unless asked
+          - Leaf turning: a leaf turned toward the guest = deceased/mourning. NEVER do this at a celebration
+          - After eating, fold leaf over toward you (closing inward) if satisfied; away from you = host did a poor job
+        logistics:
+          - Fresh banana leaves must be ordered 1-2 days before event
+          - Leaves should arrive morning-of; do not store folded or wet overnight
+          - Used leaves collected promptly; can be composted
+          - Confirm banana leaf supplier is in logistics KB
+
+    service_sequence_banana_leaf:
+      - step: 1
+        action: Place leaf, wipe with water
+      - step: 2
+        action: Pour water into small cup (top right corner)
+      - step: 3
+        action: Place rice (center-left)
+      - step: 4
+        action: Pour sambar and rasam into rice (guest self-mixes)
+      - step: 5
+        action: Place sides in order clockwise (thoran, aviyal, curry, papadum)
+      - step: 6
+        action: Place payasam (top right) last
+
+    clarifying_questions:
+      - "Will this be banana leaf service or buffet?"
+      - "What is the vegetarian to non-vegetarian guest ratio?"
+      - "Are any guests Brahmin? (No onion, no garlic, no meat)"
+      - "Mutton curry, chicken curry, or both?"
+      - "Any fish curry on the menu?"
+      - "Is appam or chapati service needed?"
+      - "Payasam flavour preference? (Sago, vermicelli, or ada pradhaman)"
+
+    flags_to_pass:
+      - logistics_agent: banana_leaf_service=true, banana_leaf_supplier=needed
+      - menu_agent: vegetarian_heavy=true, no_beef=true, brahmin_option_if_needed=true
+
+    taboos:
+      - Beef is the single most critical taboo — never serve at any Hindu event
+      - Do not turn banana leaves away from guest at celebration events
+      - Serving pork at Tamil Hindu events is inappropriate (not forbidden but culturally avoided)
+
+  # ── General multi-community guidance ─────────────────────────────────────
+
+  - community_id: mixed_sea_event
+    label: Mixed South-East Asian Multi-Community Event
+    applies_to_event_types: [corporate_gala_dinner, corporate_lunch, product_launch, birthday_party]
+    description: >
+      The most common scenario in Malaysia, Singapore, and Philippines.
+      Muslim, Chinese, Indian, and Western guests at the same event.
+      The business's standard operating mode — all planning should default to
+      this profile unless client specifies a single-community event.
+
+    default_rules:
+      - Halal certification for all meat and sauces (protects Muslim guests)
+      - Vegetarian station clearly labelled and separated (protects Hindu/vegetarian)
+      - Nut allergy awareness (peanut sauce served on separate station with signage)
+      - No pork anywhere on premises
+      - Alcohol only if client requests; keep halal and non-halal drinks visibly separate
+
+    mandatory_questions:
+      - "What is the approximate community breakdown of guests? (Malay, Chinese, Indian, Others)"
+      - "Is halal certification required? (Default: yes)"
+      - "Are there any vegetarian-only guests we need a dedicated station for?"
+      - "Any known allergens in the guest list we should be aware of?"
+
+    flags_to_pass:
+      - dietary_constraints: [halal, vegetarian_station, nut_safe_labelling]
+      - logistics_agent: allergen_labels=true, vegetarian_separation=true

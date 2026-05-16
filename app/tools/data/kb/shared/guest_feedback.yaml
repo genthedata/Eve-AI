@@ -1,0 +1,101 @@
+---
+# Guest Feedback Corpus Knowledge Base
+# Anonymized post-event survey responses indexed by dish, service style, and event type.
+# Used by Menu Agent to anticipate guest reactions to menu choices.
+
+feedback_entries:
+  - feedback_id: FB-2024-001
+    event_type: corporate_gala
+    service_style: plated
+    region: Malaysia
+    guest_count: 300
+    dishes_rated:
+      - {dish: "Chicken Rendang", rating: 4.8, comments: ["Rich and flavourful", "Best rendang I've had at a corporate event", "Just the right spice level"]}
+      - {dish: "Vegetable Biryani", rating: 4.0, comments: ["Good but a bit dry", "Loved the saffron aroma", "Could use more vegetables"]}
+      - {dish: "Tom Yum Soup", rating: 3.6, comments: ["Too sour for my taste", "Authentic flavour but not everyone's preference", "A bit watery"]}
+    service_rating: 4.7
+    overall_rating: 4.5
+    top_feedback_themes: [rendang_outstanding, soup_polarizing, biryani_good_but_dry]
+
+  - feedback_id: FB-2024-002
+    event_type: wedding
+    service_style: buffet
+    region: Philippines
+    guest_count: 250
+    dishes_rated:
+      - {dish: "Lechon Kawali", rating: 5.0, comments: ["Best lechon ever!", "My kids loved the crispy skin", "First to run out — need more!"]}
+      - {dish: "Kare-Kare", rating: 4.3, comments: ["Oxtail was perfectly tender", "Bagoong on the side was a great touch", "Some guests unfamiliar — good that label was clear"]}
+      - {dish: "Gado-Gado", rating: 2.9, comments: ["Interesting but not really Filipino food", "Peanut sauce too heavy", "Kids didn't touch it"]}
+      - {dish: "Fresh Fruit Platter", rating: 3.5, comments: ["Nice to have", "Mango was very sweet", "Not many guests touched it"]}
+    service_rating: 4.5
+    overall_rating: 4.6
+    top_feedback_themes: [lechon_always_wins, foreign_dishes_underperform_at_filipino_weddings, fruit_platter_low_engagement]
+
+  - feedback_id: FB-2024-003
+    event_type: product_launch
+    service_style: cocktail
+    region: Singapore
+    guest_count: 80
+    dishes_rated:
+      - {dish: "Salmon Sashimi Canapé", rating: 4.9, comments: ["Absolutely fresh", "The citrus ponzu was perfect", "Disappeared in minutes"]}
+      - {dish: "Branded Mocktail (blue company colour)", rating: 4.8, comments: ["I posted this immediately", "Loved the edible glitter", "Very creative"]}
+      - {dish: "Cream Cheese Pastry Canapé", rating: 2.8, comments: ["Soggy by the time I got one", "Shell was soft — not great", "Flavour was fine but texture was off"]}
+    service_rating: 4.6
+    overall_rating: 4.5
+    top_feedback_themes: [sashimi_premium_wins, branded_drinks_social_media_hit, soggy_pastry_outdoor_issue]
+
+  - feedback_id: FB-2023-004
+    event_type: birthday
+    service_style: buffet
+    region: Philippines
+    guest_count: 60
+    dishes_rated:
+      - {dish: "Fried Chicken (Chicken Joy style)", rating: 5.0, comments: ["Kids ate 3 pieces each!", "Crispy and juicy", "Best part of the party"]}
+      - {dish: "Pasta Aglio Olio", rating: 3.2, comments: ["A bit oily", "Adults liked it, kids not so much", "Not very exciting"]}
+      - {dish: "Build-Your-Own Cupcake Station", rating: 5.0, comments: ["My daughter loved it!", "Best birthday idea", "Every kid was at that table"]}
+      - {dish: "Miso Soup", rating: 2.1, comments: ["Wrong vibe for a birthday", "Kids had no idea what it was", "Nobody touched it"]}
+    service_rating: 4.9
+    overall_rating: 4.8
+    top_feedback_themes: [fried_chicken_universally_loved, interactive_dessert_highlight, miso_soup_completely_wrong_for_childrens_party]
+
+  - feedback_id: FB-2024-005
+    event_type: corporate_dinner
+    service_style: plated
+    region: Singapore
+    guest_count: 100
+    dishes_rated:
+      - {dish: "Hainanese Chicken Rice", rating: 4.6, comments: ["Comfort food done perfectly", "International guests were fascinated", "The broth was exceptional"]}
+      - {dish: "Steamed Fish Fillet (Hong Kong style)", rating: 3.8, comments: ["Good but got cold quickly", "Would be better in a covered dish", "Delicate flavour"]}
+      - {dish: "Stir-Fried Kailan with Garlic", rating: 3.2, comments: ["Overcooked slightly", "Fine but nothing memorable", "Guest with garlic allergy not pre-flagged"]}
+    service_rating: 4.4
+    overall_rating: 4.2
+    top_feedback_themes: [chicken_rice_international_crowd_pleaser, fish_cools_too_fast_for_plated, garlic_allergy_missed]
+
+aggregate_insights:
+  universally_popular_dishes:
+    - {dish: "Lechon / Crispy Pork Roast", avg_rating: 4.9, context: "Filipino events"}
+    - {dish: "Chicken Rendang", avg_rating: 4.7, context: "Malay/mixed SEA events"}
+    - {dish: "Hainanese Chicken Rice", avg_rating: 4.6, context: "Singapore events, international guests"}
+    - {dish: "Fried Chicken", avg_rating: 4.8, context: "Children's parties, casual events"}
+    - {dish: "Salmon Sashimi Canapé", avg_rating: 4.8, context: "Premium corporate, cocktail receptions"}
+    - {dish: "Interactive Dessert Stations (any)", avg_rating: 4.9, context: "All event types"}
+
+  consistently_low_performing_dishes:
+    - {dish: "Gado-Gado at non-Indonesian events", avg_rating: 2.9, reason: "Unfamiliarity and peanut heaviness"}
+    - {dish: "Miso Soup at casual/children events", avg_rating: 2.1, reason: "Wrong cultural context"}
+    - {dish: "Cream-filled pastry canapés (outdoor)", avg_rating: 2.5, reason: "Humidity causes sogginess"}
+    - {dish: "Bread rolls at dinner events", avg_rating: 3.0, reason: "Perceived as filler; low engagement"}
+    - {dish: "Plain salads at Filipino events", avg_rating: 3.1, reason: "Culturally not a priority at celebrations"}
+
+  service_style_feedback:
+    - style: plated
+      common_praises: [elegant_presentation, portion_control, professional_service]
+      common_complaints: [food_gets_cold_before_served, no_seconds, timing_pressures]
+
+    - style: buffet
+      common_praises: [variety, can_come_back_for_more, relaxed_atmosphere]
+      common_complaints: [queues_at_popular_stations, some_dishes_run_out, food_quality_dips_after_replenishment]
+
+    - style: cocktail
+      common_praises: [social_atmosphere, easy_to_eat_and_mingle, variety_of_bites]
+      common_complaints: [not_filling_enough_for_long_events, plates_get_crowded_standing]

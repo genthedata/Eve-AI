@@ -1,0 +1,228 @@
+---
+# Procurement SOP & Approval Rules Knowledge Base
+# Internal procedures governing purchasing decisions.
+# Includes: preferred vendor priorities, approval thresholds,
+# emergency contacts, credit limits, and blacklisted vendors.
+
+preferred_vendor_priority:
+  # Order suppliers are tried for each procurement category.
+  # demand_planner uses this before falling back to global_substitution_index.
+  chicken_kg:        [sup-002, sup-006, sup-005]
+  beef_kg:           [sup-002, sup-006]
+  pork_kg:           [sup-002]
+  seafood_fish_kg:   [sup-003, sup-007]
+  seafood_prawn_kg:  [sup-003, sup-007]
+  tofu_kg:           [sup-005, sup-008]
+  lentils_kg:        [sup-004]
+  rice_kg:           [sup-001, sup-005, sup-008]
+  rice_noodles_kg:   [sup-004, sup-008]
+  pasta_kg:          [sup-004]
+  vegetables_kg:     [sup-001, sup-005, sup-008]
+  aromatics_kg:      [sup-001, sup-005]
+  fresh_herbs_kg:    [sup-001, sup-005]
+  fruit_kg:          [sup-001, sup-005, sup-008]
+  coconut_milk_l:    [sup-004, sup-008, sup-005]
+  dairy_cream_l:     [sup-004]
+  cooking_oil_l:     [sup-004]
+  soy_sauce_l:       [sup-004]
+  fish_sauce_l:      [sup-004]
+  vinegar_l:         [sup-004]
+  spice_blend_pack:  [sup-004]
+  mushrooms_kg:      [sup-001, sup-005]
+  eggs_pcs:          [sup-001, sup-005]
+  tomato_paste_kg:   [sup-004]
+  tofu_kg:           [sup-004, sup-005, sup-008]
+  worcestershire_l:  [sup-004]
+  peanut_sauce_kg:   [sup-004]
+  lentils_kg:        [sup-004]
+  broth_l:           [sup-004]
+  kerisik_kg:        [sup-004]
+
+blacklisted_vendors:
+  - vendor_id: BLK-001
+    name: "FastBite Supplies PH"
+    date_blacklisted: 2024-06-10
+    reason: "Delivered pork products to a halal-certified event without disclosure. Client complaint + IDCP audit triggered."
+    reinstatement_conditions: "Never. Safety and compliance violation."
+
+  - vendor_id: BLK-002
+    name: "QuickFresh MY"
+    date_blacklisted: 2024-09-05
+    reason: "Three consecutive cold chain failures (chilled items delivered at 12–15C). Two client food safety incidents linked to delivery."
+    reinstatement_conditions: "Requires independent cold chain audit certification and 6-month probation period."
+
+credit_limits_by_supplier:
+  sup-001: {limit_php: 80000,  limit_myr: null, limit_sgd: null}
+  sup-002: {limit_php: 150000, limit_myr: null, limit_sgd: null}
+  sup-003: {limit_php: 60000,  limit_myr: null, limit_sgd: null}
+  sup-004: {limit_php: 120000, limit_myr: null, limit_sgd: null}
+  sup-005: {limit_php: null,   limit_myr: 25000, limit_sgd: null}
+  sup-006: {limit_php: null,   limit_myr: 40000, limit_sgd: null}
+  sup-007: {limit_php: null,   limit_myr: null, limit_sgd: 15000}
+  sup-008: {limit_php: null,   limit_myr: null, limit_sgd: 20000}
+
+procedures:
+  - sop_id: SOP-PROC-001
+    title: Standard Purchase Order Process
+    applies_to: [all_events]
+    steps:
+      - step: 1
+        action: Receive confirmed event brief and headcount from orchestrator
+        responsible: Inventory Agent / Procurement Lead
+        deadline: T-14_days
+      - step: 2
+        action: Generate procurement list via demand_planner (ingredient_recipe_map + waste buffer + seasonal check)
+        responsible: Inventory Agent
+        deadline: T-12_days
+        notes: Use ingredient_recipe_map.yaml for menu-to-ingredient translation. Apply waste buffer from spoilage_waste.yaml.
+      - step: 3
+        action: Check real-time stock; subtract committed stock from on-hand quantity
+        responsible: Inventory Agent
+        deadline: T-11_days
+        notes: Check both current_stock and already_committed fields in inventory DB.
+      - step: 4
+        action: Match remaining needed quantities to preferred vendors (see preferred_vendor_priority above)
+        responsible: Inventory Agent
+        deadline: T-10_days
+        notes: Score vendors by reliability + on_time + performance. Use vendor_performance.yaml.
+      - step: 5
+        action: Submit PO for approval per threshold below
+        responsible: Procurement Lead
+        deadline: T-9_days
+      - step: 6
+        action: Confirm order with supplier; obtain written acknowledgement with price lock
+        responsible: Procurement Lead
+        deadline: T-8_days
+        notes: For price_volatile items, always obtain written price lock at confirmation.
+      - step: 7
+        action: Schedule delivery slot; confirm cold chain requirements with supplier
+        responsible: Logistics Team
+        deadline: T-2_days
+      - step: 8
+        action: Goods received inspection against PO; check temperature logs for chilled items
+        responsible: Kitchen Lead
+        deadline: event_morning
+      - step: 9
+        action: Log any substitutions, shortfalls, or quality rejections in procurement log
+        responsible: Kitchen Lead
+        deadline: within_24h_post_event
+
+  - sop_id: SOP-PROC-002
+    title: Purchase Order Approval Thresholds
+    applies_to: [all_regions]
+    thresholds:
+      - level: Self-Approval
+        max_php: 10000
+        max_myr: 1000
+        max_sgd: 500
+        approver: Procurement Lead
+
+      - level: Manager Approval
+        max_php: 100000
+        max_myr: 10000
+        max_sgd: 5000
+        approver: Operations Manager
+
+      - level: Director Approval
+        max_php: 500000
+        max_myr: 50000
+        max_sgd: 25000
+        approver: Director of Operations
+
+      - level: Executive Approval
+        min_php: 500001
+        min_myr: 50001
+        min_sgd: 25001
+        approver: CEO or CFO
+
+    notes: >
+      Verbal approvals not accepted above Self-Approval level.
+      All approvals documented in procurement log system.
+      Emergency approvals (T-48h or less) escalate one level above normal threshold.
+
+  - sop_id: SOP-PROC-003
+    title: Emergency Sourcing Procedure
+    applies_to: [all_events]
+    trigger_conditions:
+      - Supplier confirms unable to fulfill within T-3 days
+      - Goods arrive with quality failure or broken cold chain
+      - Force majeure (flood, port shutdown, supplier incident)
+    steps:
+      - step: 1
+        action: Alert Operations Manager by phone within 1 hour of incident
+      - step: 2
+        action: Check preferred_vendor_priority list for next-priority supplier
+      - step: 3
+        action: Check substitution_map in supplier_catalog.yaml for ingredient alternatives
+      - step: 4
+        action: If substitution changes allergen profile, notify client within 3 hours
+      - step: 5
+        action: Place emergency order; accept urgent premium up to 30% above standard rate
+        notes: Document cost variance for post-event margin analysis.
+      - step: 6
+        action: Document full incident, root cause, and resolution within 48h of event
+    emergency_contacts:
+      Philippines:
+        backup_produce: "FoodHub PH +63-917-555-9999"
+        backup_protein: "QuickMeat PH +63-920-555-8888"
+        backup_seafood: "FishLine PH +63-918-555-7777"
+      Malaysia:
+        backup_produce: "MarketDirect MY +60-11-5555-9999"
+        backup_protein: "HalalExpress KL +60-12-5555-8888"
+      Singapore:
+        backup_general: "FoodServe SG +65-8555-9999"
+
+  - sop_id: SOP-PROC-004
+    title: Halal Procurement Compliance
+    applies_to: [halal_events]
+    requirements:
+      - All proteins sourced from suppliers with valid halal certification (JAKIM/MUIS/IDCP/MUI)
+      - Halal and non-halal items stored, transported, and prepared separately at all times
+      - Dedicated cutting boards, utensils, and prep surfaces for halal items
+      - Halal certification documents retained in event file
+      - Cleaning agents must be non-alcohol-based in halal prep areas
+    audit_trail:
+      - Supplier halal cert copy in event folder
+      - Delivery challan referencing halal cert number
+      - Kitchen prep checklist signed by Halal Kitchen Lead
+    escalation: >
+      Any suspected halal compliance breach must be reported immediately to
+      Halal Compliance Officer. Do not serve food pending investigation.
+
+  - sop_id: SOP-PROC-005
+    title: Committed Stock Management
+    applies_to: [all_events]
+    description: >
+      When a procurement plan is raised for an upcoming event, quantities
+      needed are marked as "committed" in the inventory system immediately
+      upon PO submission, not upon delivery.
+      This prevents double-booking of the same stock to two concurrent events.
+    rules:
+      - Committed stock must be subtracted from available stock in real-time queries
+      - Over-commitment alerts fire when committed + needed > on_hand + ordered
+      - Post-event: release any uncommitted leftover stock back to available pool
+
+  - sop_id: SOP-PROC-006
+    title: Price Volatility Risk Management
+    applies_to: [all_events]
+    volatile_items: [beef_kg, seafood_fish_kg, seafood_prawn_kg, chicken_kg_festive]
+    rules:
+      - Lock in volatile item prices at PO confirmation in writing
+      - For events >30 days away, request forward price guarantee from supplier
+      - If spot price rises >20% after PO, escalate to Operations Manager before reconfirming
+      - Buffer volatile items by an additional 5% on top of standard waste buffer
+
+  - sop_id: SOP-PROC-007
+    title: Vendor Performance Review Cycle
+    applies_to: [all_suppliers]
+    frequency: quarterly
+    review_criteria:
+      - "on_time_delivery_rate vs target (target: >=0.95)"
+      - "quality_pass_rate vs target (target: >=0.95)"
+      - "price_stability_score vs target (target: >=0.85)"
+      - incident count in period
+    outcomes:
+      - "Score >=0.90: Preferred Vendor status maintained"
+      - "Score 0.80-0.89: Performance Improvement Plan issued; 90-day review"
+      - "Score <0.80: Probationary status; alternatives sourced; blacklist consideration"
+    last_review: 2025-Q4

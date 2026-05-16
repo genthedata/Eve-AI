@@ -1,0 +1,137 @@
+---
+# SOP & Compliance Documents Knowledge Base
+# Food safety regulations, halal/kosher certification requirements,
+# alcohol licensing, and service standards. Covers SEA operating markets.
+
+regulations:
+  - reg_id: REG-001
+    framework: HACCP
+    full_name: Hazard Analysis and Critical Control Points
+    applies_to: [all_events, all_regions]
+    description: >
+      International food safety management system identifying physical, chemical,
+      and biological hazards during food production. Required for professional
+      catering operations.
+    critical_control_points:
+      - {ccp: 1, stage: raw_protein_storage,     hazard: bacterial_growth,        control: "Store at ≤4°C; use within 3 days"}
+      - {ccp: 2, stage: cooking,                  hazard: undercooking,            control: "Core temp ≥75°C for poultry; ≥70°C for beef"}
+      - {ccp: 3, stage: hot_holding,              hazard: bacterial_growth,        control: "Maintain ≥60°C throughout service"}
+      - {ccp: 4, stage: cold_holding,             hazard: bacterial_growth,        control: "Maintain ≤4°C; discard if in danger zone >2h"}
+      - {ccp: 5, stage: reheating,                hazard: incomplete_reheat,       control: "Reheat to ≥75°C within 2 hours"}
+      - {ccp: 6, stage: cross_contamination,      hazard: allergen_or_pathogen,    control: "Dedicated cutting boards and utensils by food type/allergen"}
+    required_records: [temperature_logs, supplier_delivery_checks, cleaning_schedules, staff_training_certs]
+    review_frequency: annually
+
+  - reg_id: REG-002
+    framework: Local Health Code
+    applies_to: [Philippines]
+    authority: Food and Drug Administration Philippines (FDA) + local LGU
+    key_requirements:
+      - All food handlers must hold a valid health certificate (renewed annually)
+      - Catering vehicles must have sanitary permit
+      - Food establishment (commissary kitchen) must have permit from LGU
+      - Street food / festival vendors require special permit from BFAD
+    health_certificate_renewal: annually
+    notes: LGU (city-level) requirements vary; check local ordinances for outdoor events.
+
+  - reg_id: REG-003
+    framework: Local Health Code
+    applies_to: [Malaysia]
+    authority: Ministry of Health Malaysia (KKM) — Food Safety and Quality Division
+    key_requirements:
+      - Food Handler's Certificate mandatory for all food handlers
+      - Food premises licence required for commissary kitchens
+      - Caterers operating without premises may need additional mobile catering permit
+      - Imported food must comply with Food Act 1983 labeling requirements
+    health_certificate_renewal: every_5_years
+    notes: EzFoodSafety is MOH Malaysia's digital compliance system.
+
+  - reg_id: REG-004
+    framework: Local Health Code
+    applies_to: [Singapore]
+    authority: Singapore Food Agency (SFA)
+    key_requirements:
+      - All food handlers must be certified (WSQ Food Hygiene course) and registered with SFA
+      - Food business licence required for catering operations
+      - Outdoor events require Temporary Food Stall Licence from SFA
+      - Temperature logs mandatory for buffet catering
+    health_certificate_renewal: every_5_years_wsq
+    notes: SFA inspections are unannounced for licensed caterers; records must be available at all times.
+
+  - reg_id: REG-005
+    framework: Halal Certification Requirements
+    applies_to: [halal_events, all_regions]
+    certification_bodies:
+      Malaysia: {body: JAKIM, renewal: biannual, scope: "Entire premises, supply chain, processes"}
+      Singapore: {body: MUIS, renewal: annual, scope: "Premises and supply chain"}
+      Philippines: {body: IDCP, renewal: annual, scope: "Products and handling"}
+      Indonesia: {body: MUI, renewal: biannual, scope: "Full halal assurance system"}
+    requirements:
+      - No pork or pork derivatives anywhere in supply chain
+      - No alcohol used in cooking or cleaning
+      - Meat must be slaughtered by a Muslim using correct takbir recitation
+      - Halal and non-halal food never prepared or stored together
+      - Dedicated halal cooking equipment — no shared utensils
+    audit_checklist:
+      - Valid halal cert displayed at venue
+      - Supplier halal certs on file for all protein purchases
+      - Staff briefed on halal zone procedures
+      - Cleaning agents must also be halal-compatible (no alcohol-based cleaners in prep areas)
+
+  - reg_id: REG-006
+    framework: Alcohol Licensing
+    applies_to: [events_with_alcohol_service]
+    by_region:
+      Singapore:
+        licence: Liquor Control Act — Liquor Licence
+        authority: Singapore Police Force (SPF)
+        application_lead_time_days: 14
+        types: [Retail_Liquor_Licence, Pub_Entertainment_Licence]
+        notes: "Different licences for different venues; event organizer typically holds licence"
+      Malaysia:
+        licence: Excise Act 1976 — Intoxicating Liquor Licence
+        authority: Royal Malaysian Customs Department
+        notes: "Restricted in Muslim-majority areas; not applicable at halal-certified events"
+      Philippines:
+        licence: Local Government Liquor Permit
+        authority: LGU / BFAD
+        notes: Required for public events; residential events vary by LGU rules
+    general_notes: >
+      Verify alcohol licensing 30 days before event. Serving alcohol at a halal-certified
+      event is a JAKIM/MUIS violation. Confirm event is either halal OR alcohol-served, not both.
+
+service_standards:
+  - standard_id: SVC-001
+    title: Buffet Temperature Management
+    requirement: >
+      Hot food held at ≥60°C. Cold food held at ≤4°C. No food to remain in
+      temperature danger zone (4°C–60°C) for more than 2 hours total.
+    action_on_breach: "Discard food. Do not serve. Document in incident log."
+
+  - standard_id: SVC-002
+    title: Allergen Communication
+    requirement: >
+      All buffet stations must have allergen cards indicating presence of:
+      peanuts, tree nuts, shellfish, fish, eggs, dairy, wheat/gluten, soy.
+      Use standardised icon cards (see brand kit).
+    action_on_breach: "Halt service at station until allergen card is placed."
+
+  - standard_id: SVC-003
+    title: Uniform and Hygiene Standards
+    requirement: >
+      All kitchen staff: clean white apron, hair net or cap, food-safe gloves when handling
+      ready-to-eat food. Service staff: ironed uniform, name badge.
+      No jewellery on food handlers. Nails short and clean. No nail polish.
+
+  - standard_id: SVC-004
+    title: Food Presentation Refresh
+    requirement: >
+      Buffet chafing dishes to be refreshed (new pan, new serving utensil, clean label)
+      every 2 hours. Do not top-up old food with new food in same pan.
+
+  - standard_id: SVC-005
+    title: Incident Reporting
+    requirement: >
+      Any food safety incident (foreign object, suspected contamination, guest illness)
+      must be reported to the Head Chef immediately and documented within 1 hour.
+      Client to be notified if health risk is confirmed.

@@ -1,0 +1,344 @@
+---
+# Venue & Location Profiles Knowledge Base
+# Physical dossier on every venue the business works at or is likely to work at.
+# Every constraint discovered in practice is written back here — this KB compounds in value.
+# The logistics agent uses this to prevent planning failures before they happen.
+
+venues:
+  # ── Malaysia ──────────────────────────────────────────────────────────────
+
+  - venue_id: VEN-MY-001
+    name: Dewan Serbaguna Putrajaya
+    city: Putrajaya
+    country: Malaysia
+    region: Klang Valley
+    gps: {lat: 2.9264, lng: 101.6964}
+    address: "Presint 14, Putrajaya 62050"
+    venue_manager: {name: Encik Razif, phone: "+60-3-8888-7001", email: "razif@dbput.gov.my"}
+    capacity_guests: 1200
+    indoor_outdoor: indoor
+    event_types_suitable: [malay_wedding, government_function, community_event, corporate]
+    halal_only_venue: true
+
+    access:
+      loading_dock: true
+      loading_dock_hours: "07:00–22:00 (prior notice required for before 08:00)"
+      loading_dock_clearance_m: 4.5
+      max_vehicle_height_m: 4.2
+      max_vehicle_weight_tonnes: 8
+      service_entrance: "North wing, Jalan P14/5"
+      service_lift: true
+      service_lift_dims_m: {w: 2.5, d: 3.0, h: 2.8}
+      service_lift_capacity_kg: 2000
+      stairs_only_backup: false
+      parking_staff_vehicles: 30
+      parking_notes: "Ample surface parking in Lot B. Free for event staff."
+
+    kitchen:
+      kitchen_available: true
+      kitchen_type: commercial_full
+      gas_available: true
+      electricity_amperage: 200A
+      power_outlet_locations: "12 outlets throughout hall; 4 in kitchen area"
+      water_points: 3
+      prep_space_sqm: 80
+      cold_storage: chest_freezer_on_site
+      dishwashing: industrial_on_site
+
+    setup:
+      earliest_access_time: "07:00"
+      setup_window_hours: 4
+      teardown_by: "midnight or within 3h of event close"
+      noise_curfew: "23:00"
+      outdoor_setup_allowed: false
+      flooring: marble_tiles
+
+    constraints:
+      equipment_restrictions: [halal_only_kitchen, no_pork_products]
+      venue_specific_rules:
+        - "All food must be halal-certified. Venue officer may inspect supplier certs."
+        - "No alcohol permitted on premises."
+      learned_constraints:
+        - "Loading bay gate guard requires event letter — bring physical copy on event day."
+        - "Aircon switches need venue staff — request control 2h before guest arrival."
+        - "Service lift unreliable on Fridays (heavy use). Plan 30-min buffer."
+    past_events_count: 6
+    notes: "Excellent for large Malay weddings. JAKIM halal status. Well-maintained facility."
+
+  - venue_id: VEN-MY-002
+    name: Dewan Banquet MBPJ (Petaling Jaya)
+    city: Petaling Jaya
+    country: Malaysia
+    region: Klang Valley
+    gps: {lat: 3.1073, lng: 101.6069}
+    address: "Jalan Yong Shook Lin, PJ 46050"
+    venue_manager: {name: Cik Nora, phone: "+60-3-7956-2222"}
+    capacity_guests: 500
+    indoor_outdoor: indoor
+    event_types_suitable: [malay_wedding, birthday, community_event, corporate_lunch]
+    halal_only_venue: false
+
+    access:
+      loading_dock: true
+      loading_dock_hours: "08:00–21:00"
+      loading_dock_clearance_m: 3.2
+      max_vehicle_height_m: 3.0
+      service_entrance: "Rear of building, off Jalan 51A/228"
+      service_lift: false
+      stairs_only_backup: true
+      stairs_notes: "One flight (14 steps) from service entrance to hall level. No ramp."
+      parking_staff_vehicles: 15
+      parking_notes: "Street parking or MBPJ Tower P2 (paid, MYR 2/hr)."
+
+    kitchen:
+      kitchen_available: true
+      kitchen_type: commercial_basic
+      gas_available: true
+      electricity_amperage: 100A
+      water_points: 2
+      prep_space_sqm: 40
+      cold_storage: none
+
+    setup:
+      earliest_access_time: "08:00"
+      setup_window_hours: 3
+      teardown_by: "22:00"
+      noise_curfew: "22:00"
+      outdoor_setup_allowed: false
+
+    constraints:
+      equipment_restrictions: []
+      learned_constraints:
+        - "No service lift — chafing dishes and equipment must be hand-carried up stairs. Assign 2 extra setup crew."
+        - "Electricity circuit limited to 100A — do not run more than 6 rice cookers simultaneously."
+        - "Cold storage not available — bring own ice boxes. Order 50kg ice for events with cold desserts."
+        - "Venue staff leaves at 21:00 sharp — coordinate teardown to complete before then."
+    past_events_count: 4
+
+  - venue_id: VEN-MY-003
+    name: Kelab Golf Tropicana (Outdoor Marquee)
+    city: Petaling Jaya
+    country: Malaysia
+    region: Klang Valley
+    gps: {lat: 3.1614, lng: 101.5817}
+    address: "Jalan Kelab Golf 13, PJ 47410"
+    venue_manager: {name: David Lim, phone: "+60-3-7804-8888"}
+    capacity_guests: 400
+    indoor_outdoor: outdoor_tent
+    event_types_suitable: [corporate_gala, birthday, product_launch, chinese_banquet]
+    halal_only_venue: false
+
+    access:
+      loading_dock: false
+      loading_dock_hours: "Anytime (drive-in to event lawn)"
+      vehicle_access_notes: "Service road via Golf Club rear gate. Max vehicle weight 5T (lawn protection)."
+      max_vehicle_weight_tonnes: 5
+      service_lift: false
+      parking_staff_vehicles: 50
+      parking_notes: "Golf club carpark. Guest valet available."
+
+    kitchen:
+      kitchen_available: false
+      kitchen_type: none
+      gas_available: false
+      electricity_amperage: 30A_from_clubhouse
+      power_notes: "30A from clubhouse — use generator for cooking equipment."
+      water_points: 1
+      prep_space_sqm: 0
+      cold_storage: none
+
+    setup:
+      earliest_access_time: "06:00"
+      setup_window_hours: 6
+      teardown_by: "01:00 (next day)"
+      noise_curfew: "00:00"
+      outdoor_setup_allowed: true
+      weather_contingency: true
+      weather_contingency_notes: "Event marquee provided — rain not an issue. Strong wind possible at night."
+
+    constraints:
+      equipment_restrictions: [generator_mandatory, no_open_cooking_under_marquee, all_cooking_external]
+      learned_constraints:
+        - "Generator mandatory — club 30A supply insufficient for cooking. Rent 20kVA generator."
+        - "All cooking must be done in external prep area behind marquee. No live stations inside tent."
+        - "Golf lawn protection: max 5T vehicle weight. Heavy lorry cannot enter lawn — park at perimeter and hand-carry."
+        - "Wind at night makes candle flames impractical. Use battery LED centrepieces."
+        - "Setup team needs torch lights for early morning pre-dawn setup."
+    past_events_count: 3
+
+  - venue_id: VEN-MY-004
+    name: Menara KL (Revolving Restaurant Level)
+    city: Kuala Lumpur
+    country: Malaysia
+    region: KL City Centre
+    gps: {lat: 3.1539, lng: 101.7031}
+    address: "Jalan Puncak, Off Jalan P Ramlee, KL 50250"
+    venue_manager: {name: Azlida Bt Hassan, phone: "+60-3-2020-5458"}
+    capacity_guests: 200
+    indoor_outdoor: indoor
+    event_types_suitable: [corporate_gala, product_launch, birthday]
+    halal_only_venue: true
+
+    access:
+      loading_dock: false
+      loading_dock_hours: "Service entry via Observatory Level (ticketed)"
+      vehicle_access_notes: "No direct vehicle access. All equipment must be transported via public/tourist lifts."
+      service_lift: true
+      service_lift_dims_m: {w: 1.5, d: 2.0, h: 2.3}
+      service_lift_capacity_kg: 800
+      lift_booking_required: true
+      lift_booking_notes: "Lift access for catering requires advance booking with venue ops. Max 3 trips pre-event."
+      parking_staff_vehicles: 0
+      parking_notes: "No staff parking. Use Jalan Ampang public carpark or taxis."
+
+    kitchen:
+      kitchen_available: true
+      kitchen_type: restaurant_kitchen_shared
+      gas_available: true
+      electricity_amperage: 80A
+      prep_space_sqm: 25
+      cold_storage: restaurant_fridge_shared
+
+    setup:
+      earliest_access_time: "10:00"
+      setup_window_hours: 2
+      teardown_by: "midnight"
+      noise_curfew: "23:00"
+      outdoor_setup_allowed: false
+
+    constraints:
+      equipment_restrictions: [no_large_equipment_no_vehicle_access, lift_size_limits_item_dimensions]
+      learned_constraints:
+        - "CRITICAL: No vehicle access. Maximum item size constrained by service lift (1.5m × 2.0m). Cannot bring large tables or chafing dish stands — use venue's existing furniture."
+        - "Max 3 lift trips pre-event — consolidate equipment tightly. Do NOT bring excess items."
+        - "Revolving floor: staff must brief guests to walk in one direction only."
+        - "No halal concern — venue is halal certified."
+    past_events_count: 1
+
+  # ── Philippines ────────────────────────────────────────────────────────────
+
+  - venue_id: VEN-PH-001
+    name: SM Mall of Asia Arena Concourse
+    city: Pasay
+    country: Philippines
+    region: Metro Manila
+    gps: {lat: 14.5314, lng: 120.9817}
+    address: "Seaside Blvd, Mall of Asia Complex, Pasay 1300"
+    venue_manager: {name: Maria Santos, phone: "+63-2-8556-8080 ext 201"}
+    capacity_guests: 1500
+    indoor_outdoor: semi_outdoor_concourse
+    event_types_suitable: [festival, corporate_gala, product_launch, birthday]
+    halal_only_venue: false
+
+    access:
+      loading_dock: true
+      loading_dock_hours: "06:00–22:00 (overnight by special arrangement)"
+      loading_dock_clearance_m: 5.0
+      max_vehicle_height_m: 4.5
+      max_vehicle_weight_tonnes: 15
+      service_entrance: "MOA Arena loading dock, Gate 8"
+      service_lift: true
+      service_lift_dims_m: {w: 3.0, d: 4.0, h: 3.5}
+      service_lift_capacity_kg: 5000
+      parking_staff_vehicles: 200
+      parking_notes: "MOA mall parking — validated for event staff."
+
+    kitchen:
+      kitchen_available: false
+      kitchen_type: none
+      gas_available: false
+      electricity_amperage: 400A
+      power_notes: "Extensive power infrastructure. Coordinate load with MOA operations team."
+      water_points: 6
+      prep_space_sqm: 0
+
+    setup:
+      earliest_access_time: "06:00"
+      setup_window_hours: 8
+      teardown_by: "03:00 (next day)"
+      noise_curfew: "00:00"
+      outdoor_setup_allowed: true
+
+    constraints:
+      equipment_restrictions: [all_cooking_via_portable_equipment, halal_station_possible_with_cert]
+      learned_constraints:
+        - "All cooking must be portable. Bring full complement of wok burners, hot boxes, and generators."
+        - "Bay winds from Manila Bay can be strong — tent covers mandatory for all food stations."
+        - "Security checkpoint at Gate 8 — provide staff list 48h before event to SM security."
+        - "Traffic to MOA from Makati peaks 4–6pm — deliveries must arrive by 3pm or after 7pm."
+    past_events_count: 2
+
+  - venue_id: VEN-PH-002
+    name: Rockwell Tent, Makati
+    city: Makati
+    country: Philippines
+    region: Metro Manila
+    gps: {lat: 14.5653, lng: 121.0060}
+    address: "Estrella St, Rockwell Center, Makati 1200"
+    venue_manager: {name: Carlo Reyes, phone: "+63-2-8898-8000"}
+    capacity_guests: 800
+    indoor_outdoor: semi_outdoor_tent
+    event_types_suitable: [wedding, corporate_gala, birthday, product_launch]
+    halal_only_venue: false
+
+    access:
+      loading_dock: true
+      loading_dock_hours: "07:00–23:00"
+      loading_dock_clearance_m: 3.5
+      max_vehicle_height_m: 3.2
+      max_vehicle_weight_tonnes: 5
+      service_entrance: "Estrella St service road"
+      service_lift: false
+      parking_staff_vehicles: 20
+      parking_notes: "Rockwell mall carpark — 3h validation for guests. Staff use street parking (Estrella St)."
+
+    kitchen:
+      kitchen_available: false
+      kitchen_type: none
+      gas_available: false
+      electricity_amperage: 90A_from_6_pillar_outlets
+      power_notes: "6 pillar outlets at 15A each. Generator required for cooking equipment."
+      water_points: 1
+      prep_space_sqm: 0
+
+    setup:
+      earliest_access_time: "07:00"
+      setup_window_hours: 5
+      teardown_by: "01:00 (next day, all structures removed)"
+      noise_curfew: "22:00"
+      outdoor_setup_allowed: false
+
+    constraints:
+      equipment_restrictions: [all_cooking_outside_tent, no_deep_fryers_inside, generator_required]
+      venue_specific_rules:
+        - "Certificate of insurance required from caterer — submit 14 days before event."
+        - "All structures must be removable within 2h of event close."
+      learned_constraints:
+        - "Setup tent for cooking equipment OUTSIDE the main tent, on the loading dock area."
+        - "Rockwell estate security is strict — vehicle list required 48h before."
+        - "Concrete floor — no staking, use ballast weights for any standing structures."
+        - "Noise curfew 22:00 is enforced. All amplification must stop by 21:45."
+    past_events_count: 3
+
+general_venue_checklist:
+  pre_event_site_visit_required_if: [first_time_at_venue, venue_reported_changes, outdoor_event]
+  site_visit_checklist:
+    - Confirm loading dock dimensions and vehicle height restriction
+    - Walk service corridor from loading point to buffet/service area — time the walk
+    - Count steps/flights if no service lift
+    - Locate all power outlets and confirm amperage
+    - Test water pressure at kitchen/prep area
+    - Locate venue manager on-site contact
+    - Check ceiling height for any overhead equipment or live stations
+    - Confirm setup access time (when can staff enter?)
+    - Identify noise/curfew restrictions
+    - Photograph any permanent fixtures that could interfere with setup
+    - Ask about past catering events — what went wrong?
+
+  day_of_setup:
+    - Bring physical copy of event letter and venue booking confirmation
+    - Arrive at least 4h before service for venues with on-site kitchen
+    - Arrive at least 5h before for venues without kitchen (prep tent setup needed)
+    - Label ALL equipment with company name for post-event recovery
+    - Assign 1 staff member as "venue liaison" — knows all venue constraints
+    - Station staff at each buffet position 30min before first guest arrives

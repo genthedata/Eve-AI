@@ -1,0 +1,199 @@
+---
+# Discount & Promotion Rules Knowledge Base
+# Structured rules for when and how to deviate from standard pricing.
+# The agent applies these consistently — no ad-hoc negotiation below these rules.
+# Also enforces hard margin floors: the agent never discounts below the floor.
+
+# ── Hard margin floors (enforced before any discount) ─────────────────────
+margin_floors:
+  absolute_floor_pct: 10.0
+  recommended_floor_pct: 15.0
+  senior_approval_required_below_pct: 12.0
+  notes: >
+    Never quote below 10% gross margin — below this point the event destroys value
+    and creates operational risk. Between 10–12%: requires senior sign-off.
+    Standard target: 18–25% gross margin depending on event type.
+
+# ── Loyalty discounts ─────────────────────────────────────────────────────
+loyalty_discounts:
+  - rule_id: DISC-LOY-001
+    name: Repeat Client Discount (2nd booking)
+    trigger: client booking count >= 2
+    discount_pct: 3
+    applies_to: [base_menu_price]
+    stackable_with: [DISC-VOL, DISC-EARLY]
+    not_stackable_with: [DISC-LOY-002, DISC-LOY-003]
+    max_combined_discount_pct: 10
+    notes: 3% off base menu price from second booking onwards.
+
+  - rule_id: DISC-LOY-002
+    name: Loyal Client Discount (3rd+ booking)
+    trigger: client booking count >= 3
+    discount_pct: 5
+    applies_to: [base_menu_price]
+    stackable_with: [DISC-VOL, DISC-EARLY]
+    not_stackable_with: [DISC-LOY-001, DISC-LOY-003]
+    max_combined_discount_pct: 12
+    notes: >
+      Standard loyalty tier. Applied automatically for clients with 3+ confirmed bookings.
+      Include a personal note from the director in the quote for clients at this tier.
+
+  - rule_id: DISC-LOY-003
+    name: VIP Platinum Client Discount
+    trigger: client vip_tier == platinum
+    discount_pct: 8
+    applies_to: [base_menu_price]
+    stackable_with: [DISC-EARLY]
+    not_stackable_with: [DISC-LOY-001, DISC-LOY-002, DISC-VOL]
+    max_combined_discount_pct: 12
+    notes: >
+      Reserved for platinum VIP clients only (CLT-002, CLT-005 and similar).
+      Requires director sign-off. Cannot be combined with volume discount — already priced
+      assuming full-service treatment.
+
+# ── Volume discounts ───────────────────────────────────────────────────────
+volume_discounts:
+  - rule_id: DISC-VOL-001
+    name: Large Guest Count Discount (200–399 pax)
+    trigger: guest_count >= 200 AND guest_count < 400
+    discount_pct: 3
+    applies_to: [food_cost_component]
+    reason: Bulk ingredient purchase savings pass-through.
+    stackable_with: [DISC-LOY-001, DISC-LOY-002, DISC-EARLY]
+
+  - rule_id: DISC-VOL-002
+    name: Large Guest Count Discount (400–699 pax)
+    trigger: guest_count >= 400 AND guest_count < 700
+    discount_pct: 5
+    applies_to: [food_cost_component]
+    reason: Significant bulk purchase and operational efficiency gains above 400 pax.
+    stackable_with: [DISC-LOY-001, DISC-LOY-002, DISC-EARLY]
+    notes: Verify supplier can commit bulk volume before applying.
+
+  - rule_id: DISC-VOL-003
+    name: Very Large Event Discount (700+ pax)
+    trigger: guest_count >= 700
+    discount_pct: 7
+    applies_to: [food_cost_component]
+    requires_approval: true
+    stackable_with: [DISC-LOY-001, DISC-LOY-002]
+    notes: >
+      Negotiate directly with supplier for bulk pricing before confirming discount.
+      Requires operations director sign-off.
+
+# ── Package bundling incentives ────────────────────────────────────────────
+package_incentives:
+  - rule_id: DISC-PKG-001
+    name: Live Station Add-on Incentive
+    trigger: customer adds >= 1 live station to base buffet package
+    incentive_type: discount_on_base
+    discount_pct: 3
+    applies_to: [base_menu_price]
+    reason: Live stations increase total event value; small base discount encourages upsell.
+    notes: >
+      Present as: "Add a satay live station and receive 3% off your base buffet price."
+      Effective for pushing hesitant clients toward premium add-on.
+
+  - rule_id: DISC-PKG-002
+    name: Dessert Table Add-on Incentive
+    trigger: customer adds dedicated dessert table (>= 5 dessert items)
+    incentive_type: discount_on_base
+    discount_pct: 2
+    applies_to: [base_menu_price]
+    notes: Positions dessert table as value-add rather than cost.
+
+  - rule_id: DISC-PKG-003
+    name: Full-Day Multi-Session Booking
+    trigger: same client books two sessions (lunch + dinner) on same date
+    incentive_type: flat_discount
+    discount_flat_myr: 1200
+    discount_flat_php: 21000
+    reason: Single setup, single transport run — significant ops cost saving.
+    notes: Saves 1 full vehicle trip and setup crew call. Pass most savings to client.
+
+# ── Off-peak / weekday promotions ─────────────────────────────────────────
+off_peak_promotions:
+  - rule_id: DISC-OFFPEAK-001
+    name: Weekday Event Discount
+    trigger: event_day in [Monday, Tuesday, Wednesday, Thursday]
+    discount_pct: 5
+    applies_to: [overhead_labour_component]
+    reason: Staff availability better on weekdays; reduced overtime risk.
+    notes: >
+      Proactively offer when client is flexible on date.
+      "Move your event to Thursday and save 5% on service costs."
+
+  - rule_id: DISC-OFFPEAK-002
+    name: Low-Season Month Promotion (February, August)
+    trigger: event_month in [February, August]
+    discount_pct: 4
+    applies_to: [base_menu_price]
+    reason: Low booking periods — better to win at lower margin than leave kitchen idle.
+    notes: >
+      February: post-CNY slump. August: between Eid and year-end corporate season.
+      Advertise proactively in January and July.
+
+  - rule_id: DISC-OFFPEAK-003
+    name: Last-Minute Slot Availability
+    trigger: event_date within 7 days AND slot_available
+    incentive_type: discount_or_upgrade
+    discount_pct: 8
+    applies_to: [base_menu_price]
+    or_upgrade: "Add one complimentary dessert item or welcome drink"
+    notes: >
+      When a slot opens last-minute, offer this to fill capacity.
+      Check with operations first — 7-day lead may strain procurement.
+
+# ── Referral credits ──────────────────────────────────────────────────────
+referral_credits:
+  - rule_id: DISC-REF-001
+    name: Client Referral Credit
+    trigger: new client booked via referral from existing client
+    credit_type: monetary_credit
+    credit_amount_myr: 200
+    credit_amount_php: 3500
+    applies_to: referring_client_next_invoice
+    notes: >
+      Credit applied to referring client's next event invoice.
+      Communicate credit to referrer immediately upon new client booking confirmation.
+      Maximum 1 referral credit per calendar quarter per referring client.
+
+# ── Early booking discounts ───────────────────────────────────────────────
+early_booking_discounts:
+  - rule_id: DISC-EARLY-001
+    name: Early Booking Discount (90+ days)
+    trigger: booking_confirmed >= 90 days before event date
+    discount_pct: 4
+    applies_to: [base_menu_price]
+    reason: Advance booking allows better procurement planning and price locking.
+    notes: Proactively offer this to hesitant prospects who are 3+ months from their event date.
+
+  - rule_id: DISC-EARLY-002
+    name: Early Booking Discount (60–89 days)
+    trigger: booking_confirmed BETWEEN 60 AND 89 days before event date
+    discount_pct: 2
+    applies_to: [base_menu_price]
+    notes: Smaller incentive; still helps procurement planning.
+
+# ── Discount stacking rules ────────────────────────────────────────────────
+stacking_rules:
+  max_total_discount_pct: 15
+  priority_order: [DISC-LOY, DISC-VOL, DISC-PKG, DISC-OFFPEAK, DISC-EARLY, DISC-REF]
+  notes: >
+    Apply discounts in priority order until max 15% total discount reached.
+    Loyalty discounts always applied first. Volume and loyalty cannot stack above 12%.
+    Never apply more than 3 discount rules simultaneously.
+
+# ── Proactive promotion triggers ──────────────────────────────────────────
+proactive_suggestions:
+  - trigger: hesitant_prospect_price_sensitive
+    suggest: [DISC-EARLY-001, DISC-OFFPEAK-001]
+    message: "Lock in your date 3 months ahead for 4% off, or choose a weekday for an additional 5%."
+
+  - trigger: client_budget_below_standard_tier
+    suggest: [DISC-PKG-001]
+    message: "Adding a live satay station increases your guests' experience and gives 3% off your base menu."
+
+  - trigger: returning_client_second_booking
+    suggest: [DISC-LOY-001, DISC-EARLY-002]
+    message: "Welcome back! Your loyalty saves you 3% automatically. Book now for an extra 2% early-bird saving."

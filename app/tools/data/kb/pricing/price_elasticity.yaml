@@ -1,0 +1,261 @@
+---
+# Price Elasticity & Conversion Data
+# How price changes affect booking probability by event type and client segment.
+# Built from historical quote data — grows more accurate as data accumulates.
+# Purpose: forward-looking optimisation of the NEXT quote, not backward analysis.
+#
+# elasticity_coefficient: how much win rate drops per MYR of price increase.
+# Negative = win rate decreases as price increases (normal demand curve).
+
+# ── Price-to-win-rate curves by event type ────────────────────────────────
+conversion_curves:
+  - event_type: malay_wedding
+    region: Malaysia
+    currency: MYR
+    unit: per_head
+    data_points:
+      - {price: 60, win_rate_pct: 90, note: "Below market — almost guaranteed win, but under-margin"}
+      - {price: 65, win_rate_pct: 85}
+      - {price: 70, win_rate_pct: 80}
+      - {price: 75, win_rate_pct: 73}
+      - {price: 80, win_rate_pct: 64}
+      - {price: 85, win_rate_pct: 55}
+      - {price: 90, win_rate_pct: 42}
+      - {price: 95, win_rate_pct: 30}
+      - {price: 100, win_rate_pct: 18}
+    elasticity_coefficient: -2.8
+    sweet_spot_myr: 75
+    sweet_spot_rationale: >
+      At MYR 75/head, win rate is 73% and margin is 20%. Expected revenue
+      per bid = 0.73 × quote_total. At MYR 65 (85% win), margin is ~12% —
+      for a 350-pax event: EV(75) > EV(65) in most scenarios.
+    notes: >
+      Price sensitivity high below MYR 80. Clients at this tier are cost-conscious
+      and frequently get multiple quotes. Above MYR 90 requires strong value story.
+
+  - event_type: corporate_lunch
+    region: Malaysia
+    currency: MYR
+    unit: per_head
+    data_points:
+      - {price: 35, win_rate_pct: 90}
+      - {price: 40, win_rate_pct: 82}
+      - {price: 45, win_rate_pct: 72}
+      - {price: 50, win_rate_pct: 60}
+      - {price: 55, win_rate_pct: 48}
+      - {price: 60, win_rate_pct: 35}
+      - {price: 65, win_rate_pct: 22}
+      - {price: 70, win_rate_pct: 12}
+    elasticity_coefficient: -4.5
+    sweet_spot_myr: 45
+    sweet_spot_rationale: >
+      Most elastic segment — corporate procurement teams compare actively.
+      MYR 45/head: 72% win rate, ~13% margin. At MYR 40: 82% win, ~8% margin
+      (below recommended floor). Optimal: quote MYR 45 with halal cert value story.
+    notes: >
+      Highly competitive segment. Price sensitivity is the highest of any event type.
+      Halal certification and reliability are key differentiators, not price alone.
+      Never go below MYR 40/head — margin floor violated.
+
+  - event_type: corporate_gala_dinner
+    region: Malaysia
+    currency: MYR
+    unit: per_head
+    data_points:
+      - {price: 150, win_rate_pct: 82}
+      - {price: 170, win_rate_pct: 75}
+      - {price: 180, win_rate_pct: 70}
+      - {price: 200, win_rate_pct: 62}
+      - {price: 220, win_rate_pct: 53}
+      - {price: 250, win_rate_pct: 40}
+      - {price: 270, win_rate_pct: 30}
+      - {price: 300, win_rate_pct: 18}
+    elasticity_coefficient: -2.1
+    sweet_spot_myr: 200
+    sweet_spot_rationale: >
+      Less elastic than weddings or corporate lunch — decision-makers less price-sensitive.
+      MYR 200/head: 62% win, ~35% margin. Expected value maximised here.
+      MYR 250: only 40% win but higher per-head revenue; EV crossover at ~180 pax.
+    notes: >
+      For large galas (200+ pax), push toward MYR 200–220. For small galas (<100 pax),
+      MYR 180 is more competitive. Hotel-bundled deals depress the market at MYR 220+.
+
+  - event_type: product_launch_cocktail
+    region: Malaysia
+    currency: MYR
+    unit: per_head
+    data_points:
+      - {price: 70, win_rate_pct: 90}
+      - {price: 80, win_rate_pct: 85}
+      - {price: 90, win_rate_pct: 78}
+      - {price: 100, win_rate_pct: 70}
+      - {price: 110, win_rate_pct: 58}
+      - {price: 120, win_rate_pct: 47}
+      - {price: 130, win_rate_pct: 36}
+      - {price: 150, win_rate_pct: 22}
+    elasticity_coefficient: -2.4
+    sweet_spot_myr: 90
+    sweet_spot_rationale: >
+      At MYR 90: 78% win, 33% margin. Strong expected value. 
+      Marketing budgets for product launches tend to be more flexible than wedding budgets.
+      Clients often have brand-driven reasons to pay for premium presentation.
+    notes: >
+      Best margin event type. Quote confidently at MYR 90+ and lead with creative menu story.
+      Price sensitivity kicks in sharply above MYR 120.
+
+  - event_type: wedding
+    region: Philippines
+    currency: PHP
+    unit: per_head
+    data_points:
+      - {price: 900, win_rate_pct: 88}
+      - {price: 1000, win_rate_pct: 82}
+      - {price: 1200, win_rate_pct: 74}
+      - {price: 1400, win_rate_pct: 65}
+      - {price: 1600, win_rate_pct: 55}
+      - {price: 1800, win_rate_pct: 42}
+      - {price: 2000, win_rate_pct: 30}
+      - {price: 2500, win_rate_pct: 16}
+    elasticity_coefficient: -2.0
+    sweet_spot_php: 1400
+    sweet_spot_rationale: >
+      At PHP 1400: 65% win rate, ~18% margin. Solid expected value.
+      Above PHP 1800, competition from hotel packages dominates.
+    notes: >
+      Filipino weddings: lechon has strong perceived value — include explicitly in quote.
+      Lechon justifies PHP 150–200 per head premium in client perception.
+
+  - event_type: birthday_party
+    region: Philippines
+    currency: PHP
+    unit: per_head
+    data_points:
+      - {price: 600, win_rate_pct: 88}
+      - {price: 800, win_rate_pct: 80}
+      - {price: 1000, win_rate_pct: 70}
+      - {price: 1200, win_rate_pct: 58}
+      - {price: 1400, win_rate_pct: 42}
+      - {price: 1600, win_rate_pct: 28}
+    elasticity_coefficient: -2.6
+    sweet_spot_php: 1000
+    notes: >
+      Kids birthdays: PHP 600–800. Adult milestones (18th Debut, 50th, 60th): PHP 1000–1400.
+      Segment before quoting — age and occasion type matter.
+
+# ── Client segment elasticity profiles ───────────────────────────────────
+client_segment_profiles:
+  - segment_id: SEG-CORP-LARGE
+    label: "Large Corporate (enterprise, 200+ pax)"
+    price_sensitivity: low
+    primary_decision_criteria: [reliability, halal_cert, menu_diversity, professionalism]
+    typical_budget_flexibility_pct: 15
+    preferred_quote_style: detailed_cost_breakdown
+    notes: >
+      Procurement teams evaluate on RFQ criteria. Price is one factor; reliability and
+      certification are often weighted higher. Include case studies and references.
+
+  - segment_id: SEG-CORP-SME
+    label: "SME Corporate (50–200 pax)"
+    price_sensitivity: high
+    primary_decision_criteria: [price_per_head, convenience, halal_cert]
+    typical_budget_flexibility_pct: 8
+    preferred_quote_style: simple_per_head_total
+    notes: >
+      SME buyers are usually the owner or one admin — they decide fast on gut + price.
+      Keep quote simple: per-head price, total, what's included. Don't over-engineer.
+
+  - segment_id: SEG-MALAY-WEDDING
+    label: "Malay Wedding Client"
+    price_sensitivity: medium
+    primary_decision_criteria: [halal_cert, cultural_fit, rendang_quality, reputation]
+    typical_budget_flexibility_pct: 12
+    preferred_quote_style: package_with_named_dishes
+    notes: >
+      Family decision — often mother and bride together. Quality signals matter.
+      Emphasise halal cert, signature dishes, and event references.
+      Price flexible within 10–15% of family budget expectation.
+
+  - segment_id: SEG-INDIAN-WEDDING
+    label: "Indian Wedding Client"
+    price_sensitivity: low_to_medium
+    primary_decision_criteria: [cultural_authenticity, menu_breadth, service_quality]
+    typical_budget_flexibility_pct: 15
+    preferred_quote_style: package_with_cultural_details
+    notes: >
+      Indian wedding clients prioritise authentic banana leaf service and diverse menu.
+      Budget flexibility is higher than Malay weddings. Emphasise cultural expertise.
+
+  - segment_id: SEG-REPEAT-CLIENT
+    label: "Repeat / Loyalty Client"
+    price_sensitivity: very_low
+    primary_decision_criteria: [trust, relationship, convenience]
+    typical_budget_flexibility_pct: 20
+    preferred_quote_style: brief_summary_with_loyalty_note
+    notes: >
+      Repeat clients rarely shop around. Apply loyalty discount proactively without negotiation.
+      These clients are the most profitable over their lifetime value.
+
+# ── Expected value optimisation model ────────────────────────────────────
+ev_model:
+  description: >
+    Expected Value (EV) of a quote = win_rate × quote_total_revenue.
+    The optimal price maximises EV, not win rate or margin alone.
+    Use this model when two price options are close in EV to decide which to quote.
+  example:
+    event: "350-pax Malay wedding"
+    option_A:
+      price_per_head_myr: 70
+      win_rate_pct: 80
+      margin_pct: 15
+      total_quote_myr: 24500
+      ev_myr: 19600
+    option_B:
+      price_per_head_myr: 75
+      win_rate_pct: 73
+      margin_pct: 20
+      total_quote_myr: 26250
+      ev_myr: 19163
+    option_C:
+      price_per_head_myr: 80
+      win_rate_pct: 64
+      margin_pct: 24
+      total_quote_myr: 28000
+      ev_myr: 17920
+    recommendation: >
+      Option A has highest EV (MYR 19,600) but option B is close (MYR 19,163) with
+      5% higher margin. If pipeline is strong (many other bids), choose B for margin.
+      If pipeline is thin (need the win), choose A.
+  guidance:
+    - If EV difference < 5% between options, choose the higher-margin option.
+    - If pipeline utilisation < 70%, prioritise win rate (lower price).
+    - If pipeline utilisation > 90%, prioritise margin (higher price).
+
+# ── Seasonal demand adjustments ──────────────────────────────────────────
+seasonal_demand_multipliers:
+  - period: peak_wedding_season_MY
+    months: [June, July, November, December]
+    demand_multiplier: 1.4
+    pricing_implication: >
+      Peak demand — do NOT apply off-peak discounts. Can quote 5–8% above standard
+      during this window. Client urgency is higher; flexibility less needed.
+
+  - period: eid_corporate_slowdown
+    months: [March, April]
+    demand_multiplier: 0.7
+    pricing_implication: >
+      Corporate bookings slow during Eid. Proactively offer weekday discounts to fill.
+      Wedding demand very high — prioritise Malay wedding bids.
+
+  - period: chinese_new_year_slowdown
+    months: [January, February]
+    demand_multiplier: 0.65
+    pricing_implication: >
+      Post-CNY slump. Offer DISC-OFFPEAK-002 proactively.
+      Chinese banquet bookings for CNY itself are done 2–3 months ahead.
+
+  - period: year_end_corporate_surge
+    months: [October, November]
+    demand_multiplier: 1.5
+    pricing_implication: >
+      Highest demand period for corporate galas and year-end dinners.
+      Quote at standard or premium. No discounts unless for VIP loyalty clients.

@@ -1,0 +1,265 @@
+---
+# FAQ & Business Policies Knowledge Base
+# Contractual and operational rules the customer agent must quote accurately.
+# Getting these wrong creates legal and financial exposure.
+# Used by customer_agent to give precise, consistent answers to policy questions.
+
+deposit_and_payment:
+  - policy_id: POL-PAY-001
+    title: Booking Deposit
+    summary: "30% of total invoice required to confirm booking."
+    details:
+      deposit_pct: 30
+      due: Upon booking confirmation (within 3 business days of verbal agreement)
+      non_refundable: true
+      applies_to: All packages and bespoke quotes
+    faq_trigger: ["deposit", "booking fee", "how much to confirm", "down payment"]
+    exact_answer: >
+      We require a 30% deposit of the total estimated invoice to confirm your booking date.
+      This deposit is non-refundable if you cancel within 30 days of the event.
+      Payment must be received within 3 business days of your booking confirmation.
+
+  - policy_id: POL-PAY-002
+    title: Final Balance Payment
+    summary: "Remaining 70% due 7 days before event date."
+    details:
+      balance_pct: 70
+      due_days_before_event: 7
+      late_payment_fee: "2% per week on outstanding balance"
+    faq_trigger: ["final payment", "when do I pay the rest", "balance due"]
+    exact_answer: >
+      The remaining 70% of your invoice is due 7 days before the event.
+      If payment is not received by then, we reserve the right to place your event
+      on hold until payment clears. A 2% weekly late fee applies to overdue balances.
+
+  - policy_id: POL-PAY-003
+    title: Accepted Payment Methods
+    summary: Bank transfer, credit card, corporate invoice (NET-30 for registered companies).
+    details:
+      methods:
+        - Bank transfer (preferred; fastest confirmation)
+        - Credit card (Visa, Mastercard — 1.5% processing fee applies)
+        - Corporate invoice NET-30 (for registered companies with approved credit)
+        - Cash (in person only, for payments under MYR 5,000)
+      not_accepted:
+        - Personal cheques
+        - Cryptocurrency
+    faq_trigger: ["how to pay", "payment method", "can I pay by card", "can I pay cash"]
+    exact_answer: >
+      We accept bank transfer (preferred), credit/debit cards (Visa/Mastercard with
+      1.5% processing fee), and corporate invoicing NET-30 for registered businesses.
+      Cash is accepted in person for amounts under MYR 5,000.
+
+cancellation_policy:
+  - policy_id: POL-CANCEL-001
+    title: Cancellation Refund Schedule
+    summary: Refund amount depends on notice period before event date.
+    tiers:
+      - notice: "More than 60 days"
+        refund_pct: 100
+        notes: Full deposit refunded; no cancellation fee
+      - notice: "31 to 60 days"
+        refund_pct: 50
+        notes: 50% of deposit refunded
+      - notice: "15 to 30 days"
+        refund_pct: 0
+        notes: Deposit forfeited; no further charges if no other costs incurred
+      - notice: "8 to 14 days"
+        refund_pct: 0
+        penalty: 25
+        notes: Deposit forfeited; 25% of remaining invoice charged as penalty
+      - notice: "7 days or less"
+        refund_pct: 0
+        penalty: 50
+        notes: Deposit forfeited; 50% of full invoice charged as cancellation fee
+    faq_trigger: ["cancel", "cancellation", "refund", "what if I cancel", "change my mind"]
+    exact_answer: >
+      Our cancellation policy is based on notice period:
+      - 60+ days: Full deposit refunded.
+      - 31-60 days: 50% of deposit refunded.
+      - 15-30 days: Deposit forfeited; no further charge.
+      - 8-14 days: Deposit forfeited + 25% of invoice as penalty.
+      - 7 days or less: Deposit forfeited + 50% of invoice as cancellation fee.
+      All cancellations must be submitted in writing.
+
+headcount_and_changes:
+  - policy_id: POL-HEAD-001
+    title: Final Headcount Confirmation Deadline
+    summary: Final guest count must be confirmed 7 days before the event.
+    details:
+      deadline_days_before_event: 7
+      adjustment_allowed_after: "Up to 10% upward increase accepted up to T-3 days; subject to availability"
+      reduction_allowed: "Headcount reductions after T-7 do not reduce invoice"
+    faq_trigger: ["final headcount", "change guest count", "numbers", "pax final", "when do you need final numbers"]
+    exact_answer: >
+      We need your final confirmed headcount no later than 7 days before the event.
+      We can accommodate up to a 10% increase after that (subject to availability),
+      but we cannot reduce the invoice for headcount decreases after the 7-day deadline.
+
+  - policy_id: POL-HEAD-002
+    title: Significant Event Change Policy
+    summary: Changes to event scope after booking may require price re-quotation.
+    details:
+      triggers:
+        - Guest count change of more than 20%
+        - Change of venue
+        - Change of event type (e.g. buffet to plated)
+        - Change of date (if within 30 days of original date, treat as re-booking)
+      process: "Submit change request in writing; re-quotation issued within 48 hours"
+      rebooking_fee: "MYR 500 flat for date changes within 30 days of original date"
+    faq_trigger: ["change the date", "change venue", "significantly different event", "reschedule"]
+    exact_answer: >
+      Significant changes (20%+ headcount change, venue change, or event type change)
+      require a written change request. We'll re-quote within 48 hours. Date changes
+      within 30 days of the original booking carry a MYR 500 rebooking fee.
+
+dietary_liability:
+  - policy_id: POL-DIET-001
+    title: Late Dietary Declaration
+    summary: Dietary requirements declared after T-7 days may not be fully accommodated.
+    details:
+      declaration_deadline_days: 7
+      late_declaration_outcome:
+        - We will make best efforts to accommodate; not guaranteed
+        - Additional charges may apply for special procurement
+        - Business is not liable for dietary issues arising from late or incorrect declaration
+    faq_trigger: ["tell you last minute about diet", "allergies after booking", "dietary late notice"]
+    exact_answer: >
+      We strongly request all dietary requirements be declared at booking and
+      confirmed no later than 7 days before the event. Requirements declared
+      after this deadline will be accommodated on a best-efforts basis only.
+      The business cannot accept liability for dietary issues arising from
+      requirements declared after T-7 days or declared incorrectly.
+
+  - policy_id: POL-DIET-002
+    title: Allergen Liability Disclaimer
+    summary: Client is responsible for declaring all allergens accurately and completely.
+    details:
+      client_responsibility: >
+        The client must disclose all known allergens and dietary requirements
+        for all guests prior to T-7 days. The business relies entirely on
+        client disclosure and cannot be held liable for undisclosed allergies.
+      business_responsibility: >
+        The business undertakes to implement all disclosed allergen controls and
+        to communicate allergen information to kitchen team. Cross-contamination
+        risks are minimized but cannot be 100% eliminated in a shared kitchen environment.
+    faq_trigger: ["nut allergy liability", "who is responsible for allergies", "allergy disclaimer"]
+    exact_answer: >
+      The client is responsible for accurately disclosing all guest allergens.
+      We implement all disclosed controls but cannot guarantee zero cross-contamination
+      in a shared kitchen. For life-threatening allergies (peanuts, tree nuts, shellfish),
+      we strongly recommend a full kitchen audit and written confirmation from our team.
+
+force_majeure:
+  - policy_id: POL-FM-001
+    title: Force Majeure Events
+    summary: >
+      Neither party liable for non-performance due to events beyond reasonable control.
+    covered_events:
+      - Natural disasters (floods, earthquakes, typhoons)
+      - Government-imposed lockdowns or movement restrictions (e.g. MCO)
+      - Venue closure due to government order
+      - Pandemic-related service restrictions
+      - Major power outage affecting venue (>4 hours)
+    outcome:
+      for_client: >
+        Full deposit refunded. No cancellation penalty. Event may be rescheduled
+        without rebooking fee within 12 months.
+      for_business: >
+        No liability for non-performance costs beyond deposit refund.
+    faq_trigger: ["lockdown", "MCO", "flood", "disaster", "can't control", "force majeure", "pandemic"]
+    exact_answer: >
+      In the event of force majeure (natural disaster, government restriction, venue closure
+      outside your control), we will issue a full deposit refund or offer a no-fee reschedule
+      within 12 months. No further penalties apply to either party.
+
+service_scope:
+  - policy_id: POL-SVC-001
+    title: Service Window and Overtime
+    summary: "Standard service window is 3 hours; overtime charged per hour."
+    details:
+      standard_window_hours: 3
+      overtime_rate_myr_per_hour: 350
+      setup_time: "Included in package; typically 2-3h before event start"
+      teardown_time: "Included; typically 1h after service ends"
+    faq_trigger: ["how long", "service duration", "overtime", "extend service", "extra hours"]
+    exact_answer: >
+      All packages include a standard 3-hour service window plus setup and teardown.
+      If you need service extended beyond 3 hours, overtime is charged at MYR 350/hour
+      (or equivalent) billed in 1-hour increments.
+
+  - policy_id: POL-SVC-002
+    title: Minimum Guest Count
+    summary: Minimum 30 guests for any booking.
+    details:
+      absolute_minimum: 30
+      below_minimum_option: "Bespoke pricing on request; may carry fixed minimum spend"
+    faq_trigger: ["minimum guests", "small event", "just 20 people", "less than 30"]
+    exact_answer: >
+      Our minimum booking is 30 guests. For smaller events, we can discuss a
+      custom arrangement with a fixed minimum spend. Contact us directly for a quote.
+
+  - policy_id: POL-SVC-003
+    title: Venue Access and Kitchen Requirements
+    summary: Client must ensure venue has appropriate kitchen or prep area access.
+    details:
+      requirements:
+        - Minimum prep space: 20 sqm with power outlets
+        - Running water access required
+        - Venue must permit outside catering (confirm with venue)
+        - If no on-site kitchen: portable kitchen can be arranged at additional cost
+    faq_trigger: ["kitchen access", "can you cater at my venue", "no kitchen at venue"]
+    exact_answer: >
+      We require basic prep space (minimum 20 sqm, power and water access) at the venue.
+      Please confirm with your venue that outside catering is permitted. If your venue
+      has no kitchen, we can arrange a portable kitchen setup — please flag this
+      during booking so we can quote accordingly.
+
+  - policy_id: POL-SVC-004
+    title: Halal Certification Documentation
+    summary: We provide certification copies for all halal events on request.
+    details:
+      provided: Copy of halal supplier certificates for all proteins
+      on_request: Full halal compliance checklist signed by kitchen lead
+      timing: Documents available 3 days before event on request
+    faq_trigger: ["halal certificate", "halal doc", "prove halal", "halal compliance"]
+    exact_answer: >
+      For all halal events, we provide copies of our suppliers' halal certificates
+      upon request. We can also provide a signed halal compliance checklist from
+      our kitchen lead if required (e.g. for corporate compliance purposes).
+      Please request documentation at least 3 days before your event.
+
+frequently_asked:
+  - question: "Can we make changes to the menu after booking?"
+    answer: >
+      Yes, menu changes are accepted up to 7 days before the event at no charge.
+      Changes within 7 days are accommodated where possible but may carry
+      a procurement surcharge if specialty ingredients are required.
+
+  - question: "Do you provide halal catering by default?"
+    answer: >
+      Yes. All our standard packages are halal-certified by default.
+      We use JAKIM/MUIS/IDCP-certified suppliers. If your event is non-halal
+      (e.g. includes pork or alcohol), please declare this at booking.
+
+  - question: "Can you cater for events in other cities or countries?"
+    answer: >
+      We primarily operate in Malaysia, Singapore, and the Philippines.
+      Events in other locations are assessed case by case. Logistics surcharges apply.
+      Contact us with your event details for a feasibility check.
+
+  - question: "Do you cater for outdoor events?"
+    answer: >
+      Yes. Outdoor events require additional logistics planning — we will confirm
+      portable equipment, weather contingency, and generator needs during the quote process.
+
+  - question: "Can you supply the birthday cake?"
+    answer: >
+      We can source and supply birthday cakes through our partner bakeries.
+      Add this to your brief and we'll include it in the quote. Custom cakes
+      require 2 weeks lead time.
+
+  - question: "What if fewer guests than expected attend on the day?"
+    answer: >
+      The invoice is based on the confirmed headcount (T-7 days), not actual attendance.
+      We prepare for the confirmed number and cannot reduce charges on the day.

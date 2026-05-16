@@ -1,0 +1,811 @@
+---
+# Supplier Catalog & MOQ Knowledge Base
+# Extended supplier data: products, MOQs, lead times, cold chain, substitutions,
+# credit limits, and procurement categories.
+# Last updated: 2025-Q4
+
+suppliers:
+  - supplier_id: sup-001
+    name: FreshFarm SEA
+    region: Philippines
+    countries_served: [Philippines]
+    halal_certified: true
+    halal_cert_body: IDCP
+    reliability_score: 0.95
+    payment_terms: NET_30
+    credit_limit_php: 80000
+    contact: procurement@freshfarmsea.ph
+    emergency_contact: +63-917-555-0101
+    categories: [rice, vegetables, fruits, herbs]
+    cold_chain_capability: ambient_and_chilled
+    urgent_lead_time_hours: 6
+    products:
+      - sku: rice-jasmine-25kg
+        name: Jasmine Rice 25kg Sack
+        procurement_key: rice_kg
+        unit: sack
+        unit_kg: 25
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_php: 1350
+        price_per_kg_php: 54
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: veg-mixed-5kg
+        name: Mixed Vegetables 5kg Box
+        procurement_key: vegetables_kg
+        unit: box
+        unit_kg: 5
+        moq: 3
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_php: 300
+        price_per_kg_php: 60
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: fruit-assorted-5kg
+        name: Assorted Tropical Fruit 5kg
+        procurement_key: fruit_kg
+        unit: box
+        unit_kg: 5
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_php: 350
+        price_per_kg_php: 70
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: herb-lemongrass-1kg
+        name: Fresh Lemongrass 1kg
+        procurement_key: fresh_herbs_kg
+        unit: kg
+        unit_kg: 1
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 4
+        price_php: 80
+        price_per_kg_php: 80
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: herb-pandan-bunch
+        name: Pandan Leaves Bundle
+        procurement_key: fresh_herbs_kg
+        unit: bunch
+        unit_kg: 0.1
+        moq: 5
+        order_increment: 5
+        lead_days: 1
+        urgent_lead_hours: 4
+        price_php: 30
+        price_per_kg_php: 300
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: aromatics-garlic-1kg
+        name: Garlic Bulbs 1kg
+        procurement_key: aromatics_kg
+        unit: kg
+        unit_kg: 1
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 4
+        price_php: 120
+        price_per_kg_php: 120
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: mushrooms-button-1kg
+        name: Button Mushrooms 1kg
+        procurement_key: mushrooms_kg
+        unit: kg
+        unit_kg: 1
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_php: 200
+        price_per_kg_php: 200
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: eggs-tray-30pcs
+        name: Fresh Eggs 30pcs Tray
+        procurement_key: eggs_pcs
+        unit: tray
+        unit_kg: 30
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 4
+        price_php: 210
+        price_per_kg_php: 7
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+    substitution_map:
+      veg-mixed-5kg:
+        - {substitute_sku: veg-mixed-3kg-MY, supplier_id: sup-005, notes: Cross-border option if local runs short}
+      fruit-assorted-5kg:
+        - {substitute_sku: fruit-assorted-MY, supplier_id: sup-005, notes: Malaysian tropical fruits}
+    notes: >
+      Strong on local produce. No cold-chain for seafood or frozen proteins.
+      Reliable year-round except Aug–Oct highland disruption for vegetables.
+
+  - supplier_id: sup-002
+    name: MeatMaster PH
+    region: Philippines
+    countries_served: [Philippines]
+    halal_certified: true
+    halal_cert_body: IDCP
+    reliability_score: 0.90
+    payment_terms: NET_15
+    credit_limit_php: 150000
+    contact: orders@meatmasterph.com
+    emergency_contact: +63-918-555-0202
+    categories: [poultry, beef, pork, processed_meats]
+    cold_chain_capability: chilled_and_frozen
+    urgent_lead_time_hours: 18
+    products:
+      - sku: chk-thigh-5kg
+        name: Chicken Thighs (Halal) 5kg
+        procurement_key: chicken_kg
+        unit: pack
+        unit_kg: 5
+        moq: 4
+        order_increment: 2
+        lead_days: 2
+        urgent_lead_hours: 18
+        price_php: 900
+        price_per_kg_php: 180
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: chk-whole-1kg
+        name: Whole Chicken (Halal) 1kg avg
+        procurement_key: chicken_kg
+        unit: each
+        unit_kg: 1.1
+        moq: 10
+        order_increment: 5
+        lead_days: 2
+        urgent_lead_hours: 18
+        price_php: 176
+        price_per_kg_php: 160
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: beef-chuck-1kg
+        name: Beef Chuck 1kg
+        procurement_key: beef_kg
+        unit: kg
+        unit_kg: 1
+        moq: 10
+        order_increment: 5
+        lead_days: 2
+        urgent_lead_hours: 24
+        price_php: 380
+        price_per_kg_php: 380
+        cold_chain: chilled
+        price_updated: 2025-Q4
+        price_volatile: true
+
+      - sku: pork-belly-1kg
+        name: Pork Belly 1kg
+        procurement_key: pork_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 12
+        price_php: 250
+        price_per_kg_php: 250
+        cold_chain: chilled
+        halal: false
+        price_updated: 2025-Q4
+
+    substitution_map:
+      chk-thigh-5kg:
+        - {substitute_sku: chk-pieces-1kg, supplier_id: sup-006, notes: Malaysia/SG halal alternative}
+      beef-chuck-1kg:
+        - {substitute_sku: beef-chuck-1kg, supplier_id: sup-006, notes: JAKIM-certified alternative}
+    notes: >
+      Reliable but cold chain history has 1 incident. Always add 1-day buffer.
+      Beef prices volatile — lock in 30 days ahead for large events.
+      Book 72h ahead for events >200 pax.
+
+  - supplier_id: sup-003
+    name: OceanGate Seafood PH
+    region: Philippines
+    countries_served: [Philippines]
+    halal_certified: true
+    halal_cert_body: IDCP
+    reliability_score: 0.85
+    payment_terms: NET_7
+    credit_limit_php: 60000
+    contact: sales@oceangate.ph
+    emergency_contact: +63-919-555-0303
+    categories: [fish, shellfish, seafood]
+    cold_chain_capability: chilled_and_frozen
+    urgent_lead_time_hours: 36
+    products:
+      - sku: salmon-fillet-1kg
+        name: Atlantic Salmon Fillet 1kg
+        procurement_key: seafood_fish_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 1
+        lead_days: 3
+        urgent_lead_hours: 36
+        price_php: 750
+        price_per_kg_php: 750
+        cold_chain: chilled
+        price_volatile: true
+        price_updated: 2025-Q4
+        availability_notes: Confirm stock 5 days before event. Import-dependent.
+
+      - sku: prawn-tiger-1kg
+        name: Tiger Prawns 1kg
+        procurement_key: seafood_prawn_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 1
+        lead_days: 2
+        urgent_lead_hours: 24
+        price_php: 650
+        price_per_kg_php: 650
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: squid-1kg
+        name: Whole Squid 1kg
+        procurement_key: seafood_fish_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 1
+        lead_days: 2
+        urgent_lead_hours: 24
+        price_php: 350
+        price_per_kg_php: 350
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: bangus-whole-1kg
+        name: Bangus (Milkfish) Whole 1kg
+        procurement_key: seafood_fish_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 12
+        price_php: 180
+        price_per_kg_php: 180
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+    substitution_map:
+      salmon-fillet-1kg:
+        - {substitute_sku: bangus-whole-1kg, supplier_id: sup-003, notes: Local fish, similar texture for non-sashimi dishes}
+        - {substitute_sku: salmon-fillet-1kg, supplier_id: sup-007, notes: SeaHarvest SG frozen backup, 2-day SGD shipping}
+      prawn-tiger-1kg:
+        - {substitute_sku: prawn-medium-1kg, supplier_id: sup-003, notes: Medium prawns at 60% cost}
+    notes: >
+      Highest risk profile. Confirm salmon availability 5 days in advance.
+      Bangus is always the safe fallback for local Filipino events.
+
+  - supplier_id: sup-004
+    name: SpiceWorld Manila
+    region: Philippines
+    countries_served: [Philippines]
+    halal_certified: true
+    halal_cert_body: IDCP
+    reliability_score: 0.98
+    payment_terms: NET_30
+    credit_limit_php: 120000
+    contact: orders@spiceworld.com.ph
+    emergency_contact: +63-920-555-0404
+    categories: [spices, sauces, condiments, dry_goods, oils]
+    cold_chain_capability: ambient_only
+    urgent_lead_time_hours: 3
+    products:
+      - sku: oil-cooking-5l
+        name: Cooking Oil 5L
+        procurement_key: cooking_oil_l
+        unit: jug
+        unit_kg: 5
+        moq: 4
+        order_increment: 2
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 450
+        price_per_l_php: 90
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: sauce-soy-1l
+        name: Soy Sauce (Halal) 1L
+        procurement_key: soy_sauce_l
+        unit: btl
+        unit_kg: 1
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 80
+        price_per_l_php: 80
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: sauce-fish-700ml
+        name: Fish Sauce 700ml
+        procurement_key: fish_sauce_l
+        unit: btl
+        unit_kg: 0.7
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 60
+        price_per_l_php: 86
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: tomato-paste-200g
+        name: Tomato Paste 200g Tin
+        procurement_key: tomato_paste_kg
+        unit: tin
+        unit_kg: 0.2
+        moq: 12
+        order_increment: 12
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 35
+        price_per_kg_php: 175
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: tofu-firm-300g-ph
+        name: Firm Tofu 300g (IDCP)
+        procurement_key: tofu_kg
+        unit: pack
+        unit_kg: 0.3
+        moq: 10
+        order_increment: 5
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 45
+        price_per_kg_php: 150
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: worcestershire-250ml
+        name: Worcestershire Sauce 250ml
+        procurement_key: worcestershire_l
+        unit: btl
+        unit_kg: 0.25
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 95
+        price_per_l_php: 380
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: peanut-sauce-250g
+        name: Ready Peanut Sauce 250g
+        procurement_key: peanut_sauce_kg
+        unit: pack
+        unit_kg: 0.25
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 75
+        price_per_kg_php: 300
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: lentils-yellow-1kg
+        name: Yellow Split Lentils 1kg
+        procurement_key: lentils_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 90
+        price_per_kg_php: 90
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: spice-garam-masala
+        name: Garam Masala Blend 500g
+        procurement_key: spice_blend_pack
+        unit: pack
+        unit_kg: 0.5
+        moq: 2
+        order_increment: 1
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 150
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: vinegar-cane-1l
+        name: Cane Vinegar 1L
+        procurement_key: vinegar_l
+        unit: btl
+        unit_kg: 1
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 45
+        price_per_l_php: 45
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: coconut-milk-400ml-ph
+        name: Coconut Milk 400ml Can
+        procurement_key: coconut_milk_l
+        unit: can
+        unit_kg: 0.4
+        moq: 12
+        order_increment: 12
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 55
+        price_per_l_php: 137
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: broth-chicken-1l-ph
+        name: Chicken Stock 1L Tetrapak
+        procurement_key: broth_l
+        unit: box
+        unit_kg: 1
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 90
+        price_per_l_php: 90
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: broth-veg-1l-ph
+        name: Vegetable Stock 1L Tetrapak
+        procurement_key: broth_l
+        unit: box
+        unit_kg: 1
+        moq: 6
+        order_increment: 6
+        lead_days: 1
+        urgent_lead_hours: 3
+        price_php: 85
+        price_per_l_php: 85
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+    notes: Most reliable supplier. Same-day fulfilment for almost all dry goods.
+
+  - supplier_id: sup-005
+    name: GreenLeaf Produce MY
+    region: Malaysia
+    countries_served: [Malaysia, Singapore]
+    halal_certified: true
+    halal_cert_body: JAKIM
+    reliability_score: 0.92
+    payment_terms: NET_30
+    credit_limit_myr: 25000
+    contact: supply@greenleafmy.com
+    emergency_contact: +60-11-5555-0505
+    categories: [vegetables, fruits, herbs, tofu]
+    cold_chain_capability: ambient_and_chilled
+    urgent_lead_time_hours: 12
+    products:
+      - sku: rice-jasmine-10kg
+        name: Jasmine Rice 10kg
+        procurement_key: rice_kg
+        unit: bag
+        unit_kg: 10
+        moq: 5
+        order_increment: 2
+        lead_days: 1
+        urgent_lead_hours: 12
+        price_myr: 40
+        price_per_kg_myr: 4
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: veg-mixed-3kg
+        name: Mixed Vegetables 3kg
+        procurement_key: vegetables_kg
+        unit: box
+        unit_kg: 3
+        moq: 4
+        order_increment: 2
+        lead_days: 1
+        urgent_lead_hours: 12
+        price_myr: 15
+        price_per_kg_myr: 5
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: tofu-firm-500g
+        name: Firm Tofu 500g
+        procurement_key: tofu_kg
+        unit: pack
+        unit_kg: 0.5
+        moq: 10
+        order_increment: 5
+        lead_days: 1
+        urgent_lead_hours: 10
+        price_myr: 3
+        price_per_kg_myr: 6
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+    substitution_map:
+      veg-mixed-3kg:
+        - {substitute_sku: veg-mixed-2kg, supplier_id: sup-008, notes: Singapore alternative if MY disrupted}
+    notes: >
+      Nov–Dec Cameron Highlands monsoon risk. Stock up 2 weeks before.
+      JAKIM-certified; first choice for Malaysia and Singapore events.
+
+  - supplier_id: sup-006
+    name: HalalMeat Direct KL
+    region: Malaysia
+    countries_served: [Malaysia]
+    halal_certified: true
+    halal_cert_body: JAKIM
+    reliability_score: 0.91
+    payment_terms: NET_14
+    credit_limit_myr: 40000
+    contact: orders@halalmeatdirect.my
+    emergency_contact: +60-12-5555-0606
+    categories: [poultry, beef, lamb]
+    cold_chain_capability: chilled_and_frozen
+    urgent_lead_time_hours: 14
+    products:
+      - sku: chk-pieces-1kg
+        name: Chicken Pieces (JAKIM) 1kg
+        procurement_key: chicken_kg
+        unit: kg
+        unit_kg: 1
+        moq: 10
+        order_increment: 5
+        lead_days: 1
+        urgent_lead_hours: 14
+        price_myr: 9
+        price_per_kg_myr: 9
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: beef-chuck-1kg-jakim
+        name: Beef Chuck (JAKIM) 1kg
+        procurement_key: beef_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 5
+        lead_days: 2
+        urgent_lead_hours: 20
+        price_myr: 28
+        price_per_kg_myr: 28
+        cold_chain: chilled
+        price_volatile: true
+        price_updated: 2025-Q4
+
+      - sku: lamb-shoulder-1kg
+        name: Lamb Shoulder (JAKIM) 1kg
+        procurement_key: beef_kg
+        unit: kg
+        unit_kg: 1
+        moq: 5
+        order_increment: 5
+        lead_days: 3
+        urgent_lead_hours: 48
+        price_myr: 38
+        price_per_kg_myr: 38
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+    substitution_map:
+      beef-chuck-1kg-jakim:
+        - {substitute_sku: beef-chuck-1kg, supplier_id: sup-002, notes: Philippines alternative if MY supply tight}
+    notes: Lamb and beef need 72h advance booking during Eid. Chicken year-round.
+
+  - supplier_id: sup-007
+    name: SeaHarvest SG
+    region: Singapore
+    countries_served: [Singapore, Malaysia]
+    halal_certified: true
+    halal_cert_body: MUIS
+    reliability_score: 0.93
+    payment_terms: NET_21
+    credit_limit_sgd: 15000
+    contact: sales@seaharvestsg.com
+    emergency_contact: +65-8555-0707
+    categories: [fish, shellfish, seafood]
+    cold_chain_capability: chilled_and_frozen
+    urgent_lead_time_hours: 8
+    products:
+      - sku: salmon-fillet-1kg-sg
+        name: Salmon Fillet 1kg
+        procurement_key: seafood_fish_kg
+        unit: kg
+        unit_kg: 1
+        moq: 3
+        order_increment: 1
+        lead_days: 2
+        urgent_lead_hours: 8
+        price_sgd: 42
+        price_per_kg_sgd: 42
+        cold_chain: chilled
+        price_volatile: true
+        price_updated: 2025-Q4
+
+      - sku: prawn-tiger-1kg-sg
+        name: Tiger Prawns 1kg
+        procurement_key: seafood_prawn_kg
+        unit: kg
+        unit_kg: 1
+        moq: 3
+        order_increment: 1
+        lead_days: 2
+        urgent_lead_hours: 8
+        price_sgd: 38
+        price_per_kg_sgd: 38
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+    substitution_map:
+      salmon-fillet-1kg-sg:
+        - {substitute_sku: salmon-fillet-1kg, supplier_id: sup-003, notes: PH alternative for non-SG events}
+    notes: Best quality in SG market. Frozen backup stock available for last-minute orders.
+
+  - supplier_id: sup-008
+    name: PrimeProduce SG
+    region: Singapore
+    countries_served: [Singapore]
+    halal_certified: true
+    halal_cert_body: MUIS
+    reliability_score: 0.96
+    payment_terms: NET_30
+    credit_limit_sgd: 20000
+    contact: supply@primeproduce.sg
+    emergency_contact: +65-8555-0808
+    categories: [vegetables, fruits, rice, tofu, dairy_alternatives, condiments]
+    cold_chain_capability: ambient_and_chilled
+    urgent_lead_time_hours: 6
+    products:
+      - sku: rice-jasmine-5kg-sg
+        name: Thai Jasmine Rice 5kg
+        procurement_key: rice_kg
+        unit: bag
+        unit_kg: 5
+        moq: 4
+        order_increment: 2
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_sgd: 12
+        price_per_kg_sgd: 2.4
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: veg-mixed-2kg-sg
+        name: Mixed Veg 2kg
+        procurement_key: vegetables_kg
+        unit: box
+        unit_kg: 2
+        moq: 5
+        order_increment: 2
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_sgd: 8
+        price_per_kg_sgd: 4
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+      - sku: coconut-milk-1l-sg
+        name: Coconut Milk 1L
+        procurement_key: coconut_milk_l
+        unit: can
+        unit_kg: 1
+        moq: 12
+        order_increment: 12
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_sgd: 3
+        price_per_l_sgd: 3
+        cold_chain: ambient
+        price_updated: 2025-Q4
+
+      - sku: tofu-firm-300g-sg
+        name: Firm Tofu 300g
+        procurement_key: tofu_kg
+        unit: pack
+        unit_kg: 0.3
+        moq: 10
+        order_increment: 5
+        lead_days: 1
+        urgent_lead_hours: 6
+        price_sgd: 1.5
+        price_per_kg_sgd: 5
+        cold_chain: chilled
+        price_updated: 2025-Q4
+
+    notes: Singapore's most reliable all-round produce. Zero incidents to date.
+
+# ── Cross-supplier global substitution index ──────────────────────────────
+# Flat lookup: if primary item unavailable, try these alternatives in order.
+global_substitution_index:
+  chicken_kg:
+    - {procurement_key: chicken_kg, supplier_id: sup-002, priority: 1}
+    - {procurement_key: chicken_kg, supplier_id: sup-006, priority: 2}
+  beef_kg:
+    - {procurement_key: beef_kg, supplier_id: sup-002, priority: 1}
+    - {procurement_key: beef_kg, supplier_id: sup-006, priority: 2}
+  seafood_fish_kg:
+    - {procurement_key: seafood_fish_kg, supplier_id: sup-003, priority: 1}
+    - {procurement_key: seafood_fish_kg, supplier_id: sup-007, priority: 2, notes: Premium SG option}
+  rice_kg:
+    - {procurement_key: rice_kg, supplier_id: sup-001, priority: 1}
+    - {procurement_key: rice_kg, supplier_id: sup-005, priority: 2}
+    - {procurement_key: rice_kg, supplier_id: sup-008, priority: 3}
+  vegetables_kg:
+    - {procurement_key: vegetables_kg, supplier_id: sup-001, priority: 1}
+    - {procurement_key: vegetables_kg, supplier_id: sup-005, priority: 2}
+    - {procurement_key: vegetables_kg, supplier_id: sup-008, priority: 3}
+  coconut_milk_l:
+    - {procurement_key: coconut_milk_l, supplier_id: sup-008, priority: 1}
+  spice_blend_pack:
+    - {procurement_key: spice_blend_pack, supplier_id: sup-004, priority: 1}
+  cooking_oil_l:
+    - {procurement_key: cooking_oil_l, supplier_id: sup-004, priority: 1}
+
+procurement_rules:
+  - rule: Lead time buffer
+    description: Always add 1 business day to stated lead time for contingency.
+
+  - rule: Minimum spend consolidation
+    description: >
+      For events with food cost under MYR 5,000 / PHP 50,000 / SGD 2,000,
+      consolidate orders to a single primary supplier to meet MOQ thresholds.
+
+  - rule: Substitution approval
+    description: >
+      Substitutions to proteins or allergen items require client sign-off
+      at least 48h before event. Document in contract amendment.
+
+  - rule: Cold chain
+    description: >
+      Chilled items must arrive at <=4C. Reject any delivery above 7C.
+      Seafood must arrive max 2h before prep start. No overnight unrefrigerated storage.
+
+  - rule: Credit limit
+    description: >
+      Do not raise a PO that would exceed the supplier's credit limit without
+      Operations Manager pre-approval.
+
+  - rule: Volatile price lock
+    description: >
+      For items flagged price_volatile: true, lock in supplier price at
+      PO confirmation. Do not accept post-confirmation price revisions.

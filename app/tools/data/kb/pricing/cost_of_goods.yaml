@@ -1,0 +1,489 @@
+---
+# Cost of Goods Database
+# Canonical price list for every ingredient used by the business.
+# Keys use procurement_key format (same as inventory/supplier_catalog.yaml and
+# inventory/ingredient_recipe_map.yaml) so the pricing agent can join directly
+# against recipe-level quantities to compute per-head food cost.
+#
+# Prices reflect Q4-2025 contracted supplier rates.
+# Drift alert threshold: ±12% from last_confirmed_price triggers re-quote flag.
+
+price_update_schedule: quarterly
+last_updated: "2025-Q4"
+drift_alert_threshold_pct: 12
+
+ingredients:
+
+  # ── Proteins — Poultry ────────────────────────────────────────────────────
+  - procurement_key: chicken_kg
+    name: Chicken (whole or portioned, chilled)
+    category: protein_poultry
+    unit: kg
+    price_per_kg_myr: 10.50
+    price_per_kg_php: 185.00
+    price_per_kg_sgd: 7.50
+    halal_variant_premium_pct: 5
+    last_confirmed_price_myr: 10.00
+    price_drift_pct: 5.0
+    seasonality: stable
+    seasonal_risk: low
+    festive_spike_pct: 15
+    festive_months: [December, March, April]
+    notes: >
+      Price spikes ~15% during Christmas and Eid periods.
+      Halal-certified bird adds 5%. Lock in for events in festive window.
+
+  - procurement_key: duck_kg
+    name: Duck (whole or portioned)
+    category: protein_poultry
+    unit: kg
+    price_per_kg_myr: 18.00
+    price_per_kg_php: 320.00
+    price_per_kg_sgd: 14.00
+    halal_variant_premium_pct: 8
+    last_confirmed_price_myr: 17.00
+    price_drift_pct: 5.9
+    seasonality: stable
+    seasonal_risk: low
+
+  # ── Proteins — Beef ───────────────────────────────────────────────────────
+  - procurement_key: beef_kg
+    name: Beef (chuck / braising cut)
+    category: protein_beef
+    unit: kg
+    price_per_kg_myr: 28.00
+    price_per_kg_php: 390.00
+    price_per_kg_sgd: 24.00
+    halal_variant_premium_pct: 8
+    last_confirmed_price_myr: 25.00
+    price_drift_pct: 12.0
+    seasonality: volatile
+    seasonal_risk: high
+    festive_spike_pct: 20
+    festive_months: [March, April, June, July]
+    notes: >
+      Highly volatile. Current drift at alert threshold (12%).
+      Lock in price 30 days ahead. Eid demand peaks March–April and June–July (Eid Adha).
+      Wagyu premium 3–4× standard cut.
+
+  - procurement_key: wagyu_beef_kg
+    name: Wagyu Beef (MB5+)
+    category: protein_beef_premium
+    unit: kg
+    price_per_kg_myr: 120.00
+    price_per_kg_php: 2200.00
+    price_per_kg_sgd: 95.00
+    halal_variant_premium_pct: 0
+    last_confirmed_price_myr: 118.00
+    price_drift_pct: 1.7
+    seasonality: stable
+    seasonal_risk: low
+    notes: Premium gala protein. Price relatively stable (import controlled).
+
+  # ── Proteins — Pork ───────────────────────────────────────────────────────
+  - procurement_key: pork_kg
+    name: Pork (belly, shoulder, or whole)
+    category: protein_pork
+    unit: kg
+    halal_compatible: false
+    price_per_kg_php: 250.00
+    last_confirmed_price_php: 240.00
+    price_drift_pct: 4.2
+    seasonality: moderate
+    seasonal_risk: low
+    festive_spike_pct: 20
+    festive_months: [December, January]
+    notes: "Non-halal only. Christmas season: 20% premium on whole pig (lechon)."
+
+  # ── Proteins — Seafood ────────────────────────────────────────────────────
+  - procurement_key: seafood_fish_kg
+    name: Fresh Fish (seabass / snapper / white fish)
+    category: protein_seafood
+    unit: kg
+    price_per_kg_myr: 28.00
+    price_per_kg_php: 480.00
+    price_per_kg_sgd: 20.00
+    last_confirmed_price_myr: 25.00
+    price_drift_pct: 12.0
+    seasonality: volatile
+    seasonal_risk: high
+    sw_monsoon_spike_pct: 25
+    ne_monsoon_spike_pct: 20
+    monsoon_months_MY: [November, December, January, February]
+    notes: >
+      Wild catch volatile during monsoon. Farmed seabass more stable (+10% over wild).
+      Price at alert threshold — flag quotes for December–January events.
+
+  - procurement_key: seafood_prawn_kg
+    name: Tiger Prawn / Large Prawn
+    category: protein_seafood
+    unit: kg
+    price_per_kg_myr: 48.00
+    price_per_kg_php: 650.00
+    price_per_kg_sgd: 38.00
+    last_confirmed_price_myr: 44.00
+    price_drift_pct: 9.1
+    seasonality: moderate
+    seasonal_risk: medium
+    festive_spike_pct: 20
+    festive_months: [January, February, March, April]
+    notes: CNY and Eid demand spikes. Farmed prawns more stable (5% lower).
+
+  - procurement_key: seafood_salmon_kg
+    name: Atlantic / Norwegian Salmon (fillet)
+    category: protein_seafood_imported
+    unit: kg
+    price_per_kg_myr: 55.00
+    price_per_kg_php: 760.00
+    price_per_kg_sgd: 42.00
+    last_confirmed_price_myr: 52.00
+    price_drift_pct: 5.8
+    seasonality: moderate
+    seasonal_risk: medium
+    notes: Import price; freight-sensitive. Use for premium plated events only.
+
+  # ── Proteins — Plant-based ────────────────────────────────────────────────
+  - procurement_key: tofu_kg
+    name: Firm Tofu
+    category: protein_plant
+    unit: kg
+    price_per_kg_myr: 5.00
+    price_per_kg_php: 80.00
+    price_per_kg_sgd: 4.00
+    last_confirmed_price_myr: 5.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: lentils_kg
+    name: Red / Yellow Lentils
+    category: protein_plant
+    unit: kg
+    price_per_kg_myr: 7.00
+    price_per_kg_php: 120.00
+    price_per_kg_sgd: 5.50
+    last_confirmed_price_myr: 6.50
+    price_drift_pct: 7.7
+    seasonality: stable
+    seasonal_risk: low
+
+  # ── Staples & Grains ──────────────────────────────────────────────────────
+  - procurement_key: rice_kg
+    name: Jasmine Rice (premium)
+    category: staple_grain
+    unit: kg
+    price_per_kg_myr: 4.00
+    price_per_kg_php: 55.00
+    price_per_kg_sgd: 2.50
+    last_confirmed_price_myr: 4.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+    notes: Thai premium adds 30%; broken rice (for bulk) 30% cheaper.
+
+  - procurement_key: noodles_kg
+    name: Rice / Egg Noodles
+    category: staple_noodle
+    unit: kg
+    price_per_kg_myr: 6.00
+    price_per_kg_php: 90.00
+    price_per_kg_sgd: 4.00
+    last_confirmed_price_myr: 6.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: flour_kg
+    name: Wheat Flour (all-purpose)
+    category: staple_grain
+    unit: kg
+    price_per_kg_myr: 2.50
+    price_per_kg_php: 45.00
+    price_per_kg_sgd: 2.00
+    last_confirmed_price_myr: 2.50
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  # ── Vegetables & Aromatics ────────────────────────────────────────────────
+  - procurement_key: mixed_vegetables_kg
+    name: Mixed Vegetables (local market)
+    category: vegetable
+    unit: kg
+    price_per_kg_myr: 5.00
+    price_per_kg_php: 60.00
+    price_per_kg_sgd: 4.00
+    last_confirmed_price_myr: 4.50
+    price_drift_pct: 11.1
+    seasonality: moderate
+    seasonal_risk: medium
+    ne_monsoon_spike_pct: 40
+    ne_monsoon_months_MY: [November, December, January, February]
+    notes: >
+      Cameron Highlands supply disrupted during NE monsoon (Nov–Feb).
+      Price can double to MYR 10/kg in worst disruptions. Flag Dec–Jan events.
+
+  - procurement_key: aromatics_kg
+    name: Aromatics (garlic, onion, shallot, ginger)
+    category: aromatics
+    unit: kg
+    price_per_kg_myr: 6.00
+    price_per_kg_php: 100.00
+    price_per_kg_sgd: 5.00
+    last_confirmed_price_myr: 6.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: fresh_herbs_kg
+    name: Fresh Herbs (lemongrass, kaffir lime, pandan, galangal)
+    category: aromatics
+    unit: kg
+    price_per_kg_myr: 8.00
+    price_per_kg_php: 120.00
+    price_per_kg_sgd: 10.00
+    last_confirmed_price_myr: 7.50
+    price_drift_pct: 6.7
+    seasonality: moderate
+    seasonal_risk: low
+
+  # ── Dairy & Alternatives ──────────────────────────────────────────────────
+  - procurement_key: coconut_milk_l
+    name: Coconut Milk (canned / fresh)
+    category: dairy_alternative
+    unit: litre
+    price_per_l_myr: 4.00
+    price_per_l_php: 45.00
+    price_per_l_sgd: 3.00
+    last_confirmed_price_myr: 4.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: heavy_cream_l
+    name: Heavy Cream / Whipping Cream
+    category: dairy
+    unit: litre
+    price_per_l_myr: 20.00
+    price_per_l_php: 280.00
+    price_per_l_sgd: 14.00
+    last_confirmed_price_myr: 19.00
+    price_drift_pct: 5.3
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: butter_kg
+    name: Butter (unsalted, commercial)
+    category: dairy
+    unit: kg
+    price_per_kg_myr: 22.00
+    price_per_kg_php: 380.00
+    price_per_kg_sgd: 18.00
+    last_confirmed_price_myr: 21.00
+    price_drift_pct: 4.8
+    seasonality: stable
+    seasonal_risk: none
+
+  # ── Oils & Condiments ─────────────────────────────────────────────────────
+  - procurement_key: cooking_oil_l
+    name: Cooking Oil (palm / sunflower)
+    category: oil
+    unit: litre
+    price_per_l_myr: 7.00
+    price_per_l_php: 90.00
+    price_per_l_sgd: 5.00
+    last_confirmed_price_myr: 7.00
+    price_drift_pct: 0.0
+    seasonality: moderate
+    seasonal_risk: low
+    notes: Palm oil (Malaysia) most economical. Sunflower 30% premium.
+
+  - procurement_key: soy_sauce_l
+    name: Soy Sauce (halal-certified)
+    category: condiment
+    unit: litre
+    price_per_l_myr: 6.00
+    price_per_l_php: 80.00
+    price_per_l_sgd: 5.00
+    last_confirmed_price_myr: 6.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: vinegar_l
+    name: White / Cane Vinegar
+    category: condiment
+    unit: litre
+    price_per_l_myr: 4.00
+    price_per_l_php: 60.00
+    price_per_l_sgd: 3.50
+    last_confirmed_price_myr: 4.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: spice_blend_pack
+    name: Spice Blend / Dry Spices (pre-mixed)
+    category: spice
+    unit: pack
+    price_per_pack_myr: 8.00
+    price_per_pack_php: 130.00
+    price_per_pack_sgd: 6.00
+    last_confirmed_price_myr: 8.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+    notes: Standard 250g pre-mixed spice pack. Covers rendang, curry, satay variants.
+
+  # ── Dessert Ingredients ───────────────────────────────────────────────────
+  - procurement_key: sugar_kg
+    name: Sugar (white / palm)
+    category: baking
+    unit: kg
+    price_per_kg_myr: 3.00
+    price_per_kg_php: 50.00
+    price_per_kg_sgd: 2.50
+    last_confirmed_price_myr: 3.00
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+
+  - procurement_key: eggs_pcs
+    name: Chicken Eggs (grade A, tray of 30)
+    category: dairy_adjacent
+    unit: piece
+    price_per_piece_myr: 0.45
+    price_per_piece_php: 8.00
+    price_per_piece_sgd: 0.40
+    last_confirmed_price_myr: 0.42
+    price_drift_pct: 7.1
+    seasonality: stable
+    seasonal_risk: low
+
+  - procurement_key: chocolate_kg
+    name: Dark Chocolate (callets, 70%)
+    category: baking
+    unit: kg
+    price_per_kg_myr: 35.00
+    price_per_kg_php: 600.00
+    price_per_kg_sgd: 28.00
+    last_confirmed_price_myr: 33.00
+    price_drift_pct: 6.1
+    seasonality: stable
+    seasonal_risk: low
+
+  - procurement_key: mango_kg
+    name: Fresh Mango (Carabao / Alphonso)
+    category: fruit
+    unit: kg
+    price_per_kg_myr: 12.00
+    price_per_kg_php: 180.00
+    price_per_kg_sgd: 9.00
+    last_confirmed_price_myr: 8.00
+    price_drift_pct: 50.0
+    seasonality: highly_volatile
+    seasonal_risk: critical
+    peak_months: [March, April, May]
+    off_peak_months: [October, November, December]
+    off_peak_price_multiplier: 2.0
+    notes: >
+      CRITICAL SEASONAL ITEM. Off-peak price (Oct–Dec) can be 2× peak price.
+      For Dec events in Philippines, use frozen mango or substitute jackfruit.
+      Always flag mango in quotes for Nov–Feb events.
+
+  # ── Packaging & Consumables ───────────────────────────────────────────────
+  - procurement_key: packaging_per_pax
+    name: Packaging & Consumables (per person)
+    category: consumables
+    unit: per_person
+    price_per_pax_myr: 2.50
+    price_per_pax_php: 45.00
+    price_per_pax_sgd: 2.00
+    last_confirmed_price_myr: 2.50
+    price_drift_pct: 0.0
+    seasonality: stable
+    seasonal_risk: none
+    notes: Includes takeaway containers, napkins, disposable cutlery (if applicable).
+
+# ── Buffet/event miscellaneous food overhead (not captured in per-dish costs) ─────────────
+# Covers: beverages (water, sirap, juice), condiments, bread rolls, garnishes,
+# uncounted small dishes (pickles, acar, sambal), and preparation waste uplift.
+food_misc_overhead_per_pax_myr:
+  buffet: 8.0
+  semi_buffet: 6.0
+  plated: 4.0
+  cocktail: 3.0
+  banana_leaf: 5.0
+
+# Service style food cost multiplier
+# Dish benchmarks are calibrated to buffet (shared) serving sizes.
+# Plated service = larger individual portions + higher-quality ingredients.
+service_style_food_cost_multiplier:
+  buffet: 1.0
+  semi_buffet: 1.0
+  plated: 2.2
+  cocktail: 0.7
+  banana_leaf: 0.9
+
+# Minimum total food cost per head by event type (floor, in MYR)
+# Prevents unrealistically low estimates when menu has few or cheap dishes.
+minimum_food_cost_per_head_myr:
+  malay_wedding: 35.0
+  chinese_banquet: 55.0
+  corporate_gala_dinner: 65.0
+  corporate_lunch: 18.0
+  birthday_party: 22.0
+  indian_wedding: 28.0
+  product_launch: 25.0
+  default: 20.0
+
+# Waste and yield buffer applied to computed dish food cost (on top of recipe buffer)
+food_cost_waste_uplift_by_event:
+  malay_wedding: 1.18
+  chinese_banquet: 1.10
+  corporate_gala_dinner: 1.08
+  corporate_lunch: 1.06
+  birthday_party: 1.12
+  indian_wedding: 1.08
+  product_launch: 1.05
+  default: 1.10
+
+# ── Food cost benchmarks by dish (per serving) ────────────────────────────
+# Pre-computed food cost ranges per serving in MYR to short-cut ingredient
+# computation when a full recipe join isn't available.
+dish_food_cost_benchmarks_myr:
+  "Chicken Rendang":          {low: 4.50, mid: 5.50, high: 7.00}
+  "Beef Rendang":             {low: 9.00, mid: 11.00, high: 14.00}
+  "Chicken Adobo":            {low: 3.50, mid: 4.50, high: 5.50}
+  "Beef Caldereta":           {low: 8.00, mid: 10.00, high: 12.00}
+  "Hainanese Chicken Rice":   {low: 4.00, mid: 5.00, high: 6.50}
+  "Butter Chicken":           {low: 5.00, mid: 6.50, high: 8.00}
+  "Dal Tadka":                {low: 1.20, mid: 1.80, high: 2.50}
+  "Vegetable Biryani":        {low: 3.00, mid: 4.00, high: 5.50}
+  "Chicken Satay":            {low: 3.00, mid: 4.00, high: 5.00}
+  "Pad Thai (Chicken)":       {low: 3.50, mid: 4.50, high: 5.50}
+  "Tom Yum Soup":             {low: 2.00, mid: 3.00, high: 4.50}
+  "Spring Rolls (Fried)":     {low: 0.80, mid: 1.20, high: 1.80}
+  "Steamed Jasmine Rice":     {low: 0.40, mid: 0.60, high: 0.80}
+  "Garlic Butter Vegetables": {low: 0.80, mid: 1.20, high: 1.80}
+  "Leche Flan":               {low: 1.20, mid: 1.80, high: 2.50}
+  "Mango Sticky Rice":        {low: 2.00, mid: 3.00, high: 4.50}
+  "Coconut Panna Cotta":      {low: 1.80, mid: 2.50, high: 3.50}
+  "Fresh Fruit Platter":      {low: 1.50, mid: 2.50, high: 4.00}
+  "Pandan Cake":              {low: 1.50, mid: 2.00, high: 3.00}
+  "Chocolate Lava Cake":      {low: 2.50, mid: 3.50, high: 5.00}
+
+# ── Ingredients with active drift alerts ─────────────────────────────────
+active_drift_alerts:
+  - procurement_key: beef_kg
+    current_vs_last_pct: 12.0
+    action: "Flag for re-quote on any active bid using beef. Lock in supplier price immediately."
+  - procurement_key: seafood_fish_kg
+    current_vs_last_pct: 12.0
+    action: "Seasonal alert — December events. Apply 15% seafood surcharge to quotes."
+  - procurement_key: mango_kg
+    current_vs_last_pct: 50.0
+    action: "Critical seasonal drift. Substitute or apply 100% ingredient cost surcharge for Nov–Feb."
+  - procurement_key: mixed_vegetables_kg
+    current_vs_last_pct: 11.1
+    action: "Near drift threshold. Monitor weekly during monsoon season."

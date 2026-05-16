@@ -1,0 +1,345 @@
+---
+# Overhead & Labour Cost Database
+# All costs that don't appear on a supplier invoice.
+# The pricing agent uses event staffing models to compute full event cost,
+# not just food cost.
+#
+# All rates in MYR unless noted. PHP and SGD equivalents provided.
+# Last updated: 2025-Q4
+
+# ── Staff roles and hourly rates ──────────────────────────────────────────
+staff_rates:
+  - role_id: ROLE-HC
+    title: Head Chef
+    rate_per_hour_myr: 80
+    rate_per_hour_php: 1400
+    rate_per_hour_sgd: 60
+    overtime_multiplier: 1.5
+    minimum_hours_per_event: 8
+    notes: Minimum 8h including prep, service, cleanup. Overtime after 10h.
+
+  - role_id: ROLE-LC
+    title: Line Cook / Sous Chef
+    rate_per_hour_myr: 45
+    rate_per_hour_php: 800
+    rate_per_hour_sgd: 35
+    overtime_multiplier: 1.5
+    minimum_hours_per_event: 8
+
+  - role_id: ROLE-SV
+    title: Event Server / Waiter
+    rate_per_hour_myr: 25
+    rate_per_hour_php: 450
+    rate_per_hour_sgd: 20
+    overtime_multiplier: 1.5
+    minimum_hours_per_event: 6
+    notes: Plated service requires higher ratio (1:10) than buffet (1:25).
+
+  - role_id: ROLE-BP
+    title: Bartender / Beverage Attendant
+    rate_per_hour_myr: 30
+    rate_per_hour_php: 550
+    rate_per_hour_sgd: 25
+    overtime_multiplier: 1.5
+    minimum_hours_per_event: 5
+
+  - role_id: ROLE-DV
+    title: Driver / Delivery Staff
+    rate_per_hour_myr: 20
+    rate_per_hour_php: 350
+    rate_per_hour_sgd: 18
+    overtime_multiplier: 1.25
+    minimum_hours_per_event: 4
+
+  - role_id: ROLE-SU
+    title: Setup & Teardown Crew
+    rate_per_hour_myr: 18
+    rate_per_hour_php: 320
+    rate_per_hour_sgd: 16
+    overtime_multiplier: 1.25
+    minimum_hours_per_event: 4
+
+  - role_id: ROLE-EM
+    title: Event Manager / Coordinator (on-site)
+    rate_per_hour_myr: 65
+    rate_per_hour_php: 1150
+    rate_per_hour_sgd: 50
+    overtime_multiplier: 1.5
+    minimum_hours_per_event: 10
+    notes: Required for events >150 pax or when multiple live stations are operating.
+
+  - role_id: ROLE-ST
+    title: Live Station Chef (satay, teppanyaki, wok)
+    rate_per_hour_myr: 60
+    rate_per_hour_php: 1050
+    rate_per_hour_sgd: 48
+    overtime_multiplier: 1.5
+    minimum_hours_per_event: 6
+    notes: 1 chef per live station. Required for satay grill, teppanyaki, wok station.
+
+# ── Transport & logistics costs ───────────────────────────────────────────
+transport_costs:
+  - vehicle_type: van_small
+    description: "Passenger van (up to 1.5T cargo)"
+    cost_per_trip_myr: 150
+    cost_per_trip_php: 2700
+    cost_per_trip_sgd: 110
+    fuel_per_50km_myr: 25
+    capacity_pax_equipment: 80
+    notes: For small events or equipment-only delivery.
+
+  - vehicle_type: van_refrigerated
+    description: "Refrigerated cold chain van (3T)"
+    cost_per_trip_myr: 280
+    cost_per_trip_php: 5000
+    cost_per_trip_sgd: 200
+    fuel_per_50km_myr: 45
+    capacity_pax_equipment: 200
+    notes: Required for chilled proteins and dairy. Always used for events with cold-chain items.
+
+  - vehicle_type: lorry_3ton
+    description: "Lorry (3T) for large equipment and chafing dishes"
+    cost_per_trip_myr: 350
+    cost_per_trip_php: 6200
+    cost_per_trip_sgd: 270
+    fuel_per_50km_myr: 60
+    capacity_pax_equipment: 400
+    notes: Required for events with large equipment (ovens, deep fryers, satay grills).
+
+  - vehicle_type: driver_day_rate
+    description: "Driver day rate (8h, own vehicle allowance)"
+    cost_per_day_myr: 200
+    cost_per_day_php: 3500
+    notes: When external hire driver uses own vehicle for light delivery.
+
+# ── Equipment rental (items not owned) ───────────────────────────────────
+equipment_rental:
+  - item: chafing_dish_per_unit
+    rental_per_day_myr: 15
+    rental_per_day_php: 270
+    notes: Needed if own 30 units aren't sufficient for large events.
+
+  - item: commercial_gas_burner_extra
+    rental_per_day_myr: 50
+    rental_per_day_php: 900
+    notes: Extra wok burners for live cooking stations.
+
+  - item: tables_round_10pax
+    rental_per_unit_per_day_myr: 25
+    rental_per_unit_per_day_php: 450
+
+  - item: chairs_banquet
+    rental_per_unit_per_day_myr: 5
+    rental_per_unit_per_day_php: 90
+
+  - item: linen_tablecloth_round
+    rental_per_unit_per_day_myr: 12
+    rental_per_unit_per_day_php: 215
+
+  - item: generator_8kva
+    rental_per_day_myr: 350
+    rental_per_day_php: 6200
+    notes: Needed for outdoor venues without grid power.
+
+  - item: tent_20x30m
+    rental_per_day_myr: 1200
+    rental_per_day_php: 21500
+    notes: For outdoor events. Price includes setup.
+
+  - item: tandoor_oven
+    rental_per_day_myr: 350
+    rental_per_day_php: 6200
+    notes: For authentic naan and tandoori dishes.
+
+# ── Utilities & consumables per event ─────────────────────────────────────
+utilities:
+  - item: gas_cylinders
+    cost_per_cylinder_myr: 30
+    cost_per_cylinder_php: 540
+    cylinders_per_100pax: 1.5
+    notes: 13kg LPG cylinders. Outdoor events with full gas cooking.
+
+  - item: electricity_portable
+    cost_per_kwh_myr: 0.50
+    estimated_kwh_per_100pax_event: 40
+    notes: Estimated usage for rice cookers, induction, chafing dishes.
+
+  - item: cleaning_supplies
+    cost_per_event_myr: 80
+    cost_per_event_php: 1400
+    notes: Detergent, refuse bags, cleaning cloths.
+
+  - item: disposables_per_pax
+    cost_per_pax_myr: 1.50
+    cost_per_pax_php: 27
+    notes: Gloves, hairnets, single-use chef items for food hygiene compliance.
+
+# ── Insurance per event ───────────────────────────────────────────────────
+insurance:
+  - coverage_type: public_liability_standard
+    cost_per_event_myr: 150
+    cost_per_event_php: 2700
+    covers_pax_up_to: 200
+    notes: Standard public liability per event.
+
+  - coverage_type: public_liability_large
+    cost_per_event_myr: 280
+    cost_per_event_php: 5000
+    covers_pax_up_to: 1000
+    notes: Required for events >200 pax.
+
+  - coverage_type: halal_certification_audit
+    cost_per_event_myr: 350
+    cost_per_event_php: 6200
+    notes: JAKIM or equivalent halal audit fee per event for certified events.
+
+# ── Fixed overhead allocation per event ──────────────────────────────────
+fixed_overhead:
+  - item: kitchen_overhead_allocation
+    description: "Share of central kitchen rent, maintenance, admin"
+    cost_per_event_myr: 400
+    cost_per_event_php: 7000
+    notes: >
+      Fixed cost allocated per event. Covers kitchen lease, equipment depreciation,
+      admin staff time, insurance (annual), and waste disposal.
+
+  - item: sales_and_marketing_allocation
+    description: "Marketing cost allocated per confirmed booking"
+    cost_per_event_myr: 120
+    cost_per_event_php: 2100
+    notes: Website, social media, and sales staff time per booking.
+
+# ── Event staffing models ─────────────────────────────────────────────────
+# Pre-built cost models for standard event types.
+# Used by pricing_agent to compute full labour cost without manual calculation.
+# Roles listed with (count, hours) tuples.
+
+event_staffing_models:
+  - model_id: STF-BUFFET-SMALL
+    label: "Small Buffet (up to 80 pax)"
+    pax_range: [20, 80]
+    service_style: buffet
+    required_staff:
+      - {role_id: ROLE-HC, count: 1, hours: 8}
+      - {role_id: ROLE-LC, count: 1, hours: 8}
+      - {role_id: ROLE-SV, count: 3, hours: 6}
+      - {role_id: ROLE-DV, count: 1, hours: 4}
+      - {role_id: ROLE-SU, count: 2, hours: 4}
+    vehicles:
+      - {type: van_small, trips: 1}
+      - {type: van_refrigerated, trips: 1}
+    total_labour_cost_myr_approx: 1130
+    notes: Equipment reuse possible if back-to-back events in same week.
+
+  - model_id: STF-BUFFET-MID
+    label: "Mid Buffet (81–200 pax)"
+    pax_range: [81, 200]
+    service_style: buffet
+    required_staff:
+      - {role_id: ROLE-HC, count: 1, hours: 10}
+      - {role_id: ROLE-LC, count: 2, hours: 10}
+      - {role_id: ROLE-SV, count: 6, hours: 7}
+      - {role_id: ROLE-BP, count: 1, hours: 5}
+      - {role_id: ROLE-DV, count: 2, hours: 5}
+      - {role_id: ROLE-SU, count: 3, hours: 5}
+    vehicles:
+      - {type: van_refrigerated, trips: 1}
+      - {type: lorry_3ton, trips: 1}
+    total_labour_cost_myr_approx: 2780
+    notes: 1 event manager recommended for client-facing quality events.
+
+  - model_id: STF-BUFFET-LARGE
+    label: "Large Buffet (201–500 pax)"
+    pax_range: [201, 500]
+    service_style: buffet
+    required_staff:
+      - {role_id: ROLE-HC, count: 1, hours: 12}
+      - {role_id: ROLE-LC, count: 3, hours: 12}
+      - {role_id: ROLE-SV, count: 12, hours: 8}
+      - {role_id: ROLE-BP, count: 2, hours: 6}
+      - {role_id: ROLE-EM, count: 1, hours: 12}
+      - {role_id: ROLE-DV, count: 3, hours: 6}
+      - {role_id: ROLE-SU, count: 5, hours: 5}
+    vehicles:
+      - {type: van_refrigerated, trips: 2}
+      - {type: lorry_3ton, trips: 2}
+    total_labour_cost_myr_approx: 6200
+    notes: Multiple trips needed. Plan departure from central kitchen 4h before service.
+
+  - model_id: STF-BUFFET-XLARGE
+    label: "Very Large Buffet (500+ pax)"
+    pax_range: [500, 2000]
+    service_style: buffet
+    required_staff:
+      - {role_id: ROLE-HC, count: 2, hours: 12}
+      - {role_id: ROLE-LC, count: 5, hours: 12}
+      - {role_id: ROLE-SV, count: 20, hours: 8}
+      - {role_id: ROLE-BP, count: 3, hours: 6}
+      - {role_id: ROLE-EM, count: 2, hours: 12}
+      - {role_id: ROLE-DV, count: 5, hours: 8}
+      - {role_id: ROLE-SU, count: 8, hours: 5}
+    vehicles:
+      - {type: van_refrigerated, trips: 3}
+      - {type: lorry_3ton, trips: 3}
+    total_labour_cost_myr_approx: 12500
+    notes: Logistics complexity increases significantly. Consider outsourcing setup crew.
+
+  - model_id: STF-PLATED-MID
+    label: "Plated Dinner (80–200 pax)"
+    pax_range: [80, 200]
+    service_style: plated
+    required_staff:
+      - {role_id: ROLE-HC, count: 1, hours: 10}
+      - {role_id: ROLE-LC, count: 2, hours: 10}
+      - {role_id: ROLE-SV, count: 12, hours: 8}
+      - {role_id: ROLE-BP, count: 2, hours: 6}
+      - {role_id: ROLE-EM, count: 1, hours: 12}
+      - {role_id: ROLE-DV, count: 2, hours: 6}
+      - {role_id: ROLE-SU, count: 4, hours: 5}
+    vehicles:
+      - {type: van_refrigerated, trips: 1}
+      - {type: lorry_3ton, trips: 1}
+    total_labour_cost_myr_approx: 4800
+    notes: >
+      Plated service: 1 server per 10 guests. Higher labour cost vs buffet.
+      Plate-up requires additional counter space and speed.
+
+  - model_id: STF-COCKTAIL-SMALL
+    label: "Cocktail / Standing Reception (up to 150 pax)"
+    pax_range: [30, 150]
+    service_style: cocktail
+    required_staff:
+      - {role_id: ROLE-HC, count: 1, hours: 6}
+      - {role_id: ROLE-LC, count: 1, hours: 6}
+      - {role_id: ROLE-SV, count: 4, hours: 5}
+      - {role_id: ROLE-BP, count: 2, hours: 5}
+      - {role_id: ROLE-DV, count: 1, hours: 4}
+      - {role_id: ROLE-SU, count: 2, hours: 3}
+    vehicles:
+      - {type: van_small, trips: 1}
+      - {type: van_refrigerated, trips: 1}
+    total_labour_cost_myr_approx: 1850
+    notes: Cocktail events have shorter service window and lower food volume.
+
+  - model_id: STF-LIVE-STATION-ADDON
+    label: "Live Station Add-on (per station)"
+    service_style: addon
+    required_staff:
+      - {role_id: ROLE-ST, count: 1, hours: 6}
+    additional_equipment_rental_myr: 80
+    additional_fuel_myr: 45
+    total_addon_cost_myr: 485
+    notes: >
+      Add this model per live station (satay, teppanyaki, wok, roti canai).
+      1 trained station chef per station, minimum 6h.
+
+# ── Standard overhead rate by event size ─────────────────────────────────
+# Quick-reference non-food cost lookup (excludes food cost).
+# Used when full staffing model calculation isn't needed.
+overhead_quick_reference_myr:
+  pax_20_50:    {labour: 900,   transport: 430,  consumables: 200, insurance: 150, fixed: 520,  total: 2200}
+  pax_51_100:   {labour: 1450,  transport: 580,  consumables: 380, insurance: 150, fixed: 520,  total: 3080}
+  pax_101_200:  {labour: 2780,  transport: 700,  consumables: 750, insurance: 280, fixed: 520,  total: 5030}
+  pax_201_350:  {labour: 4500,  transport: 980,  consumables: 1200, insurance: 280, fixed: 520, total: 7480}
+  pax_351_500:  {labour: 6200,  transport: 1200, consumables: 1700, insurance: 280, fixed: 520, total: 9900}
+  pax_501_1000: {labour: 9800,  transport: 1800, consumables: 3000, insurance: 280, fixed: 520, total: 15400}

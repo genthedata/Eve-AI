@@ -1,0 +1,310 @@
+---
+# Cuisine Trends & Flavour Pairing Knowledge Base
+# Covers: current food trends (2024-2025 SEA catering market), classic and
+# modern pairing rules, menu balance templates per event type, quality signals,
+# amateurism red flags, and fusion logic.
+# Used by menu_agent to elevate generic briefs into thoughtful, balanced menus.
+
+current_trends:
+  - trend_id: TRD-001
+    name: Heritage Revival
+    description: >
+      Traditional dishes elevated with premium ingredients or modern plating.
+      Rendang served in individual clay pots. Kare-kare with wagyu. Laksa with
+      live prawn. Nostalgia meets premium — resonates strongly at weddings and galas.
+    applicable_cuisines: [malay, filipino, singaporean, indonesian]
+    event_types: [wedding, corporate_gala]
+    dish_examples: [Beef Rendang (clay pot), Kare-Kare (wagyu variant), Laksa (live prawn)]
+
+  - trend_id: TRD-002
+    name: Botanicals & Local Herbs
+    description: >
+      Pandan, butterfly pea flower, ulam raja, torch ginger, and other Southeast Asian
+      botanicals used in drinks, desserts, and garnishes. Strongly Instagrammable.
+      Butterfly pea flower (bunga telang) water gives stunning colour.
+    applicable_cuisines: [malay, thai, singaporean]
+    event_types: [high_tea, product_launch, wedding, any]
+    dish_examples: [Butterfly Pea Flower Drink, Pandan Layer Cake, Blue Rice (nasi kerabu)]
+
+  - trend_id: TRD-003
+    name: Plant-Forward Mains
+    description: >
+      Full vegetarian/vegan mains positioned as the hero, not the afterthought.
+      Mushroom rendang, jackfruit biryani, cauliflower steak. Appeals to the
+      growing flexitarian corporate guest base. Reduces allergen complexity.
+    applicable_cuisines: [any]
+    event_types: [corporate_gala, corporate_lunch, product_launch]
+    dish_examples: [Mushroom Rendang, Jackfruit Biryani, Mushroom Salpicao (upgraded)]
+
+  - trend_id: TRD-004
+    name: Live Cooking Stations
+    description: >
+      Interactive live cooking — satay grill, wok noodles, live carvery, sushi rolls,
+      roti canai. Drives engagement, creates event energy, and signals quality investment.
+      Most effective at cocktail and buffet formats.
+    applicable_cuisines: [any]
+    event_types: [corporate_gala, product_launch, wedding, birthday]
+    equipment_note: Requires additional space, equipment, and trained chef per station.
+
+  - trend_id: TRD-005
+    name: Dessert Architecture
+    description: >
+      Dedicated dessert bars replacing individual plated desserts. Tiered stands,
+      themed displays, macarons, kuih, petit fours in branded arrangements.
+      Highly effective at weddings and product launches.
+    applicable_cuisines: [any]
+    event_types: [wedding, high_tea, product_launch, birthday]
+
+  - trend_id: TRD-006
+    name: Comfort Food Premiumisation
+    description: >
+      Classic dishes done with premium ingredients. Chicken rice with free-range bird
+      and superior soy sauce. Nasi lemak with grilled lobster. Adobo with slow-cooked
+      wagyu. Familiar flavours at unexpected quality. Strong ROI on guest perception.
+    applicable_cuisines: [singaporean, filipino, malay]
+    event_types: [corporate_gala, wedding]
+
+  - trend_id: TRD-007
+    name: Zero Waste Storytelling
+    description: >
+      Events that highlight sustainable sourcing — local farms, seasonal ingredients,
+      reduced waste messaging. Appeals to corporate ESG mandates.
+    applicable_cuisines: [any]
+    event_types: [corporate_gala, product_launch]
+
+# ── Flavour pairing rules ─────────────────────────────────────────────────
+# Dish-level and cuisine-level pairing logic.
+# The menu agent uses these to compose balanced, complementary menus.
+
+flavour_pairing_rules:
+  - pairing_id: PAIR-001
+    principle: Rich protein + acid side
+    description: Rich, slow-cooked proteins (rendang, adobo, caldereta) need acid contrast.
+    examples:
+      - {main: Chicken Rendang, pair_with: Acar, reason: "Pickled veg cuts fat and brightens"}
+      - {main: Chicken Adobo, pair_with: Garlic Butter Vegetables, reason: "Vinegar in adobo pairs with garlic veg"}
+      - {main: Beef Rendang, pair_with: Cucumber Raita, reason: "Cool acid cuts intense spice"}
+
+  - pairing_id: PAIR-002
+    principle: Spice + cooling element
+    description: >
+      Spicy dishes need a cooling counterpart to balance the palate and reduce heat fatigue.
+    examples:
+      - {main: Laksa (Chicken), pair_with: Coconut Panna Cotta, reason: "Cool coconut dessert after spicy laksa"}
+      - {main: Tom Yum Soup, pair_with: Hainanese Chicken Rice, reason: "Mild protein after acidic soup"}
+      - {main: Butter Chicken, pair_with: Cucumber Raita, reason: "Classic Indian pairing"}
+
+  - pairing_id: PAIR-003
+    principle: Texture contrast in same course
+    description: Buffets need textural variety — soft braise, crunchy fried, fresh salad.
+    examples:
+      - {set: [Chicken Rendang, Spring Rolls (Fried), Garlic Butter Vegetables],
+         reason: "Soft braised + crunchy fried + fresh veg = complete texture range"}
+      - {set: [Butter Chicken, Vegetable Biryani, Cucumber Raita],
+         reason: "Creamy + fluffy rice + cool crunch"}
+
+  - pairing_id: PAIR-004
+    principle: Cuisine coherence
+    description: >
+      Within a single course, cuisines should come from the same regional family or
+      be deliberately contrasted. Mixing Italian pesto pasta with Malay rendang with
+      Japanese miso at the same buffet signals confusion, not diversity.
+    good_combinations:
+      - [Malay, Indonesian, Singaporean]
+      - [Filipino, Pan-Asian, Continental lite]
+      - [Indian, Sri Lankan]
+      - [Thai, Vietnamese]
+    awkward_combinations:
+      - [Japanese, Middle Eastern, Italian]
+      - [Malay wedding, French classical, Indian]
+    notes: >
+      For truly diverse corporate events, create themed stations rather than mixing
+      cuisines in a single undifferentiated buffet line.
+
+  - pairing_id: PAIR-005
+    principle: Meal arc — aperitif to sweet
+    description: >
+      A well-designed menu has an arc: light and stimulating at the start,
+      rich and satisfying in the middle, sweet and refreshing at the end.
+    good_arc_example:
+      - course_1: "Spring Rolls + Tom Yum Soup (light, acidic, stimulating)"
+      - course_2: "Chicken Rendang + Nasi Minyak + Acar (rich anchor)"
+      - course_3: "Garlic Butter Vegetables + side salad (refresh and balance)"
+      - dessert: "Mango Sticky Rice + Fresh Fruit Platter (sweet and light finish)"
+    notes: >
+      The most common amateurism signal is a menu with no arc — all dishes
+      at the same richness level, or dessert that's heavier than the main course.
+
+# ── Menu balance templates ─────────────────────────────────────────────────
+# Ready-made structural templates for each event type.
+# menu_agent uses these as scaffolding, then fills dish slots from the recipe library.
+
+menu_balance_templates:
+  - template_id: TPL-MALAY-WEDDING-BUFFET
+    event_type: malay_wedding
+    service_style: buffet
+    guest_count_range: [100, 1000]
+    structure:
+      appetizers: 2
+      rice_or_staple: 2
+      protein_mains: 3
+      vegetable_sides: 2
+      pickles_condiments: 1
+      desserts: 2
+      drinks: 2
+    must_include: [Chicken Rendang or Beef Rendang, Nasi Minyak or Nasi Briyani]
+    should_include: [Chicken Satay, Spring Rolls (Fried), Acar]
+    typical_menu: >
+      Nasi Minyak + Nasi Briyani | Chicken Rendang | Beef Masak Merah |
+      Ayam Goreng Berempah | Sayur Kobis | Acar | Kuih Muih | Air Sirap
+    quality_notes: >
+      Two rice options is standard at Malay weddings. Three proteins is the norm.
+      Skipping rendang at a Malay wedding is a major quality signal failure.
+
+  - template_id: TPL-CHINESE-BANQUET-10COURSE
+    event_type: chinese_banquet
+    service_style: plated_10_course
+    guest_count_range: [60, 500]
+    structure:
+      cold_platter: 1
+      soup: 1
+      seafood: 1
+      poultry: 1
+      red_meat: 1
+      vegetable: 1
+      noodle_or_rice: 1
+      dessert_warm: 1
+      dessert_cold: 1
+    must_include: [whole fish, noodle or fried rice as final savoury course]
+    should_include: [shark fin soup or mock variant, roast duck or chicken]
+    quality_notes: >
+      Final savoury must be noodles or fried rice — signals meal end.
+      Whole fish must never be pre-filleted. Fried rice last, not mid-meal.
+
+  - template_id: TPL-CORPORATE-GALA-PLATED
+    event_type: corporate_gala_dinner
+    service_style: plated_5_course
+    guest_count_range: [80, 1000]
+    structure:
+      amuse_bouche: 1
+      soup: 1
+      appetizer: 1
+      main: 1
+      dessert: 1
+    must_include: [premium protein main, plated dessert]
+    should_include: [sorbet or palate cleanser between courses]
+    quality_notes: >
+      Halal + vegetarian options essential. No peanut sauce at premium events.
+      Chocolate lava cake only if <150 pax (scale limitation).
+      Coconut panna cotta is the safe premium dessert at large plated events.
+
+  - template_id: TPL-CORPORATE-LUNCH-BUFFET
+    event_type: corporate_lunch
+    service_style: semi_buffet
+    guest_count_range: [30, 300]
+    structure:
+      protein_mains: 2
+      vegetarian_main: 1
+      rice_or_noodle: 1
+      vegetable_side: 1
+      soup: 1
+      dessert: 1
+    must_include: [halal protein, vegetarian option]
+    should_include: [soup, light dessert]
+    quality_notes: >
+      Keep it efficient — lunch window is 90 min. Soup and dessert can be simple.
+      No deep-fried mains (oil smell in meeting rooms). Avoid very spicy dishes.
+
+  - template_id: TPL-BIRTHDAY-BUFFET
+    event_type: birthday_party
+    service_style: buffet
+    guest_count_range: [20, 200]
+    structure:
+      appetizers: 2
+      protein_mains: 2
+      rice_or_pasta: 1
+      vegetable_side: 1
+      dessert: 2
+    must_include: [birthday cake or dessert centrepiece]
+    should_include: [crowd-pleaser fried item on arrival]
+    quality_notes: >
+      Fried items at arrival drive excitement. Kids' station needs separate simple options.
+      Dessert table outperforms plated desserts at birthday events.
+
+  - template_id: TPL-HIGH-TEA
+    event_type: high_tea
+    service_style: seated_high_tea
+    guest_count_range: [20, 150]
+    structure:
+      finger_sandwiches: 1
+      scones: 1
+      pastries_petits_fours: 1
+      cakes: 1
+      tea_selection: 1
+      optional_savoury: 1
+    must_include: [scones with cream and jam, finger sandwiches, tea]
+    quality_notes: >
+      Presentation is primary KPI. Tiered stands mandatory.
+      Food must be bite-sized. Nothing requiring cutlery.
+
+# ── Quality signals vs amateurism red flags ───────────────────────────────
+quality_signals:
+  positive:
+    - name: Live cooking station
+      description: Satay grill, wok noodles, carvery — signals investment and energy
+    - name: Heritage dish with premium ingredient
+      description: Rendang with wagyu, chicken rice with free-range bird
+    - name: Regional cuisine coherence
+      description: Menu flows naturally within a cuisine family
+    - name: Seasonal ingredient callout
+      description: "Menu notes 'Carabao mango in season' — signals culinary intelligence"
+    - name: Texture and flavour arc
+      description: Light appetiser → rich main → refreshing dessert
+    - name: Cultural specificity
+      description: Nasi minyak at Malay wedding, whole fish at Chinese banquet
+
+  amateurism_red_flags:
+    - name: Pesto pasta + chicken rendang + miso soup on same buffet
+      description: Incoherent cuisine mixing — no thematic thread
+    - name: No acid or cooling element with heavy mains
+      description: All-rendang menu with no acar, raita, or fresh salad
+    - name: Deep-fried items as primary protein at corporate gala
+      description: Inappropriate at premium events; suggests low-effort planning
+    - name: Whole menu at same richness level
+      description: No arc; guests feel heavy before dessert arrives
+    - name: Generic western option for non-western event
+      description: Chicken chop at Malay wedding signals poor cultural read
+    - name: Out-of-season fruit dessert
+      description: Strawberry dessert at December event in Malaysia
+    - name: Chocolate lava cake at 500-person buffet
+      description: Poor scale performance — unsuitable dish for format
+
+# ── Fusion pairing logic ──────────────────────────────────────────────────
+fusion_principles:
+  - fusion_id: FUS-001
+    name: Malay-Western Elevation
+    description: >
+      Take a Malay base and elevate with European technique or ingredient.
+      Works well at corporate galas that want Asian soul with Western polish.
+    examples:
+      - Rendang reduction served as sauce over pan-seared beef tenderloin
+      - Pandan creme brulee instead of standard French creme brulee
+      - Sambal aioli as a dipping sauce for Western amuse-bouche
+    caution: Do not confuse as standard — label clearly so guests appreciate the fusion.
+
+  - fusion_id: FUS-002
+    name: Indian-Continental Cross
+    description: Spiced Indian flavours applied to continental formats.
+    examples:
+      - Butter chicken pie (pastry shell with butter chicken filling)
+      - Dal arancini (risotto-style balls with dal stuffing)
+      - Cardamom-scented panna cotta
+    caution: Avoid at traditional Indian events — reserve for corporate or product launches.
+
+  - fusion_id: FUS-003
+    name: SEA Dessert Hybridisation
+    description: Classic Western dessert forms with SEA flavours.
+    examples:
+      - Pandan tiramisu, coconut macarons, mango tart with lemongrass curd
+      - Gula melaka caramel instead of standard caramel sauce
+    event_fit: [high_tea, corporate_gala, product_launch]

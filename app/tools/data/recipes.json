@@ -1,0 +1,49 @@
+{
+  "dishes": [
+    {"name": "Steamed Jasmine Rice", "category": "staple", "cuisine": "pan-asian", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 200, "complexity": "low"},
+    {"name": "Garlic Butter Vegetables", "category": "side", "cuisine": "continental", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 150, "complexity": "low"},
+    {"name": "Chicken Adobo", "category": "main", "cuisine": "filipino", "tags": ["halal", "gluten_free", "no_nuts"], "portion_weight_g": 200, "complexity": "medium"},
+    {"name": "Beef Caldereta", "category": "main", "cuisine": "filipino", "tags": ["halal", "no_nuts"], "portion_weight_g": 220, "complexity": "medium"},
+    {"name": "Lechon Kawali", "category": "main", "cuisine": "filipino", "tags": ["gluten_free", "no_nuts"], "portion_weight_g": 180, "complexity": "high"},
+    {"name": "Kare-Kare", "category": "main", "cuisine": "filipino", "tags": ["gluten_free"], "portion_weight_g": 250, "complexity": "high"},
+    {"name": "Sinigang na Baboy", "category": "main", "cuisine": "filipino", "tags": ["no_nuts", "gluten_free"], "portion_weight_g": 300, "complexity": "medium"},
+    {"name": "Tofu Sisig", "category": "main", "cuisine": "filipino", "tags": ["halal", "vegetarian", "vegan", "no_nuts"], "portion_weight_g": 180, "complexity": "medium"},
+    {"name": "Mushroom Salpicao", "category": "main", "cuisine": "filipino", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 160, "complexity": "low"},
+    {"name": "Pesto Pasta", "category": "main", "cuisine": "italian", "tags": ["vegetarian"], "portion_weight_g": 200, "complexity": "low"},
+    {"name": "Chicken Rendang", "category": "main", "cuisine": "malay", "tags": ["halal", "gluten_free", "no_nuts"], "portion_weight_g": 200, "complexity": "high"},
+    {"name": "Nasi Goreng", "category": "main", "cuisine": "indonesian", "tags": ["halal", "no_nuts"], "portion_weight_g": 250, "complexity": "medium"},
+    {"name": "Pad Thai (Chicken)", "category": "main", "cuisine": "thai", "tags": ["halal"], "portion_weight_g": 220, "complexity": "medium"},
+    {"name": "Pad Thai (Tofu)", "category": "main", "cuisine": "thai", "tags": ["halal", "vegetarian", "vegan", "no_nuts"], "portion_weight_g": 220, "complexity": "medium"},
+    {"name": "Hainanese Chicken Rice", "category": "main", "cuisine": "singaporean", "tags": ["halal", "gluten_free", "no_nuts"], "portion_weight_g": 300, "complexity": "medium"},
+    {"name": "Laksa (Chicken)", "category": "main", "cuisine": "singaporean", "tags": ["halal", "no_nuts"], "portion_weight_g": 280, "complexity": "high"},
+    {"name": "Vegetable Laksa", "category": "main", "cuisine": "singaporean", "tags": ["halal", "vegetarian", "vegan", "no_nuts"], "portion_weight_g": 280, "complexity": "medium"},
+    {"name": "Tom Yum Soup", "category": "side", "cuisine": "thai", "tags": ["halal", "gluten_free", "no_nuts"], "portion_weight_g": 200, "complexity": "medium"},
+    {"name": "Miso Soup with Tofu", "category": "side", "cuisine": "japanese", "tags": ["vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 150, "complexity": "low"},
+    {"name": "Spring Rolls (Fried)", "category": "appetizer", "cuisine": "pan-asian", "tags": ["halal", "vegetarian", "no_nuts"], "portion_weight_g": 80, "complexity": "medium"},
+    {"name": "Beef Satay", "category": "appetizer", "cuisine": "malay", "tags": ["halal", "gluten_free"], "portion_weight_g": 100, "complexity": "medium"},
+    {"name": "Chicken Satay", "category": "appetizer", "cuisine": "malay", "tags": ["halal", "gluten_free"], "portion_weight_g": 100, "complexity": "medium"},
+    {"name": "Gado-Gado", "category": "side", "cuisine": "indonesian", "tags": ["halal", "vegetarian", "vegan"], "portion_weight_g": 180, "complexity": "low"},
+    {"name": "Cucumber Raita", "category": "side", "cuisine": "indian", "tags": ["halal", "vegetarian", "gluten_free", "no_nuts"], "portion_weight_g": 100, "complexity": "low"},
+    {"name": "Dal Tadka", "category": "main", "cuisine": "indian", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 200, "complexity": "medium"},
+    {"name": "Butter Chicken", "category": "main", "cuisine": "indian", "tags": ["halal", "gluten_free", "no_nuts"], "portion_weight_g": 220, "complexity": "medium"},
+    {"name": "Vegetable Biryani", "category": "main", "cuisine": "indian", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 250, "complexity": "medium"},
+    {"name": "Fresh Fruit Platter", "category": "dessert", "cuisine": "universal", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 150, "complexity": "low"},
+    {"name": "Pandan Cake", "category": "dessert", "cuisine": "southeast-asian", "tags": ["halal", "vegetarian", "no_nuts"], "portion_weight_g": 100, "complexity": "medium"},
+    {"name": "Mango Sticky Rice", "category": "dessert", "cuisine": "thai", "tags": ["halal", "vegetarian", "vegan", "gluten_free", "no_nuts"], "portion_weight_g": 150, "complexity": "low"},
+    {"name": "Chocolate Lava Cake", "category": "dessert", "cuisine": "continental", "tags": ["halal", "vegetarian"], "portion_weight_g": 120, "complexity": "high"},
+    {"name": "Leche Flan", "category": "dessert", "cuisine": "filipino", "tags": ["halal", "vegetarian", "gluten_free", "no_nuts"], "portion_weight_g": 100, "complexity": "medium"},
+    {"name": "Coconut Panna Cotta", "category": "dessert", "cuisine": "continental", "tags": ["halal", "vegetarian", "gluten_free", "no_nuts"], "portion_weight_g": 120, "complexity": "medium"},
+    {"name": "Beef Rendang", "category": "main", "cuisine": "indonesian", "tags": ["halal", "gluten_free", "no_nuts"], "portion_weight_g": 200, "complexity": "high"}
+  ],
+  "portion_multipliers": {
+    "mains": 1.0,
+    "sides": 1.2,
+    "desserts": 0.8
+  },
+  "event_type_recommendations": {
+    "wedding": {"preferred_cuisines": ["filipino", "continental", "pan-asian"], "complexity_max": "high"},
+    "corporate": {"preferred_cuisines": ["continental", "pan-asian", "indian"], "complexity_max": "medium"},
+    "birthday": {"preferred_cuisines": ["filipino", "pan-asian", "continental"], "complexity_max": "medium"},
+    "default": {"preferred_cuisines": [], "complexity_max": "high"}
+  }
+}

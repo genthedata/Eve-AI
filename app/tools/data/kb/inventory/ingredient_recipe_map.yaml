@@ -1,0 +1,596 @@
+---
+# Ingredient-to-Recipe Mapping Knowledge Base
+# Maps every menu dish to its raw ingredient quantities per single adult serving.
+# Used by demand_planner.py to translate a menu plan + guest count into a
+# precise raw procurement list before stock subtraction is applied.
+#
+# Canonical procurement_key values used here:
+#   chicken_kg, beef_kg, pork_kg, seafood_fish_kg, seafood_prawn_kg,
+#   tofu_kg, lentils_kg, rice_kg, rice_noodles_kg, pasta_kg,
+#   vegetables_kg, aromatics_kg, coconut_milk_l, cooking_oil_l,
+#   soy_sauce_l, fish_sauce_l, vinegar_l, fresh_herbs_kg,
+#   dairy_cream_l, eggs_pcs, flour_kg, sugar_kg, fruit_kg,
+#   spice_blend_pack, peanut_sauce_kg, tamarind_l, broth_l, miso_l
+#
+# All qty values are per ONE adult serving.
+# unit: g (grams), ml (millilitres), pcs (pieces), pack (fractional)
+#
+# prep_waste_pct: additional % added for trimming / cooking loss
+# cold_chain: ambient | chilled | frozen (required storage during delivery)
+
+dishes:
+  # ── Filipino Mains ────────────────────────────────────────────────────────
+
+  - dish_name: Chicken Adobo
+    normalized_key: chicken_adobo
+    category: main
+    cuisine: filipino
+    cold_chain: chilled
+    prep_waste_pct: 8
+    ingredients_per_serving:
+      - {procurement_key: chicken_kg,    qty: 200, unit: g}
+      - {procurement_key: soy_sauce_l,   qty: 15,  unit: ml}
+      - {procurement_key: vinegar_l,     qty: 20,  unit: ml}
+      - {procurement_key: aromatics_kg,  qty: 10,  unit: g,  note: garlic+bay}
+      - {procurement_key: cooking_oil_l, qty: 5,   unit: ml}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack, note: black pepper}
+    allergens: [soy]
+    notes: Day-ahead marination recommended.
+
+  - dish_name: Beef Caldereta
+    normalized_key: beef_caldereta
+    category: main
+    cuisine: filipino
+    cold_chain: chilled
+    prep_waste_pct: 10
+    ingredients_per_serving:
+      - {procurement_key: beef_kg,        qty: 200, unit: g}
+      - {procurement_key: vegetables_kg,  qty: 80,  unit: g,  note: potato+carrot+capsicum}
+      - {procurement_key: tomato_paste_kg, qty: 20, unit: g}
+      - {procurement_key: cooking_oil_l,  qty: 8,   unit: ml}
+      - {procurement_key: aromatics_kg,   qty: 12,  unit: g,  note: garlic+onion}
+      - {procurement_key: spice_blend_pack, qty: 0.015, unit: pack}
+    allergens: []
+    notes: Requires 3-hour simmer; start day-of prep at minimum 5h before service.
+
+  - dish_name: Lechon Kawali
+    normalized_key: lechon_kawali
+    category: main
+    cuisine: filipino
+    cold_chain: chilled
+    prep_waste_pct: 12
+    ingredients_per_serving:
+      - {procurement_key: pork_kg,        qty: 180, unit: g}
+      - {procurement_key: aromatics_kg,   qty: 8,   unit: g}
+      - {procurement_key: cooking_oil_l,  qty: 30,  unit: ml, note: deep fry}
+      - {procurement_key: vinegar_l,      qty: 5,   unit: ml, note: dipping sauce}
+    allergens: []
+    notes: Pork belly; not halal. Deep fry requires 180C oil. Crispy skin critical for quality.
+
+  - dish_name: Kare-Kare
+    normalized_key: kare_kare
+    category: main
+    cuisine: filipino
+    cold_chain: chilled
+    prep_waste_pct: 15
+    ingredients_per_serving:
+      - {procurement_key: beef_kg,         qty: 200, unit: g, note: oxtail preferred}
+      - {procurement_key: vegetables_kg,   qty: 100, unit: g, note: eggplant+banana_blossom+kangkong}
+      - {procurement_key: peanut_sauce_kg, qty: 40,  unit: g}
+      - {procurement_key: aromatics_kg,    qty: 5,   unit: g}
+      - {procurement_key: annatto_l,       qty: 3,   unit: ml, note: achuete for colour}
+    allergens: [peanuts]
+    notes: Bagoong (shrimp paste) served on side; label allergen. Oxtail needs 4h pressure cooking.
+
+  - dish_name: Sinigang na Baboy
+    normalized_key: sinigang_na_baboy
+    category: main
+    cuisine: filipino
+    cold_chain: chilled
+    prep_waste_pct: 10
+    ingredients_per_serving:
+      - {procurement_key: pork_kg,        qty: 200, unit: g, note: belly or ribs}
+      - {procurement_key: vegetables_kg,  qty: 100, unit: g, note: kangkong+radish+sitaw}
+      - {procurement_key: tamarind_l,     qty: 30,  unit: ml}
+      - {procurement_key: broth_l,        qty: 200, unit: ml}
+      - {procurement_key: aromatics_kg,   qty: 5,   unit: g}
+    allergens: []
+    notes: Not halal (pork). Tamarind souring is non-negotiable for authenticity.
+
+  - dish_name: Tofu Sisig
+    normalized_key: tofu_sisig
+    category: main
+    cuisine: filipino
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: tofu_kg,        qty: 150, unit: g}
+      - {procurement_key: vegetables_kg,  qty: 30,  unit: g,  note: onion+chilli}
+      - {procurement_key: soy_sauce_l,    qty: 10,  unit: ml}
+      - {procurement_key: aromatics_kg,   qty: 8,   unit: g}
+      - {procurement_key: cooking_oil_l,  qty: 10,  unit: ml}
+      - {procurement_key: eggs_pcs,       qty: 0.5, unit: pcs, note: optional egg topping}
+    allergens: [soy, eggs_optional]
+    notes: Halal, vegan if egg omitted. Best cooked on sizzling cast iron.
+
+  - dish_name: Mushroom Salpicao
+    normalized_key: mushroom_salpicao
+    category: main
+    cuisine: filipino
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: mushrooms_kg,   qty: 150, unit: g, note: button or shiitake}
+      - {procurement_key: aromatics_kg,   qty: 10,  unit: g,  note: garlic heavy}
+      - {procurement_key: cooking_oil_l,  qty: 15,  unit: ml}
+      - {procurement_key: soy_sauce_l,    qty: 8,   unit: ml}
+      - {procurement_key: worcestershire_l, qty: 5, unit: ml}
+    allergens: [soy]
+    notes: Halal, vegan. Very quick to cook; ideal last-minute addition.
+
+  # ── Filipino Desserts ─────────────────────────────────────────────────────
+
+  - dish_name: Leche Flan
+    normalized_key: leche_flan
+    category: dessert
+    cuisine: filipino
+    cold_chain: chilled
+    prep_waste_pct: 3
+    ingredients_per_serving:
+      - {procurement_key: eggs_pcs,       qty: 2,   unit: pcs}
+      - {procurement_key: dairy_cream_l,  qty: 80,  unit: ml, note: evap milk}
+      - {procurement_key: sugar_kg,       qty: 30,  unit: g}
+    allergens: [eggs, dairy]
+    notes: Must be steamed or baked 4h before service. Requires refrigeration.
+
+  # ── Malay Mains ──────────────────────────────────────────────────────────
+
+  - dish_name: Chicken Rendang
+    normalized_key: chicken_rendang
+    category: main
+    cuisine: malay
+    cold_chain: chilled
+    prep_waste_pct: 10
+    ingredients_per_serving:
+      - {procurement_key: chicken_kg,       qty: 200, unit: g}
+      - {procurement_key: coconut_milk_l,   qty: 60,  unit: ml}
+      - {procurement_key: fresh_herbs_kg,   qty: 20,  unit: g, note: lemongrass+galangal+kaffir_lime}
+      - {procurement_key: spice_blend_pack, qty: 0.02, unit: pack, note: chilli+turmeric}
+      - {procurement_key: aromatics_kg,     qty: 10,  unit: g}
+      - {procurement_key: cooking_oil_l,    qty: 8,   unit: ml}
+      - {procurement_key: kerisik_kg,       qty: 15,  unit: g, note: toasted coconut paste}
+    allergens: [coconut]
+    notes: Halal. 90-min cook time. Improves overnight. Freeze-ahead friendly.
+
+  - dish_name: Beef Rendang
+    normalized_key: beef_rendang
+    category: main
+    cuisine: indonesian
+    cold_chain: chilled
+    prep_waste_pct: 12
+    ingredients_per_serving:
+      - {procurement_key: beef_kg,          qty: 200, unit: g, note: chuck or brisket}
+      - {procurement_key: coconut_milk_l,   qty: 70,  unit: ml}
+      - {procurement_key: fresh_herbs_kg,   qty: 20,  unit: g}
+      - {procurement_key: spice_blend_pack, qty: 0.025, unit: pack}
+      - {procurement_key: aromatics_kg,     qty: 10,  unit: g}
+      - {procurement_key: kerisik_kg,       qty: 15,  unit: g}
+    allergens: [coconut]
+    notes: 2.5h minimum cook time. Exceptional make-ahead. Halal.
+
+  - dish_name: Beef Satay
+    normalized_key: beef_satay
+    category: appetizer
+    cuisine: malay
+    cold_chain: chilled
+    prep_waste_pct: 8
+    ingredients_per_serving:
+      - {procurement_key: beef_kg,          qty: 80,  unit: g}
+      - {procurement_key: peanut_sauce_kg,  qty: 30,  unit: g}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack, note: satay marinade}
+      - {procurement_key: aromatics_kg,     qty: 5,   unit: g}
+      - {procurement_key: fresh_herbs_kg,   qty: 3,   unit: g, note: lemongrass in marinade}
+    allergens: [peanuts]
+    notes: Skewers; charcoal grill preferred. Peanut sauce allergen must be labelled.
+
+  - dish_name: Chicken Satay
+    normalized_key: chicken_satay
+    category: appetizer
+    cuisine: malay
+    cold_chain: chilled
+    prep_waste_pct: 8
+    ingredients_per_serving:
+      - {procurement_key: chicken_kg,       qty: 80,  unit: g}
+      - {procurement_key: peanut_sauce_kg,  qty: 30,  unit: g}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack}
+      - {procurement_key: aromatics_kg,     qty: 5,   unit: g}
+      - {procurement_key: fresh_herbs_kg,   qty: 3,   unit: g}
+    allergens: [peanuts]
+    notes: Same prep as beef satay; marinate min 2h.
+
+  # ── Singaporean Mains ────────────────────────────────────────────────────
+
+  - dish_name: Hainanese Chicken Rice
+    normalized_key: hainanese_chicken_rice
+    category: main
+    cuisine: singaporean
+    cold_chain: chilled
+    prep_waste_pct: 10
+    ingredients_per_serving:
+      - {procurement_key: chicken_kg,      qty: 200, unit: g, note: whole bird}
+      - {procurement_key: rice_kg,         qty: 150, unit: g}
+      - {procurement_key: aromatics_kg,    qty: 15,  unit: g, note: ginger+garlic+spring_onion}
+      - {procurement_key: fresh_herbs_kg,  qty: 5,   unit: g, note: pandan}
+      - {procurement_key: broth_l,         qty: 150, unit: ml, note: poaching stock becomes rice stock}
+      - {procurement_key: soy_sauce_l,     qty: 5,   unit: ml}
+    allergens: [soy, sesame]
+    notes: Ice bath critical post-poaching. Stock reused for rice cooking — key to flavour.
+
+  - dish_name: Laksa (Chicken)
+    normalized_key: laksa_chicken
+    category: main
+    cuisine: singaporean
+    cold_chain: chilled
+    prep_waste_pct: 8
+    ingredients_per_serving:
+      - {procurement_key: chicken_kg,       qty: 120, unit: g}
+      - {procurement_key: rice_noodles_kg,  qty: 80,  unit: g, note: bee hoon}
+      - {procurement_key: coconut_milk_l,   qty: 80,  unit: ml}
+      - {procurement_key: laksa_paste_kg,   qty: 20,  unit: g}
+      - {procurement_key: tofu_kg,          qty: 30,  unit: g, note: tofu puffs}
+      - {procurement_key: vegetables_kg,    qty: 30,  unit: g, note: bean sprouts}
+      - {procurement_key: eggs_pcs,         qty: 0.5, unit: pcs, note: hard-boiled half}
+    allergens: [shellfish_in_paste, eggs, coconut]
+    notes: Verify laksa paste is halal-certified (shrimp paste inside). Individual bowls best.
+
+  - dish_name: Vegetable Laksa
+    normalized_key: vegetable_laksa
+    category: main
+    cuisine: singaporean
+    cold_chain: ambient
+    prep_waste_pct: 6
+    ingredients_per_serving:
+      - {procurement_key: rice_noodles_kg,  qty: 80,  unit: g}
+      - {procurement_key: coconut_milk_l,   qty: 80,  unit: ml}
+      - {procurement_key: laksa_paste_kg,   qty: 15,  unit: g, note: vegetarian paste}
+      - {procurement_key: tofu_kg,          qty: 60,  unit: g}
+      - {procurement_key: vegetables_kg,    qty: 60,  unit: g}
+    allergens: [coconut, soy]
+    notes: Use vegetarian laksa paste (no shrimp). Vegan, halal.
+
+  # ── Indonesian Mains ──────────────────────────────────────────────────────
+
+  - dish_name: Nasi Goreng
+    normalized_key: nasi_goreng
+    category: main
+    cuisine: indonesian
+    cold_chain: chilled
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: rice_kg,          qty: 200, unit: g, note: day-old cooked rice}
+      - {procurement_key: chicken_kg,       qty: 60,  unit: g}
+      - {procurement_key: eggs_pcs,         qty: 1,   unit: pcs}
+      - {procurement_key: vegetables_kg,    qty: 30,  unit: g, note: onion+garlic}
+      - {procurement_key: soy_sauce_l,      qty: 8,   unit: ml, note: kecap_manis}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack, note: sambal}
+      - {procurement_key: cooking_oil_l,    qty: 10,  unit: ml}
+    allergens: [soy, eggs, shellfish_in_sambal]
+    notes: Day-old rice critical. Cook in max 20-serving wok batches for proper char.
+
+  - dish_name: Gado-Gado
+    normalized_key: gado_gado
+    category: side
+    cuisine: indonesian
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: vegetables_kg,   qty: 100, unit: g, note: mixed blanched veg}
+      - {procurement_key: tofu_kg,         qty: 40,  unit: g}
+      - {procurement_key: eggs_pcs,        qty: 0.5, unit: pcs}
+      - {procurement_key: peanut_sauce_kg, qty: 50,  unit: g}
+    allergens: [peanuts, eggs]
+    notes: Peanut sauce is central — label allergen prominently. Vegan without egg.
+
+  # ── Thai Mains ────────────────────────────────────────────────────────────
+
+  - dish_name: Pad Thai (Chicken)
+    normalized_key: pad_thai_chicken
+    category: main
+    cuisine: thai
+    cold_chain: chilled
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: rice_noodles_kg,  qty: 80,  unit: g}
+      - {procurement_key: chicken_kg,       qty: 80,  unit: g}
+      - {procurement_key: eggs_pcs,         qty: 0.6, unit: pcs}
+      - {procurement_key: vegetables_kg,    qty: 40,  unit: g, note: bean_sprouts+spring_onion}
+      - {procurement_key: fish_sauce_l,     qty: 6,   unit: ml}
+      - {procurement_key: tamarind_l,       qty: 8,   unit: ml}
+      - {procurement_key: sugar_kg,         qty: 8,   unit: g}
+      - {procurement_key: peanut_sauce_kg,  qty: 8,   unit: g, note: crushed peanut garnish}
+      - {procurement_key: cooking_oil_l,    qty: 10,  unit: ml}
+    allergens: [peanuts, eggs, fish]
+    notes: Serve peanuts separately at station to accommodate allergy. Halal.
+
+  - dish_name: Pad Thai (Tofu)
+    normalized_key: pad_thai_tofu
+    category: main
+    cuisine: thai
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: rice_noodles_kg,  qty: 80,  unit: g}
+      - {procurement_key: tofu_kg,          qty: 80,  unit: g}
+      - {procurement_key: vegetables_kg,    qty: 40,  unit: g}
+      - {procurement_key: soy_sauce_l,      qty: 10,  unit: ml}
+      - {procurement_key: tamarind_l,       qty: 8,   unit: ml}
+      - {procurement_key: sugar_kg,         qty: 8,   unit: g}
+      - {procurement_key: cooking_oil_l,    qty: 10,  unit: ml}
+    allergens: [soy]
+    notes: Nut-free, vegan, halal when peanuts omitted.
+
+  - dish_name: Tom Yum Soup
+    normalized_key: tom_yum_soup
+    category: side
+    cuisine: thai
+    cold_chain: chilled
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: broth_l,          qty: 200, unit: ml}
+      - {procurement_key: seafood_prawn_kg, qty: 40,  unit: g, note: optional prawn}
+      - {procurement_key: mushrooms_kg,     qty: 20,  unit: g}
+      - {procurement_key: fresh_herbs_kg,   qty: 10,  unit: g, note: lemongrass+kaffir+galangal}
+      - {procurement_key: fish_sauce_l,     qty: 6,   unit: ml}
+      - {procurement_key: tamarind_l,       qty: 5,   unit: ml}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack, note: chilli}
+    allergens: [shellfish, fish]
+    notes: Vegetarian version omit prawns + fish sauce. Halal with halal-certified fish sauce.
+
+  # ── Indian Mains ──────────────────────────────────────────────────────────
+
+  - dish_name: Dal Tadka
+    normalized_key: dal_tadka
+    category: main
+    cuisine: indian
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: lentils_kg,       qty: 60,  unit: g, note: yellow dal}
+      - {procurement_key: vegetables_kg,    qty: 40,  unit: g, note: tomato+onion}
+      - {procurement_key: aromatics_kg,     qty: 10,  unit: g, note: garlic+ginger}
+      - {procurement_key: spice_blend_pack, qty: 0.02, unit: pack, note: cumin+turmeric+garam_masala}
+      - {procurement_key: cooking_oil_l,    qty: 8,   unit: ml}
+      - {procurement_key: fresh_herbs_kg,   qty: 5,   unit: g, note: fresh_coriander}
+    allergens: []
+    notes: Vegan, gluten-free, halal. Excellent make-ahead. Double tadka improves depth.
+
+  - dish_name: Butter Chicken
+    normalized_key: butter_chicken
+    category: main
+    cuisine: indian
+    cold_chain: chilled
+    prep_waste_pct: 8
+    ingredients_per_serving:
+      - {procurement_key: chicken_kg,       qty: 180, unit: g}
+      - {procurement_key: tomato_paste_kg,  qty: 40,  unit: g}
+      - {procurement_key: dairy_cream_l,    qty: 25,  unit: ml}
+      - {procurement_key: aromatics_kg,     qty: 10,  unit: g}
+      - {procurement_key: spice_blend_pack, qty: 0.025, unit: pack, note: kashmiri+garam_masala}
+      - {procurement_key: cooking_oil_l,    qty: 8,   unit: ml}
+    allergens: [dairy]
+    notes: Halal. Coconut cream substitutes for cream (dairy-free variant).
+
+  - dish_name: Vegetable Biryani
+    normalized_key: vegetable_biryani
+    category: main
+    cuisine: indian
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: rice_kg,          qty: 150, unit: g, note: basmati}
+      - {procurement_key: vegetables_kg,    qty: 80,  unit: g, note: mixed seasonal}
+      - {procurement_key: aromatics_kg,     qty: 15,  unit: g, note: onion heavy}
+      - {procurement_key: spice_blend_pack, qty: 0.03, unit: pack, note: biryani masala}
+      - {procurement_key: cooking_oil_l,    qty: 10,  unit: ml}
+      - {procurement_key: fresh_herbs_kg,   qty: 5,   unit: g, note: mint+coriander}
+    allergens: []
+    notes: Vegan, halal. Basmati preferred; substitute jasmine if unavailable.
+
+  - dish_name: Cucumber Raita
+    normalized_key: cucumber_raita
+    category: side
+    cuisine: indian
+    cold_chain: chilled
+    prep_waste_pct: 3
+    ingredients_per_serving:
+      - {procurement_key: dairy_cream_l,    qty: 80,  unit: ml, note: yogurt}
+      - {procurement_key: vegetables_kg,    qty: 40,  unit: g, note: cucumber}
+      - {procurement_key: fresh_herbs_kg,   qty: 3,   unit: g, note: mint+cumin}
+    allergens: [dairy]
+    notes: Halal, vegetarian. Keep refrigerated until service.
+
+  # ── Staples & Rice Dishes ─────────────────────────────────────────────────
+
+  - dish_name: Steamed Jasmine Rice
+    normalized_key: steamed_jasmine_rice
+    category: staple
+    cuisine: pan-asian
+    cold_chain: ambient
+    prep_waste_pct: 3
+    ingredients_per_serving:
+      - {procurement_key: rice_kg,         qty: 120, unit: g, note: raw weight; yields ~200g cooked}
+      - {procurement_key: broth_l,         qty: 150, unit: ml, note: water or light stock}
+    allergens: []
+    notes: Standard buffet staple. Always order 20% more than calculated.
+
+  - dish_name: Mango Sticky Rice
+    normalized_key: mango_sticky_rice
+    category: dessert
+    cuisine: thai
+    cold_chain: chilled
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: rice_kg,         qty: 80,  unit: g, note: glutinous rice}
+      - {procurement_key: fruit_kg,        qty: 80,  unit: g, note: fresh ripe mango}
+      - {procurement_key: coconut_milk_l,  qty: 60,  unit: ml}
+      - {procurement_key: sugar_kg,        qty: 15,  unit: g}
+    allergens: [coconut]
+    notes: Mango must be ripe (Carabao/Alphonso). Seasonal — peak March–May PH.
+
+  # ── Japanese ──────────────────────────────────────────────────────────────
+
+  - dish_name: Miso Soup with Tofu
+    normalized_key: miso_soup_with_tofu
+    category: side
+    cuisine: japanese
+    cold_chain: ambient
+    prep_waste_pct: 3
+    ingredients_per_serving:
+      - {procurement_key: miso_l,          qty: 15,  unit: ml, note: white or red miso paste}
+      - {procurement_key: tofu_kg,         qty: 40,  unit: g}
+      - {procurement_key: broth_l,         qty: 180, unit: ml, note: dashi or vegetable stock}
+      - {procurement_key: fresh_herbs_kg,  qty: 3,   unit: g, note: spring_onion}
+    allergens: [soy]
+    notes: Vegan with vegetable dashi. Traditional dashi uses bonito (not halal/vegan).
+
+  # ── Appetizers & Sides ────────────────────────────────────────────────────
+
+  - dish_name: Spring Rolls (Fried)
+    normalized_key: spring_rolls_fried
+    category: appetizer
+    cuisine: pan-asian
+    cold_chain: ambient
+    prep_waste_pct: 8
+    ingredients_per_serving:
+      - {procurement_key: flour_kg,        qty: 15,  unit: g, note: spring roll wrapper}
+      - {procurement_key: vegetables_kg,   qty: 50,  unit: g, note: mixed julienned veg}
+      - {procurement_key: tofu_kg,         qty: 20,  unit: g}
+      - {procurement_key: cooking_oil_l,   qty: 20,  unit: ml, note: deep fry}
+    allergens: [gluten]
+    notes: Halal, vegetarian. Pre-roll day-before; fry to order or batch fry and hold in warmer.
+
+  - dish_name: Garlic Butter Vegetables
+    normalized_key: garlic_butter_vegetables
+    category: side
+    cuisine: continental
+    cold_chain: chilled
+    prep_waste_pct: 10
+    ingredients_per_serving:
+      - {procurement_key: vegetables_kg,   qty: 130, unit: g, note: seasonal mixed veg}
+      - {procurement_key: aromatics_kg,    qty: 10,  unit: g, note: garlic heavy}
+      - {procurement_key: cooking_oil_l,   qty: 8,   unit: ml}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack, note: salt+pepper+herbs}
+    allergens: []
+    notes: Vegan, halal. Quick cook; do not pre-cook — blanch just before service.
+
+  - dish_name: Pesto Pasta
+    normalized_key: pesto_pasta
+    category: main
+    cuisine: italian
+    cold_chain: ambient
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: pasta_kg,        qty: 80,  unit: g}
+      - {procurement_key: pesto_sauce_kg,  qty: 30,  unit: g, note: basil pesto}
+      - {procurement_key: cooking_oil_l,   qty: 5,   unit: ml}
+      - {procurement_key: spice_blend_pack, qty: 0.01, unit: pack, note: salt+parmesan_if_not_vegan}
+    allergens: [gluten, nuts_in_pesto, dairy]
+    notes: Vegetarian. Dry out quickly on buffet — prep in 30-min batches.
+
+  # ── Desserts ──────────────────────────────────────────────────────────────
+
+  - dish_name: Fresh Fruit Platter
+    normalized_key: fresh_fruit_platter
+    category: dessert
+    cuisine: universal
+    cold_chain: chilled
+    prep_waste_pct: 20
+    ingredients_per_serving:
+      - {procurement_key: fruit_kg,        qty: 150, unit: g, note: seasonal tropical mix}
+    allergens: []
+    notes: 20% prep waste for peel/core. Use seasonal fruit only (cost and quality). Halal, vegan.
+
+  - dish_name: Pandan Cake
+    normalized_key: pandan_cake
+    category: dessert
+    cuisine: southeast-asian
+    cold_chain: chilled
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: flour_kg,        qty: 40,  unit: g}
+      - {procurement_key: eggs_pcs,        qty: 0.8, unit: pcs}
+      - {procurement_key: sugar_kg,        qty: 25,  unit: g}
+      - {procurement_key: coconut_milk_l,  qty: 30,  unit: ml}
+      - {procurement_key: fresh_herbs_kg,  qty: 3,   unit: g, note: pandan juice}
+      - {procurement_key: cooking_oil_l,   qty: 10,  unit: ml}
+    allergens: [gluten, eggs, coconut]
+    notes: Halal, vegetarian. Bake 2h before service minimum.
+
+  - dish_name: Chocolate Lava Cake
+    normalized_key: chocolate_lava_cake
+    category: dessert
+    cuisine: continental
+    cold_chain: chilled
+    prep_waste_pct: 5
+    ingredients_per_serving:
+      - {procurement_key: chocolate_kg,    qty: 40,  unit: g, note: 70% dark}
+      - {procurement_key: cooking_oil_l,   qty: 8,   unit: ml, note: butter}
+      - {procurement_key: eggs_pcs,        qty: 1.5, unit: pcs}
+      - {procurement_key: sugar_kg,        qty: 20,  unit: g}
+      - {procurement_key: flour_kg,        qty: 15,  unit: g}
+    allergens: [gluten, eggs, dairy]
+    notes: Halal if chocolate and butter are halal-certified. Bake 12 min per batch; must be warm.
+
+  - dish_name: Coconut Panna Cotta
+    normalized_key: coconut_panna_cotta
+    category: dessert
+    cuisine: continental
+    cold_chain: chilled
+    prep_waste_pct: 3
+    ingredients_per_serving:
+      - {procurement_key: coconut_milk_l,  qty: 120, unit: ml}
+      - {procurement_key: sugar_kg,        qty: 20,  unit: g}
+      - {procurement_key: gelatin_pack,    qty: 0.02, unit: pack}
+    allergens: [coconut]
+    notes: Halal with halal gelatin. Set 4h minimum; make day-before for best results.
+
+# ── Procurement key reference ──────────────────────────────────────────────
+# Maps procurement_key to canonical supplier SKU category for demand_planner.
+procurement_key_map:
+  chicken_kg:         {category: protein_poultry,  base_unit: kg, typical_pack_size: 5}
+  beef_kg:            {category: protein_beef,      base_unit: kg, typical_pack_size: 1}
+  pork_kg:            {category: protein_pork,      base_unit: kg, typical_pack_size: 1,  halal: false}
+  seafood_fish_kg:    {category: protein_seafood,   base_unit: kg, typical_pack_size: 1}
+  seafood_prawn_kg:   {category: protein_seafood,   base_unit: kg, typical_pack_size: 1}
+  tofu_kg:            {category: protein_plant,     base_unit: kg, typical_pack_size: 0.5}
+  lentils_kg:         {category: protein_legume,    base_unit: kg, typical_pack_size: 1}
+  mushrooms_kg:       {category: vegetable_specialty, base_unit: kg, typical_pack_size: 0.5}
+  rice_kg:            {category: grain_rice,         base_unit: kg, typical_pack_size: 25}
+  rice_noodles_kg:    {category: grain_noodle,       base_unit: kg, typical_pack_size: 1}
+  pasta_kg:           {category: grain_pasta,        base_unit: kg, typical_pack_size: 0.5}
+  vegetables_kg:      {category: vegetable_general,  base_unit: kg, typical_pack_size: 5}
+  aromatics_kg:       {category: vegetable_aromatics, base_unit: kg, typical_pack_size: 1}
+  fresh_herbs_kg:     {category: herb_fresh,         base_unit: kg, typical_pack_size: 0.1}
+  fruit_kg:           {category: fruit_fresh,        base_unit: kg, typical_pack_size: 5}
+  coconut_milk_l:     {category: liquid_coconut,     base_unit: litre, typical_pack_size: 1}
+  dairy_cream_l:      {category: dairy,              base_unit: litre, typical_pack_size: 1}
+  cooking_oil_l:      {category: oil,                base_unit: litre, typical_pack_size: 5}
+  soy_sauce_l:        {category: condiment_soy,      base_unit: litre, typical_pack_size: 1}
+  fish_sauce_l:       {category: condiment_fish,     base_unit: litre, typical_pack_size: 0.7}
+  tamarind_l:         {category: condiment_acid,     base_unit: litre, typical_pack_size: 0.5}
+  vinegar_l:          {category: condiment_acid,     base_unit: litre, typical_pack_size: 1}
+  spice_blend_pack:   {category: spice_dry,          base_unit: pack,  typical_pack_size: 0.5}
+  peanut_sauce_kg:    {category: condiment_nut,      base_unit: kg,    typical_pack_size: 1, allergen: peanuts}
+  laksa_paste_kg:     {category: condiment_paste,    base_unit: kg,    typical_pack_size: 0.2}
+  tomato_paste_kg:    {category: condiment_tomato,   base_unit: kg,    typical_pack_size: 0.5}
+  broth_l:            {category: liquid_stock,       base_unit: litre, typical_pack_size: 1}
+  kerisik_kg:         {category: condiment_coconut,  base_unit: kg,    typical_pack_size: 0.2}
+  miso_l:             {category: condiment_miso,     base_unit: kg,    typical_pack_size: 0.5}
+  eggs_pcs:           {category: dairy_egg,          base_unit: pcs,   typical_pack_size: 30}
+  flour_kg:           {category: grain_flour,        base_unit: kg,    typical_pack_size: 1}
+  sugar_kg:           {category: sweetener,          base_unit: kg,    typical_pack_size: 1}
+  chocolate_kg:       {category: confectionery,      base_unit: kg,    typical_pack_size: 0.5}
+  gelatin_pack:       {category: setting_agent,      base_unit: pack,  typical_pack_size: 0.01}
+  pesto_sauce_kg:     {category: condiment_paste,    base_unit: kg,    typical_pack_size: 0.2}
+  annatto_l:          {category: colouring_natural,  base_unit: litre, typical_pack_size: 0.1}
+  worcestershire_l:   {category: condiment_umami,    base_unit: litre, typical_pack_size: 0.3}

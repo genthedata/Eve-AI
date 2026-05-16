@@ -1,0 +1,331 @@
+---
+# Past Menu Performance Knowledge Base
+# Historical record of menus served with outcome data.
+# The menu agent uses this to:
+#   1. Learn which menus worked for similar events (reuse proven combos)
+#   2. Avoid dishes and combinations that repeatedly underperformed
+#   3. Score proposed menus against comparable historical outcomes
+# This KB grows over time and becomes the most valuable input for menu suggestions.
+
+performance_records:
+  - menu_id: MNU-2024-001
+    event_type: malay_wedding
+    date: "2024-06-15"
+    guest_count: 350
+    venue_type: outdoor_tent_partial
+    service_style: buffet
+    duration_h: 5
+    budget_per_head_myr: 65
+    require_halal: true
+    cuisine_theme: malay_filipino_fusion
+    dishes_served:
+      - {dish: Chicken Rendang, category: protein_main, feedback_score: 4.8}
+      - {dish: Beef Kofta (Indian-Malay fusion), category: protein_main, feedback_score: 4.2}
+      - {dish: Nasi Minyak, category: staple, feedback_score: 4.9}
+      - {dish: Chicken Adobo, category: protein_main, feedback_score: 3.6}
+      - {dish: Spring Rolls (Fried), category: appetizer, feedback_score: 4.7}
+      - {dish: Garlic Butter Vegetables, category: side, feedback_score: 3.8}
+      - {dish: Acar, category: condiment, feedback_score: 4.5}
+      - {dish: Mango Sticky Rice, category: dessert, feedback_score: 4.6}
+      - {dish: Pandan Cake, category: dessert, feedback_score: 4.9}
+    overall_satisfaction: 4.5
+    cultural_fit_score: 4.8
+    client_notes: >
+      Client mentioned guests repeatedly praised the rendang and pandan cake.
+      Chicken adobo was an experiment — Filipino dish at Malay wedding. Guests
+      found it 'interesting' but some expected pure Malay menu. Consider removing
+      at traditional Malay weddings unless client specifically requests fusion.
+    lessons:
+      - Rendang always the star at Malay weddings — never skip or reduce quantity
+      - Pandan cake highest dessert score — include always
+      - Chicken adobo fusion felt out of place to some guests — use cautiously
+      - Mango sticky rice well received as a refreshing dessert
+      - Spring rolls run out fast — order 20% extra next time
+    waste_notes:
+      - Garlic Butter Vegetables: 35% leftover — reduce by 25% at outdoor Malay weddings
+      - Chicken Adobo: 40% leftover — low acceptance
+
+  - menu_id: MNU-2024-002
+    event_type: corporate_gala_dinner
+    date: "2024-08-22"
+    guest_count: 200
+    venue_type: indoor_ballroom_no_gas
+    service_style: plated_5_course
+    duration_h: 4
+    budget_per_head_myr: 180
+    require_halal: true
+    cuisine_theme: asian_contemporary
+    dishes_served:
+      - {dish: Tom Yum Soup, category: soup, feedback_score: 4.4}
+      - {dish: Spring Rolls (Fried), category: appetizer, feedback_score: 4.6, note: "pre-cooked, reheated — quality drop noted"}
+      - {dish: Hainanese Chicken Rice, category: main, feedback_score: 4.7}
+      - {dish: Butter Chicken, category: main, feedback_score: 4.8}
+      - {dish: Dal Tadka, category: vegetarian_main, feedback_score: 4.3}
+      - {dish: Garlic Butter Vegetables, category: side, feedback_score: 4.2}
+      - {dish: Coconut Panna Cotta, category: dessert, feedback_score: 4.9}
+    overall_satisfaction: 4.6
+    cultural_fit_score: 4.5
+    client_notes: >
+      Client very happy overall. Notable: spring rolls were pre-cooked and
+      reheated at the venue (indoor — no fryer). Quality noticeably worse.
+      Client asked why they weren't crispy. Never reheat fried items at indoor venues.
+    lessons:
+      - Coconut panna cotta = best dessert for large plated gala (scale well, looks premium)
+      - Butter Chicken is the most universally loved main across demographics
+      - Never pre-cook fried items for indoor venues — replace with non-fried option
+      - Hainanese Chicken Rice works beautifully as a plated course
+      - Tom Yum as soup course: well received across all demographic segments
+    waste_notes:
+      - Dal Tadka: 20% leftover — some non-vegetarian guests avoided it; reduce slightly
+      - Garlic Butter Vegetables: 15% leftover — acceptable
+
+  - menu_id: MNU-2024-003
+    event_type: birthday_party
+    date: "2024-09-07"
+    guest_count: 80
+    venue_type: outdoor_garden_full
+    service_style: buffet
+    duration_h: 3
+    budget_per_head_myr: 45
+    require_halal: false
+    cuisine_theme: pan_asian_casual
+    dishes_served:
+      - {dish: Lechon Kawali, category: protein_main, feedback_score: 4.9}
+      - {dish: Chicken Adobo, category: protein_main, feedback_score: 4.7}
+      - {dish: Nasi Goreng, category: staple, feedback_score: 4.8}
+      - {dish: Sinigang na Baboy, category: soup, feedback_score: 4.6}
+      - {dish: Spring Rolls (Fried), category: appetizer, feedback_score: 4.9}
+      - {dish: Garlic Butter Vegetables, category: side, feedback_score: 3.5}
+      - {dish: Leche Flan, category: dessert, feedback_score: 4.8}
+      - {dish: Fresh Fruit Platter, category: dessert, feedback_score: 3.8}
+    overall_satisfaction: 4.7
+    cultural_fit_score: 4.6
+    client_notes: >
+      All-Filipino menu at a Filipino family birthday. Outstanding results.
+      Lechon Kawali ran out with 30 min still left in service — should have ordered 25% more.
+      Garlic Butter Vegetables largely ignored by guests — kids and adults both preferred
+      fried items. Fruit platter left largely untouched.
+    lessons:
+      - Filipino casual birthday: fried protein is king (Lechon + Spring Rolls = star dishes)
+      - Order 25% extra lechon at Filipino birthday events
+      - Reduce vegetable sides and fruit at birthday events — low consumption
+      - Leche Flan: 4.8 score — always include at Filipino events
+
+  - menu_id: MNU-2024-004
+    event_type: corporate_lunch
+    date: "2024-10-15"
+    guest_count: 120
+    venue_type: corporate_office_lobby
+    service_style: semi_buffet
+    duration_h: 1.5
+    budget_per_head_myr: 35
+    require_halal: true
+    cuisine_theme: pan_asian_light
+    dishes_served:
+      - {dish: Hainanese Chicken Rice, category: main, feedback_score: 4.5}
+      - {dish: Pad Thai (Tofu), category: vegetarian_main, feedback_score: 4.0}
+      - {dish: Tom Yum Soup, category: soup, feedback_score: 4.3}
+      - {dish: Garlic Butter Vegetables, category: side, feedback_score: 4.1}
+      - {dish: Mango Sticky Rice, category: dessert, feedback_score: 4.4}
+    overall_satisfaction: 4.2
+    cultural_fit_score: 4.4
+    client_notes: >
+      Efficient, clean menu. Office catering — guests satisfied. Pad Thai Tofu was
+      requested as vegetarian option; acceptable but not standout. No fried items
+      (indoor office — no fryer). Good decision.
+    lessons:
+      - Office catering: light, efficient menu works well — don't over-engineer
+      - Hainanese Chicken Rice: reliable, consistently performs at corporate events
+      - No fried items at office venues — right call, guests understand constraints
+      - Mango Sticky Rice: dessert uptake at corporate lunch only 55% — reduce quantity
+
+  - menu_id: MNU-2024-005
+    event_type: chinese_banquet
+    date: "2024-11-30"
+    guest_count: 240
+    venue_type: indoor_ballroom_no_gas
+    service_style: plated_10_course
+    duration_h: 4
+    budget_per_head_myr: 250
+    require_halal: false
+    cuisine_theme: chinese_cantonese_contemporary
+    dishes_served:
+      - {dish: Cold Platter (Jellyfish + Char Siu), category: cold_appetizer, feedback_score: 4.6}
+      - {dish: Double Boiled Chicken Soup, category: soup, feedback_score: 4.8}
+      - {dish: Steamed Sea Bass with Ginger Soy, category: seafood, feedback_score: 4.9}
+      - {dish: Braised Duck with Yam, category: poultry, feedback_score: 4.5}
+      - {dish: Wok-Fried Beef with Black Bean, category: red_meat, feedback_score: 4.4}
+      - {dish: Vegetable Jade Rolls, category: vegetable, feedback_score: 3.9}
+      - {dish: Fried Rice with Crabmeat, category: rice, feedback_score: 4.7}
+      - {dish: Glutinous Rice Dumplings, category: dessert_warm, feedback_score: 4.3}
+      - {dish: Mango Pudding, category: dessert_cold, feedback_score: 4.8}
+    overall_satisfaction: 4.6
+    cultural_fit_score: 5.0
+    client_notes: >
+      Flawless cultural execution. Whole steamed fish was the highlight of the night —
+      guests explicitly praised that it was served whole and not pre-filleted.
+      Vegetable course was least popular (expected). Mango pudding tied as top-scored dish.
+    lessons:
+      - Chinese banquet: whole fish presentation is mandatory — never pre-fillet
+      - Mango pudding + cold desserts outperform warm desserts at Chinese banquets
+      - Soup at course 2 = 90%+ consumption; critical to nail
+      - Fried rice at end: right placement, guests appreciate the tradition
+
+  - menu_id: MNU-2025-001
+    event_type: indian_wedding
+    date: "2025-02-14"
+    guest_count: 400
+    venue_type: outdoor_tent_partial
+    service_style: banana_leaf
+    duration_h: 4
+    budget_per_head_myr: 55
+    require_halal: false
+    cuisine_theme: south_indian
+    dishes_served:
+      - {dish: Vegetable Biryani, category: rice_main, feedback_score: 4.6}
+      - {dish: Butter Chicken, category: protein_main, feedback_score: 4.9}
+      - {dish: Dal Tadka, category: lentil, feedback_score: 4.5}
+      - {dish: Cucumber Raita, category: cooling_side, feedback_score: 4.4}
+      - {dish: Papad, category: crispy_side, feedback_score: 4.7}
+      - {dish: Sambar, category: soup_side, feedback_score: 4.5}
+      - {dish: Mango Lassi, category: drink, feedback_score: 4.8}
+      - {dish: Gulab Jamun, category: dessert, feedback_score: 4.9}
+    overall_satisfaction: 4.8
+    cultural_fit_score: 5.0
+    client_notes: >
+      Near-perfect event. Butter Chicken and Gulab Jamun topped the satisfaction
+      charts. Client said guests asked if we do regular banana leaf — outstanding compliment.
+      Banana leaf format dramatically elevates perceived authenticity.
+    lessons:
+      - Butter Chicken is the number one performer across every event type that includes it
+      - Banana leaf format: score 5.0 cultural fit — always recommend for Indian events
+      - Dal Tadka + Cucumber Raita pairing: critical balance component
+      - Mango Lassi at Indian events: always include
+
+  - menu_id: MNU-2025-002
+    event_type: product_launch
+    date: "2025-03-10"
+    guest_count: 150
+    venue_type: indoor_ballroom_no_gas
+    service_style: cocktail_stations
+    duration_h: 2.5
+    budget_per_head_myr: 80
+    require_halal: true
+    cuisine_theme: modern_asian_fusion
+    dishes_served:
+      - {dish: "Chicken Satay (mini)", category: canapé, feedback_score: 4.9}
+      - {dish: "Spring Rolls (Fried)", category: canapé, feedback_score: 4.8, note: "pre-cooked — acceptable at arrival"}
+      - {dish: "Mushroom Salpicao (arancini-style)", category: canapé, feedback_score: 4.5}
+      - {dish: "Mango Sticky Rice (shot glass)", category: dessert_canapé, feedback_score: 4.7}
+      - {dish: "Coconut Panna Cotta (mini cups)", category: dessert_canapé, feedback_score: 4.8}
+      - {dish: "Butterfly Pea Flower Lemonade", category: signature_drink, feedback_score: 5.0}
+    overall_satisfaction: 4.8
+    cultural_fit_score: 4.6
+    client_notes: >
+      Outstanding result for a product launch. Butterfly pea flower drink was the
+      most Instagrammed item of the evening — generates significant social media value.
+      Mini satay at arrival = immediate crowd pleaser. Cocktail format: high energy.
+      Note: spring rolls pre-cooked but served on arrival — acceptable quality at cocktail format.
+    lessons:
+      - Butterfly pea flower drink = highest impact F&B for social media at product launches
+      - Mini satay at arrival = best cocktail format opener
+      - Cocktail format: all dishes must be bite-sized (one bite / one skewer)
+      - Pre-cooked spring rolls: acceptable quality at cocktail arrival service; not at sit-down
+      - Dessert canapés (shot glass / mini cup) score higher than full-size dessert at cocktail events
+
+# ── Aggregated dish performance index ────────────────────────────────────
+# Across all events, summary performance scores per dish.
+dish_performance_summary:
+  - dish: Chicken Rendang
+    avg_score: 4.8
+    events_served: 3
+    always_a_hit: true
+    notes: Never drops below 4.5. Anchor protein for all Malay events.
+
+  - dish: Butter Chicken
+    avg_score: 4.85
+    events_served: 4
+    always_a_hit: true
+    notes: Highest-scoring main across all events. Universal crowd pleaser.
+
+  - dish: Coconut Panna Cotta
+    avg_score: 4.85
+    events_served: 3
+    always_a_hit: true
+    notes: Best large-scale plated dessert. Always recommend for galas.
+
+  - dish: Spring Rolls (Fried)
+    avg_score: 4.8
+    events_served: 5
+    always_a_hit: true
+    caveat: Quality degrades if pre-cooked. Always order 20% extra.
+
+  - dish: Pandan Cake
+    avg_score: 4.9
+    events_served: 2
+    always_a_hit: true
+    notes: Top dessert for Malay events. Strongly recommend.
+
+  - dish: Garlic Butter Vegetables
+    avg_score: 3.85
+    events_served: 4
+    always_a_hit: false
+    notes: Consistently the lowest-scoring dish. Reduce quantity; do not anchor the menu on it.
+
+  - dish: Chicken Adobo
+    avg_score: 4.0
+    events_served: 3
+    always_a_hit: false
+    notes: >
+      Performs well at Filipino events (4.7). Poor at non-Filipino events (3.6).
+      Recommend only at Filipino-themed or mixed events with Filipino guest majority.
+
+  - dish: Fresh Fruit Platter
+    avg_score: 3.75
+    events_served: 4
+    always_a_hit: false
+    notes: Low consumption across all event types. Reduce quantity; include for dietary completeness, not as feature.
+
+# ── Event type best menu combos (reuse-ready) ────────────────────────────
+proven_menu_combinations:
+  - combo_id: COMBO-001
+    event_type: malay_wedding
+    label: "Proven Malay Wedding Buffet — Gold Standard"
+    dishes: [Chicken Rendang, Nasi Minyak, Chicken Satay, Spring Rolls (Fried), Acar, Pandan Cake, Mango Sticky Rice]
+    avg_satisfaction: 4.7
+    avg_cultural_fit: 4.8
+    notes: Use this as the default scaffold for Malay wedding briefs.
+
+  - combo_id: COMBO-002
+    event_type: corporate_gala
+    label: "Corporate Gala — Premium Contemporary Asian"
+    dishes: [Butter Chicken, Hainanese Chicken Rice, Tom Yum Soup, Garlic Butter Vegetables, Coconut Panna Cotta]
+    avg_satisfaction: 4.65
+    avg_cultural_fit: 4.6
+    notes: >
+      Adjusts well to halal/non-halal and mixed dietary groups.
+      Reliable, premium feel without excessive complexity.
+
+  - combo_id: COMBO-003
+    event_type: corporate_lunch
+    label: "Corporate Lunch — Light & Efficient"
+    dishes: [Hainanese Chicken Rice, Tom Yum Soup, Garlic Butter Vegetables, Mango Sticky Rice]
+    avg_satisfaction: 4.35
+    avg_cultural_fit: 4.4
+    notes: Fast to serve; suits 90-min window. Halal compliant.
+
+  - combo_id: COMBO-004
+    event_type: birthday_party_filipino
+    label: "Filipino Birthday — Fan Favourite"
+    dishes: [Lechon Kawali, Chicken Adobo, Nasi Goreng, Spring Rolls (Fried), Leche Flan]
+    avg_satisfaction: 4.7
+    avg_cultural_fit: 4.6
+    notes: Only for non-halal events with Filipino guest majority.
+
+  - combo_id: COMBO-005
+    event_type: product_launch
+    label: "Product Launch Cocktail — High Impact"
+    dishes: ["Chicken Satay (mini)", "Spring Rolls (Fried)", "Mango Sticky Rice (shot glass)", "Coconut Panna Cotta (mini cups)", "Butterfly Pea Flower Lemonade"]
+    avg_satisfaction: 4.8
+    avg_cultural_fit: 4.6
+    notes: Highest social media impact. Butterfly pea flower drink is mandatory.

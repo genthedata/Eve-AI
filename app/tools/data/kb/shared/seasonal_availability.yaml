@@ -1,0 +1,148 @@
+---
+# Seasonal & Local Availability Calendar Knowledge Base
+# Ingredient availability by month and region, price fluctuations, supply disruptions.
+
+calendar:
+  - ingredient: mango (Philippine carabao)
+    region: Philippines
+    peak_months: [March, April, May]
+    off_peak_months: [October, November, December]
+    peak_price_index: 0.7
+    off_peak_price_index: 1.4
+    notes: >
+      Carabao mango peaks March–May. Best quality for green mango salads and desserts.
+      Avoid ordering fresh mango for December events; use frozen or substitute papaya.
+
+  - ingredient: durian
+    region: Malaysia
+    peak_months: [June, July, August, September]
+    off_peak_months: [January, February, March]
+    peak_price_index: 1.0
+    off_peak_price_index: 2.5
+    notes: >
+      Musang King peaks June–September. D24 available year-round at premium.
+      Strong aroma — not suitable for enclosed venues without strong ventilation.
+
+  - ingredient: rambutan
+    region: [Philippines, Malaysia, Thailand]
+    peak_months: [June, July, August]
+    off_peak_months: [January, February, March]
+    peak_price_index: 0.8
+    off_peak_price_index: 1.8
+    notes: Best fresh for fruit platters during wet season in SEA.
+
+  - ingredient: lanzones
+    region: Philippines
+    peak_months: [September, October, November]
+    off_peak_months: [February, March, April]
+    peak_price_index: 0.6
+    off_peak_price_index: 1.5
+
+  - ingredient: strawberry
+    region: Thailand (Northern)
+    peak_months: [December, January, February]
+    off_peak_months: [June, July, August]
+    peak_price_index: 0.8
+    off_peak_price_index: 2.0
+    notes: >
+      Thai strawberries peak in cool season. Philippine-grown strawberries
+      from Benguet available January–March. Avoid fresh strawberries for
+      June–September SEA events; use frozen instead.
+
+  - ingredient: pomelo
+    region: Thailand
+    peak_months: [November, December, January]
+    off_peak_months: [June, July]
+    peak_price_index: 0.7
+    off_peak_price_index: 1.4
+    notes: Excellent for Som Tum and Thai salads in cool season.
+
+  - ingredient: jasmine rice
+    region: Thailand
+    availability: year_round
+    price_stability: stable
+    notes: >
+      Thai Hom Mali (jasmine) rice available year-round. Price stable
+      unless major drought in Chao Phraya basin (monitor monsoon forecasts).
+
+  - ingredient: kangkong (water spinach)
+    region: [Philippines, Malaysia, Singapore]
+    availability: year_round
+    price_stability: stable
+    notes: Grows fast in tropical climate; consistently available and cheap.
+
+  - ingredient: banana blossom
+    region: Philippines
+    availability: year_round
+    price_stability: stable
+    notes: Good vegan protein alternative — trending as pulled-pork substitute.
+
+  - ingredient: atlantic salmon (imported)
+    region: [Philippines, Malaysia, Singapore]
+    availability: year_round_imported
+    price_stability: volatile
+    notes: >
+      Norway and Chile source. Price volatile with shipping disruptions and
+      exchange rate fluctuations. Costs spike ~20–30% during Lunar New Year
+      (gift-box demand). Always check spot price when quoting.
+
+  - ingredient: tiger prawns
+    region: [Philippines, Malaysia]
+    availability: year_round_farmed
+    price_stability: moderate
+    notes: >
+      Farmed prawns available year-round. Wild-caught peak season Oct–Feb.
+      Price rises 15–25% during CNY and Eid. Farmed supplement is available
+      as a buffer — confirm provenance for premium events.
+
+  - ingredient: coconut
+    region: [Philippines, Indonesia, Malaysia]
+    availability: year_round
+    price_stability: stable
+    notes: SEA's most reliably available ingredient. Coconut milk is shelf-stable.
+
+  - ingredient: ube (purple yam)
+    region: Philippines
+    peak_months: [October, November, December]
+    off_peak_months: [May, June]
+    peak_price_index: 0.8
+    off_peak_price_index: 1.3
+    notes: >
+      Fresh ube peaks Oct–Dec coinciding with Christmas season in Philippines.
+      Frozen ube and ube halaya (jam) available year-round as substitute.
+
+supply_disruption_alerts:
+  - disruption: Cameron Highlands landslide / monsoon
+    region: Malaysia
+    typical_months: [November, December]
+    affected_ingredients: [mixed_vegetables, leafy_greens, tomatoes, strawberries_from_highlands]
+    price_impact_pct: 40
+    mitigation: "Pre-order 3 weeks before affected period; source from lowland alternatives or Indonesia"
+
+  - disruption: Typhoon season
+    region: Philippines
+    typical_months: [July, August, September, October]
+    affected_ingredients: [local_vegetables, fish, fruit]
+    price_impact_pct: 25
+    mitigation: "Increase frozen/preserved stock buffer 2 weeks ahead; diversify to imported during peak typhoon season"
+
+  - disruption: Lunar New Year demand spike
+    region: [Singapore, Malaysia]
+    typical_months: [January, February]
+    affected_ingredients: [salmon, abalone, suckling_pig, lobster, premium_seafood]
+    price_impact_pct: 35
+    mitigation: "Book supplier quantities in December; lock-in price at booking"
+
+  - disruption: Eid Al-Fitr demand spike
+    region: [Malaysia, Indonesia, Philippines]
+    typical_months: [variable_by_lunar_calendar]
+    affected_ingredients: [beef, lamb, chicken, coconut_milk, dates]
+    price_impact_pct: 20
+    mitigation: "Order beef and lamb 30 days in advance. Confirm with halal suppliers 6 weeks before Eid."
+
+  - disruption: Christmas / Year-End demand spike
+    region: [Philippines, Singapore]
+    typical_months: [December]
+    affected_ingredients: [lechon_whole_pig, chicken, salmon, premium_desserts, calamansi]
+    price_impact_pct: 25
+    mitigation: "Book lechon orders in early November. Use established supplier relationships."

@@ -1,0 +1,358 @@
+---
+# Market Rate Benchmarks Knowledge Base
+# Per-head rates by event type, region, service style, cuisine category, and guest count tier.
+# All figures in local currency per head. Updated: 2025-Q4.
+# Source: industry reports, competitor intelligence, and internal bid win/loss data.
+#
+# Tiers:
+#   budget   = economy / community caterers
+#   standard = mid-market professional caterers (our primary positioning)
+#   premium  = hotel catering / specialist high-end caterers
+#   luxury   = ultra-premium / fine dining specialists
+
+benchmarks:
+
+  # ── Malaysia — Malay Events ────────────────────────────────────────────────
+  - benchmark_id: BMK-MY-001
+    event_type: malay_wedding
+    region: Malaysia
+    sub_region: Klang Valley / Selangor
+    currency: MYR
+    service_style: buffet
+    cuisine_category: malay_traditional
+    guest_count_tiers:
+      - tier: small
+        pax_range: [50, 150]
+        budget: 55
+        standard: 85
+        premium: 140
+        luxury: 220
+      - tier: medium
+        pax_range: [151, 400]
+        budget: 50
+        standard: 75
+        premium: 120
+        luxury: 200
+      - tier: large
+        pax_range: [401, 1000]
+        budget: 45
+        standard: 65
+        premium: 100
+        luxury: 180
+    halal_cert_premium_myr: 8
+    our_typical_positioning: standard
+    notes: >
+      JAKIM-certified halal adds MYR 8/head. Nasi minyak + rendang expected.
+      Large-scale Malay weddings (400+) see price compression due to volume.
+      Competitors: Pak Din Catering (budget–standard), Berjaya Catering (standard–premium).
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-MY-002
+    event_type: malay_wedding
+    region: Malaysia
+    sub_region: Johor / Penang
+    currency: MYR
+    service_style: buffet
+    cuisine_category: malay_traditional
+    guest_count_tiers:
+      - tier: all
+        pax_range: [100, 1000]
+        budget: 40
+        standard: 65
+        premium: 110
+        luxury: 180
+    notes: >
+      Outside KL: 10–15% lower than Klang Valley. Higher transport cost offsets some savings.
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-MY-003
+    event_type: funeral_tahlil
+    region: Malaysia
+    currency: MYR
+    service_style: semi_buffet
+    cuisine_category: malay_simple
+    guest_count_tiers:
+      - tier: all
+        pax_range: [50, 500]
+        budget: 18
+        standard: 30
+        premium: 50
+        luxury: null
+    notes: >
+      Tahlil events are price-sensitive. Avoid premium pricing.
+      Simple kuih, nasi lemak, or rice-based menu. Cash-on-day common.
+    last_updated: "2025-Q4"
+
+  # ── Malaysia — Chinese Events ──────────────────────────────────────────────
+  - benchmark_id: BMK-MY-004
+    event_type: chinese_banquet
+    region: Malaysia
+    sub_region: Klang Valley
+    currency: MYR
+    service_style: plated_10_course
+    cuisine_category: chinese_cantonese
+    guest_count_tiers:
+      - tier: per_table_10pax
+        pax_range: [50, 500]
+        budget: 800
+        standard: 1400
+        premium: 2500
+        luxury: 4500
+    unit: per_table_of_10
+    notes: >
+      Chinese banquets quoted per table, not per head. MYR 140–250/head at standard.
+      Hotel ballrooms typically at premium tier. Independent caterers at standard.
+      Whole fish and roast duck are non-negotiable anchors at standard+.
+    last_updated: "2025-Q4"
+
+  # ── Malaysia — Corporate ───────────────────────────────────────────────────
+  - benchmark_id: BMK-MY-005
+    event_type: corporate_gala_dinner
+    region: Malaysia
+    currency: MYR
+    service_style: plated_5_course
+    cuisine_category: international_halal
+    guest_count_tiers:
+      - tier: small
+        pax_range: [60, 150]
+        budget: 120
+        standard: 200
+        premium: 350
+        luxury: 600
+      - tier: large
+        pax_range: [151, 500]
+        budget: 110
+        standard: 180
+        premium: 320
+        luxury: 550
+    notes: >
+      KL hotel benchmark: MYR 200–280/head for standard plated. Our range MYR 160–200
+      positions us below hotel pricing with better flexibility and service.
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-MY-006
+    event_type: corporate_lunch
+    region: Malaysia
+    currency: MYR
+    service_style: semi_buffet
+    cuisine_category: pan_asian_halal
+    guest_count_tiers:
+      - tier: all
+        pax_range: [30, 300]
+        budget: 28
+        standard: 45
+        premium: 75
+        luxury: 120
+    notes: >
+      Corporate lunch most competitive segment. Clients compare actively.
+      Key differentiator: reliable halal cert, prompt setup, efficient service.
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-MY-007
+    event_type: product_launch
+    region: Malaysia
+    currency: MYR
+    service_style: cocktail
+    cuisine_category: pan_asian_fusion
+    guest_count_tiers:
+      - tier: all
+        pax_range: [50, 300]
+        budget: 55
+        standard: 90
+        premium: 150
+        luxury: 280
+    notes: >
+      Product launch cocktail: best margin event type. Premium positioning justifiable
+      by creative menu and branded F&B elements.
+    last_updated: "2025-Q4"
+
+  # ── Philippines ────────────────────────────────────────────────────────────
+  - benchmark_id: BMK-PH-001
+    event_type: wedding
+    region: Philippines
+    sub_region: Metro Manila
+    currency: PHP
+    service_style: buffet
+    cuisine_category: filipino_international
+    guest_count_tiers:
+      - tier: small
+        pax_range: [50, 150]
+        budget: 900
+        standard: 1600
+        premium: 3000
+        luxury: 5500
+      - tier: medium
+        pax_range: [151, 350]
+        budget: 800
+        standard: 1400
+        premium: 2500
+        luxury: 4500
+      - tier: large
+        pax_range: [351, 1000]
+        budget: 700
+        standard: 1200
+        premium: 2000
+        luxury: 3500
+    notes: >
+      Lechon at weddings: adds ~PHP 150–200/head at scale.
+      Hotel venues (Makati, BGC) often include catering package — hardest to compete.
+      Our sweet spot: Lechon + Filipino fusion at PHP 1200–1800/head (medium).
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-PH-002
+    event_type: corporate_gala
+    region: Philippines
+    currency: PHP
+    service_style: plated
+    cuisine_category: international
+    guest_count_tiers:
+      - tier: all
+        pax_range: [80, 500]
+        budget: 1200
+        standard: 2500
+        premium: 4500
+        luxury: 7000
+    notes: >
+      Plated service adds 25–30% over buffet due to staffing.
+      BGC and Makati corporate clients expect standard–premium range.
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-PH-003
+    event_type: birthday_party
+    region: Philippines
+    currency: PHP
+    service_style: buffet
+    cuisine_category: filipino_mixed
+    guest_count_tiers:
+      - tier: small
+        pax_range: [30, 100]
+        budget: 550
+        standard: 950
+        premium: 1800
+        luxury: 3500
+      - tier: large
+        pax_range: [101, 300]
+        budget: 500
+        standard: 850
+        premium: 1600
+        luxury: 3000
+    notes: >
+      18th birthday (Debut) and 50th birthday command premium pricing.
+      Kids party: budget–standard range. Lechon always adds to perceived value.
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-PH-004
+    event_type: corporate_lunch
+    region: Philippines
+    currency: PHP
+    service_style: semi_buffet
+    cuisine_category: filipino_asian
+    guest_count_tiers:
+      - tier: all
+        pax_range: [30, 250]
+        budget: 450
+        standard: 750
+        premium: 1300
+        luxury: null
+    last_updated: "2025-Q4"
+
+  # ── Singapore ──────────────────────────────────────────────────────────────
+  - benchmark_id: BMK-SG-001
+    event_type: corporate_gala
+    region: Singapore
+    currency: SGD
+    service_style: plated
+    cuisine_category: western_asian_fusion
+    guest_count_tiers:
+      - tier: all
+        pax_range: [80, 500]
+        budget: 140
+        standard: 280
+        premium: 500
+        luxury: 1000
+    notes: >
+      Singapore commands 30–40% premium over Malaysia due to labour and venue costs.
+      Marina Bay and Raffles venues add SGD 50–100 surcharge.
+    last_updated: "2025-Q4"
+
+  - benchmark_id: BMK-SG-002
+    event_type: product_launch
+    region: Singapore
+    currency: SGD
+    service_style: cocktail
+    cuisine_category: international_canapes
+    guest_count_tiers:
+      - tier: all
+        pax_range: [50, 300]
+        budget: 60
+        standard: 120
+        premium: 250
+        luxury: 450
+    last_updated: "2025-Q4"
+
+# ── Service style uplifts ─────────────────────────────────────────────────
+service_style_uplifts:
+  - style: plated_over_buffet
+    uplift_pct: 25
+    reason: Higher staff-to-guest ratio, more plates, more service complexity.
+
+  - style: live_station_per_station
+    uplift_flat_myr: 1500
+    uplift_flat_php: 27000
+    uplift_flat_sgd: 500
+    reason: Dedicated station chef, equipment, performance element.
+    notes: Add per station on top of base per-head quote.
+
+  - style: cocktail_vs_buffet
+    uplift_pct: -20
+    reason: Lower food volume, standing service, no table setup needed.
+
+  - style: banana_leaf_vs_standard_buffet
+    uplift_pct: 8
+    reason: Additional setup (leaf sourcing, laying), cultural authenticity premium.
+
+  - style: 10_course_chinese_vs_buffet
+    uplift_pct: 30
+    reason: Plated courses, higher coordination, more waste per head.
+
+# ── Cuisine and compliance uplifts ────────────────────────────────────────
+cuisine_uplifts:
+  - category: halal_jakim_certified
+    uplift_pct: 12
+    notes: Full certification audit, dedicated equipment, certified supplier premium.
+
+  - category: vegan_organic
+    uplift_pct: 15
+    notes: Organic and specialty plant-based ingredients cost more in SEA markets.
+
+  - category: continental_fine_dining
+    uplift_pct: 40
+    notes: Imported proteins (wagyu, truffles), French-trained staff.
+
+  - category: japanese_premium
+    uplift_pct: 30
+    notes: Imported fish, trained sashimi chef, premium tableware.
+
+# ── Positioning guidance ─────────────────────────────────────────────────
+positioning_rules:
+  - rule_id: POS-001
+    name: Within-range positioning
+    description: >
+      If computed quote is within ±5% of the standard tier, position as standard value.
+      If >5% below standard, flag as potential underpricing (leaving money on table).
+      If between standard and premium (5–15% above standard), lead with quality story.
+      If >premium tier, justify with itemised premium breakdown or risk losing bid.
+
+  - rule_id: POS-002
+    name: Below-budget competitor response
+    description: >
+      When competitor price is known and we're above, quantify value gap:
+      halal certification, past event track record, cultural expertise.
+      If we cannot match within 10%, do not race to the bottom — decline gracefully.
+
+  - rule_id: POS-003
+    name: Hotel catering competition
+    description: >
+      Hotel bundled packages (room + catering) are difficult to compete with on price.
+      Differentiate on: flexibility, cultural customisation, halal expertise, client control.
+      Our outdoor/community venue specialisation is the moat vs. hotel catering.

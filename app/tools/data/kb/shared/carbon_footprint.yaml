@@ -1,0 +1,167 @@
+---
+# Carbon Footprint Database Knowledge Base
+# Ingredient-level emissions data — enables sustainability scoring per menu.
+# Sources: FAO, Our World in Data, published lifecycle assessment (LCA) studies.
+# All figures: kg CO₂-equivalent per kg of ingredient unless noted.
+
+ingredients:
+  # ── High-emission proteins ───────────────────────────────────────────────
+  - name: beef_kg
+    category: protein_ruminant
+    co2e_per_kg: 27.0
+    emission_tier: very_high
+    notes: >
+      Highest footprint of common proteins due to methane from enteric
+      fermentation and land use. Grass-fed beef can be 30–50% lower
+      but still high relative to poultry and plant proteins.
+
+  - name: lamb_kg
+    category: protein_ruminant
+    co2e_per_kg: 24.0
+    emission_tier: very_high
+    notes: Similar profile to beef. Rarely ordered in large quantities in SEA events.
+
+  - name: pork_kg
+    category: protein_monogastric
+    co2e_per_kg: 7.6
+    emission_tier: medium
+
+  - name: chicken_kg
+    category: protein_poultry
+    co2e_per_kg: 6.9
+    emission_tier: medium
+    notes: Best mainstream protein choice from a carbon perspective.
+
+  - name: farmed_shrimp_prawn_kg
+    category: protein_seafood
+    co2e_per_kg: 18.0
+    emission_tier: high
+    notes: >
+      Intensive shrimp farming has very high footprint due to mangrove
+      destruction and feed inputs. Wild-caught is lower (~4 kg CO₂e/kg).
+
+  - name: wild_caught_fish_kg
+    category: protein_seafood
+    co2e_per_kg: 3.0
+    emission_tier: low
+    notes: Fishing method matters — trawling is highest; pole-and-line lowest.
+
+  - name: salmon_farmed_kg
+    category: protein_seafood
+    co2e_per_kg: 6.0
+    emission_tier: medium
+    notes: Air freight from Norway adds ~3 kg CO₂e/kg vs sea freight.
+
+  - name: tofu_kg
+    category: protein_plant
+    co2e_per_kg: 2.0
+    emission_tier: low
+
+  - name: tempe_kg
+    category: protein_plant
+    co2e_per_kg: 1.8
+    emission_tier: low
+    notes: Fermented soy — excellent protein, very low footprint, local production in SEA.
+
+  - name: lentils_dal_kg
+    category: protein_legume
+    co2e_per_kg: 0.9
+    emission_tier: very_low
+
+  # ── Grains & Starches ─────────────────────────────────────────────────────
+  - name: jasmine_rice_kg
+    category: grain
+    co2e_per_kg: 2.7
+    emission_tier: medium
+    notes: >
+      Flooded paddy rice emits methane. Aerobic rice cultivation is 40–60%
+      lower — emerging in Thailand but not yet dominant. Still the lowest
+      practical option as the staple in SEA menus.
+
+  - name: pasta_durum_kg
+    category: grain
+    co2e_per_kg: 1.7
+    emission_tier: low
+
+  - name: bread_kg
+    category: grain
+    co2e_per_kg: 1.1
+    emission_tier: very_low
+
+  # ── Vegetables & Fruits ───────────────────────────────────────────────────
+  - name: seasonal_local_vegetables_kg
+    category: vegetable
+    co2e_per_kg: 0.3
+    emission_tier: very_low
+    notes: Locally grown, in-season vegetables have the lowest footprint.
+
+  - name: imported_vegetables_air_freight_kg
+    category: vegetable
+    co2e_per_kg: 5.0
+    emission_tier: high
+    notes: Air-freighted vegetables eliminate the environmental advantage. Use local where possible.
+
+  - name: local_tropical_fruits_kg
+    category: fruit
+    co2e_per_kg: 0.5
+    emission_tier: very_low
+    notes: Mango, rambutan, papaya — all very low footprint when locally sourced.
+
+  # ── Dairy & Alternatives ──────────────────────────────────────────────────
+  - name: heavy_cream_l
+    category: dairy
+    co2e_per_kg: 3.2
+    emission_tier: medium
+
+  - name: coconut_milk_l
+    category: dairy_alternative
+    co2e_per_kg: 0.8
+    emission_tier: very_low
+    notes: Excellent low-carbon substitute for cream in SEA dishes.
+
+  - name: butter_kg
+    category: dairy
+    co2e_per_kg: 9.0
+    emission_tier: high
+    notes: Replace with margarine or coconut oil for lower-carbon menus.
+
+  # ── Oils & Condiments ─────────────────────────────────────────────────────
+  - name: palm_oil_l
+    category: oil
+    co2e_per_kg: 3.3
+    emission_tier: medium
+    notes: >
+      Certified sustainable palm oil (RSPO) reduces deforestation impact.
+      Uncertified palm oil carries significantly higher land-use footprint.
+
+  - name: sunflower_oil_l
+    category: oil
+    co2e_per_kg: 1.4
+    emission_tier: low
+
+sustainability_scoring:
+  description: >
+    Menu sustainability score (0–100) based on weighted average of dish-level CO₂e
+    per portion. Lower carbon = higher score.
+  tiers:
+    - {score_min: 80, score_max: 100, label: "Green Menu",     description: "Primarily plant-based, local, in-season"}
+    - {score_min: 60, score_max: 79,  label: "Low Impact",     description: "Moderate protein mix, mostly local produce"}
+    - {score_min: 40, score_max: 59,  label: "Standard",       description: "Typical mixed catering menu"}
+    - {score_min: 20, score_max: 39,  label: "High Impact",    description: "Heavy on beef, imported proteins, air-freight produce"}
+    - {score_min: 0,  score_max: 19,  label: "Very High Impact","description": "Primarily ruminant meats and air-freighted items"}
+
+  co2e_per_portion_benchmarks:
+    plant_based_menu_per_portion_kg: 0.5
+    standard_mixed_menu_per_portion_kg: 2.5
+    beef_heavy_menu_per_portion_kg: 8.0
+
+carbon_offsets:
+  - provider: Gold Standard
+    description: Verified carbon offsets; 1 credit = 1 tonne CO₂e removed
+    typical_cost_usd_per_tonne: 15
+    notes: Offer clients a "carbon-neutral event" add-on; calculate event total CO₂e and purchase offsets.
+
+  - provider: My Carbon Offset (SEA)
+    description: Local SEA reforestation and peatland restoration projects
+    typical_cost_usd_per_tonne: 10
+    notes: Preferred for local market resonance and storytelling.

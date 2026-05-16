@@ -1,0 +1,415 @@
+---
+# Event Profiles & Templates Knowledge Base
+# Pre-built brief templates for every event category the business caters.
+# Used by customer_agent to pre-fill a brief from a single customer sentence,
+# then ask only about deviations — dramatically reducing intake time.
+#
+# Fields per template:
+#   guest_count_range, service_style, typical_duration_h,
+#   meal_period, budget_band_per_head, menu_anchors,
+#   common_addons, cultural_defaults, clarifying_questions,
+#   flags_to_pass, watch_outs
+
+templates:
+  # ── Weddings ──────────────────────────────────────────────────────────────
+
+  - event_id: malay_wedding
+    label: Malay Wedding (Kenduri Kahwin)
+    category: wedding
+    cultural_community: Malay / Muslim
+    guest_count_range: [150, 1500]
+    typical_guest_count: 400
+    service_style: buffet
+    typical_duration_h: 4
+    meal_period: [lunch, dinner]
+    budget_band_per_head_myr: [25, 80]
+    budget_band_per_head_php: [600, 2000]
+    menu_anchors:
+      - Nasi Minyak (fragrant rice) or Nasi Briyani
+      - Ayam Masak Merah (red-spiced chicken)
+      - Daging Rendang (beef or chicken rendang)
+      - Gulai or Dalca (lentil curry)
+      - Acar (pickled vegetable relish)
+      - Kuih-muih (traditional Malay desserts)
+      - Air Sirap Bandung or cordials (no alcohol)
+    common_addons:
+      - Live mee goreng / mee rebus station
+      - Dessert table (kuih, pulut, bubur)
+      - Hantaran display catering
+      - Bekas (individual packed sets) for family helpers
+      - Doorgift hampers (business can assist sourcing)
+    cultural_defaults:
+      - Halal certification mandatory (JAKIM/MUIS/IDCP)
+      - No alcohol whatsoever
+      - Segregated seating by gender optional (ask client)
+      - Prayer break (Zohor ~1:00pm, Asar ~4:00pm) must be built into run-of-show
+      - Surau (prayer room) space requirement — ask if venue provides
+    clarifying_questions:
+      - "Will you need a surau space or separate prayer area at the venue?"
+      - "Is seating gender-segregated (traditional) or open?"
+      - "Do you have any nut allergy guests? (Satay is common — confirm)"
+      - "Will you need bekas (packed sets) for helpers/vendors?"
+      - "Is there a specific rendang — chicken, beef, or lamb — for the main dish?"
+      - "Tea ceremony or any cultural rituals we should schedule around?"
+      - "What is the serving window? (Pelamin at 11am, lunch from 12pm?)"
+    flags_to_pass:
+      - dietary_constraints: [halal, nut_free_check]
+      - logistics_agent: prayer_break_required=true, no_alcohol=true
+      - menu_agent: anchor_nasi_minyak=true
+    watch_outs:
+      - Guest count can vary widely on day; buffer by 15%
+      - Lechon/pork requests from non-Muslim kitchen staff — strict separation required
+      - High-volume event — confirm kitchen team headcount early
+      - Late-arriving VIP (pengantin) can delay service; build 30-min buffer
+
+  - event_id: chinese_banquet
+    label: Chinese Banquet (Wedding / Anniversary / Graduation)
+    category: wedding
+    cultural_community: Chinese
+    guest_count_range: [60, 600]
+    typical_guest_count: 200
+    service_style: plated_10_course
+    typical_duration_h: 3
+    meal_period: [dinner]
+    budget_band_per_head_myr: [80, 300]
+    budget_band_per_head_php: [2000, 8000]
+    menu_anchors:
+      - Cold platter (jellyfish, roast pork, century egg, cucumber)
+      - Shark's fin or mock shark's fin soup
+      - Steamed fish (whole — never filleted, symbolizes wholeness)
+      - Braised abalone or sea cucumber
+      - Roast duck or Peking duck
+      - Claypot tofu or braised beancurd
+      - Fried rice or noodles (must be last savory course)
+      - Dessert: red bean soup, glutinous rice balls (tang yuan), mango pudding
+    common_addons:
+      - Yee Sang tossing table (Lou Sang) for Chinese New Year events
+      - Live noodle station
+      - Chinese tea service
+      - Wine and beer service (Chinese events typically allow alcohol)
+      - Champagne toasting package
+    cultural_defaults:
+      - Round tables of 10 is standard (number 8 is auspicious; avoid table of 4)
+      - Red table linen for weddings; avoid white (mourning colour)
+      - Whole fish is mandatory — filleting is inauspicious
+      - Shark's fin: many clients now prefer mock version; confirm ethics
+      - Lucky numbers: 8, 6, 9 — table counts and dish counts reference these
+      - Avoid number 4 (si = death) in any signage or table numbering
+      - Tea ceremony if wedding: tea served by couple to elders — coordinate timing
+    clarifying_questions:
+      - "Will alcohol (wine, beer, Chinese tea) be served?"
+      - "Real shark's fin or mock shark's fin soup?"
+      - "Whole fish — what type? (Steamed grouper, sea bass, or pomfret?)"
+      - "Tea ceremony planned? What time and duration?"
+      - "How many tables of 10? (Guest count should be divisible by 10)"
+      - "Any vegetarian or halal tables? (confirm separately)"
+      - "Gold or red table linen preference?"
+    flags_to_pass:
+      - logistics_agent: round_table_10_pax=true, whole_fish_display=true
+      - menu_agent: include_whole_fish=true, 10_course_format=true
+    watch_outs:
+      - If halal guests at same event: strict separation or dual halal/non-halal kitchen required
+      - Peking duck requires separate roasting setup; confirm kitchen capacity
+      - Whole fish must be plated without cutting — kitchen timing critical
+      - Yee Sang requires lou sang table setup; add to logistics brief
+
+  - event_id: indian_wedding
+    label: Indian Wedding Dinner / Lunch
+    category: wedding
+    cultural_community: Indian (Hindu, Tamil, North Indian)
+    guest_count_range: [100, 800]
+    typical_guest_count: 300
+    service_style: banana_leaf_or_buffet
+    typical_duration_h: 3
+    meal_period: [lunch, dinner]
+    budget_band_per_head_myr: [30, 100]
+    budget_band_per_head_php: [800, 2500]
+    menu_anchors:
+      - Rice (white rice, served on banana leaf)
+      - Sambar (lentil vegetable soup)
+      - Rasam (tamarind pepper soup)
+      - Papadum
+      - Thoran (dry vegetable stir-fry)
+      - Aviyal (mixed vegetable in coconut)
+      - Mutton curry or chicken curry (non-vegetarian)
+      - Payasam or Kheer (dessert)
+    common_addons:
+      - Full banana leaf service (authentic South Indian style)
+      - Chapati or paratha station
+      - Biryani station (separate)
+      - Live appam station
+      - Lassi and fruit juice bar
+    cultural_defaults:
+      - Banana leaf service: leaf points away from guest; only turned toward when serving a deceased
+      - Eating with right hand — no cutlery at traditional banana leaf
+      - Strong vegetarian contingent (Brahmin guests: strictly vegetarian)
+      - Confirm veggie vs non-veggie ratio upfront
+      - Segregated service or mixed depends on community
+      - Banana leaf service: rice first, then sides placed clockwise around rice
+    clarifying_questions:
+      - "Is this a banana leaf service or buffet style?"
+      - "What is the vegetarian to non-vegetarian ratio?"
+      - "Are any guests Brahmin (strictly vegetarian, may also avoid onion/garlic)?"
+      - "Do you require a separate vegetarian cooking station?"
+      - "Mutton, chicken, or both? Any fish curry?"
+      - "Appam or chapati station, or stick to banana leaf items?"
+    flags_to_pass:
+      - logistics_agent: banana_leaf_service=true, right_hand_eating_setup=true
+      - menu_agent: vegetarian_ratio_high=true, include_sambar_rasam=true
+    watch_outs:
+      - Banana leaf logistics: supplier, delivery freshness, and disposal plan required
+      - Brahmin guests may refuse onion and garlic — flag to menu agent
+      - Non-vegetarian station must be completely separate from vegetarian prep
+
+  # ── Corporate Events ──────────────────────────────────────────────────────
+
+  - event_id: corporate_lunch
+    label: Corporate Lunch / Working Lunch
+    category: corporate
+    cultural_community: mixed
+    guest_count_range: [20, 200]
+    typical_guest_count: 80
+    service_style: semi_buffet_or_plated
+    typical_duration_h: 1.5
+    meal_period: [lunch]
+    budget_band_per_head_myr: [35, 80]
+    budget_band_per_head_php: [900, 2000]
+    menu_anchors:
+      - 1-2 protein mains (chicken and/or fish)
+      - 1 vegetarian main
+      - Rice or noodles
+      - 2 vegetable sides
+      - Soup
+      - Dessert (light — fruit or panna cotta)
+    common_addons:
+      - Coffee and tea station
+      - Afternoon tea break (if half-day event)
+      - Dietary labelling package
+      - Individual boxed meals (if attendees eating at desks)
+    cultural_defaults:
+      - Mixed community: halal required by default unless client specifies otherwise
+      - Minimal alcohol (if any — beer/wine on request only)
+      - Time-sensitive: lunch must start and end on schedule
+    clarifying_questions:
+      - "Is halal certification required? (Assume yes unless stated)"
+      - "Will this be served buffet or at each seat?"
+      - "Any specific dietary restrictions in the group?"
+      - "Do you need a separate vegetarian option?"
+      - "Is this a networking lunch (standing) or seated?"
+    flags_to_pass:
+      - dietary_constraints: [halal_default]
+      - logistics_agent: strict_time_window=true
+    watch_outs:
+      - Corporate clients often confirm final headcount very late; enforce T-7 deadline
+      - Alcohol approval needed in writing if served (venue licensing)
+
+  - event_id: corporate_gala_dinner
+    label: Corporate Gala / Award Night Dinner
+    category: corporate
+    cultural_community: mixed
+    guest_count_range: [100, 1000]
+    typical_guest_count: 300
+    service_style: plated_3_or_5_course
+    typical_duration_h: 4
+    meal_period: [dinner]
+    budget_band_per_head_myr: [100, 350]
+    budget_band_per_head_php: [2500, 9000]
+    menu_anchors:
+      - Amuse-bouche or canapé on arrival
+      - Soup (lobster bisque, mushroom, or pumpkin)
+      - Salad or appetiser
+      - Intermission sorbet (premium events)
+      - Main protein (beef tenderloin, salmon, or chicken supreme)
+      - Dessert (chocolate lava cake, panna cotta, or plated petit fours)
+    common_addons:
+      - Welcome cocktail reception (pre-dinner)
+      - Drinks package (wine, soft drinks, mocktails)
+      - Live cooking station (carving station or pasta station)
+      - After-dinner dessert bar
+      - Photo booth catering (snack station)
+    cultural_defaults:
+      - Mixed community: halal + vegetarian options mandatory
+      - Premium presentation expected; no sharing trays
+      - Award presentations break service — build 20-min intermission into timeline
+    clarifying_questions:
+      - "Will there be a cocktail reception before dinner? Duration?"
+      - "How many courses? (3-course standard, 5-course premium)"
+      - "Awards presentation during dinner? Approximately when?"
+      - "Drinks package — wine and beer, or mocktail-only?"
+      - "Any VIP table with specific dietary requirements?"
+    flags_to_pass:
+      - logistics_agent: award_intermission=true, vip_table_service=true
+      - menu_agent: plated_format=true, premium_protein=true
+    watch_outs:
+      - Timing is everything; coordinate with event MC on award schedule
+      - VIP table often gets bespoke service; confirm early
+
+  - event_id: product_launch
+    label: Product Launch / Brand Event
+    category: corporate
+    cultural_community: mixed
+    guest_count_range: [30, 500]
+    typical_guest_count: 150
+    service_style: cocktail_or_standing
+    typical_duration_h: 2.5
+    meal_period: [evening]
+    budget_band_per_head_myr: [40, 120]
+    budget_band_per_head_php: [1000, 3000]
+    menu_anchors:
+      - Canapés (5-7 varieties: mix of hot and cold)
+      - Finger food stations
+      - 1 signature cocktail (branded mocktail for alcohol-free)
+      - Mini dessert bites
+    common_addons:
+      - Branded food stations matching product theme
+      - Live cooking demo station
+      - Drinks (sparkling water, soft drinks, mocktails, wine)
+      - Midnight snack box if event extends
+    cultural_defaults:
+      - Finger food format; guests eat standing and networking
+      - Brand alignment important — food presentation often branded
+      - Mix of dietary options essential for corporate guest diversity
+    clarifying_questions:
+      - "Is there a brand theme for the food (colour, ingredient, concept)?"
+      - "Standing cocktail format or some seating?"
+      - "Halal required? (Recommend yes for corporate diversity)"
+      - "Alcohol — open bar, limited bar, or none?"
+    flags_to_pass:
+      - logistics_agent: standing_cocktail=true, branded_station_possible=true
+    watch_outs:
+      - Client may want food to match brand colour (blue macarons, branded cake)
+      - Budget often underestimated for cocktail style; clarify pax number and duration
+
+  # ── Social Events ─────────────────────────────────────────────────────────
+
+  - event_id: birthday_party
+    label: Birthday Party
+    category: social
+    cultural_community: mixed
+    guest_count_range: [20, 200]
+    typical_guest_count: 60
+    service_style: buffet_or_semi_buffet
+    typical_duration_h: 3
+    meal_period: [lunch, dinner]
+    budget_band_per_head_myr: [25, 60]
+    budget_band_per_head_php: [600, 1500]
+    menu_anchors:
+      - 2-3 protein mains (popular with all ages)
+      - Pasta or noodle option (crowd-pleaser for kids)
+      - Birthday cake (business can supply or coordinate)
+      - Spring rolls / finger food on arrival
+    common_addons:
+      - Kids' station (nuggets, mini burgers, fruit skewers)
+      - Dessert table (cupcakes, cake pops, candy buffet)
+      - Photo cake or themed cake
+    cultural_defaults:
+      - Family event; often intergenerational guest mix
+      - Dietary mix depends on family's background; ask early
+    clarifying_questions:
+      - "Is this a kids' birthday or adult celebration?"
+      - "Cultural background of family? (Determines halal, dietary defaults)"
+      - "Will you be sourcing the birthday cake separately?"
+      - "Kids in attendance? (Separate station recommended)"
+    flags_to_pass:
+      - menu_agent: include_crowd_pleasers=true
+    watch_outs:
+      - Kids' stations need separate temperature management
+      - Birthday cake cutting is a moment — coordinate timing
+
+  - event_id: high_tea
+    label: High Tea / Afternoon Tea
+    category: social
+    cultural_community: mixed
+    guest_count_range: [20, 150]
+    typical_guest_count: 50
+    service_style: seated_high_tea
+    typical_duration_h: 2
+    meal_period: [afternoon]
+    budget_band_per_head_myr: [30, 80]
+    budget_band_per_head_php: [750, 2000]
+    menu_anchors:
+      - Finger sandwiches (cucumber, egg mayo, smoked salmon)
+      - Freshly baked scones with clotted cream and jam
+      - Assorted petits fours and macarons
+      - Seasonal fruit tarts
+      - Premium tea selection (Darjeeling, Earl Grey, Chamomile, local blends)
+      - Coffee service
+    common_addons:
+      - Champagne or sparkling tea upgrade
+      - Themed decorations (garden party, vintage, seasonal)
+      - Custom monogrammed cake stand
+    cultural_defaults:
+      - Elegant, unhurried presentation
+      - Tiered cake stands essential to aesthetic
+      - Halal options should be default for mixed Malaysian events
+    clarifying_questions:
+      - "Is this a private or corporate event?"
+      - "What is the dress code? (Determines presentation tier)"
+      - "Champagne or sparkling mocktail option?"
+      - "Any theme? (Garden, vintage, seasonal?)"
+    flags_to_pass:
+      - logistics_agent: tiered_stands_required=true, afternoon_window=true
+    watch_outs:
+      - Scones must be baked fresh; 2h before service maximum
+      - Cream and sandwiches are perishable — strict service timeline
+
+  # ── Specialty Formats ─────────────────────────────────────────────────────
+
+  - event_id: food_festival_stall
+    label: Food Festival / Street Food Stall
+    category: festival
+    cultural_community: mixed
+    guest_count_range: [200, 5000]
+    typical_guest_count: 1000
+    service_style: food_stalls
+    typical_duration_h: 8
+    meal_period: [all_day]
+    budget_band_per_head_myr: [10, 30]
+    budget_band_per_head_php: [250, 800]
+    menu_anchors:
+      - 3-5 signature dishes per stall
+      - Street food format (satay, nasi lemak, mee goreng, laksa)
+    common_addons:
+      - Multiple stall concepts
+      - Drink station (fresh juice, cendol, air bandung)
+    clarifying_questions:
+      - "How many stalls / food concepts needed?"
+      - "How many hours of operation?"
+      - "Cash or cashless payment setup?"
+    flags_to_pass:
+      - logistics_agent: multi_stall_setup=true, extended_hours=true
+    watch_outs:
+      - Volume estimation critical — very hard to adjust mid-event
+      - Weather contingency for outdoor events
+
+  - event_id: funeral_tahlil
+    label: Tahlil / Funeral Reception (Kenduri Arwah)
+    category: memorial
+    cultural_community: Malay / Muslim
+    guest_count_range: [30, 200]
+    typical_guest_count: 60
+    service_style: semi_buffet
+    typical_duration_h: 2
+    meal_period: [lunch, dinner]
+    budget_band_per_head_myr: [15, 35]
+    budget_band_per_head_php: [400, 900]
+    menu_anchors:
+      - Nasi Putih (plain rice)
+      - Ayam Masak Kicap (soy sauce chicken) or Rendang
+      - Sayur (simple stir-fried vegetables)
+      - Bubur (rice porridge) — common for mourning gatherings
+      - Dates (kurma) and mineral water
+    cultural_defaults:
+      - Halal mandatory
+      - Understated presentation; no festive colours or decorations
+      - Banana leaf service common for simpler setups
+      - Often organized on very short notice (24-48h)
+    clarifying_questions:
+      - "What is the expected headcount and timing?"
+      - "Any specific dishes requested by the family?"
+    flags_to_pass:
+      - dietary_constraints: [halal]
+      - logistics_agent: urgent_setup=true, understated_presentation=true
+    watch_outs:
+      - Sensitivity required in all communication — adjust tone
+      - Often last-minute; confirm preparation time available

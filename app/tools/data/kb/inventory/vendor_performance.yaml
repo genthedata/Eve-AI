@@ -1,0 +1,194 @@
+---
+# Vendor Reliability & Performance Log Knowledge Base
+# Historical record per supplier: on-time rate, quality incidents,
+# price stability, responsiveness to urgent orders.
+# Used by demand_planner.py to score and rank suppliers beyond just price.
+# Updated after each event where the supplier was used.
+
+suppliers:
+  - supplier_id: sup-001
+    name: FreshFarm SEA
+    region: Philippines
+    performance_period: 2023-01 to 2025-12
+    total_orders: 48
+    on_time_delivery_rate: 0.96
+    quality_pass_rate: 0.98
+    urgent_order_responsiveness: high
+    avg_urgent_lead_time_hours: 6
+    price_stability_score: 0.92
+    avg_price_variance_pct: 4.2
+    incidents:
+      - {date: 2024-08, type: quality, item: mixed_vegetables_kg, description: "Cameron Highlands supply disruption; partial delivery of wilted kangkong", resolved: true, credit_issued: true}
+    last_audit: 2025-11
+    overall_score: 0.95
+    notes: >
+      Consistently reliable for dry-season orders. Aug–Oct supply from
+      highland farms is volatile. Proactively informs team of disruptions.
+      Recommended for: rice, aromatics, fruits, herbs.
+
+  - supplier_id: sup-002
+    name: MeatMaster PH
+    region: Philippines
+    performance_period: 2023-01 to 2025-12
+    total_orders: 35
+    on_time_delivery_rate: 0.91
+    quality_pass_rate: 0.94
+    urgent_order_responsiveness: medium
+    avg_urgent_lead_time_hours: 18
+    price_stability_score: 0.85
+    avg_price_variance_pct: 9.1
+    incidents:
+      - {date: 2024-11, type: delay, item: chicken_kg, description: "Delivery 4 hours late on Christmas event; insufficient buffer", resolved: true, credit_issued: false}
+      - {date: 2024-03, type: quality, item: beef_kg, description: "Batch arrived at 8°C instead of ≤4°C; rejected by kitchen lead; emergency reorder", resolved: true, credit_issued: true}
+    last_audit: 2025-10
+    overall_score: 0.87
+    notes: >
+      Strong supplier but cold chain management needs improvement.
+      Always add 1 extra day lead time buffer for events >200 pax.
+      Price volatile during Eid/Christmas — lock in price 30 days ahead.
+      Recommended for: chicken (primary), beef. Avoid for last-minute seafood.
+
+  - supplier_id: sup-003
+    name: OceanGate Seafood PH
+    region: Philippines
+    performance_period: 2023-01 to 2025-12
+    total_orders: 22
+    on_time_delivery_rate: 0.86
+    quality_pass_rate: 0.91
+    urgent_order_responsiveness: low
+    avg_urgent_lead_time_hours: 36
+    price_stability_score: 0.72
+    avg_price_variance_pct: 18.5
+    incidents:
+      - {date: 2024-07, type: stock_out, item: salmon_fillet_kg, description: "Confirmed salmon order; delivered bangus without prior notice. Client escalation.", resolved: true, credit_issued: true}
+      - {date: 2025-02, type: quality, item: tiger_prawns_kg, description: "Prawns had ammonia odour; returned full batch", resolved: true, credit_issued: true}
+      - {date: 2025-09, type: delay, item: salmon_fillet_kg, description: "Norwegian import delayed 2 days; substitution required", resolved: true, credit_issued: false}
+    last_audit: 2025-08
+    overall_score: 0.82
+    notes: >
+      Highest risk profile of active suppliers. Salmon availability is the
+      primary issue — confirm stock availability 5 days before event.
+      Always have bangus/local fish as backup. For premium events (corporate
+      galas), consider SeaHarvest SG for salmon instead.
+      Recommended for: squid, local fish. Use with caution for imported seafood.
+
+  - supplier_id: sup-004
+    name: SpiceWorld Manila
+    region: Philippines
+    performance_period: 2023-01 to 2025-12
+    total_orders: 62
+    on_time_delivery_rate: 0.99
+    quality_pass_rate: 0.99
+    urgent_order_responsiveness: very_high
+    avg_urgent_lead_time_hours: 3
+    price_stability_score: 0.97
+    avg_price_variance_pct: 1.8
+    incidents: []
+    last_audit: 2025-11
+    overall_score: 0.98
+    notes: >
+      Most reliable supplier in the network. Near-zero incident history.
+      Can fulfil same-day orders for most dry goods. Halal-certified
+      range is comprehensive. Use as default for all spice/condiment needs.
+      Recommended for: all dry goods, sauces, oils, spice blends.
+
+  - supplier_id: sup-005
+    name: GreenLeaf Produce MY
+    region: Malaysia
+    performance_period: 2023-06 to 2025-12
+    total_orders: 28
+    on_time_delivery_rate: 0.93
+    quality_pass_rate: 0.95
+    urgent_order_responsiveness: medium
+    avg_urgent_lead_time_hours: 12
+    price_stability_score: 0.88
+    avg_price_variance_pct: 7.5
+    incidents:
+      - {date: 2024-11, type: stock_out, item: mixed_vegetables_kg, description: "Cameron Highlands monsoon disruption; partial substitute from lowland farms", resolved: true, credit_issued: false}
+    last_audit: 2025-10
+    overall_score: 0.91
+    notes: >
+      Solid performer for Malaysia events. November monsoon is the only
+      known recurring vulnerability. Stock up vegetables 2 weeks before
+      November events. JAKIM-certified; first choice for halal KL events.
+      Recommended for: vegetables, tofu, herbs, rice (Malaysia events).
+
+  - supplier_id: sup-006
+    name: HalalMeat Direct KL
+    region: Malaysia
+    performance_period: 2023-06 to 2025-12
+    total_orders: 19
+    on_time_delivery_rate: 0.92
+    quality_pass_rate: 0.96
+    urgent_order_responsiveness: medium
+    avg_urgent_lead_time_hours: 14
+    price_stability_score: 0.81
+    avg_price_variance_pct: 11.2
+    incidents:
+      - {date: 2025-04, type: delay, item: beef_chuck_kg, description: "Eid demand surge; 1-day delay. Had stocked buffer so no service impact.", resolved: true, credit_issued: false}
+    last_audit: 2025-09
+    overall_score: 0.90
+    notes: >
+      Good quality JAKIM-certified meats. Eid period requires 30-day advance
+      booking for beef and lamb. Chicken is available year-round.
+      Recommended for: all proteins, Malaysia and Singapore events.
+
+  - supplier_id: sup-007
+    name: SeaHarvest SG
+    region: Singapore
+    performance_period: 2024-01 to 2025-12
+    total_orders: 14
+    on_time_delivery_rate: 0.93
+    quality_pass_rate: 0.96
+    urgent_order_responsiveness: high
+    avg_urgent_lead_time_hours: 8
+    price_stability_score: 0.86
+    avg_price_variance_pct: 8.3
+    incidents:
+      - {date: 2025-02, type: price_spike, item: salmon_fillet_kg, description: "CNY demand; price jumped 35% vs last quote. Pre-booked quantity was honoured.", resolved: true, credit_issued: false}
+    last_audit: 2025-11
+    overall_score: 0.93
+    notes: >
+      Premium quality seafood in SG market. Best choice for salmon for high-stakes events.
+      Always lock in CNY (Jan–Feb) and CNY-adjacent pricing in advance.
+      Recommended for: salmon, premium prawns, Singapore events.
+
+  - supplier_id: sup-008
+    name: PrimeProduce SG
+    region: Singapore
+    performance_period: 2024-01 to 2025-12
+    total_orders: 21
+    on_time_delivery_rate: 0.96
+    quality_pass_rate: 0.97
+    urgent_order_responsiveness: high
+    avg_urgent_lead_time_hours: 6
+    price_stability_score: 0.94
+    avg_price_variance_pct: 3.5
+    incidents: []
+    last_audit: 2025-11
+    overall_score: 0.96
+    notes: >
+      Best all-round Singapore produce supplier. No incidents to date.
+      Covers most non-protein requirements. MUIS-certified.
+      Recommended for: all produce, Singapore events (primary supplier).
+
+blacklisted_suppliers: []
+
+vendor_selection_weights:
+  on_time_delivery: 0.35
+  quality_pass_rate: 0.35
+  price_stability: 0.15
+  urgent_responsiveness: 0.15
+
+responsiveness_scores:
+  very_high: 1.0
+  high: 0.80
+  medium: 0.55
+  low: 0.25
+
+scoring_notes: >
+  Overall vendor score = (on_time_delivery * 0.35) + (quality_pass_rate * 0.35)
+  + (price_stability * 0.15) + (responsiveness_score * 0.15).
+  For urgent orders (event within 48h), urgency_responsiveness weight
+  increases to 0.40 and price_stability drops to 0.00.
+  Halal certification is a hard filter, not a scoring factor.
