@@ -1,4 +1,4 @@
-# Eve Cater's AI — Smart Catering Assistant by iNextLabs
+# Eve Cater's AI — Smart Catering Assistant for iNextLabs
 
 **Eve Cater's AI** is an intelligent, multi-agent catering operations platform built for Southeast Asia. It combines a structured customer-facing chat assistant (Eve) with a powerful backend of 6 specialist AI agents, 38 knowledge bases, RAG-lite retrieval, inventory simulation, and optional LLM reasoning.
 
