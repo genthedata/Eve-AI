@@ -18,6 +18,14 @@
 
 ## Architecture overview
 
+### Target: Azure AI Foundry hub + project
+
+Managed agents, models, threads, and thread persistence in Azure AI Foundry. Layer mapping to this repo: [docs/architecture-microsoft-agent-framework.md](docs/architecture-microsoft-agent-framework.md).
+
+![Azure AI Foundry hub + project architecture](docs/assets/azure-ai-foundry-architecture.png)
+
+### Current runtime (in-repo)
+
 ```text
 Customer (Terminal 2)
         │
