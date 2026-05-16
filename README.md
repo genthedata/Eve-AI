@@ -202,6 +202,16 @@ copy .env.example .env
 
 ---
 
+## Deployed customer interface (preview)
+
+Once the agent backend is deployed, customers can chat with **Eve** through a web or mobile app instead of the terminal client. The example below is a **Microsoft Power Apps** front end wired to the agent API—multilingual welcome (MY · PH · SG), suggested prompts, and free-text event intake (type, location, guests, budget, dietary needs).
+
+![Eve Smart Catering AI — Power Apps customer chat UI](docs/assets/eve-power-apps-ui.png)
+
+For local development and testing, use the terminal chat client described in [Terminal 2 — Eve Cater's AI](#terminal-2--eve-caters-ai-customer-chat) below.
+
+---
+
 ## Running the system (two terminals)
 
 ### Terminal 1 — start the agent server
